@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UITableViewController
+@interface CreditsViewController : UITableViewController
 
 @end

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		921810341BC1B1C300D32E92 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810331BC1B1C300D32E92 /* FirstViewController.m */; };
+		921810341BC1B1C300D32E92 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810331BC1B1C300D32E92 /* CreditsViewController.m */; };
 		921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810361BC1B3C000D32E92 /* BrightnessViewController.m */; };
 		924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */; };
 		B96BB64F1B38D96600F1C3AE /* GammaController.m in Sources */ = {isa = PBXBuildFile; fileRef = B96BB64E1B38D96600F1C3AE /* GammaController.m */; };
@@ -33,8 +33,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		921810321BC1B1C300D32E92 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		921810331BC1B1C300D32E92 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		921810321BC1B1C300D32E92 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
+		921810331BC1B1C300D32E92 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		921810351BC1B3C000D32E92 /* BrightnessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessViewController.h; sourceTree = "<group>"; };
 		921810361BC1B3C000D32E92 /* BrightnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessViewController.m; sourceTree = "<group>"; };
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
@@ -122,8 +122,8 @@
 			children = (
 				B9E5364C1B38D90D0097BF90 /* AppDelegate.h */,
 				B9E5364D1B38D90D0097BF90 /* AppDelegate.m */,
-				921810321BC1B1C300D32E92 /* FirstViewController.h */,
-				921810331BC1B1C300D32E92 /* FirstViewController.m */,
+				921810321BC1B1C300D32E92 /* CreditsViewController.h */,
+				921810331BC1B1C300D32E92 /* CreditsViewController.m */,
 				926B68F91BC1B91D00F12297 /* Core */,
 				926B68F61BC1B8E800F12297 /* Temperature */,
 				926B68F71BC1B8F200F12297 /* Brightness */,
@@ -227,7 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9E536511B38D90D0097BF90 /* MainViewController.m in Sources */,
-				921810341BC1B1C300D32E92 /* FirstViewController.m in Sources */,
+				921810341BC1B1C300D32E92 /* CreditsViewController.m in Sources */,
 				921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */,
 				924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */,
 				B9E5364E1B38D90D0097BF90 /* AppDelegate.m in Sources */,

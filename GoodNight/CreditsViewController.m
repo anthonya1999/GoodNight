@@ -6,13 +6,13 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "CreditsViewController.h"
 
-@implementation FirstViewController
+@implementation CreditsViewController
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView) {
-        if (indexPath.section == 1) {
+        if (indexPath.section == 0) {
             NSString *username = nil;
             if (indexPath.row == 0) {
                 username = @"tomf64";
@@ -24,9 +24,12 @@
                 username = @"GoodNightiOS";
             }
             if (indexPath.row == 3) {
-                username = @"The120thWhisper";
+                username = @"Emu4iOS";
             }
             if (indexPath.row == 4) {
+                username = @"The120thWhisper";
+            }
+            if (indexPath.row == 5) {
                 username = @"JustGetFlux";
             }
             [self openTwitterAccountWithUsername:username];
