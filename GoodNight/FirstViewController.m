@@ -13,12 +13,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView) {
         if (indexPath.section == 1) {
+            NSString *username = nil;
             if (indexPath.row == 0) {
-                [self openTwitterAccountWithUsername:@"AAgatiello"];
+                username = @"tomf64";
             }
             if (indexPath.row == 1) {
-                [self openTwitterAccountWithUsername:@"GoodNightiOS"];
+                username = @"AAgatiello";
             }
+            if (indexPath.row == 2) {
+                username = @"GoodNightiOS";
+            }
+            if (indexPath.row == 3) {
+                username = @"The120thWhisper";
+            }
+            if (indexPath.row == 4) {
+                username = @"JustGetFlux";
+            }
+            [self openTwitterAccountWithUsername:username];
         }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
