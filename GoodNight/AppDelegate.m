@@ -23,7 +23,9 @@
                                          @"blueValue": @1.0,
                                          @"dimEnabled": @NO,
                                          @"dimLevel": @1.0,
-                                         @"rgbEnabled": @NO};
+                                         @"rgbEnabled": @NO,
+                                         @"lastOnDate": [NSDate distantPast],
+                                         @"lastOffDate": [NSDate distantPast]};
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
     
@@ -56,46 +58,55 @@
     }
     
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:[NSDate date]];
-    NSInteger turnOnHour = 19;
-    NSInteger turnOffHour = 7;
     
-    NSLog(@"Current hour: %d", components.hour);
+    const NSInteger turnOnHour = 19;
+    const NSInteger turnOffHour = 7;
+    const NSInteger minCheckTimeHours = 12;
+    const NSTimeInterval minCheckTime = minCheckTimeHours * 60 * 60;
     
+    NSLog(@"Current hour: %ld", (long)components.hour);
+    
+    if (components.hour >= turnOnHour || components.hour < turnOffHour) {
+        if ([[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] objectForKey:@"lastOnDate"]] >= minCheckTime) {
+            NSLog(@"Setting color orange");
+            [self wakeUpScreenIfNeeded];
+            [GammaController setGammaWithOrangeness:[[NSUserDefaults standardUserDefaults] floatForKey:@"maxOrange"]];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastOnDate"];
+        }
+    }
+    else {
+        if ([[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] objectForKey:@"lastOnDate"]] >= minCheckTime) {
+            NSLog(@"Setting color normal");
+            [self wakeUpScreenIfNeeded];
+            [GammaController setGammaWithOrangeness:0];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastOffDate"];
+        }
+    }
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)wakeUpScreenIfNeeded {
     void *SpringBoardServices = dlopen("/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices", RTLD_LAZY);
     NSParameterAssert(SpringBoardServices);
-    
     mach_port_t (*SBSSpringBoardServerPort)() = dlsym(SpringBoardServices, "SBSSpringBoardServerPort");
     NSParameterAssert(SBSSpringBoardServerPort);
-    
     mach_port_t sbsMachPort = SBSSpringBoardServerPort();
     BOOL isLocked, passcodeEnabled;
-    
-    void *(*SBGetScreenLockStatus)(mach_port_t port, BOOL *lockStatus, BOOL *passcodeEnabled) = dlsym(SpringBoardServices, "SBGetScreenLockStatus");
+    void *(*SBGetScreenLockStatus)(mach_port_t port, BOOL *isLocked, BOOL *passcodeEnabled) = dlsym(SpringBoardServices, "SBGetScreenLockStatus");
     NSParameterAssert(SBGetScreenLockStatus);
-    
     SBGetScreenLockStatus(sbsMachPort, &isLocked, &passcodeEnabled);
+    NSLog(@"Lock status: %d", isLocked);
     
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wundeclared-selector"
     
     if (isLocked) {
-        [application performSelector:@selector(requestDeviceUnlock)];
+        [[UIApplication sharedApplication] performSelector:@selector(requestDeviceUnlock)];
     }
     
     #pragma clang diagnostic pop
     
     dlclose(SpringBoardServices);
-
-    if (components.hour >= turnOnHour || components.hour < turnOffHour) {
-        NSLog(@"Setting color orange");
-        [GammaController setGammaWithOrangeness:[[NSUserDefaults standardUserDefaults] floatForKey:@"maxOrange"]];
-    }
-    else {
-        NSLog(@"Setting color normal");
-        [GammaController setGammaWithOrangeness:0];
-    }
-    
-    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
