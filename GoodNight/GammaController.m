@@ -11,10 +11,6 @@
 
 @implementation GammaController
 
-@end
-
-@implementation GammaController (Private)
-
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue {
     unsigned rs = red * 0x100;
     NSParameterAssert(rs <= 0x100);
