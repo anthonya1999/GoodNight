@@ -29,7 +29,7 @@
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
     
-    [application setMinimumBackgroundFetchInterval:900];
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:900];
     
     return YES;
 }
@@ -37,16 +37,26 @@
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL succeeded))completionHandler {
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     if ([shortcutItem.type isEqualToString:[NSString stringWithFormat:@"%@.enable", bundleIdentifier]]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"enabled"];
-        [GammaController setGammaWithOrangeness:[[NSUserDefaults standardUserDefaults] floatForKey:@"maxOrange"]];
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"rgbEnabled"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"dimEnabled"]) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"enabled"];
+            [GammaController setGammaWithOrangeness:[[NSUserDefaults standardUserDefaults] floatForKey:@"maxOrange"]];
+            [application performSelector:@selector(suspend)];
+            [NSThread sleepForTimeInterval:0.5];
+            exit(0);
+        }
+        else {
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enabled"];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
     }
     else if ([shortcutItem.type isEqualToString:[NSString stringWithFormat:@"%@.disable", bundleIdentifier]]) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enabled"];
         [GammaController setGammaWithOrangeness:0];
+        [[UIApplication sharedApplication] performSelector:@selector(suspend)];
+        [NSThread sleepForTimeInterval:0.5];
+        exit(0);
     }
-    [application performSelector:@selector(suspend)];
-    [NSThread sleepForTimeInterval:2.0];
-    exit(0);
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
