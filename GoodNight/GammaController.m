@@ -12,16 +12,16 @@
 @implementation GammaController
 
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue {
-    unsigned rs = red * 0x100;
+    NSUInteger rs = red * 0x100;
     NSParameterAssert(rs <= 0x100);
     
-    unsigned gs = green * 0x100;
+    NSUInteger gs = green * 0x100;
     NSParameterAssert(gs <= 0x100);
     
-    unsigned bs = blue * 0x100;
+    NSUInteger bs = blue * 0x100;
     NSParameterAssert(bs <= 0x100);
     
-    IOMobileFramebufferReturn error = 0;
+    IOMobileFramebufferConnection fb = NULL;
     
     void *IOMobileFramebuffer = dlopen("/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer", RTLD_LAZY);
     NSParameterAssert(IOMobileFramebuffer);
@@ -29,11 +29,9 @@
     IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
     NSParameterAssert(IOMobileFramebufferGetMainDisplay);
     
-    IOMobileFramebufferConnection fb = NULL;
-    error = IOMobileFramebufferGetMainDisplay(&fb);
-    NSParameterAssert(error == 0);
+    IOMobileFramebufferGetMainDisplay(&fb);
     
-    uint32_t data[0xc00 / sizeof(uint32_t)];
+    NSUInteger data[0xc00 / sizeof(NSUInteger)];
     memset(data, 0, sizeof(data));
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -44,8 +42,8 @@
     if (file == NULL) {
         IOMobileFramebufferReturn (*IOMobileFramebufferGetGammaTable)(IOMobileFramebufferConnection connection, void *data) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetGammaTable");
         NSParameterAssert(IOMobileFramebufferGetGammaTable);
-        error = IOMobileFramebufferGetGammaTable(fb, data);
-        NSParameterAssert(error == 0);
+        
+        IOMobileFramebufferGetGammaTable(fb, data);
         
         file = fopen([filePath UTF8String], "wb");
         NSParameterAssert(file != NULL);
@@ -60,12 +58,12 @@
     fread(data, 1, sizeof(data), file);
     fclose(file);
     
-    for (size_t i = 0; i < 256; ++i) {
-        int j = 255 - (int)i;
+    for (NSInteger i = 0; i < 256; ++i) {
+        NSInteger j = 255 - i;
         
-        int r = j * rs >> 8;
-        int g = j * gs >> 8;
-        int b = j * bs >> 8;
+        NSInteger r = j * rs >> 8;
+        NSInteger g = j * gs >> 8;
+        NSInteger b = j * bs >> 8;
         
         data[j + 0x001] = data[r + 0x001];
         data[j + 0x102] = data[g + 0x102];
@@ -75,8 +73,7 @@
     IOMobileFramebufferReturn (*IOMobileFramebufferSetGammaTable)(IOMobileFramebufferConnection connection, void *data) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferSetGammaTable");
     NSParameterAssert(IOMobileFramebufferSetGammaTable);
     
-    error = IOMobileFramebufferSetGammaTable(fb, data);
-    NSParameterAssert(error == 0);
+    IOMobileFramebufferSetGammaTable(fb, data);
     
     dlclose(IOMobileFramebuffer);
 }

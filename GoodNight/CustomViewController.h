@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomViewController : UITableViewController
+@interface CustomViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISwitch *rgbSwitch;
 @property (weak, nonatomic) IBOutlet UISlider *redSlider;

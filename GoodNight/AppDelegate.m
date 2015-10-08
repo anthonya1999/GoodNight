@@ -29,7 +29,7 @@
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
     
-    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:900];
+    [application setMinimumBackgroundFetchInterval:900];
     
     return YES;
 }
@@ -40,9 +40,7 @@
         if (![[NSUserDefaults standardUserDefaults] boolForKey:@"rgbEnabled"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"dimEnabled"]) {
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"enabled"];
             [GammaController setGammaWithOrangeness:[[NSUserDefaults standardUserDefaults] floatForKey:@"maxOrange"]];
-            [application performSelector:@selector(suspend)];
-            [NSThread sleepForTimeInterval:0.5];
-            exit(0);
+            [self exitApplication];
         }
         else {
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enabled"];
@@ -53,10 +51,14 @@
     else if ([shortcutItem.type isEqualToString:[NSString stringWithFormat:@"%@.disable", bundleIdentifier]]) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enabled"];
         [GammaController setGammaWithOrangeness:0];
-        [[UIApplication sharedApplication] performSelector:@selector(suspend)];
-        [NSThread sleepForTimeInterval:0.5];
-        exit(0);
+        [self exitApplication];
     }
+}
+
+- (void)exitApplication {
+    [[UIApplication sharedApplication] performSelector:@selector(suspend)];
+    [NSThread sleepForTimeInterval:0.5];
+    exit(0);
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
