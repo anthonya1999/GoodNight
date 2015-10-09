@@ -30,7 +30,7 @@
                 username = @"The120thWhisper";
             }
             if (indexPath.row == 5) {
-                username = @"JustGetFlux";
+                username = @"lyablin_nikita";
             }
             [self openTwitterAccountWithUsername:username];
         }
