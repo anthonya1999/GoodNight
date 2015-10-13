@@ -49,6 +49,8 @@
 - (IBAction)colorChangingEnabledSwitchChanged {
     NSLog(@"color changing switch changed");
     [[NSUserDefaults standardUserDefaults] setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
+    [GammaController autoChangeOrangenessIfNeeded];
 }
 
 - (IBAction)resetSlider {
