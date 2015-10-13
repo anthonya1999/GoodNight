@@ -44,9 +44,9 @@
     {
         scheme = [NSString stringWithFormat:@"twitter://user?screen_name=%@",username];
     }
-    else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetbot://"]]) // Tweetbot
+    else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tweetbot:"]]) // Tweetbot
     {
-        scheme = [NSString stringWithFormat:@"tweetbot:///user_profile/%@",username];
+        scheme = [NSString stringWithFormat:@"tweetbot:///user_profile/",username];
     }
     else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitterrific://"]]) // Twitterrific
     {
