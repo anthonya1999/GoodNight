@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		921810341BC1B1C300D32E92 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810331BC1B1C300D32E92 /* CreditsViewController.m */; };
 		921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810361BC1B3C000D32E92 /* BrightnessViewController.m */; };
+		921924331BCDC11500254487 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 921924321BCDC11500254487 /* NSDate+Extensions.m */; };
 		924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */; };
 		B96BB64F1B38D96600F1C3AE /* GammaController.m in Sources */ = {isa = PBXBuildFile; fileRef = B96BB64E1B38D96600F1C3AE /* GammaController.m */; };
 		B96BB6511B38DAF500F1C3AE /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B96BB6501B38DAF500F1C3AE /* Launch Screen.xib */; };
@@ -37,6 +38,8 @@
 		921810331BC1B1C300D32E92 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		921810351BC1B3C000D32E92 /* BrightnessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessViewController.h; sourceTree = "<group>"; };
 		921810361BC1B3C000D32E92 /* BrightnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessViewController.m; sourceTree = "<group>"; };
+		921924311BCDC11500254487 /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extensions.h"; sourceTree = "<group>"; };
+		921924321BCDC11500254487 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extensions.m"; sourceTree = "<group>"; };
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 		92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoodNight.entitlements; sourceTree = "<group>"; };
@@ -65,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		921924341BCDC11800254487 /* NSDate+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				921924311BCDC11500254487 /* NSDate+Extensions.h */,
+				921924321BCDC11500254487 /* NSDate+Extensions.m */,
+			);
+			name = "NSDate+Extensions";
+			sourceTree = "<group>";
+		};
 		926B68F61BC1B8E800F12297 /* Temperature */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +151,7 @@
 		B9E536491B38D90D0097BF90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				921924341BCDC11800254487 /* NSDate+Extensions */,
 				92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */,
 				B9E5365A1B38D90D0097BF90 /* Info.plist */,
 				B9E5364A1B38D90D0097BF90 /* main.m */,
@@ -226,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				921924331BCDC11500254487 /* NSDate+Extensions.m in Sources */,
 				B9E536511B38D90D0097BF90 /* MainViewController.m in Sources */,
 				921810341BC1B1C300D32E92 /* CreditsViewController.m in Sources */,
 				921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */,
@@ -303,7 +317,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adatech.goodnight;
 				PRODUCT_NAME = GoodNight;
-				PROVISIONING_PROFILE = "b6f1b6dd-404e-4c38-9ba0-6740e3080155";
+				PROVISIONING_PROFILE = "08d3bdb1-c9d4-4464-9445-87326254ba65";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Enterprise;
@@ -372,7 +386,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adatech.goodnight;
 				PRODUCT_NAME = GoodNight;
-				PROVISIONING_PROFILE = "284beab3-67ea-4742-a428-9ab028f68de1";
+				PROVISIONING_PROFILE = "5097fef8-4a32-4a48-ac4d-666c81eb7e87";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

@@ -7,6 +7,7 @@
 //
 
 #import "GammaController.h"
+#import "NSDate+Extensions.h"
 #include <dlfcn.h>
 
 @implementation GammaController
@@ -178,7 +179,6 @@
         NSParameterAssert(SBSUndimScreen);
         SBSUndimScreen();
     }
-    
     dlclose(SpringBoardServices);
 }
 

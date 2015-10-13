@@ -21,10 +21,3 @@ typedef kern_return_t IOMobileFramebufferReturn;
 + (void)disableOrangeness;
 
 @end
-
-@interface NSDate (Extensions)
-
-- (BOOL)isEarlierThan:(NSDate *)date;
-- (BOOL)isLaterThan:(NSDate *)date;
-
-@end
