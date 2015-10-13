@@ -174,9 +174,9 @@
     NSLog(@"Lock status: %d", isLocked);
     
     if (isLocked) {
-        void *(*SBUndimScreen)() = dlsym(SpringBoardServices, "SBUndimScreen");
-        NSParameterAssert(SBUndimScreen);
-        SBUndimScreen();
+        void *(*SBSUndimScreen)() = dlsym(SpringBoardServices, "SBSUndimScreen");
+        NSParameterAssert(SBSUndimScreen);
+        SBSUndimScreen();
     }
     
     dlclose(SpringBoardServices);
