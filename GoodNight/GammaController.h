@@ -15,5 +15,16 @@ typedef kern_return_t IOMobileFramebufferReturn;
 
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue;
 + (void)setGammaWithOrangeness:(float)percentOrange;
++ (void)autoChangeOrangenessIfNeeded;
++ (void)wakeUpScreenIfNeeded;
++ (void)enableOrangeness;
++ (void)disableOrangeness;
+
+@end
+
+@interface NSDate (Extensions)
+
+- (BOOL)isEarlierThan:(NSDate *)date;
+- (BOOL)isLaterThan:(NSDate *)date;
 
 @end

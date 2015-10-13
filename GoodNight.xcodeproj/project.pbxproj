@@ -278,7 +278,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Enterprise;
@@ -304,7 +303,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adatech.goodnight;
 				PRODUCT_NAME = GoodNight;
-				PROVISIONING_PROFILE = "6b1f2c0e-20bd-47cb-8f44-418ae0a9c70f";
+				PROVISIONING_PROFILE = "b6f1b6dd-404e-4c38-9ba0-6740e3080155";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Enterprise;
@@ -348,7 +347,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -374,7 +372,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adatech.goodnight;
 				PRODUCT_NAME = GoodNight;
-				PROVISIONING_PROFILE = "1b3f3cb1-3da6-4d75-80bb-c9c9de1ac535";
+				PROVISIONING_PROFILE = "284beab3-67ea-4742-a428-9ab028f68de1";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

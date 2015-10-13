@@ -31,7 +31,7 @@
     
     IOMobileFramebufferGetMainDisplay(&fb);
     
-    NSUInteger data[0xc00 / sizeof(NSUInteger)];
+    NSUInteger data[0xc0c / sizeof(NSUInteger)];
     memset(data, 0, sizeof(data));
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -92,6 +92,94 @@
     }
     
     [self setGammaWithRed:red green:green blue:blue];
+}
+
++ (void)autoChangeOrangenessIfNeeded {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if (![defaults boolForKey:@"colorChangingEnabled"]) {
+        return;
+    }
+    
+    NSDate *currentDate = [NSDate date];
+    NSDateComponents *autoOnOffComponents = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
+    
+    autoOnOffComponents.hour = [defaults integerForKey:@"autoStartHour"];
+    autoOnOffComponents.minute = [defaults integerForKey:@"autoStartMinute"];
+    NSDate* turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
+    
+    autoOnOffComponents.hour = [defaults integerForKey:@"autoEndHour"];
+    autoOnOffComponents.minute = [defaults integerForKey:@"autoEndMinute"];
+    NSDate *turnOffDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
+    
+    if ([turnOnDate isLaterThan:turnOffDate]) {
+        if ([currentDate isEarlierThan:turnOnDate] && [currentDate isEarlierThan:turnOffDate]) {
+            autoOnOffComponents.day = autoOnOffComponents.day - 1;
+            turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
+        }
+        else if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isEarlierThan:currentDate]) {
+            autoOnOffComponents.day = autoOnOffComponents.day + 1;
+            turnOffDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
+        }
+    }
+    
+    NSLog(@"Last auto-change date: %@", [defaults objectForKey:@"lastAutoChangeDate"]);
+ 
+    if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
+        NSLog(@"We're in the orange interval, considering switch to orange");
+        if ([turnOnDate isLaterThan:[defaults objectForKey:@"lastAutoChangeDate"]]) {
+            NSLog(@"Setting color orange");
+            [GammaController enableOrangeness];
+        }
+    }
+    else {
+        NSLog(@"Orange times have either passed or are not quite here just yet, considering switch to normal");
+        if ([turnOffDate isLaterThan:[defaults objectForKey:@"lastAutoChangeDate"]]) {
+            NSLog(@"Setting color normal");
+            [GammaController disableOrangeness];
+        }
+    }
+    
+    [defaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+}
+
++ (void)enableOrangeness {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self wakeUpScreenIfNeeded];
+    [GammaController setGammaWithOrangeness:[defaults floatForKey:@"maxOrange"]];
+    [defaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+    [defaults setBool:YES forKey:@"enabled"];
+    [defaults synchronize];
+}
+
++ (void)disableOrangeness {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self wakeUpScreenIfNeeded];
+    [GammaController setGammaWithOrangeness:0];
+    [defaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+    [defaults setBool:NO forKey:@"enabled"];
+    [defaults synchronize];
+}
+
++ (void)wakeUpScreenIfNeeded {
+    void *SpringBoardServices = dlopen("/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices", RTLD_LAZY);
+    NSParameterAssert(SpringBoardServices);
+    mach_port_t (*SBSSpringBoardServerPort)() = dlsym(SpringBoardServices, "SBSSpringBoardServerPort");
+    NSParameterAssert(SBSSpringBoardServerPort);
+    mach_port_t sbsMachPort = SBSSpringBoardServerPort();
+    BOOL isLocked, passcodeEnabled;
+    void *(*SBGetScreenLockStatus)(mach_port_t port, BOOL *isLocked, BOOL *passcodeEnabled) = dlsym(SpringBoardServices, "SBGetScreenLockStatus");
+    NSParameterAssert(SBGetScreenLockStatus);
+    SBGetScreenLockStatus(sbsMachPort, &isLocked, &passcodeEnabled);
+    NSLog(@"Lock status: %d", isLocked);
+    
+    if (isLocked) {
+        void *(*SBUndimScreen)() = dlsym(SpringBoardServices, "SBUndimScreen");
+        NSParameterAssert(SBUndimScreen);
+        SBUndimScreen();
+    }
+    
+    dlclose(SpringBoardServices);
 }
 
 @end
