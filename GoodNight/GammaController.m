@@ -10,6 +10,21 @@
 #import "NSDate+Extensions.h"
 #include <dlfcn.h>
 
+@implementation NSDate (Extensions)
+- (BOOL)isLaterThan:(NSDate *)date {
+    if([self compare: date] == NSOrderedDescending) {
+        return YES;
+    }
+    return NO;
+}
+- (BOOL)isEarlierThan:(NSDate *)date {
+    if ([self compare:date] == NSOrderedAscending) {
+        return YES;
+    }
+    return NO;
+}
+@end
+
 @implementation GammaController
 
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue {
@@ -175,11 +190,10 @@
     NSLog(@"Lock status: %d", isLocked);
     
     if (isLocked) {
-        void *(*SBSUndimScreen)() = dlsym(SpringBoardServices, "SBSUndimScreen");
-        NSParameterAssert(SBSUndimScreen);
-        SBSUndimScreen();
+        void *(*SBUndimScreen)() = dlsym(SpringBoardServices, "SBUndimScreen");
+        NSParameterAssert(SBUndimScreen);
+        SBUndimScreen();
     }
     dlclose(SpringBoardServices);
 }
-
 @end
