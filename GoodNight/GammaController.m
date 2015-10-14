@@ -98,6 +98,10 @@
 + (void)autoChangeOrangenessIfNeeded {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    if ([defaults boolForKey:@"enabled"]) {
+        [self enableOrangeness];
+    }
+    
     if (![defaults boolForKey:@"colorChangingEnabled"]) {
         return;
     }
@@ -124,19 +128,13 @@
         }
     }
     
-    NSLog(@"Last auto-change date: %@", [defaults objectForKey:@"lastAutoChangeDate"]);
- 
     if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
-        NSLog(@"We're in the orange interval, considering switch to orange");
         if ([turnOnDate isLaterThan:[defaults objectForKey:@"lastAutoChangeDate"]]) {
-            NSLog(@"Setting color orange");
             [GammaController enableOrangeness];
         }
     }
     else {
-        NSLog(@"Orange times have either passed or are not quite here just yet, considering switch to normal");
         if ([turnOffDate isLaterThan:[defaults objectForKey:@"lastAutoChangeDate"]]) {
-            NSLog(@"Setting color normal");
             [GammaController disableOrangeness];
         }
     }
@@ -172,13 +170,13 @@
     void *(*SBGetScreenLockStatus)(mach_port_t port, BOOL *isLocked, BOOL *passcodeEnabled) = dlsym(SpringBoardServices, "SBGetScreenLockStatus");
     NSParameterAssert(SBGetScreenLockStatus);
     SBGetScreenLockStatus(sbsMachPort, &isLocked, &passcodeEnabled);
-    NSLog(@"Lock status: %d", isLocked);
     
     if (isLocked) {
         void *(*SBSUndimScreen)() = dlsym(SpringBoardServices, "SBSUndimScreen");
         NSParameterAssert(SBSUndimScreen);
         SBSUndimScreen();
     }
+    
     dlclose(SpringBoardServices);
 }
 

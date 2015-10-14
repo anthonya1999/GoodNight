@@ -25,6 +25,7 @@
     
     self.timePicker = [[UIDatePicker alloc] init];
     self.timePicker.datePickerMode = UIDatePickerModeTime;
+    self.timePicker.minuteInterval = 15;
     self.timePicker.backgroundColor = [UIColor whiteColor];
     [self.timePicker addTarget:self action:@selector(timePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     
@@ -156,7 +157,6 @@
 }
 
 - (IBAction)colorChangingEnabledSwitchChanged {
-    NSLog(@"color changing switch changed");
     [[NSUserDefaults standardUserDefaults] setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
     [GammaController autoChangeOrangenessIfNeeded];
