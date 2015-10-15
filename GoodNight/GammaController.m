@@ -96,25 +96,23 @@
 }
 
 + (void)autoChangeOrangenessIfNeeded {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults boolForKey:@"enabled"]) {
+    if ([userDefaults boolForKey:@"enabled"]) {
         [self enableOrangeness];
     }
     
-    if (![defaults boolForKey:@"colorChangingEnabled"]) {
+    if (![userDefaults boolForKey:@"colorChangingEnabled"]) {
         return;
     }
     
     NSDate *currentDate = [NSDate date];
     NSDateComponents *autoOnOffComponents = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
     
-    autoOnOffComponents.hour = [defaults integerForKey:@"autoStartHour"];
-    autoOnOffComponents.minute = [defaults integerForKey:@"autoStartMinute"];
-    NSDate* turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
+    autoOnOffComponents.hour = [userDefaults integerForKey:@"autoStartHour"];
+    autoOnOffComponents.minute = [userDefaults integerForKey:@"autoStartMinute"];
+    NSDate *turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
     
-    autoOnOffComponents.hour = [defaults integerForKey:@"autoEndHour"];
-    autoOnOffComponents.minute = [defaults integerForKey:@"autoEndMinute"];
+    autoOnOffComponents.hour = [userDefaults integerForKey:@"autoEndHour"];
+    autoOnOffComponents.minute = [userDefaults integerForKey:@"autoEndMinute"];
     NSDate *turnOffDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
     
     if ([turnOnDate isLaterThan:turnOffDate]) {
@@ -129,35 +127,33 @@
     }
     
     if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
-        if ([turnOnDate isLaterThan:[defaults objectForKey:@"lastAutoChangeDate"]]) {
+        if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
             [GammaController enableOrangeness];
         }
     }
     else {
-        if ([turnOffDate isLaterThan:[defaults objectForKey:@"lastAutoChangeDate"]]) {
+        if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
             [GammaController disableOrangeness];
         }
     }
     
-    [defaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+    [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
 }
 
 + (void)enableOrangeness {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self wakeUpScreenIfNeeded];
-    [GammaController setGammaWithOrangeness:[defaults floatForKey:@"maxOrange"]];
-    [defaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-    [defaults setBool:YES forKey:@"enabled"];
-    [defaults synchronize];
+    [GammaController setGammaWithOrangeness:[userDefaults floatForKey:@"maxOrange"]];
+    [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+    [userDefaults setBool:YES forKey:@"enabled"];
+    [userDefaults synchronize];
 }
 
 + (void)disableOrangeness {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self wakeUpScreenIfNeeded];
     [GammaController setGammaWithOrangeness:0];
-    [defaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-    [defaults setBool:NO forKey:@"enabled"];
-    [defaults synchronize];
+    [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+    [userDefaults setBool:NO forKey:@"enabled"];
+    [userDefaults synchronize];
 }
 
 + (void)wakeUpScreenIfNeeded {
@@ -178,6 +174,7 @@
     }
     
     dlclose(SpringBoardServices);
+    
 }
 
 @end

@@ -14,13 +14,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.dimSlider.value = [[NSUserDefaults standardUserDefaults] floatForKey:@"dimLevel"];
-    self.dimSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"dimEnabled"];
+    self.dimSlider.value = [userDefaults floatForKey:@"dimLevel"];
+    self.dimSwitch.on = [userDefaults boolForKey:@"dimEnabled"];
 }
 
 - (IBAction)brightnessSwitchChanged {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"enabled"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"rgbEnabled"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:self.dimSwitch.on forKey:@"dimEnabled"];
+    if (![userDefaults boolForKey:@"enabled"] && ![userDefaults boolForKey:@"rgbEnabled"]) {
+        [userDefaults setBool:self.dimSwitch.on forKey:@"dimEnabled"];
         
         if (self.dimSwitch.on) {
             [GammaController setGammaWithRed:self.dimSlider.value green:self.dimSlider.value blue:self.dimSlider.value];
@@ -38,7 +38,7 @@
 }
 
 - (IBAction)dimSliderLevelChanged {
-    [[NSUserDefaults standardUserDefaults] setFloat:self.dimSlider.value forKey:@"dimLevel"];
+    [userDefaults setFloat:self.dimSlider.value forKey:@"dimLevel"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.dimSwitch.on) {
@@ -48,7 +48,7 @@
 
 - (IBAction)resetSlider {
     self.dimSlider.value = 1.0;
-    [[NSUserDefaults standardUserDefaults] setFloat:self.dimSlider.value forKey:@"dimLevel"];
+    [userDefaults setFloat:self.dimSlider.value forKey:@"dimLevel"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.dimSwitch.on) {

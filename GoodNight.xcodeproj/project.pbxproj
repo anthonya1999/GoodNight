@@ -43,6 +43,7 @@
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 		92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoodNight.entitlements; sourceTree = "<group>"; };
+		92F4101C1BD0730A003AABB8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		B96BB64D1B38D96600F1C3AE /* GammaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GammaController.h; sourceTree = "<group>"; };
 		B96BB64E1B38D96600F1C3AE /* GammaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GammaController.m; sourceTree = "<group>"; };
 		B96BB6501B38DAF500F1C3AE /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 			children = (
 				921924341BCDC11800254487 /* NSDate+Extensions */,
 				92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */,
+				92F4101C1BD0730A003AABB8 /* PrefixHeader.pch */,
 				B9E5365A1B38D90D0097BF90 /* Info.plist */,
 				B9E5364A1B38D90D0097BF90 /* main.m */,
 			);
@@ -311,6 +313,7 @@
 					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/PrivateFrameworks",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREFIX_HEADER = GoodNight/PrefixHeader.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/GoodNight/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -380,6 +383,7 @@
 					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/PrivateFrameworks",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREFIX_HEADER = GoodNight/PrefixHeader.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/GoodNight/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

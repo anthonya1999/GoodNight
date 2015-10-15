@@ -48,23 +48,21 @@
 }
 
 - (void)updateUI {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.enabledSwitch.on = [userDefaults boolForKey:@"enabled"];
+    self.orangeSlider.value = [userDefaults floatForKey:@"maxOrange"];
+    self.colorChangingEnabledSwitch.on = [userDefaults boolForKey:@"colorChangingEnabled"];
     
-    self.enabledSwitch.on = [defaults boolForKey:@"enabled"];
-    self.orangeSlider.value = [defaults floatForKey:@"maxOrange"];
-    self.colorChangingEnabledSwitch.on = [defaults boolForKey:@"colorChangingEnabled"];
-    
-    NSDate *date = [self dateForHour:[defaults integerForKey:@"autoStartHour"] andMinute:[defaults integerForKey:@"autoStartMinute"]];
+    NSDate *date = [self dateForHour:[userDefaults integerForKey:@"autoStartHour"] andMinute:[userDefaults integerForKey:@"autoStartMinute"]];
     self.startTimeTextField.text = [self.timeFormatter stringFromDate:date];
-    date = [self dateForHour:[defaults integerForKey:@"autoEndHour"] andMinute:[defaults integerForKey:@"autoEndMinute"]];
+    date = [self dateForHour:[userDefaults integerForKey:@"autoEndHour"] andMinute:[userDefaults integerForKey:@"autoEndMinute"]];
     self.endTimeTextField.text = [self.timeFormatter stringFromDate:date];}
 
 - (IBAction)enabledSwitchChanged {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"rgbEnabled"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"dimEnabled"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:self.enabledSwitch.on forKey:@"enabled"];
+    if (![userDefaults boolForKey:@"rgbEnabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
+        [userDefaults setBool:self.enabledSwitch.on forKey:@"enabled"];
         
         if (self.enabledSwitch.on) {
-            [GammaController setGammaWithOrangeness:[[NSUserDefaults standardUserDefaults] floatForKey:@"maxOrange"]];
+            [GammaController setGammaWithOrangeness:[userDefaults floatForKey:@"maxOrange"]];
         }
         else {
             [GammaController setGammaWithOrangeness:0];
@@ -112,23 +110,21 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:picker.date];
     currentField.text = [self.timeFormatter stringFromDate:picker.date];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:components.hour forKey:[defaultsKeyPrefix stringByAppendingString:@"Hour"]];
-    [defaults setInteger:components.minute forKey:[defaultsKeyPrefix stringByAppendingString:@"Minute"]];
+    [userDefaults setInteger:components.hour forKey:[defaultsKeyPrefix stringByAppendingString:@"Hour"]];
+    [userDefaults setInteger:components.minute forKey:[defaultsKeyPrefix stringByAppendingString:@"Minute"]];
     
-    [defaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
+    [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
     [GammaController autoChangeOrangenessIfNeeded];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDate *date = nil;
     
     if (textField == self.startTimeTextField) {
-        date = [self dateForHour:[defaults integerForKey:@"autoStartHour"] andMinute:[defaults integerForKey:@"autoStartMinute"]];
+        date = [self dateForHour:[userDefaults integerForKey:@"autoStartHour"] andMinute:[userDefaults integerForKey:@"autoStartMinute"]];
     }
     else if (textField == self.endTimeTextField) {
-        date = [self dateForHour:[defaults integerForKey:@"autoEndHour"] andMinute:[defaults integerForKey:@"autoEndMinute"]];
+        date = [self dateForHour:[userDefaults integerForKey:@"autoEndHour"] andMinute:[userDefaults integerForKey:@"autoEndMinute"]];
     }
     else {
         return;
@@ -148,7 +144,7 @@
 }
 
 - (IBAction)maxOrangeSliderChanged {
-    [[NSUserDefaults standardUserDefaults] setFloat:self.orangeSlider.value forKey:@"maxOrange"];
+    [userDefaults setFloat:self.orangeSlider.value forKey:@"maxOrange"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.enabledSwitch.on) {
@@ -157,14 +153,14 @@
 }
 
 - (IBAction)colorChangingEnabledSwitchChanged {
-    [[NSUserDefaults standardUserDefaults] setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
+    [userDefaults setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
+    [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
     [GammaController autoChangeOrangenessIfNeeded];
 }
 
 - (IBAction)resetSlider {
     self.orangeSlider.value = 0.4;
-    [[NSUserDefaults standardUserDefaults] setFloat:self.orangeSlider.value forKey:@"maxOrange"];
+    [userDefaults setFloat:self.orangeSlider.value forKey:@"maxOrange"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.enabledSwitch.on) {

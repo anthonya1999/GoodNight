@@ -30,7 +30,7 @@
                                          @"autoEndHour": @7,
                                          @"autoEndMinute": @0};
     
-    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultsToRegister];
+    [userDefaults registerDefaults:defaultsToRegister];
     
     [GammaController autoChangeOrangenessIfNeeded];
     
@@ -42,12 +42,12 @@
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL succeeded))completionHandler {
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     if ([shortcutItem.type isEqualToString:[NSString stringWithFormat:@"%@.enable", bundleIdentifier]]) {
-        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"rgbEnabled"] && ![[NSUserDefaults standardUserDefaults] boolForKey:@"dimEnabled"]) {
+        if (![userDefaults boolForKey:@"rgbEnabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
             [GammaController enableOrangeness];
             [self exitApplication];
         }
         else {
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"enabled"];
+            [userDefaults setBool:NO forKey:@"enabled"];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
