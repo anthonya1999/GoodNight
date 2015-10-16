@@ -21,52 +21,38 @@
 }
 
 - (IBAction)redChanged {
-    [userDefaults setFloat:self.redSlider.value forKey:@"redValue"];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
-
-    if (self.rgbSwitch.on) {
-        [GammaController setGammaWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value];
-    }
+    [self updateDisplayColorWithValue:self.redSlider.value forKey:@"redValue"];
 }
 
 - (IBAction)greenChanged {
-    [userDefaults setFloat:self.greenSlider.value forKey:@"greenValue"];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
-
-    if (self.rgbSwitch.on) {
-        [GammaController setGammaWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value];
-    }
+    [self updateDisplayColorWithValue:self.greenSlider.value forKey:@"greenValue"];
 }
 
 - (IBAction)blueChanged {
-    [userDefaults setFloat:self.blueSlider.value forKey:@"blueValue"];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationNone];
-
-    if (self.rgbSwitch.on) {
-        [GammaController setGammaWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value];
-    }
+    [self updateDisplayColorWithValue:self.blueSlider.value forKey:@"blueValue"];
 }
 
 - (IBAction)colorSwitchChanged {
-    if (![userDefaults boolForKey:@"enabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
-        [userDefaults setBool:self.rgbSwitch.on forKey:@"rgbEnabled"];
+    [userDefaults setBool:self.rgbSwitch.on forKey:@"rgbEnabled"];
         
-        if (self.rgbSwitch.on) {
-            [GammaController setGammaWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value];
-        }
-        else {
-            if ([userDefaults boolForKey:@"enabled"]) {
-                [GammaController setGammaWithOrangeness:[userDefaults floatForKey:@"maxOrange"]];
-            }
-            else {
-                [GammaController setGammaWithOrangeness:0];
-            }
-        }
+    if (self.rgbSwitch.on) {
+        [GammaController setGammaWithCustomValues];
     }
     else {
-        [self.rgbSwitch setOn:NO animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [GammaController disableOrangenessWithDefaults:NO];
+    }
+}
+
+- (void)updateDisplayColorWithValue:(float)value forKey:(NSString *)key {
+    if (value != 0 && key != nil) {
+    [userDefaults setFloat:value forKey:key];
+    }
+    
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 3)];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+    
+    if (self.rgbSwitch.on) {
+        [GammaController setGammaWithCustomValues];
     }
 }
 
@@ -80,12 +66,7 @@
     self.blueSlider.value = 1.0;
     [userDefaults setFloat:self.blueSlider.value forKey:@"blueValue"];
     
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 3)];
-    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-    
-    if (self.rgbSwitch.on) {
-        [GammaController setGammaWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value];
-    }
+    [self updateDisplayColorWithValue:0 forKey:nil];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

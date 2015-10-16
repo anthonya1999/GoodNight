@@ -58,20 +58,13 @@
     self.endTimeTextField.text = [self.timeFormatter stringFromDate:date];}
 
 - (IBAction)enabledSwitchChanged {
-    if (![userDefaults boolForKey:@"rgbEnabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
-        [userDefaults setBool:self.enabledSwitch.on forKey:@"enabled"];
+    [userDefaults setBool:self.enabledSwitch.on forKey:@"enabled"];
         
-        if (self.enabledSwitch.on) {
-            [GammaController setGammaWithOrangeness:[userDefaults floatForKey:@"maxOrange"]];
-        }
-        else {
-            [GammaController setGammaWithOrangeness:0];
-        }
+    if (self.enabledSwitch.on) {
+        [GammaController enableOrangenessWithDefaults:NO];
     }
     else {
-        [self.enabledSwitch setOn:NO animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [GammaController disableOrangenessWithDefaults:NO];
     }
 }
 
@@ -148,7 +141,7 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.enabledSwitch.on) {
-        [GammaController setGammaWithOrangeness:self.orangeSlider.value];
+        [GammaController enableOrangenessWithDefaults:NO];
     }
 }
 
@@ -164,7 +157,7 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.enabledSwitch.on) {
-        [GammaController setGammaWithOrangeness:self.orangeSlider.value];
+        [GammaController enableOrangenessWithDefaults:NO];
     }
 }
 

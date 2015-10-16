@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface GammaController : NSObject
+@interface GammaController : NSObject <UIAlertViewDelegate>
 
 typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
 typedef kern_return_t IOMobileFramebufferReturn;
@@ -17,7 +18,10 @@ typedef kern_return_t IOMobileFramebufferReturn;
 + (void)setGammaWithOrangeness:(float)percentOrange;
 + (void)autoChangeOrangenessIfNeeded;
 + (void)wakeUpScreenIfNeeded;
-+ (void)enableOrangeness;
-+ (void)disableOrangeness;
++ (void)enableOrangenessWithDefaults:(BOOL)defaults;
++ (void)disableOrangenessWithDefaults:(BOOL)defaults;
++ (void)showFailedAlertWithKey:(NSString *)key;
++ (void)enableDimness;
++ (void)setGammaWithCustomValues;
 
 @end

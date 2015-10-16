@@ -19,21 +19,13 @@
 }
 
 - (IBAction)brightnessSwitchChanged {
-    if (![userDefaults boolForKey:@"enabled"] && ![userDefaults boolForKey:@"rgbEnabled"]) {
-        [userDefaults setBool:self.dimSwitch.on forKey:@"dimEnabled"];
+    [userDefaults setBool:self.dimSwitch.on forKey:@"dimEnabled"];
         
-        if (self.dimSwitch.on) {
-            [GammaController setGammaWithRed:self.dimSlider.value green:self.dimSlider.value blue:self.dimSlider.value];
-        }
-        else {
-            [GammaController setGammaWithOrangeness:0];
-        }
-
+    if (self.dimSwitch.on) {
+        [GammaController enableDimness];
     }
     else {
-        [self.dimSwitch setOn:NO animated:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [GammaController disableOrangenessWithDefaults:NO];
     }
 }
 
@@ -42,7 +34,7 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.dimSwitch.on) {
-        [GammaController setGammaWithRed:self.dimSlider.value green:self.dimSlider.value blue:self.dimSlider.value];
+        [GammaController enableDimness];
     }
 }
 
@@ -52,7 +44,7 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.dimSwitch.on) {
-        [GammaController setGammaWithRed:self.dimSlider.value green:self.dimSlider.value blue:self.dimSlider.value];
+        [GammaController enableDimness];
     }
 }
 

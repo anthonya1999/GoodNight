@@ -97,7 +97,7 @@
 
 + (void)autoChangeOrangenessIfNeeded {
     if ([userDefaults boolForKey:@"enabled"]) {
-        [self enableOrangeness];
+        [self enableOrangenessWithDefaults:YES];
     }
     
     if (![userDefaults boolForKey:@"colorChangingEnabled"]) {
@@ -128,32 +128,40 @@
     
     if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
         if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-            [GammaController enableOrangeness];
+            [self enableOrangenessWithDefaults:YES];
         }
     }
     else {
         if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-            [GammaController disableOrangeness];
+            [self disableOrangenessWithDefaults:YES];
         }
     }
-    
     [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
 }
 
-+ (void)enableOrangeness {
-    [self wakeUpScreenIfNeeded];
-    [GammaController setGammaWithOrangeness:[userDefaults floatForKey:@"maxOrange"]];
-    [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-    [userDefaults setBool:YES forKey:@"enabled"];
-    [userDefaults synchronize];
++ (void)enableOrangenessWithDefaults:(BOOL)defaults {
+    if (![userDefaults boolForKey:@"rgbEnabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
+        [self wakeUpScreenIfNeeded];
+        [GammaController setGammaWithOrangeness:[userDefaults floatForKey:@"maxOrange"]];
+        if (defaults == YES) {
+            [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+            [userDefaults setBool:YES forKey:@"enabled"];
+            [userDefaults synchronize];
+        }
+    }
+    else {
+        [self showFailedAlertWithKey:@"enabled"];
+    }
 }
 
-+ (void)disableOrangeness {
++ (void)disableOrangenessWithDefaults:(BOOL)defaults {
     [self wakeUpScreenIfNeeded];
     [GammaController setGammaWithOrangeness:0];
-    [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-    [userDefaults setBool:NO forKey:@"enabled"];
-    [userDefaults synchronize];
+    if (defaults == YES) {
+        [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+        [userDefaults setBool:NO forKey:@"enabled"];
+        [userDefaults synchronize];
+    }
 }
 
 + (void)wakeUpScreenIfNeeded {
@@ -175,6 +183,37 @@
     
     dlclose(SpringBoardServices);
     
+}
+
++ (void)showFailedAlertWithKey:(NSString *)key {
+    [userDefaults setBool:NO forKey:key];
+    [userDefaults synchronize];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
++ (void)enableDimness {
+    if (![userDefaults boolForKey:@"enabled"] && ![userDefaults boolForKey:@"rgbEnabled"]) {
+        float dimLevel = [userDefaults floatForKey:@"dimLevel"];
+        [self wakeUpScreenIfNeeded];
+        [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
+    }
+    else {
+        [self showFailedAlertWithKey:@"dimEnabled"];
+    }
+}
+
++ (void)setGammaWithCustomValues {
+    if (![userDefaults boolForKey:@"enabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
+        float redValue = [userDefaults floatForKey:@"redValue"];
+        float greenValue = [userDefaults floatForKey:@"greenValue"];
+        float blueValue = [userDefaults floatForKey:@"blueValue"];
+        [self wakeUpScreenIfNeeded];
+        [self setGammaWithRed:redValue green:greenValue blue:blueValue];
+    }
+    else {
+        [self showFailedAlertWithKey:@"rgbEnabled"];
+    }
 }
 
 @end

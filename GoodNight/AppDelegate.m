@@ -43,17 +43,14 @@
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     if ([shortcutItem.type isEqualToString:[NSString stringWithFormat:@"%@.enable", bundleIdentifier]]) {
         if (![userDefaults boolForKey:@"rgbEnabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
-            [GammaController enableOrangeness];
+            [GammaController enableOrangenessWithDefaults:NO];
+            [userDefaults setBool:YES forKey:@"enabled"];
             [self exitApplication];
-        }
-        else {
-            [userDefaults setBool:NO forKey:@"enabled"];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
         }
     }
     else if ([shortcutItem.type isEqualToString:[NSString stringWithFormat:@"%@.disable", bundleIdentifier]]) {
-        [GammaController disableOrangeness];
+        [GammaController disableOrangenessWithDefaults:NO];
+        [userDefaults setBool:NO forKey:@"enabled"];
         [self exitApplication];
     }
 }
