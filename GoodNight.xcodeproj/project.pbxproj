@@ -11,6 +11,8 @@
 		921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810361BC1B3C000D32E92 /* BrightnessViewController.m */; };
 		921924331BCDC11500254487 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 921924321BCDC11500254487 /* NSDate+Extensions.m */; };
 		924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */; };
+		9296029F1BD1B89100CDEC52 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9296029E1BD1B89100CDEC52 /* InitialViewController.m */; };
+		929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929602A11BD1BC3000CDEC52 /* SettingsViewController.m */; };
 		92F4101E1BD07519003AABB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F4101D1BD07519003AABB8 /* LaunchScreen.storyboard */; };
 		B96BB64F1B38D96600F1C3AE /* GammaController.m in Sources */ = {isa = PBXBuildFile; fileRef = B96BB64E1B38D96600F1C3AE /* GammaController.m */; };
 		B9B2BD3A1BA7B86000514B7A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B2BD391BA7B86000514B7A /* Storyboard.storyboard */; };
@@ -42,6 +44,10 @@
 		921924321BCDC11500254487 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extensions.m"; sourceTree = "<group>"; };
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
+		9296029D1BD1B89100CDEC52 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		9296029E1BD1B89100CDEC52 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		929602A01BD1BC3000CDEC52 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		929602A11BD1BC3000CDEC52 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoodNight.entitlements; sourceTree = "<group>"; };
 		92F4101C1BD0730A003AABB8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		92F4101D1BD07519003AABB8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -114,6 +120,55 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		929602A31BD1C22D00CDEC52 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				929602A01BD1BC3000CDEC52 /* SettingsViewController.h */,
+				929602A11BD1BC3000CDEC52 /* SettingsViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		929602A41BD1C24B00CDEC52 /* Credits */ = {
+			isa = PBXGroup;
+			children = (
+				921810321BC1B1C300D32E92 /* CreditsViewController.h */,
+				921810331BC1B1C300D32E92 /* CreditsViewController.m */,
+			);
+			name = Credits;
+			sourceTree = "<group>";
+		};
+		929602A51BD1C25A00CDEC52 /* Initial View */ = {
+			isa = PBXGroup;
+			children = (
+				9296029D1BD1B89100CDEC52 /* InitialViewController.h */,
+				9296029E1BD1B89100CDEC52 /* InitialViewController.m */,
+			);
+			name = "Initial View";
+			sourceTree = "<group>";
+		};
+		929602A61BD1C26F00CDEC52 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				929602A51BD1C25A00CDEC52 /* Initial View */,
+				926B68F61BC1B8E800F12297 /* Temperature */,
+				926B68F71BC1B8F200F12297 /* Brightness */,
+				926B68F81BC1B8FA00F12297 /* Color */,
+				929602A31BD1C22D00CDEC52 /* Settings */,
+				929602A41BD1C24B00CDEC52 /* Credits */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		929602A71BD1C2DE00CDEC52 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				92F4101D1BD07519003AABB8 /* LaunchScreen.storyboard */,
+				B9B2BD391BA7B86000514B7A /* Storyboard.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		B9E5363D1B38D90D0097BF90 = {
 			isa = PBXGroup;
 			children = (
@@ -135,15 +190,11 @@
 			children = (
 				B9E5364C1B38D90D0097BF90 /* AppDelegate.h */,
 				B9E5364D1B38D90D0097BF90 /* AppDelegate.m */,
-				921810321BC1B1C300D32E92 /* CreditsViewController.h */,
-				921810331BC1B1C300D32E92 /* CreditsViewController.m */,
 				926B68F91BC1B91D00F12297 /* Core */,
-				926B68F61BC1B8E800F12297 /* Temperature */,
-				926B68F71BC1B8F200F12297 /* Brightness */,
-				926B68F81BC1B8FA00F12297 /* Color */,
-				92F4101D1BD07519003AABB8 /* LaunchScreen.storyboard */,
-				B9B2BD391BA7B86000514B7A /* Storyboard.storyboard */,
+				929602A61BD1C26F00CDEC52 /* User Interface */,
+				929602A71BD1C2DE00CDEC52 /* Storyboards */,
 				B9E536551B38D90D0097BF90 /* Assets.xcassets */,
+				B9E5365A1B38D90D0097BF90 /* Info.plist */,
 				B9E536491B38D90D0097BF90 /* Supporting Files */,
 			);
 			path = GoodNight;
@@ -155,7 +206,6 @@
 				921924341BCDC11800254487 /* NSDate+Extensions */,
 				92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */,
 				92F4101C1BD0730A003AABB8 /* PrefixHeader.pch */,
-				B9E5365A1B38D90D0097BF90 /* Info.plist */,
 				B9E5364A1B38D90D0097BF90 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -241,12 +291,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9296029F1BD1B89100CDEC52 /* InitialViewController.m in Sources */,
 				921924331BCDC11500254487 /* NSDate+Extensions.m in Sources */,
 				B9E536511B38D90D0097BF90 /* MainViewController.m in Sources */,
 				921810341BC1B1C300D32E92 /* CreditsViewController.m in Sources */,
 				921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */,
 				924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */,
 				B9E5364E1B38D90D0097BF90 /* AppDelegate.m in Sources */,
+				929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */,
 				B9E5364B1B38D90D0097BF90 /* main.m in Sources */,
 				B96BB64F1B38D96600F1C3AE /* GammaController.m in Sources */,
 			);

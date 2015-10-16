@@ -23,5 +23,6 @@ typedef kern_return_t IOMobileFramebufferReturn;
 + (void)showFailedAlertWithKey:(NSString *)key;
 + (void)enableDimness;
 + (void)setGammaWithCustomValues;
++ (BOOL)adjustmentForKeysEnabled:(NSString *)key1 key2:(NSString *)key2;
 
 @end

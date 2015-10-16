@@ -10,6 +10,13 @@
 
 @implementation CreditsViewController
 
+- (instancetype)init
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"creditsViewController"];
+    return self;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView) {
         if (indexPath.section == 0) {

@@ -140,7 +140,7 @@
 }
 
 + (void)enableOrangenessWithDefaults:(BOOL)defaults {
-    if (![userDefaults boolForKey:@"rgbEnabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
+    if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"rgbEnabled"] == NO) {
         [self wakeUpScreenIfNeeded];
         [GammaController setGammaWithOrangeness:[userDefaults floatForKey:@"maxOrange"]];
         if (defaults == YES) {
@@ -193,7 +193,7 @@
 }
 
 + (void)enableDimness {
-    if (![userDefaults boolForKey:@"enabled"] && ![userDefaults boolForKey:@"rgbEnabled"]) {
+    if ([self adjustmentForKeysEnabled:@"enabled" key2:@"rgbEnabled"] == NO) {
         float dimLevel = [userDefaults floatForKey:@"dimLevel"];
         [self wakeUpScreenIfNeeded];
         [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
@@ -204,7 +204,7 @@
 }
 
 + (void)setGammaWithCustomValues {
-    if (![userDefaults boolForKey:@"enabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
+    if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"enabled"] == NO) {
         float redValue = [userDefaults floatForKey:@"redValue"];
         float greenValue = [userDefaults floatForKey:@"greenValue"];
         float blueValue = [userDefaults floatForKey:@"blueValue"];
@@ -214,6 +214,13 @@
     else {
         [self showFailedAlertWithKey:@"rgbEnabled"];
     }
+}
+
++ (BOOL)adjustmentForKeysEnabled:(NSString *)key1 key2:(NSString *)key2 {
+    if (![userDefaults boolForKey:key1] && ![userDefaults boolForKey:key2]) {
+        return NO;
+    }
+    return YES;
 }
 
 @end

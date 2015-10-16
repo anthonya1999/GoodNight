@@ -11,6 +11,13 @@
 
 @implementation BrightnessViewController
 
+- (instancetype)init
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"brightnessViewController"];
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -27,6 +34,7 @@
     else {
         [GammaController disableOrangenessWithDefaults:NO];
     }
+    [self viewDidLoad];
 }
 
 - (IBAction)dimSliderLevelChanged {

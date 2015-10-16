@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "GammaController.h"
-#include <dlfcn.h>
 
 @implementation AppDelegate
 
@@ -28,7 +27,8 @@
                                          @"autoStartHour": @19,
                                          @"autoStartMinute": @0,
                                          @"autoEndHour": @7,
-                                         @"autoEndMinute": @0};
+                                         @"autoEndMinute": @0,
+                                         @"suspendEnabled": @YES};
     
     [userDefaults registerDefaults:defaultsToRegister];
     
@@ -42,11 +42,9 @@
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL succeeded))completionHandler {
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     if ([shortcutItem.type isEqualToString:[NSString stringWithFormat:@"%@.enable", bundleIdentifier]]) {
-        if (![userDefaults boolForKey:@"rgbEnabled"] && ![userDefaults boolForKey:@"dimEnabled"]) {
-            [GammaController enableOrangenessWithDefaults:NO];
-            [userDefaults setBool:YES forKey:@"enabled"];
-            [self exitApplication];
-        }
+        [GammaController enableOrangenessWithDefaults:NO];
+        [userDefaults setBool:YES forKey:@"enabled"];
+        [self exitApplication];
     }
     else if ([shortcutItem.type isEqualToString:[NSString stringWithFormat:@"%@.disable", bundleIdentifier]]) {
         [GammaController disableOrangenessWithDefaults:NO];
@@ -56,9 +54,11 @@
 }
 
 - (void)exitApplication {
-    [[UIApplication sharedApplication] performSelector:@selector(suspend)];
-    [NSThread sleepForTimeInterval:0.5];
-    exit(0);
+    if ([GammaController adjustmentForKeysEnabled:@"dimEnabled" key2:@"rgbEnabled"] == NO && [userDefaults boolForKey:@"suspendEnabled"]) {
+        [[UIApplication sharedApplication] performSelector:@selector(suspend)];
+        [NSThread sleepForTimeInterval:0.5];
+        exit(0);
+    }
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{

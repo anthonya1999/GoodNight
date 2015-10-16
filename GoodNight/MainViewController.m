@@ -11,6 +11,13 @@
 
 @implementation MainViewController
 
+- (instancetype)init
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+    return self;
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         self.timeFormatter = [[NSDateFormatter alloc] init];

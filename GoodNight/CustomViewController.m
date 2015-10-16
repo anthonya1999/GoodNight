@@ -11,6 +11,13 @@
 
 @implementation CustomViewController
 
+- (instancetype)init
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"colorViewController"];
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -41,6 +48,7 @@
     else {
         [GammaController disableOrangenessWithDefaults:NO];
     }
+    [self viewDidLoad];
 }
 
 - (void)updateDisplayColorWithValue:(float)value forKey:(NSString *)key {
