@@ -93,7 +93,9 @@
         red = blue = green = 0.99;
     }
     
-    [self setGammaWithRed:red green:green blue:blue];
+    if ([self wakeUpScreenIfNeeded]) {
+        [self setGammaWithRed:red green:green blue:blue];
+    }
 }
 
 + (void)autoChangeOrangenessIfNeeded {
@@ -142,7 +144,6 @@
 
 + (void)enableOrangenessWithDefaults:(BOOL)defaults {
     if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"rgbEnabled"] == NO) {
-        [self wakeUpScreenIfNeeded];
         [GammaController setGammaWithOrangeness:[userDefaults floatForKey:@"maxOrange"]];
         if (defaults == YES) {
             [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
@@ -157,7 +158,6 @@
 }
 
 + (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key {
-    [self wakeUpScreenIfNeeded];
     [GammaController setGammaWithOrangeness:0];
     if (defaults == YES) {
         [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
@@ -167,7 +167,7 @@
     [AppDelegate setShortcutItems];
 }
 
-+ (void)wakeUpScreenIfNeeded {
++ (BOOL)wakeUpScreenIfNeeded {
     void *SpringBoardServices = dlopen("/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices", RTLD_LAZY);
     NSParameterAssert(SpringBoardServices);
     mach_port_t (*SBSSpringBoardServerPort)() = dlsym(SpringBoardServices, "SBSSpringBoardServerPort");
@@ -183,8 +183,9 @@
         NSParameterAssert(SBSUndimScreen);
         SBSUndimScreen();
     }
-    
+
     dlclose(SpringBoardServices);
+    return !isLocked;
     
 }
 
@@ -198,7 +199,6 @@
 + (void)enableDimness {
     if ([self adjustmentForKeysEnabled:@"enabled" key2:@"rgbEnabled"] == NO) {
         float dimLevel = [userDefaults floatForKey:@"dimLevel"];
-        [self wakeUpScreenIfNeeded];
         [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
         [userDefaults setBool:YES forKey:@"dimEnabled"];
         [userDefaults synchronize];
@@ -213,7 +213,6 @@
         float redValue = [userDefaults floatForKey:@"redValue"];
         float greenValue = [userDefaults floatForKey:@"greenValue"];
         float blueValue = [userDefaults floatForKey:@"blueValue"];
-        [self wakeUpScreenIfNeeded];
         [self setGammaWithRed:redValue green:greenValue blue:blueValue];
         [userDefaults setBool:YES forKey:@"rgbEnabled"];
         [userDefaults synchronize];
