@@ -67,7 +67,6 @@
                 icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
                 shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Temperature" localizedSubtitle:@"Turn off this adjustment" icon:icon userInfo:nil];
             }
-            application.shortcutItems = @[shortcut];
         }
         
         else if ([userDefaults boolForKey:@"dimForceTouch"]) {
@@ -81,7 +80,6 @@
                 icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
                 shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Dim" localizedSubtitle:@"Turn off this adjustment" icon:icon userInfo:nil];
             }
-            application.shortcutItems = @[shortcut];
         }
         
         else if ([userDefaults boolForKey:@"rgbForceTouch"]) {
@@ -95,6 +93,8 @@
                 icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
                 shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Color" localizedSubtitle:@"Turn off this adjustment" icon:icon userInfo:nil];
             }
+        }
+        if (shortcut != nil && icon != nil) {
             application.shortcutItems = @[shortcut];
         }
     }
