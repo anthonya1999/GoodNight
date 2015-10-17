@@ -52,6 +52,9 @@
     application.shortcutItems = nil;
 
     if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
+        NSString *turnOnText = @"Turn on this adjustment";
+        NSString *turnOffText = @"Turn off this adjustment";
+        
         UIMutableApplicationShortcutItem *shortcut = nil;
         UIApplicationShortcutIcon *icon = nil;
         NSString *shortcutType = nil;
@@ -61,11 +64,11 @@
             
             if (![userDefaults boolForKey:@"enabled"]) {
                 icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Temperature" localizedSubtitle:@"Turn on this adjustment" icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Temperature" localizedSubtitle:turnOnText icon:icon userInfo:nil];
             }
             else if ([userDefaults boolForKey:@"enabled"])  {
                 icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Temperature" localizedSubtitle:@"Turn off this adjustment" icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Temperature" localizedSubtitle:turnOffText icon:icon userInfo:nil];
             }
         }
         
@@ -74,11 +77,11 @@
             
             if (![userDefaults boolForKey:@"dimEnabled"]) {
                 icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Dim" localizedSubtitle:@"Turn on this adjustment" icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Dim" localizedSubtitle:turnOnText icon:icon userInfo:nil];
             }
             else if ([userDefaults boolForKey:@"dimEnabled"]) {
                 icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Dim" localizedSubtitle:@"Turn off this adjustment" icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Dim" localizedSubtitle:turnOffText icon:icon userInfo:nil];
             }
         }
         
@@ -87,14 +90,14 @@
             
             if (![userDefaults boolForKey:@"rgbEnabled"]) {
                 icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Color" localizedSubtitle:@"Turn on this adjustment" icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Color" localizedSubtitle:turnOnText icon:icon userInfo:nil];
             }
             else if ([userDefaults boolForKey:@"rgbEnabled"]) {
                 icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Color" localizedSubtitle:@"Turn off this adjustment" icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Color" localizedSubtitle:turnOffText icon:icon userInfo:nil];
             }
         }
-        if (shortcut != nil && icon != nil) {
+        if (shortcut != nil && icon != nil && shortcutType != nil && turnOnText != nil && turnOffText != nil) {
             application.shortcutItems = @[shortcut];
         }
     }
