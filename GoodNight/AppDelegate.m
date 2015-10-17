@@ -49,26 +49,26 @@
 
 + (void)setShortcutItems {
     UIApplication *application = [UIApplication sharedApplication];
-    application.shortcutItems = nil;
-
-    if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
+    [application setShortcutItems:nil];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && [userDefaults boolForKey:@"forceTouchEnabled"]) {
         NSString *turnOnText = @"Turn on this adjustment";
         NSString *turnOffText = @"Turn off this adjustment";
         
+        UIApplicationShortcutIcon *enableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
+        UIApplicationShortcutIcon *disableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
+        
         UIMutableApplicationShortcutItem *shortcut = nil;
-        UIApplicationShortcutIcon *icon = nil;
         NSString *shortcutType = nil;
         
         if ([userDefaults boolForKey:@"tempForceTouch"]) {
             shortcutType = @"temperatureForceTouchAction";
             
             if (![userDefaults boolForKey:@"enabled"]) {
-                icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Temperature" localizedSubtitle:turnOnText icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Temperature" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
             }
             else if ([userDefaults boolForKey:@"enabled"])  {
-                icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Temperature" localizedSubtitle:turnOffText icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Temperature" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
             }
         }
         
@@ -76,12 +76,10 @@
             shortcutType = @"dimForceTouchAction";
             
             if (![userDefaults boolForKey:@"dimEnabled"]) {
-                icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Dim" localizedSubtitle:turnOnText icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Dim" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
             }
             else if ([userDefaults boolForKey:@"dimEnabled"]) {
-                icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Dim" localizedSubtitle:turnOffText icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Dim" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
             }
         }
         
@@ -89,16 +87,14 @@
             shortcutType = @"rgbForceTouchAction";
             
             if (![userDefaults boolForKey:@"rgbEnabled"]) {
-                icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Color" localizedSubtitle:turnOnText icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Color" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
             }
             else if ([userDefaults boolForKey:@"rgbEnabled"]) {
-                icon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Color" localizedSubtitle:turnOffText icon:icon userInfo:nil];
+                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Color" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
             }
         }
-        if (shortcut != nil && icon != nil && shortcutType != nil && turnOnText != nil && turnOffText != nil) {
-            application.shortcutItems = @[shortcut];
+        if (shortcut != nil && enableIcon != nil && disableIcon != nil && shortcutType != nil && turnOnText != nil && turnOffText != nil && [application respondsToSelector:@selector(setShortcutItems:)]) {
+            [application setShortcutItems:@[shortcut]];
         }
     }
 }

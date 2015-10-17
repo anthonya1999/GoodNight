@@ -77,7 +77,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([[self.view traitCollection] forceTouchCapability] == UIForceTouchCapabilityAvailable) {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         if (section == 0) {
             if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
                 return 2;
@@ -94,7 +94,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([[self.view traitCollection] forceTouchCapability] == UIForceTouchCapabilityAvailable) {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
             return 2;
         }
@@ -105,7 +105,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSString *headerText = @"";
     if (tableView) {
-        if ([[self.view traitCollection] forceTouchCapability] == UIForceTouchCapabilityAvailable) {
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
             if (section == 0) {
                 headerText = @"3D Touch";
             }
@@ -121,7 +121,7 @@
     NSString *footerText = @"";
     if (tableView) {
         if (section == 0) {
-            if ([[self.view traitCollection] forceTouchCapability] == UIForceTouchCapabilityAvailable) {
+            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
                 if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
                     footerText = @"Turn on or off 3D Touch actions for GoodNight. When enabled, the \"Exit After Action\" exits the app after you enable or disable the temperature adjustment using 3D Touch.";
                 }
