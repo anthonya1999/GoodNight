@@ -19,7 +19,7 @@ typedef kern_return_t IOMobileFramebufferReturn;
 + (void)autoChangeOrangenessIfNeeded;
 + (void)wakeUpScreenIfNeeded;
 + (void)enableOrangenessWithDefaults:(BOOL)defaults;
-+ (void)disableOrangenessWithDefaults:(BOOL)defaults;
++ (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key;
 + (void)showFailedAlertWithKey:(NSString *)key;
 + (void)enableDimness;
 + (void)setGammaWithCustomValues;

@@ -46,7 +46,7 @@
         [GammaController setGammaWithCustomValues];
     }
     else {
-        [GammaController disableOrangenessWithDefaults:NO];
+        [GammaController disableOrangenessWithDefaults:NO key:@"rgbEnabled"];
     }
     [self viewDidLoad];
 }

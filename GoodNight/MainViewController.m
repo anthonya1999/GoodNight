@@ -71,7 +71,7 @@
         [GammaController enableOrangenessWithDefaults:NO];
     }
     else {
-        [GammaController disableOrangenessWithDefaults:NO];
+        [GammaController disableOrangenessWithDefaults:NO key:@"enabled"];
     }
 }
 

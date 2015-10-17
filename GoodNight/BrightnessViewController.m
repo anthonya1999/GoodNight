@@ -32,7 +32,7 @@
         [GammaController enableDimness];
     }
     else {
-        [GammaController disableOrangenessWithDefaults:NO];
+        [GammaController disableOrangenessWithDefaults:NO key:@"dimEnabled"];
     }
     [self viewDidLoad];
 }

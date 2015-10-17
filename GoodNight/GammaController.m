@@ -6,6 +6,7 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "GammaController.h"
 #import "NSDate+Extensions.h"
 #include <dlfcn.h>
@@ -133,7 +134,7 @@
     }
     else {
         if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-            [self disableOrangenessWithDefaults:YES];
+            [self disableOrangenessWithDefaults:YES key:@"enabled"];
         }
     }
     [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
@@ -152,16 +153,18 @@
     else {
         [self showFailedAlertWithKey:@"enabled"];
     }
+    [AppDelegate setShortcutItems];
 }
 
-+ (void)disableOrangenessWithDefaults:(BOOL)defaults {
++ (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key {
     [self wakeUpScreenIfNeeded];
     [GammaController setGammaWithOrangeness:0];
     if (defaults == YES) {
         [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-        [userDefaults setBool:NO forKey:@"enabled"];
+        [userDefaults setBool:NO forKey:key];
         [userDefaults synchronize];
     }
+    [AppDelegate setShortcutItems];
 }
 
 + (void)wakeUpScreenIfNeeded {
@@ -197,6 +200,8 @@
         float dimLevel = [userDefaults floatForKey:@"dimLevel"];
         [self wakeUpScreenIfNeeded];
         [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
+        [userDefaults setBool:YES forKey:@"dimEnabled"];
+        [userDefaults synchronize];
     }
     else {
         [self showFailedAlertWithKey:@"dimEnabled"];
@@ -210,6 +215,8 @@
         float blueValue = [userDefaults floatForKey:@"blueValue"];
         [self wakeUpScreenIfNeeded];
         [self setGammaWithRed:redValue green:greenValue blue:blueValue];
+        [userDefaults setBool:YES forKey:@"rgbEnabled"];
+        [userDefaults synchronize];
     }
     else {
         [self showFailedAlertWithKey:@"rgbEnabled"];

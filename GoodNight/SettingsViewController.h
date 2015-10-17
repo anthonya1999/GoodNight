@@ -11,5 +11,9 @@
 @interface SettingsViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UISwitch *suspendSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *forceTouchSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *temperatureForceTouch;
+@property (weak, nonatomic) IBOutlet UISwitch *dimForceTouch;
+@property (weak, nonatomic) IBOutlet UISwitch *rgbForceTouch;
 
 @end

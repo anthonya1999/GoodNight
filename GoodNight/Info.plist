@@ -27,29 +27,6 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>enable-switch</string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>Turn on this adjustment</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Enable Temperature</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).enable</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>disable-switch</string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>Turn off this adjustment</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Disable Temperature</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).disable</string>
-		</dict>
-	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
