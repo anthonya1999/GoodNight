@@ -34,6 +34,11 @@
 
 - (IBAction)forceTouchSwitchChanged {
     [userDefaults setBool:self.forceTouchSwitch.on forKey:@"forceTouchEnabled"];
+    
+    if (![userDefaults boolForKey:@"dimForceTouch"] && ![userDefaults boolForKey:@"tempForceTouch"] && ![userDefaults boolForKey:@"rgbForceTouch"]) {
+        [userDefaults setBool:YES forKey:@"tempForceTouch"];
+        [self viewDidLoad];
+    }
     [self.tableView reloadData];
     [AppDelegate setShortcutItems];
 }
@@ -46,7 +51,7 @@
         [self showErrorAlert];
     }
     [AppDelegate setShortcutItems];
-    [self viewDidLoad];
+    [self checkForForceTouchActions];
 }
 
 - (IBAction)dimForceTouchSwitchChanged {
@@ -57,7 +62,7 @@
         [self showErrorAlert];
     }
     [AppDelegate setShortcutItems];
-    [self viewDidLoad];
+    [self checkForForceTouchActions];
 }
 
 - (IBAction)rgbForceTouchSwitchChanged {
@@ -68,7 +73,7 @@
         [self showErrorAlert];
     }
     [AppDelegate setShortcutItems];
-    [self viewDidLoad];
+    [self checkForForceTouchActions];
 }
 
 - (void)showErrorAlert {
@@ -115,6 +120,14 @@
         }
     }
     return headerText;
+}
+
+- (void)checkForForceTouchActions {
+    if (![userDefaults boolForKey:@"dimForceTouch"] && ![userDefaults boolForKey:@"tempForceTouch"] && ![userDefaults boolForKey:@"rgbForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"forceTouchEnabled"];
+        [self.tableView reloadData];
+    }
+    [self viewDidLoad];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
