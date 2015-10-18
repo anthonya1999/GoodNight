@@ -120,18 +120,21 @@
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     NSString *footerText = @"";
     if (tableView) {
-        if (section == 0) {
-            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
+            if (section == 0) {
                 if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
-                    footerText = @"Turn on or off 3D Touch actions for GoodNight. When enabled, the \"Exit After Action\" exits the app after you enable or disable the temperature adjustment using 3D Touch.";
+                    footerText = @"Turn on or off 3D Touch actions for GoodNight. When enabled, the \"Exit After Action\" exits the app after you enable or disable the set adjustment using 3D Touch.";
                 }
                 else {
                     footerText = @"Turn on or off 3D Touch actions for GoodNight.";
                 }
             }
-            else {
-                footerText = @"There are no settings for your device at this moment. However, some may be added in a future update.";
+            if (section == 1) {
+                footerText = @"Choose the adjustment that you would like to enable and disable using 3D Touch. You may only have one enabled at a time.";
             }
+        }
+        else {
+            footerText = @"There are no settings for your device at this moment. However, some may be added in a future update.";
         }
     }
     return footerText;
