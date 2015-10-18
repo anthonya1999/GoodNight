@@ -44,41 +44,39 @@
 }
 
 - (IBAction)tempForceTouchSwitchChanged {
-    if (![userDefaults boolForKey:@"dimForceTouch"] && ![userDefaults boolForKey:@"rgbForceTouch"]) {
-        [userDefaults setBool:self.temperatureForceTouch.on forKey:@"tempForceTouch"];
+    if ([userDefaults boolForKey:@"rgbForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"rgbForceTouch"];
     }
-    else {
-        [self showErrorAlert];
+    else if ([userDefaults boolForKey:@"dimForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"dimForceTouch"];
     }
+    [userDefaults setBool:self.temperatureForceTouch.on forKey:@"tempForceTouch"];
     [AppDelegate setShortcutItems];
     [self checkForForceTouchActions];
 }
 
 - (IBAction)dimForceTouchSwitchChanged {
-    if (![userDefaults boolForKey:@"tempForceTouch"] && ![userDefaults boolForKey:@"rgbForceTouch"]) {
-        [userDefaults setBool:self.dimForceTouch.on forKey:@"dimForceTouch"];
+    if ([userDefaults boolForKey:@"tempForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"tempForceTouch"];
     }
-    else {
-        [self showErrorAlert];
+    else if ([userDefaults boolForKey:@"rgbForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"rgbForceTouch"];
     }
+    [userDefaults setBool:self.dimForceTouch.on forKey:@"dimForceTouch"];
     [AppDelegate setShortcutItems];
     [self checkForForceTouchActions];
 }
 
 - (IBAction)rgbForceTouchSwitchChanged {
-    if (![userDefaults boolForKey:@"tempForceTouch"] && ![userDefaults boolForKey:@"dimForceTouch"]) {
-        [userDefaults setBool:self.rgbForceTouch.on forKey:@"rgbForceTouch"];
+    if ([userDefaults boolForKey:@"tempForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"tempForceTouch"];
     }
-    else {
-        [self showErrorAlert];
+    else if ([userDefaults boolForKey:@"dimForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"dimForceTouch"];
     }
+    [userDefaults setBool:self.rgbForceTouch.on forKey:@"rgbForceTouch"];
     [AppDelegate setShortcutItems];
     [self checkForForceTouchActions];
-}
-
-- (void)showErrorAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only have one adjustment enabled for use with 3D Touch. Please the one you currently have enabled to turn on another one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
