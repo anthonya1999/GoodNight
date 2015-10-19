@@ -37,9 +37,7 @@
     
     [userDefaults registerDefaults:defaultsToRegister];
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && [application respondsToSelector:@selector(shortcutItems)] && [application respondsToSelector:@selector(setShortcutItems:)]) {
-        [AppDelegate setShortcutItems];
-    }
+    [AppDelegate setShortcutItems];
     
     [GammaController autoChangeOrangenessIfNeeded];
     
@@ -50,53 +48,57 @@
 
 + (void)setShortcutItems {
     UIApplication *application = [UIApplication sharedApplication];
-    [application setShortcutItems:nil];
-
-    if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
-            
-        NSString *turnOnText = @"Turn on this adjustment";
-        NSString *turnOffText = @"Turn off this adjustment";
-            
-        UIApplicationShortcutIcon *enableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
-        UIApplicationShortcutIcon *disableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
-            
-        UIMutableApplicationShortcutItem *shortcut = nil;
-        NSString *shortcutType = nil;
-            
-        if ([userDefaults boolForKey:@"tempForceTouch"]) {
-            shortcutType = @"temperatureForceTouchAction";
-                
-            if (![userDefaults boolForKey:@"enabled"]) {
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Temperature" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
-            }
-            else if ([userDefaults boolForKey:@"enabled"])  {
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Temperature" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
-            }
-        }
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && [application respondsToSelector:@selector(shortcutItems)] && [application respondsToSelector:@selector(setShortcutItems:)]) {
         
-        else if ([userDefaults boolForKey:@"dimForceTouch"]) {
-            shortcutType = @"dimForceTouchAction";
+        [application setShortcutItems:nil];
+
+        if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
+            
+            NSString *turnOnText = @"Turn on this adjustment";
+            NSString *turnOffText = @"Turn off this adjustment";
+            
+            UIApplicationShortcutIcon *enableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
+            UIApplicationShortcutIcon *disableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
+            
+            UIMutableApplicationShortcutItem *shortcut = nil;
+            NSString *shortcutType = nil;
+            
+            if ([userDefaults boolForKey:@"tempForceTouch"]) {
+                shortcutType = @"temperatureForceTouchAction";
                 
-            if (![userDefaults boolForKey:@"dimEnabled"]) {
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Dim" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
+                if (![userDefaults boolForKey:@"enabled"]) {
+                    shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Temperature" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
+                }
+                else if ([userDefaults boolForKey:@"enabled"])  {
+                    shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Temperature" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
+                }
             }
-            else if ([userDefaults boolForKey:@"dimEnabled"]) {
+        
+            else if ([userDefaults boolForKey:@"dimForceTouch"]) {
+                shortcutType = @"dimForceTouchAction";
+                
+                if (![userDefaults boolForKey:@"dimEnabled"]) {
+                    shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Dim" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
+                }
+                else if ([userDefaults boolForKey:@"dimEnabled"]) {
                 shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Dim" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
+                }
             }
-        }
             
-        else if ([userDefaults boolForKey:@"rgbForceTouch"]) {
-            shortcutType = @"rgbForceTouchAction";
+            else if ([userDefaults boolForKey:@"rgbForceTouch"]) {
+                shortcutType = @"rgbForceTouchAction";
             
-            if (![userDefaults boolForKey:@"rgbEnabled"]) {
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Color" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
-            }
-            else if ([userDefaults boolForKey:@"rgbEnabled"]) {
+                if (![userDefaults boolForKey:@"rgbEnabled"]) {
+                    shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Color" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
+                }
+                else if ([userDefaults boolForKey:@"rgbEnabled"]) {
             shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Color" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
+                }
             }
-        }
-        if (shortcut != nil && enableIcon != nil && disableIcon != nil && shortcutType != nil && turnOnText != nil && turnOffText != nil) {
-            [application setShortcutItems:@[shortcut]];
+            if (shortcut != nil && enableIcon != nil && disableIcon != nil && shortcutType != nil && turnOnText != nil && turnOffText != nil) {
+                [application setShortcutItems:@[shortcut]];
+            }
         }
     }
 }
