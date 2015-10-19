@@ -87,7 +87,7 @@
     
     float red = 1.0;
     float blue = 1 - percentOrange;
-    float green = (red + blue)/2.0;
+    float green = (red + blue) / 2.0;
     
     if (percentOrange == 0) {
         red = blue = green = 0.99;
@@ -148,12 +148,13 @@
         if (defaults == YES) {
             [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
             [userDefaults setBool:YES forKey:@"enabled"];
-            [userDefaults synchronize];
         }
+        [userDefaults setObject:@"0" forKey:@"keyEnabled"];
     }
     else {
         [self showFailedAlertWithKey:@"enabled"];
     }
+    [userDefaults synchronize];
     [AppDelegate setShortcutItems];
 }
 
@@ -162,8 +163,8 @@
     if (defaults == YES) {
         [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
         [userDefaults setBool:NO forKey:key];
-        [userDefaults synchronize];
     }
+    [userDefaults synchronize];
     [AppDelegate setShortcutItems];
 }
 
@@ -190,6 +191,7 @@
 }
 
 + (void)showFailedAlertWithKey:(NSString *)key {
+    [userDefaults setObject:@"1" forKey:@"keyEnabled"];
     [userDefaults setBool:NO forKey:key];
     [userDefaults synchronize];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -201,11 +203,12 @@
         float dimLevel = [userDefaults floatForKey:@"dimLevel"];
         [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
         [userDefaults setBool:YES forKey:@"dimEnabled"];
-        [userDefaults synchronize];
+        [userDefaults setObject:@"0" forKey:@"keyEnabled"];
     }
     else {
         [self showFailedAlertWithKey:@"dimEnabled"];
     }
+    [userDefaults synchronize];
 }
 
 + (void)setGammaWithCustomValues {
@@ -215,11 +218,12 @@
         float blueValue = [userDefaults floatForKey:@"blueValue"];
         [self setGammaWithRed:redValue green:greenValue blue:blueValue];
         [userDefaults setBool:YES forKey:@"rgbEnabled"];
-        [userDefaults synchronize];
+        [userDefaults setObject:@"0" forKey:@"keyEnabled"];
     }
     else {
         [self showFailedAlertWithKey:@"rgbEnabled"];
     }
+    [userDefaults synchronize];
 }
 
 + (BOOL)adjustmentForKeysEnabled:(NSString *)key1 key2:(NSString *)key2 {

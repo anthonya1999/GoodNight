@@ -32,7 +32,8 @@
                                          @"forceTouchEnabled": @YES,
                                          @"tempForceTouch": @YES,
                                          @"dimForceTouch": @NO,
-                                         @"rgbForceTouch": @NO};
+                                         @"rgbForceTouch": @NO,
+                                         @"keyEnabled": @"0"};
     
     [userDefaults registerDefaults:defaultsToRegister];
     
@@ -95,7 +96,7 @@
             }
         }
         if (shortcut != nil && enableIcon != nil && disableIcon != nil && shortcutType != nil && turnOnText != nil && turnOffText != nil) {
-                [application setShortcutItems:@[shortcut]];
+            [application setShortcutItems:@[shortcut]];
         }
     }
 }
@@ -125,7 +126,7 @@
             [GammaController setGammaWithCustomValues];
         }
     }
-    if ([userDefaults boolForKey:@"suspendEnabled"]) {
+    if ([userDefaults boolForKey:@"suspendEnabled"] && [[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
         [application performSelector:@selector(suspend)];
         [NSThread sleepForTimeInterval:0.5];
         exit(0);
