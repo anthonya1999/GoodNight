@@ -209,6 +209,7 @@
         [self showFailedAlertWithKey:@"dimEnabled"];
     }
     [userDefaults synchronize];
+    [AppDelegate setShortcutItems];
 }
 
 + (void)setGammaWithCustomValues {
@@ -224,6 +225,7 @@
         [self showFailedAlertWithKey:@"rgbEnabled"];
     }
     [userDefaults synchronize];
+    [AppDelegate setShortcutItems];
 }
 
 + (BOOL)adjustmentForKeysEnabled:(NSString *)key1 key2:(NSString *)key2 {

@@ -131,7 +131,6 @@
         [NSThread sleepForTimeInterval:0.5];
         exit(0);
     }
-    [AppDelegate setShortcutItems];
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
