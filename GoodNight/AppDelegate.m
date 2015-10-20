@@ -96,6 +96,7 @@
             shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Color" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
                 }
             }
+            
             if (shortcut != nil && enableIcon != nil && disableIcon != nil && shortcutType != nil && turnOnText != nil && turnOffText != nil) {
                 [application setShortcutItems:@[shortcut]];
             }
@@ -103,7 +104,7 @@
     }
 }
 
-- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+- (BOOL)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem {
     if ([shortcutItem.type isEqualToString:@"temperatureForceTouchAction"]) {
         if ([userDefaults boolForKey:@"enabled"]) {
             [GammaController disableOrangenessWithDefaults:YES key:@"enabled"];
@@ -129,10 +130,16 @@
         }
     }
     if ([userDefaults boolForKey:@"suspendEnabled"] && [[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
-        [application performSelector:@selector(suspend)];
+        [[UIApplication sharedApplication] performSelector:@selector(suspend)];
         [NSThread sleepForTimeInterval:0.5];
         exit(0);
     }
+    return NO;
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    BOOL handledShortCutItem = [self handleShortcutItem:shortcutItem];
+    completionHandler(handledShortCutItem);
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
