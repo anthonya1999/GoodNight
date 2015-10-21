@@ -36,6 +36,7 @@
     
     [userDefaults registerDefaults:defaultsToRegister];
     [GammaController autoChangeOrangenessIfNeeded];
+    [ForceTouchController updateShortcutItems];
     [application setMinimumBackgroundFetchInterval:900];
     
     return YES;
