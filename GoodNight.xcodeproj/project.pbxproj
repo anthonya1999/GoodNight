@@ -11,6 +11,7 @@
 		921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810361BC1B3C000D32E92 /* BrightnessViewController.m */; };
 		921924331BCDC11500254487 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 921924321BCDC11500254487 /* NSDate+Extensions.m */; };
 		924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */; };
+		927B86141BD720E60091AF24 /* ForceTouchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B86131BD720E60091AF24 /* ForceTouchController.m */; };
 		9296029F1BD1B89100CDEC52 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9296029E1BD1B89100CDEC52 /* InitialViewController.m */; };
 		929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929602A11BD1BC3000CDEC52 /* SettingsViewController.m */; };
 		92F4101E1BD07519003AABB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F4101D1BD07519003AABB8 /* LaunchScreen.storyboard */; };
@@ -44,6 +45,8 @@
 		921924321BCDC11500254487 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extensions.m"; sourceTree = "<group>"; };
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
+		927B86121BD720E60091AF24 /* ForceTouchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForceTouchController.h; sourceTree = "<group>"; };
+		927B86131BD720E60091AF24 /* ForceTouchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForceTouchController.m; sourceTree = "<group>"; };
 		9296029D1BD1B89100CDEC52 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		9296029E1BD1B89100CDEC52 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		929602A01BD1BC3000CDEC52 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -120,6 +123,15 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		927B86151BD7239E0091AF24 /* 3D Touch */ = {
+			isa = PBXGroup;
+			children = (
+				927B86121BD720E60091AF24 /* ForceTouchController.h */,
+				927B86131BD720E60091AF24 /* ForceTouchController.m */,
+			);
+			name = "3D Touch";
+			sourceTree = "<group>";
+		};
 		929602A31BD1C22D00CDEC52 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +203,7 @@
 				B9E5364C1B38D90D0097BF90 /* AppDelegate.h */,
 				B9E5364D1B38D90D0097BF90 /* AppDelegate.m */,
 				926B68F91BC1B91D00F12297 /* Core */,
+				927B86151BD7239E0091AF24 /* 3D Touch */,
 				929602A61BD1C26F00CDEC52 /* User Interface */,
 				929602A71BD1C2DE00CDEC52 /* Storyboards */,
 				B9E536551B38D90D0097BF90 /* Assets.xcassets */,
@@ -291,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927B86141BD720E60091AF24 /* ForceTouchController.m in Sources */,
 				9296029F1BD1B89100CDEC52 /* InitialViewController.m in Sources */,
 				921924331BCDC11500254487 /* NSDate+Extensions.m in Sources */,
 				B9E536511B38D90D0097BF90 /* MainViewController.m in Sources */,

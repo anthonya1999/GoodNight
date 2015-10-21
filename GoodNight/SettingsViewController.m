@@ -40,7 +40,7 @@
         [self viewDidLoad];
     }
     [self.tableView reloadData];
-    [AppDelegate setShortcutItems];
+    [ForceTouchController updateShortcutItems];
 }
 
 - (IBAction)tempForceTouchSwitchChanged {
@@ -51,7 +51,7 @@
         [userDefaults setBool:NO forKey:@"dimForceTouch"];
     }
     [userDefaults setBool:self.temperatureForceTouch.on forKey:@"tempForceTouch"];
-    [AppDelegate setShortcutItems];
+    [ForceTouchController updateShortcutItems];
     [self checkForForceTouchActions];
 }
 
@@ -63,7 +63,7 @@
         [userDefaults setBool:NO forKey:@"rgbForceTouch"];
     }
     [userDefaults setBool:self.dimForceTouch.on forKey:@"dimForceTouch"];
-    [AppDelegate setShortcutItems];
+    [ForceTouchController updateShortcutItems];
     [self checkForForceTouchActions];
 }
 
@@ -75,7 +75,7 @@
         [userDefaults setBool:NO forKey:@"dimForceTouch"];
     }
     [userDefaults setBool:self.rgbForceTouch.on forKey:@"rgbForceTouch"];
-    [AppDelegate setShortcutItems];
+    [ForceTouchController updateShortcutItems];
     [self checkForForceTouchActions];
 }
 

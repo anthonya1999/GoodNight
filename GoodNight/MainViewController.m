@@ -7,7 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "GammaController.h"
 
 @implementation MainViewController
 

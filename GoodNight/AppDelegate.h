@@ -10,8 +10,6 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
-+ (void)setShortcutItems;
-
 @property (strong, nonatomic) UIWindow *window;
 
 @end

@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import "GammaController.h"
 
 @implementation AppDelegate
 
@@ -37,112 +36,20 @@
     
     [userDefaults registerDefaults:defaultsToRegister];
     
-    [AppDelegate setShortcutItems];
-    
     [GammaController autoChangeOrangenessIfNeeded];
+    [ForceTouchController updateShortcutItems];
     
     [application setMinimumBackgroundFetchInterval:900];
     
     return YES;
 }
 
-+ (void)setShortcutItems {
-    UIApplication *application = [UIApplication sharedApplication];
-    
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && [application respondsToSelector:@selector(shortcutItems)] && [application respondsToSelector:@selector(setShortcutItems:)]) {
-        
-        [application setShortcutItems:nil];
-
-        if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
-            
-            NSString *turnOnText = @"Turn on this adjustment";
-            NSString *turnOffText = @"Turn off this adjustment";
-            
-            UIApplicationShortcutIcon *enableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
-            UIApplicationShortcutIcon *disableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
-            
-            UIMutableApplicationShortcutItem *shortcut = nil;
-            NSString *shortcutType = nil;
-            
-            if ([userDefaults boolForKey:@"tempForceTouch"]) {
-                shortcutType = @"temperatureForceTouchAction";
-                
-                if (![userDefaults boolForKey:@"enabled"]) {
-                    shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Temperature" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
-                }
-                else if ([userDefaults boolForKey:@"enabled"])  {
-                    shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Temperature" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
-                }
-            }
-        
-            else if ([userDefaults boolForKey:@"dimForceTouch"]) {
-                shortcutType = @"dimForceTouchAction";
-                
-                if (![userDefaults boolForKey:@"dimEnabled"]) {
-                    shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Dim" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
-                }
-                else if ([userDefaults boolForKey:@"dimEnabled"]) {
-                shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Dim" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
-                }
-            }
-            
-            else if ([userDefaults boolForKey:@"rgbForceTouch"]) {
-                shortcutType = @"rgbForceTouchAction";
-            
-                if (![userDefaults boolForKey:@"rgbEnabled"]) {
-                    shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Color" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
-                }
-                else if ([userDefaults boolForKey:@"rgbEnabled"]) {
-            shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Color" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
-                }
-            }
-            
-            if (shortcut != nil && enableIcon != nil && disableIcon != nil && shortcutType != nil && turnOnText != nil && turnOffText != nil) {
-                [application setShortcutItems:@[shortcut]];
-            }
-        }
-    }
-}
-
-- (BOOL)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem {
-    if ([shortcutItem.type isEqualToString:@"temperatureForceTouchAction"]) {
-        if ([userDefaults boolForKey:@"enabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"enabled"];
-        }
-        else if (![userDefaults boolForKey:@"enabled"]) {
-            [GammaController enableOrangenessWithDefaults:YES];
-        }
-    }
-    else if ([shortcutItem.type isEqualToString:@"dimForceTouchAction"]) {
-        if ([userDefaults boolForKey:@"dimEnabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"dimEnabled"];
-        }
-        else if (![userDefaults boolForKey:@"dimEnabled"]) {
-            [GammaController enableDimness];
-        }
-    }
-    else if ([shortcutItem.type isEqualToString:@"rgbForceTouchAction"]) {
-        if ([userDefaults boolForKey:@"rgbEnabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"rgbEnabled"];
-        }
-        else if (![userDefaults boolForKey:@"rgbEnabled"]) {
-            [GammaController setGammaWithCustomValues];
-        }
-    }
-    if ([userDefaults boolForKey:@"suspendEnabled"] && [[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
-        [[UIApplication sharedApplication] performSelector:@selector(suspend)];
-        [NSThread sleepForTimeInterval:0.5];
-        exit(0);
-    }
-    return NO;
-}
-
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    BOOL handledShortCutItem = [self handleShortcutItem:shortcutItem];
-    completionHandler(handledShortCutItem);
+    BOOL handledShortcutItem = [ForceTouchController handleShortcutItem:shortcutItem];
+    completionHandler(handledShortcutItem);
 }
 
-- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [GammaController autoChangeOrangenessIfNeeded];
     completionHandler(UIBackgroundFetchResultNewData);
 }

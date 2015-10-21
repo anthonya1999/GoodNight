@@ -7,7 +7,6 @@
 //
 
 #import "CustomViewController.h"
-#import "GammaController.h"
 
 @implementation CustomViewController
 

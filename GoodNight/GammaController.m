@@ -6,8 +6,6 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
-#import "AppDelegate.h"
-#import "GammaController.h"
 #import "NSDate+Extensions.h"
 #include <dlfcn.h>
 
@@ -155,7 +153,7 @@
         [self showFailedAlertWithKey:@"enabled"];
     }
     [userDefaults synchronize];
-    [AppDelegate setShortcutItems];
+    [ForceTouchController updateShortcutItems];
 }
 
 + (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key {
@@ -165,7 +163,7 @@
         [userDefaults setBool:NO forKey:key];
     }
     [userDefaults synchronize];
-    [AppDelegate setShortcutItems];
+    [ForceTouchController updateShortcutItems];
 }
 
 + (BOOL)wakeUpScreenIfNeeded {
@@ -209,7 +207,7 @@
         [self showFailedAlertWithKey:@"dimEnabled"];
     }
     [userDefaults synchronize];
-    [AppDelegate setShortcutItems];
+    [ForceTouchController updateShortcutItems];
 }
 
 + (void)setGammaWithCustomValues {
@@ -225,7 +223,7 @@
         [self showFailedAlertWithKey:@"rgbEnabled"];
     }
     [userDefaults synchronize];
-    [AppDelegate setShortcutItems];
+    [ForceTouchController updateShortcutItems];
 }
 
 + (BOOL)adjustmentForKeysEnabled:(NSString *)key1 key2:(NSString *)key2 {
