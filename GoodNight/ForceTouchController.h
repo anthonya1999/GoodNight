@@ -11,6 +11,6 @@
 + (UIApplicationShortcutItem *)shortcutItemForCurrentState;
 + (void)updateShortcutItems;
 + (BOOL)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem;
-
++ (void)exitIfKeyEnabled;
 
 @end

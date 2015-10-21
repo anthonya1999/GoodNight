@@ -53,16 +53,15 @@
 }
 
 + (void)updateShortcutItems {
-    UIApplication *application = [UIApplication sharedApplication];
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && [application respondsToSelector:@selector(shortcutItems)] && [application respondsToSelector:@selector(setShortcutItems:)]) {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && [app respondsToSelector:@selector(shortcutItems)] && [app respondsToSelector:@selector(setShortcutItems:)]) {
         if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
             UIApplicationShortcutItem *shortcut = [ForceTouchController shortcutItemForCurrentState];
             if (shortcut != nil) {
-                [application setShortcutItems:@[shortcut]];
+                [app setShortcutItems:@[shortcut]];
             }
         }
         else {
-            [application setShortcutItems:nil];
+            [app setShortcutItems:nil];
         }
     }
 }
@@ -92,12 +91,15 @@
             [GammaController setGammaWithCustomValues];
         }
     }
+    return NO;
+}
+
++ (void)exitIfKeyEnabled {
     if ([userDefaults boolForKey:@"suspendEnabled"] && [[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
-        [[UIApplication sharedApplication] performSelector:@selector(suspend)];
+        [app performSelector:@selector(suspend)];
         [NSThread sleepForTimeInterval:0.5];
         exit(0);
     }
-    return NO;
 }
 
 @end

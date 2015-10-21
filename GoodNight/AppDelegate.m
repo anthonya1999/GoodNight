@@ -36,7 +36,6 @@
     
     [userDefaults registerDefaults:defaultsToRegister];
     [GammaController autoChangeOrangenessIfNeeded];
-    [ForceTouchController updateShortcutItems];
     [application setMinimumBackgroundFetchInterval:900];
     
     return YES;
@@ -44,6 +43,7 @@
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
     BOOL handledShortcutItem = [ForceTouchController handleShortcutItem:shortcutItem];
+    [ForceTouchController exitIfKeyEnabled];
     completionHandler(handledShortcutItem);
 }
 
