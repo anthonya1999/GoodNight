@@ -6,8 +6,6 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface MainViewController : UITableViewController <UIAlertViewDelegate, UITextFieldDelegate>
 
 @property NSDateFormatter *timeFormatter;

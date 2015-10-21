@@ -6,8 +6,6 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface SettingsViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UISwitch *suspendSwitch;
