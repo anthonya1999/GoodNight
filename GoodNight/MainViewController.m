@@ -67,10 +67,10 @@
     [userDefaults setBool:self.enabledSwitch.on forKey:@"enabled"];
         
     if (self.enabledSwitch.on) {
-        [GammaController enableOrangenessWithDefaults:NO];
+        [GammaController enableOrangenessWithDefaults:NO transition:YES];
     }
     else {
-        [GammaController disableOrangenessWithDefaults:NO key:@"enabled"];
+        [GammaController disableOrangenessWithDefaults:NO key:@"enabled" transition:YES];
     }
 }
 
@@ -113,7 +113,7 @@
     [userDefaults setInteger:components.minute forKey:[defaultsKeyPrefix stringByAppendingString:@"Minute"]];
     
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
-    [GammaController autoChangeOrangenessIfNeeded];
+    [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -147,24 +147,25 @@
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.enabledSwitch.on) {
-        [GammaController enableOrangenessWithDefaults:NO];
+        [GammaController enableOrangenessWithDefaults:NO transition:NO];
     }
 }
 
 - (IBAction)colorChangingEnabledSwitchChanged {
     [userDefaults setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
-    [GammaController autoChangeOrangenessIfNeeded];
+    [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
 }
 
 - (IBAction)resetSlider {
     self.orangeSlider.value = 0.4;
-    [userDefaults setFloat:self.orangeSlider.value forKey:@"maxOrange"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.enabledSwitch.on) {
-        [GammaController enableOrangenessWithDefaults:NO];
+        [GammaController setGammaWithTransitionFrom:[userDefaults floatForKey:@"maxOrange"] to:self.orangeSlider.value];
     }
+    
+    [userDefaults setFloat:self.orangeSlider.value forKey:@"maxOrange"];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

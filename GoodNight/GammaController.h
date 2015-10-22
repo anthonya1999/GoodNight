@@ -13,10 +13,11 @@ typedef kern_return_t IOMobileFramebufferReturn;
 
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue;
 + (void)setGammaWithOrangeness:(float)percentOrange;
-+ (void)autoChangeOrangenessIfNeeded;
++ (void)autoChangeOrangenessIfNeededWithTransition:(BOOL)transition;
 + (BOOL)wakeUpScreenIfNeeded;
-+ (void)enableOrangenessWithDefaults:(BOOL)defaults;
-+ (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key;
++ (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition;
++ (void)setGammaWithTransitionFrom:(float)oldPercentOrange to:(float)newPercentOrange;
++ (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition;
 + (void)showFailedAlertWithKey:(NSString *)key;
 + (void)enableDimness;
 + (void)setGammaWithCustomValues;

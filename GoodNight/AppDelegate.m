@@ -35,7 +35,7 @@
                                          @"keyEnabled": @"0"};
     
     [userDefaults registerDefaults:defaultsToRegister];
-    [GammaController autoChangeOrangenessIfNeeded];
+    [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
     [application setMinimumBackgroundFetchInterval:900];
     
     return YES;
@@ -48,7 +48,7 @@
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    [GammaController autoChangeOrangenessIfNeeded];
+    [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
     completionHandler(UIBackgroundFetchResultNewData);
 }
 

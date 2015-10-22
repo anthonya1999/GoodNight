@@ -51,7 +51,6 @@
         [userDefaults setBool:NO forKey:@"dimForceTouch"];
     }
     [userDefaults setBool:self.temperatureForceTouch.on forKey:@"tempForceTouch"];
-    [ForceTouchController updateShortcutItems];
     [self checkForForceTouchActions];
 }
 
@@ -63,7 +62,6 @@
         [userDefaults setBool:NO forKey:@"rgbForceTouch"];
     }
     [userDefaults setBool:self.dimForceTouch.on forKey:@"dimForceTouch"];
-    [ForceTouchController updateShortcutItems];
     [self checkForForceTouchActions];
 }
 
@@ -75,7 +73,6 @@
         [userDefaults setBool:NO forKey:@"dimForceTouch"];
     }
     [userDefaults setBool:self.rgbForceTouch.on forKey:@"rgbForceTouch"];
-    [ForceTouchController updateShortcutItems];
     [self checkForForceTouchActions];
 }
 
@@ -125,6 +122,7 @@
         [userDefaults setBool:NO forKey:@"forceTouchEnabled"];
         [self.tableView reloadData];
     }
+    [ForceTouchController updateShortcutItems];
     [self viewDidLoad];
 }
 

@@ -11,8 +11,9 @@
 + (UIApplicationShortcutItem *)shortcutItemForCurrentState {
     UIMutableApplicationShortcutItem *shortcut = nil;
     NSString *shortcutType = nil;
-    NSString *turnOnText = @"Turn on this adjustment";
-    NSString *turnOffText = @"Turn off this adjustment";
+    
+    static NSString * const turnOnText = @"Turn on this adjustment";
+    static NSString * const turnOffText = @"Turn off this adjustment";
     
     UIApplicationShortcutIcon *enableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
     UIApplicationShortcutIcon *disableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
@@ -69,15 +70,15 @@
 + (BOOL)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem {
     if ([shortcutItem.type isEqualToString:@"temperatureForceTouchAction"]) {
         if ([userDefaults boolForKey:@"enabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"enabled"];
+            [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
         }
         else if (![userDefaults boolForKey:@"enabled"]) {
-            [GammaController enableOrangenessWithDefaults:YES];
+            [GammaController enableOrangenessWithDefaults:YES transition:YES];
         }
     }
     else if ([shortcutItem.type isEqualToString:@"dimForceTouchAction"]) {
         if ([userDefaults boolForKey:@"dimEnabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"dimEnabled"];
+            [GammaController disableOrangenessWithDefaults:YES key:@"dimEnabled" transition:NO];
         }
         else if (![userDefaults boolForKey:@"dimEnabled"]) {
             [GammaController enableDimness];
@@ -85,7 +86,7 @@
     }
     else if ([shortcutItem.type isEqualToString:@"rgbForceTouchAction"]) {
         if ([userDefaults boolForKey:@"rgbEnabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"rgbEnabled"];
+            [GammaController disableOrangenessWithDefaults:YES key:@"rgbEnabled" transition:NO];
         }
         else if (![userDefaults boolForKey:@"rgbEnabled"]) {
             [GammaController setGammaWithCustomValues];
@@ -97,8 +98,6 @@
 + (void)exitIfKeyEnabled {
     if ([userDefaults boolForKey:@"suspendEnabled"] && [[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
         [app performSelector:@selector(suspend)];
-        [NSThread sleepForTimeInterval:0.5];
-        exit(0);
     }
 }
 

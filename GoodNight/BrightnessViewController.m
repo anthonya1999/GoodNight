@@ -19,7 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self updateUI];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+}
+
+- (void)userDefaultsChanged:(NSNotification *)notification {
+    [self updateUI];
+}
+
+- (void)updateUI {
     self.dimSlider.value = [userDefaults floatForKey:@"dimLevel"];
     self.dimSwitch.on = [userDefaults boolForKey:@"dimEnabled"];
 }
@@ -31,7 +40,7 @@
         [GammaController enableDimness];
     }
     else {
-        [GammaController disableOrangenessWithDefaults:NO key:@"dimEnabled"];
+        [GammaController disableOrangenessWithDefaults:NO key:@"dimEnabled" transition:NO];
     }
     [self viewDidLoad];
 }

@@ -96,9 +96,9 @@
     }
 }
 
-+ (void)autoChangeOrangenessIfNeeded {
++ (void)autoChangeOrangenessIfNeededWithTransition:(BOOL)transition {
     if ([userDefaults boolForKey:@"enabled"]) {
-        [self enableOrangenessWithDefaults:YES];
+        [self enableOrangenessWithDefaults:YES transition:transition];
     }
     
     if (![userDefaults boolForKey:@"colorChangingEnabled"]) {
@@ -129,20 +129,26 @@
     
     if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
         if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-            [self enableOrangenessWithDefaults:YES];
+            [self enableOrangenessWithDefaults:YES transition:transition];
         }
     }
     else {
         if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-            [self disableOrangenessWithDefaults:YES key:@"enabled"];
+            [self disableOrangenessWithDefaults:YES key:@"enabled" transition:transition];
         }
     }
     [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
 }
 
-+ (void)enableOrangenessWithDefaults:(BOOL)defaults {
++ (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition {
     if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"rgbEnabled"] == NO) {
-        [GammaController setGammaWithOrangeness:[userDefaults floatForKey:@"maxOrange"]];
+        float orangeLevel = [userDefaults floatForKey:@"maxOrange"];
+        if (transition == YES) {
+            [self setGammaWithTransitionFrom:0 to:orangeLevel];
+        }
+        else {
+            [self setGammaWithOrangeness:orangeLevel];
+        }
         if (defaults == YES) {
             [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
             [userDefaults setBool:YES forKey:@"enabled"];
@@ -156,8 +162,30 @@
     [ForceTouchController updateShortcutItems];
 }
 
-+ (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key {
-    [GammaController setGammaWithOrangeness:0];
++ (void)setGammaWithTransitionFrom:(float)oldPercentOrange to:(float)newPercentOrange {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if (newPercentOrange > oldPercentOrange) {
+            for (float i = oldPercentOrange; i <= newPercentOrange; i = i + 0.01) {
+                [NSThread sleepForTimeInterval:0.02];
+                [self setGammaWithOrangeness:i];
+            }
+        }
+        else {
+            for (float i = oldPercentOrange; i >= newPercentOrange; i = i - 0.01) {
+                [NSThread sleepForTimeInterval:0.02];
+                [self setGammaWithOrangeness:i];
+            }
+        }
+    });
+}
+
++ (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition {
+    if (transition == YES) {
+        [self setGammaWithTransitionFrom:[userDefaults floatForKey:@"maxOrange"] to:0];
+    }
+    else {
+        [self setGammaWithOrangeness:0];
+    }
     if (defaults == YES) {
         [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
         [userDefaults setBool:NO forKey:key];

@@ -19,7 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self updateUI];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+}
+
+- (void)userDefaultsChanged:(NSNotification *)notification {
+    [self updateUI];
+}
+
+- (void)updateUI {
     self.rgbSwitch.on = [userDefaults boolForKey:@"rgbEnabled"];
     self.redSlider.value = [userDefaults floatForKey:@"redValue"];
     self.greenSlider.value = [userDefaults floatForKey:@"greenValue"];
@@ -45,7 +54,7 @@
         [GammaController setGammaWithCustomValues];
     }
     else {
-        [GammaController disableOrangenessWithDefaults:NO key:@"rgbEnabled"];
+        [GammaController disableOrangenessWithDefaults:NO key:@"rgbEnabled" transition:NO];
     }
     [self viewDidLoad];
 }
