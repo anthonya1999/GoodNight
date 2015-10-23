@@ -102,6 +102,7 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
+    [ForceTouchController exitIfKeyEnabled];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
