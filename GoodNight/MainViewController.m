@@ -113,7 +113,7 @@
     [userDefaults setInteger:components.minute forKey:[defaultsKeyPrefix stringByAppendingString:@"Minute"]];
     
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
-    [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
+    [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {

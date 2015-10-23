@@ -36,6 +36,8 @@
     
     [userDefaults registerDefaults:defaultsToRegister];
     [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
+    [self registerForNotifications];
+    [self setupNotifications];
     [application setMinimumBackgroundFetchInterval:900];
     
     return YES;
@@ -50,6 +52,56 @@
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
     completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)registerForNotifications {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        [app registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [app registerForRemoteNotifications];
+    }
+    else {
+        [app registerForRemoteNotificationTypes: (UIRemoteNotificationTypeNewsstandContentAvailability| UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+}
+
+- (void)setupNotifications {
+    NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+    
+    UILocalNotification *enableNotification = [[UILocalNotification alloc] init];
+    
+    if (enableNotification == nil) {
+        return;
+    }
+    
+    NSDateComponents *compsForEnable = [[NSDateComponents alloc] init];
+    [compsForEnable setHour:[userDefaults integerForKey:@"autoStartHour"]];
+    [compsForEnable setMinute:[userDefaults integerForKey:@"autoStartMinute"]];
+    [enableNotification setSoundName:UILocalNotificationDefaultSoundName];
+    [enableNotification setAlertTitle:bundleName];
+    [enableNotification setAlertBody:[NSString stringWithFormat:@"Time to enable %@!", bundleName]];
+    [enableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
+    [enableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForEnable]];
+    
+    UILocalNotification *disableNotification = [[UILocalNotification alloc] init];
+    
+    if (disableNotification == nil) {
+        return;
+    }
+    
+    NSDateComponents *compsForDisable = [[NSDateComponents alloc] init];
+    [compsForDisable setHour:[userDefaults integerForKey:@"autoEndHour"]];
+    [compsForDisable setMinute:[userDefaults integerForKey:@"autoEndMinute"]];
+    [disableNotification setSoundName:UILocalNotificationDefaultSoundName];
+    [disableNotification setAlertTitle:bundleName];
+    [disableNotification setAlertBody:[NSString stringWithFormat:@"Time to disable %@!", bundleName]];
+    [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
+    [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
+    
+    [app setScheduledLocalNotifications:[NSArray arrayWithObjects:enableNotification, disableNotification, nil]];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
