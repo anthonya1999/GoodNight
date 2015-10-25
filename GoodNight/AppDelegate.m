@@ -65,6 +65,8 @@
 }
 
 - (void)setupNotifications {
+    [app cancelAllLocalNotifications];
+    
     NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     
     UILocalNotification *enableNotification = [[UILocalNotification alloc] init];
@@ -97,7 +99,7 @@
     [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
     [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
     
-    [app setScheduledLocalNotifications:[NSArray arrayWithObjects:enableNotification, disableNotification, nil]];
+    [app setScheduledLocalNotifications:@[enableNotification, disableNotification]];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
