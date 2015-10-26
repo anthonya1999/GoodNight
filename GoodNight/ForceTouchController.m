@@ -9,23 +9,21 @@
 @implementation ForceTouchController
 
 + (UIApplicationShortcutItem *)shortcutItemForCurrentState {
-    UIMutableApplicationShortcutItem *shortcut = nil;
-    NSString *shortcutType = nil;
+    NSString *shortcutType, *shortcutTitle, *shortcutSubtitle, *iconTemplate = nil;
     
     static NSString * const turnOnText = @"Turn on this adjustment";
     static NSString * const turnOffText = @"Turn off this adjustment";
-    
-    UIApplicationShortcutIcon *enableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"enable-switch"];
-    UIApplicationShortcutIcon *disableIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:@"disable-switch"];
     
     if ([userDefaults boolForKey:@"tempForceTouch"]) {
         shortcutType = @"temperatureForceTouchAction";
         
         if (![userDefaults boolForKey:@"enabled"]) {
-            shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Temperature" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
+            forceTouchActionEnabled = NO;
+            shortcutTitle = @"Enable Temperature";
         }
         else if ([userDefaults boolForKey:@"enabled"])  {
-            shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Temperature" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
+            forceTouchActionEnabled = YES;
+            shortcutTitle = @"Disable Temperature";
         }
     }
     
@@ -33,10 +31,12 @@
         shortcutType = @"dimForceTouchAction";
         
         if (![userDefaults boolForKey:@"dimEnabled"]) {
-            shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Dim" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
+            forceTouchActionEnabled = NO;
+            shortcutTitle = @"Enable Dimness";
         }
         else if ([userDefaults boolForKey:@"dimEnabled"]) {
-            shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Dim" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
+            forceTouchActionEnabled = YES;
+            shortcutTitle = @"Disable Dimness";
         }
     }
     
@@ -44,12 +44,24 @@
         shortcutType = @"rgbForceTouchAction";
         
         if (![userDefaults boolForKey:@"rgbEnabled"]) {
-            shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Enable Color" localizedSubtitle:turnOnText icon:enableIcon userInfo:nil];
+            forceTouchActionEnabled = NO;
+            shortcutTitle = @"Enable Color";
         }
         else if ([userDefaults boolForKey:@"rgbEnabled"]) {
-            shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:@"Disable Color" localizedSubtitle:turnOffText icon:disableIcon userInfo:nil];
+            forceTouchActionEnabled = YES;
+            shortcutTitle = @"Disable Color";
         }
     }
+    if (forceTouchActionEnabled == NO) {
+        shortcutSubtitle = turnOnText;
+        iconTemplate = @"enable-switch";
+    }
+    else if (forceTouchActionEnabled == YES) {
+        shortcutSubtitle = turnOffText;
+        iconTemplate = @"disable-switch";
+    }
+    UIApplicationShortcutIcon *shortcutIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:iconTemplate];
+    UIMutableApplicationShortcutItem *shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:shortcutTitle localizedSubtitle:shortcutSubtitle icon:shortcutIcon userInfo:nil];
     return shortcut;
 }
 

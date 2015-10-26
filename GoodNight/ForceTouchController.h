@@ -6,6 +6,8 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
+static BOOL forceTouchActionEnabled = NO;
+
 @interface ForceTouchController : NSObject
 
 + (UIApplicationShortcutItem *)shortcutItemForCurrentState;
