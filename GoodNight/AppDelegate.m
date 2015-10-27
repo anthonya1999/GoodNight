@@ -55,18 +55,12 @@
 }
 
 - (void)registerForNotifications {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-        [app registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        [app registerForRemoteNotifications];
-    }
-    else {
-        [app registerForRemoteNotificationTypes: (UIRemoteNotificationTypeNewsstandContentAvailability| UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    }
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [app registerUserNotificationSettings:settings];
 }
 
 - (void)setupNotifications {
-    [app cancelAllLocalNotifications];
-    
     NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     
     UILocalNotification *enableNotification = [[UILocalNotification alloc] init];
@@ -99,7 +93,9 @@
     [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
     [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
     
-    [app setScheduledLocalNotifications:@[enableNotification, disableNotification]];
+    if (app.scheduledLocalNotifications.count == 0) {
+        [app setScheduledLocalNotifications:@[enableNotification, disableNotification]];
+    }
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
