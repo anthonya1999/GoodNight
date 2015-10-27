@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "AppDelegate.h"
 
 @implementation MainViewController
 
@@ -140,6 +141,8 @@
 
 - (void)userDefaultsChanged:(NSNotification *)notification {
     [self updateUI];
+    [app cancelAllLocalNotifications];
+    [AppDelegate updateNotifications];
 }
 
 - (IBAction)maxOrangeSliderChanged {

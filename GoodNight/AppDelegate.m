@@ -37,7 +37,7 @@
     [userDefaults registerDefaults:defaultsToRegister];
     [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
     [self registerForNotifications];
-    [self setupNotifications];
+    [AppDelegate updateNotifications];
     [application setMinimumBackgroundFetchInterval:900];
     
     return YES;
@@ -60,7 +60,7 @@
     [app registerUserNotificationSettings:settings];
 }
 
-- (void)setupNotifications {
++ (void)updateNotifications {
     NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     
     UILocalNotification *enableNotification = [[UILocalNotification alloc] init];

@@ -8,6 +8,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
++ (void)updateNotifications;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @end
