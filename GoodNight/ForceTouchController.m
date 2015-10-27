@@ -52,6 +52,7 @@
             shortcutTitle = @"Disable Color";
         }
     }
+    
     if (forceTouchActionEnabled == NO) {
         shortcutSubtitle = turnOnText;
         iconTemplate = @"enable-switch";
@@ -60,17 +61,22 @@
         shortcutSubtitle = turnOffText;
         iconTemplate = @"disable-switch";
     }
+    
     UIApplicationShortcutIcon *shortcutIcon = [UIApplicationShortcutIcon iconWithTemplateImageName:iconTemplate];
     UIMutableApplicationShortcutItem *shortcut = [[UIMutableApplicationShortcutItem alloc] initWithType:shortcutType localizedTitle:shortcutTitle localizedSubtitle:shortcutSubtitle icon:shortcutIcon userInfo:nil];
+    
     return shortcut;
 }
 
 + (void)updateShortcutItems {
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && [app respondsToSelector:@selector(shortcutItems)] && [app respondsToSelector:@selector(setShortcutItems:)]) {
         if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
-            UIApplicationShortcutItem *shortcut = [ForceTouchController shortcutItemForCurrentState];
+            UIApplicationShortcutItem *shortcut = [self shortcutItemForCurrentState];
             if (shortcut != nil) {
-                [app setShortcutItems:@[shortcut]];
+                NSArray *shortcutArray = @[shortcut];
+                if (shortcutArray.count > 0) {
+                    [app setShortcutItems:shortcutArray];
+                }
             }
         }
         else {
