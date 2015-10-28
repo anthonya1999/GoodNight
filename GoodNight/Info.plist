@@ -23,6 +23,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>twitter</string>
+		<string>tweetbot</string>
 		<string>twitterrific</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>

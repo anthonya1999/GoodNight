@@ -6,6 +6,11 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
-@interface CreditsViewController : UITableViewController
+#import <SafariServices/SFSafariViewController.h>
+
+static NSString *username = nil;
+static BOOL webViewShouldAppear = NO;
+
+@interface CreditsViewController : UITableViewController <SFSafariViewControllerDelegate, UIViewControllerPreviewingDelegate>
 
 @end
