@@ -6,6 +6,6 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
-@interface InitialViewController : UITableViewController
+@interface InitialViewController : UITableViewController <UIViewControllerPreviewingDelegate>
 
 @end
