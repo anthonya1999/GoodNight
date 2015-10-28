@@ -6,6 +6,8 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
+@import ObjectiveC;
+
 @implementation ForceTouchController
 
 + (UIApplicationShortcutItem *)shortcutItemForCurrentState {
@@ -115,7 +117,9 @@
 
 + (void)exitIfKeyEnabled {
     if ([userDefaults boolForKey:@"suspendEnabled"] && [[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
-        [app performSelector:@selector(suspend)];
+        void *(*objc_msgSendTyped)(id self, SEL _cmd) = (void *)objc_msgSend;
+        SEL suspend = sel_getUid("suspend");
+        objc_msgSendTyped(app, suspend);
     }
 }
 
