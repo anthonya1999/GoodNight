@@ -32,6 +32,7 @@
                                          @"tempForceTouch": @YES,
                                          @"dimForceTouch": @NO,
                                          @"rgbForceTouch": @NO,
+                                         @"peekPopEnabled": @YES,
                                          @"keyEnabled": @"0"};
     
     [userDefaults registerDefaults:defaultsToRegister];

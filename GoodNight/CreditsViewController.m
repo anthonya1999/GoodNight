@@ -26,16 +26,20 @@
 
 - (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+    if ([userDefaults boolForKey:@"peekPopEnabled"]) {
     
-    if (indexPath) {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        NSString *cellText = [cell.textLabel.text substringFromIndex:1];
-        previewingContext.sourceRect = cell.frame;
-        SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", cellText]] entersReaderIfAvailable:NO];
-        safariVC.delegate = self;
-        username = cell.textLabel.text;
-        return safariVC;
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+    
+        if (indexPath) {
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            NSString *cellText = [cell.textLabel.text substringFromIndex:1];
+            previewingContext.sourceRect = cell.frame;
+            SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://twitter.com/%@", cellText]] entersReaderIfAvailable:NO];
+            safariVC.delegate = self;
+            username = cell.textLabel.text;
+            return safariVC;
+        }
+        [self unregisterForPreviewingWithContext:previewingContext];
     }
     return nil;
 }

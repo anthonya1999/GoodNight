@@ -24,33 +24,40 @@
 
 - (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
-    
-    if (indexPath) {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        NSString *identifier = nil;
-        if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                identifier = @"mainViewController";
+    if ([userDefaults boolForKey:@"peekPopEnabled"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+        
+        if (indexPath) {
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            NSString *identifier = nil;
+            
+            if (indexPath.section == 0) {
+                if (indexPath.row == 0) {
+                    identifier = @"mainViewController";
+                }
+                if (indexPath.row == 1) {
+                    identifier = @"brightnessViewController";
+                }
+                if (indexPath.row == 2) {
+                    identifier = @"colorViewController";
+                }
             }
-            if (indexPath.row == 1) {
-                identifier = @"brightnessViewController";
+            
+            if (indexPath.section == 1) {
+                if (indexPath.row == 0) {
+                    identifier = @"settingsViewController";
+                }
             }
-            if (indexPath.row == 2) {
-                identifier = @"colorViewController";
+            
+            if (indexPath.section == 2) {
+                identifier = @"creditsViewController";
             }
+            
+            previewingContext.sourceRect = cell.frame;
+            UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+            return viewController;
         }
-        if (indexPath.section == 1) {
-            if (indexPath.row == 0) {
-                identifier = @"settingsViewController";
-            }
-        }
-        if (indexPath.section == 2) {
-            identifier = @"creditsViewController";
-        }
-        previewingContext.sourceRect = cell.frame;
-        UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
-        return viewController;
+        [self unregisterForPreviewingWithContext:previewingContext];
     }
     return nil;
 }
