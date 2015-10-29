@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
+@import ObjectiveC;
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -102,6 +104,23 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
     [ForceTouchController exitIfKeyEnabled];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id) annotation {
+    if ([url.scheme isEqualToString: @"goodnight"]) {
+        if ([url.host isEqualToString: @"enable"] && ![userDefaults boolForKey:@"enabled"]) {
+            [GammaController enableOrangenessWithDefaults:YES transition:YES];
+        }
+        else if ([url.host isEqualToString: @"disable"] && [userDefaults boolForKey:@"enabled"]) {
+            [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
+        }
+        if ([[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
+            void *(*objc_msgSendTyped)(id self, SEL _cmd) = (void *)objc_msgSend;
+            SEL suspend = sel_getUid("suspend");
+            objc_msgSendTyped(app, suspend);
+        }
+    }
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

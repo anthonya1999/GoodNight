@@ -11,6 +11,10 @@
 		921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810361BC1B3C000D32E92 /* BrightnessViewController.m */; };
 		921924331BCDC11500254487 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 921924321BCDC11500254487 /* NSDate+Extensions.m */; };
 		924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */; };
+		925B81211BE2BCE1003A6C4B /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B81201BE2BCE1003A6C4B /* NotificationCenter.framework */; };
+		925B81251BE2BCE1003A6C4B /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B81241BE2BCE1003A6C4B /* TodayViewController.m */; };
+		925B81281BE2BCE1003A6C4B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 925B81261BE2BCE1003A6C4B /* MainInterface.storyboard */; };
+		925B812C1BE2BCE1003A6C4B /* GoodNight Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 925B811E1BE2BCE1003A6C4B /* GoodNight Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		927B86141BD720E60091AF24 /* ForceTouchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B86131BD720E60091AF24 /* ForceTouchController.m */; };
 		9296029F1BD1B89100CDEC52 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9296029E1BD1B89100CDEC52 /* InitialViewController.m */; };
 		929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929602A11BD1BC3000CDEC52 /* SettingsViewController.m */; };
@@ -23,6 +27,16 @@
 		B9E536561B38D90D0097BF90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9E536551B38D90D0097BF90 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		925B812A1BE2BCE1003A6C4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9E5363E1B38D90D0097BF90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 925B811D1BE2BCE1003A6C4B;
+			remoteInfo = "GoodNight Widget";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		B9B6D3161BA636DA00A8E999 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -30,6 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				925B812C1BE2BCE1003A6C4B /* GoodNight Widget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +60,13 @@
 		921924321BCDC11500254487 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extensions.m"; sourceTree = "<group>"; };
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
+		925B811E1BE2BCE1003A6C4B /* GoodNight Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "GoodNight Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		925B81201BE2BCE1003A6C4B /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		925B81231BE2BCE1003A6C4B /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		925B81241BE2BCE1003A6C4B /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		925B81271BE2BCE1003A6C4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		925B81291BE2BCE1003A6C4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		925B81301BE2BD0A003A6C4B /* GoodNight Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GoodNight Widget.entitlements"; sourceTree = "<group>"; };
 		927B86121BD720E60091AF24 /* ForceTouchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForceTouchController.h; sourceTree = "<group>"; };
 		927B86131BD720E60091AF24 /* ForceTouchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForceTouchController.m; sourceTree = "<group>"; };
 		9296029D1BD1B89100CDEC52 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
@@ -68,6 +90,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		925B811B1BE2BCE1003A6C4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				925B81211BE2BCE1003A6C4B /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9E536431B38D90D0097BF90 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,6 +115,26 @@
 				921924321BCDC11500254487 /* NSDate+Extensions.m */,
 			);
 			name = "NSDate+Extensions";
+			sourceTree = "<group>";
+		};
+		925B811F1BE2BCE1003A6C4B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				925B81201BE2BCE1003A6C4B /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		925B81221BE2BCE1003A6C4B /* GoodNight Widget */ = {
+			isa = PBXGroup;
+			children = (
+				925B81231BE2BCE1003A6C4B /* TodayViewController.h */,
+				925B81241BE2BCE1003A6C4B /* TodayViewController.m */,
+				925B81261BE2BCE1003A6C4B /* MainInterface.storyboard */,
+				925B81301BE2BD0A003A6C4B /* GoodNight Widget.entitlements */,
+				925B81291BE2BCE1003A6C4B /* Info.plist */,
+			);
+			path = "GoodNight Widget";
 			sourceTree = "<group>";
 		};
 		926B68F61BC1B8E800F12297 /* Temperature */ = {
@@ -185,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				B9E536481B38D90D0097BF90 /* GoodNight */,
+				925B81221BE2BCE1003A6C4B /* GoodNight Widget */,
+				925B811F1BE2BCE1003A6C4B /* Frameworks */,
 				B9E536471B38D90D0097BF90 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -193,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				B9E536461B38D90D0097BF90 /* GoodNight.app */,
+				925B811E1BE2BCE1003A6C4B /* GoodNight Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,6 +280,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		925B811D1BE2BCE1003A6C4B /* GoodNight Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 925B812F1BE2BCE1003A6C4B /* Build configuration list for PBXNativeTarget "GoodNight Widget" */;
+			buildPhases = (
+				925B811A1BE2BCE1003A6C4B /* Sources */,
+				925B811B1BE2BCE1003A6C4B /* Frameworks */,
+				925B811C1BE2BCE1003A6C4B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GoodNight Widget";
+			productName = "GoodNight Widget";
+			productReference = 925B811E1BE2BCE1003A6C4B /* GoodNight Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B9E536451B38D90D0097BF90 /* GoodNight */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9E5365D1B38D90D0097BF90 /* Build configuration list for PBXNativeTarget "GoodNight" */;
@@ -239,6 +309,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				925B812B1BE2BCE1003A6C4B /* PBXTargetDependency */,
 			);
 			name = GoodNight;
 			productName = GammaTest;
@@ -254,6 +325,15 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "ADA Tech, LLC";
 				TargetAttributes = {
+					925B811D1BE2BCE1003A6C4B = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9QKLXG4845;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
 					B9E536451B38D90D0097BF90 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 9QKLXG4845;
@@ -282,11 +362,20 @@
 			projectRoot = "";
 			targets = (
 				B9E536451B38D90D0097BF90 /* GoodNight */,
+				925B811D1BE2BCE1003A6C4B /* GoodNight Widget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		925B811C1BE2BCE1003A6C4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				925B81281BE2BCE1003A6C4B /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9E536441B38D90D0097BF90 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,6 +389,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		925B811A1BE2BCE1003A6C4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				925B81251BE2BCE1003A6C4B /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9E536421B38D90D0097BF90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,7 +417,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		925B812B1BE2BCE1003A6C4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 925B811D1BE2BCE1003A6C4B /* GoodNight Widget */;
+			targetProxy = 925B812A1BE2BCE1003A6C4B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		925B81261BE2BCE1003A6C4B /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				925B81271BE2BCE1003A6C4B /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		92F23AC11BD72ADD00A097CB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -410,6 +523,73 @@
 			};
 			name = Enterprise;
 		};
+		925B812D1BE2BCE1003A6C4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "GoodNight Widget/GoodNight Widget.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Anthony Agatiello (J9M2GPP36A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Anthony Agatiello (J9M2GPP36A)";
+				GCC_PREFIX_HEADER = GoodNight/PrefixHeader.pch;
+				INFOPLIST_FILE = "GoodNight Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adatech.goodnight.GoodNight-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		925B812E1BE2BCE1003A6C4B /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "GoodNight Widget/GoodNight Widget.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ADA Tech, LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ADA Tech, LLC";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = GoodNight/PrefixHeader.pch;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GoodNight Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adatech.goodnight.GoodNight-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Enterprise;
+		};
 		B9E5365B1B38D90D0097BF90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -484,6 +664,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		925B812F1BE2BCE1003A6C4B /* Build configuration list for PBXNativeTarget "GoodNight Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				925B812D1BE2BCE1003A6C4B /* Debug */,
+				925B812E1BE2BCE1003A6C4B /* Enterprise */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B9E536411B38D90D0097BF90 /* Build configuration list for PBXProject "GoodNight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
