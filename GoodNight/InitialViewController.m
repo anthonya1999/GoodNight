@@ -15,8 +15,8 @@
 
 @implementation InitialViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         [self registerForPreviewingWithDelegate:self sourceView:self.view];
     }
@@ -57,14 +57,12 @@
             UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
             return viewController;
         }
-        [self unregisterForPreviewingWithContext:previewingContext];
     }
     return nil;
 }
 
 - (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
     [self.navigationController pushViewController:viewControllerToCommit animated:YES];
-    [self unregisterForPreviewingWithContext:previewingContext];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
