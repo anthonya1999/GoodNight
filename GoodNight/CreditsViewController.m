@@ -27,8 +27,8 @@
 - (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
     if ([userDefaults boolForKey:@"peekPopEnabled"]) {
-    
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+        CGPoint cellPostion = [self.tableView convertPoint:location fromView:self.view];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:cellPostion];
     
         if (indexPath) {
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
