@@ -7,11 +7,6 @@
 //
 
 #import "InitialViewController.h"
-#import "MainViewController.h"
-#import "BrightnessViewController.h"
-#import "CustomViewController.h"
-#import "CreditsViewController.h"
-#import "SettingsViewController.h"
 
 @implementation InitialViewController
 
@@ -55,7 +50,7 @@
             }
             
             previewingContext.sourceRect = cell.frame;
-            UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+            UIViewController *viewController = [AppDelegate initWithIdentifier:identifier];
             return viewController;
         }
     }
@@ -67,32 +62,30 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *identifier = nil;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            MainViewController *mainVC = [[MainViewController alloc] init];
-            [self.navigationController pushViewController:mainVC animated:YES];
+            identifier = @"mainViewController";
         }
         if (indexPath.row == 1) {
-            BrightnessViewController *brightnessVC = [[BrightnessViewController alloc] init];
-            [self.navigationController pushViewController:brightnessVC animated:YES];
+            identifier = @"brightnessViewController";
         }
         if (indexPath.row == 2) {
-            CustomViewController *customVC = [[CustomViewController alloc] init];
-            [self.navigationController pushViewController:customVC animated:YES];
+            identifier = @"colorViewController";
         }
     }
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            SettingsViewController *settingsVC = [[SettingsViewController alloc] init];
-            [self.navigationController pushViewController:settingsVC animated:YES];
+            identifier = @"settingsViewController";
         }
     }
     if (indexPath.section == 2) {
         if (indexPath.row == 0) {
-            CreditsViewController *creditsVC = [[CreditsViewController alloc] init];
-            [self.navigationController pushViewController:creditsVC animated:YES];
+            identifier = @"creditsViewController";
         }
     }
+    UIViewController *viewController = [AppDelegate initWithIdentifier:identifier];
+    [self.navigationController pushViewController:viewController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

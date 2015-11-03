@@ -7,14 +7,12 @@
 //
 
 #import "MainViewController.h"
-#import "AppDelegate.h"
 
 @implementation MainViewController
 
 - (instancetype)init
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    self = [storyboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+    self = [AppDelegate initWithIdentifier:@"mainViewController"];
     return self;
 }
 

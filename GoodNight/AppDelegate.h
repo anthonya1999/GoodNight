@@ -9,6 +9,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAlertViewDelegate>
 
 + (void)updateNotifications;
++ (id)initWithIdentifier:(NSString *)identifier;
 
 @property (strong, nonatomic) UIWindow *window;
 

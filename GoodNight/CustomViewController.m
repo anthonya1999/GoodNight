@@ -12,8 +12,7 @@
 
 - (instancetype)init
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    self = [storyboard instantiateViewControllerWithIdentifier:@"colorViewController"];
+    self = [AppDelegate initWithIdentifier:@"colorViewController"];
     return self;
 }
 
