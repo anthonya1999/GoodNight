@@ -9,7 +9,7 @@
 @interface GammaController : NSObject <UIAlertViewDelegate>
 
 typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
-typedef kern_return_t IOMobileFramebufferReturn;
+typedef kern_return_t IOMobileFramebufferReturn, SpringBoardServicesReturn;
 
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue;
 + (void)setGammaWithOrangeness:(float)percentOrange;
@@ -21,6 +21,7 @@ typedef kern_return_t IOMobileFramebufferReturn;
 + (void)showFailedAlertWithKey:(NSString *)key;
 + (void)enableDimness;
 + (void)setGammaWithCustomValues;
++ (void)suspendApp;
 + (BOOL)adjustmentForKeysEnabled:(NSString *)key1 key2:(NSString *)key2;
 
 @end

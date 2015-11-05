@@ -9,8 +9,6 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
-@import ObjectiveC;
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -115,9 +113,7 @@
             [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
         }
         if ([[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
-            void *(*objc_msgSendTyped)(id self, SEL _cmd) = (void *)objc_msgSend;
-            SEL suspend = sel_getUid("suspend");
-            objc_msgSendTyped(app, suspend);
+            [GammaController suspendApp];
         }
     }
     return NO;

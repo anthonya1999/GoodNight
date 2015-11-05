@@ -254,6 +254,19 @@
     [ForceTouchController updateShortcutItems];
 }
 
+
++ (void)suspendApp {
+    void *SpringBoardServices = dlopen("/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices", RTLD_LAZY);
+    NSParameterAssert(SpringBoardServices);
+    mach_port_t (*SBSSpringBoardServerPort)() = dlsym(SpringBoardServices, "SBSSpringBoardServerPort");
+    NSParameterAssert(SBSSpringBoardServerPort);
+    SpringBoardServicesReturn (*SBSuspend)(mach_port_t port) = dlsym(SpringBoardServices, "SBSuspend");
+    NSParameterAssert(SBSuspend);
+    mach_port_t sbsMachPort = SBSSpringBoardServerPort();
+    SBSuspend(sbsMachPort);
+    dlclose(SpringBoardServices);
+}
+
 + (BOOL)adjustmentForKeysEnabled:(NSString *)key1 key2:(NSString *)key2 {
     if (![userDefaults boolForKey:key1] && ![userDefaults boolForKey:key2]) {
         return NO;
