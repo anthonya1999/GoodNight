@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "Disable"; ObjectID = "DGb-YH-tIs"; */
+"DGb-YH-tIs.normalTitle" = "オフ";
+
+/* Class = "UILabel"; text = "Turn on or off the temperature\nadjustment."; ObjectID = "oHY-7W-Hii"; */
+"oHY-7W-Hii.text" = "色温度を調整します。";
+
+/* Class = "UIButton"; normalTitle = "Enable"; ObjectID = "zOd-Wo-5gC"; */
+"zOd-Wo-5gC.normalTitle" = "オン";
