@@ -46,7 +46,9 @@
             }
             
             if (indexPath.section == 2) {
-                identifier = @"creditsViewController";
+                if (indexPath.row == 0) {
+                    identifier = @"creditsViewController";
+                }
             }
             
             previewingContext.sourceRect = cell.frame;
