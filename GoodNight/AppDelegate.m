@@ -110,7 +110,7 @@
             [GammaController enableOrangenessWithDefaults:YES transition:YES];
         }
         else if ([url.host isEqualToString: @"disable"] && [userDefaults boolForKey:@"enabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
+            [GammaController disableOrangeness];
         }
         if ([[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
             [GammaController suspendApp];

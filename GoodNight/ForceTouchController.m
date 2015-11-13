@@ -88,7 +88,7 @@
 + (BOOL)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem {
     if ([shortcutItem.type isEqualToString:@"temperatureForceTouchAction"]) {
         if ([userDefaults boolForKey:@"enabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
+            [GammaController disableOrangeness];
         }
         else if (![userDefaults boolForKey:@"enabled"]) {
             [GammaController enableOrangenessWithDefaults:YES transition:YES];
@@ -96,7 +96,7 @@
     }
     else if ([shortcutItem.type isEqualToString:@"dimForceTouchAction"]) {
         if ([userDefaults boolForKey:@"dimEnabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"dimEnabled" transition:NO];
+            [GammaController disableDimness];
         }
         else if (![userDefaults boolForKey:@"dimEnabled"]) {
             [GammaController enableDimness];
@@ -104,7 +104,7 @@
     }
     else if ([shortcutItem.type isEqualToString:@"rgbForceTouchAction"]) {
         if ([userDefaults boolForKey:@"rgbEnabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"rgbEnabled" transition:NO];
+            [GammaController disableColorAdjustment];
         }
         else if (![userDefaults boolForKey:@"rgbEnabled"]) {
             [GammaController setGammaWithCustomValues];

@@ -13,8 +13,7 @@
 
 - (instancetype)init
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    self = [storyboard instantiateViewControllerWithIdentifier:@"settingsViewController"];
+    self = [AppDelegate initWithIdentifier:@"settingsViewController"];
     return self;
 }
 
@@ -134,7 +133,7 @@
     if (tableView) {
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
             if (section == 0) {
-                footerText = @"Turn on or off 3D Touch quick actions or \"Peek and Pop\" capability for GoodNight.";
+                footerText = @"Turn on or off 3D Touch quick actions or \"Peek and Pop\" capability.";
             }
             if (section == 1) {
                 footerText = @"When enabled, the \"Exit After Action\" exits the app after you enable or disable the set adjustment using 3D Touch.";

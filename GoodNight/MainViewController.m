@@ -69,7 +69,7 @@
         [GammaController enableOrangenessWithDefaults:NO transition:YES];
     }
     else {
-        [GammaController disableOrangenessWithDefaults:NO key:@"enabled" transition:YES];
+        [GammaController disableOrangeness];
     }
 }
 

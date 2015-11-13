@@ -254,6 +254,17 @@
     [ForceTouchController updateShortcutItems];
 }
 
++ (void)disableColorAdjustment {
+    [GammaController disableOrangenessWithDefaults:YES key:@"rgbEnabled" transition:NO];
+}
+
++ (void)disableDimness {
+    [GammaController disableOrangenessWithDefaults:YES key:@"dimEnabled" transition:NO];
+}
+
++ (void)disableOrangeness {
+    [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
+}
 
 + (void)suspendApp {
     void *SpringBoardServices = dlopen("/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices", RTLD_LAZY);

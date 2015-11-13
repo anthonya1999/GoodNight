@@ -12,8 +12,7 @@
 
 - (instancetype)init
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    self = [storyboard instantiateViewControllerWithIdentifier:@"creditsViewController"];
+    self = [AppDelegate initWithIdentifier:@"creditsViewController"];
     return self;
 }
 
