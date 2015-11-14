@@ -63,6 +63,33 @@
     }
 }
 
+- (NSArray <id <UIPreviewActionItem>> *)previewActionItems {
+    NSString *title = nil;
+    
+    if (![userDefaults boolForKey:@"dimEnabled"]) {
+        title = @"Enable";
+    }
+    else if ([userDefaults boolForKey:@"dimEnabled"]) {
+        title = @"Disable";
+    }
+    
+    UIPreviewAction *enableDisableAction = [UIPreviewAction actionWithTitle:title style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+        [self enableOrDisableBasedOnDefaults];
+    }];
+    UIPreviewAction *cancelButton = [UIPreviewAction actionWithTitle:@"Cancel" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
+    
+    return @[enableDisableAction, cancelButton];
+}
+
+- (void)enableOrDisableBasedOnDefaults {
+    if (![userDefaults boolForKey:@"dimEnabled"]) {
+        [GammaController enableDimness];
+    }
+    else if ([userDefaults boolForKey:@"dimEnabled"]) {
+        [GammaController disableDimness];
+    }
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSString *headerText = @"";
     if (tableView) {
