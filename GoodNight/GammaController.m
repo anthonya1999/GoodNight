@@ -141,21 +141,23 @@
 }
 
 + (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition {
-    float orangeLevel = [userDefaults floatForKey:@"maxOrange"];
-    [self wakeUpScreenIfNeeded];
-    if (transition == YES) {
-        [self setGammaWithTransitionFrom:1.0 to:orangeLevel];
+    if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"rgbEnabled"] == NO) {
+        float orangeLevel = [userDefaults floatForKey:@"maxOrange"];
+        [self wakeUpScreenIfNeeded];
+        if (transition == YES) {
+            [self setGammaWithTransitionFrom:1.0 to:orangeLevel];
+        }
+        else {
+            [self setGammaWithOrangeness:orangeLevel];
+        }
+        if (defaults == YES) {
+            [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+            [userDefaults setBool:YES forKey:@"enabled"];
+        }
+        [userDefaults setObject:@"0" forKey:@"keyEnabled"];
+        [userDefaults synchronize];
+        [ForceTouchController updateShortcutItems];
     }
-    else {
-        [self setGammaWithOrangeness:orangeLevel];
-    }
-    if (defaults == YES) {
-        [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-        [userDefaults setBool:YES forKey:@"enabled"];
-    }
-    [userDefaults setObject:@"0" forKey:@"keyEnabled"];
-    [userDefaults synchronize];
-    [ForceTouchController updateShortcutItems];
 }
 
 + (void)setGammaWithTransitionFrom:(float)oldPercentOrange to:(float)newPercentOrange {
