@@ -155,9 +155,12 @@
             [userDefaults setBool:YES forKey:@"enabled"];
         }
         [userDefaults setObject:@"0" forKey:@"keyEnabled"];
-        [userDefaults synchronize];
-        [ForceTouchController updateShortcutItems];
     }
+    else {
+        [self showFailedAlertWithKey:@"enabled"];
+    }
+    [userDefaults synchronize];
+    [ForceTouchController updateShortcutItems];
 }
 
 + (void)setGammaWithTransitionFrom:(float)oldPercentOrange to:(float)newPercentOrange {
