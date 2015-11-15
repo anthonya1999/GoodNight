@@ -83,24 +83,24 @@
         return;
     }
     
-    float red = 1.0;
-    float blue = 1 - percentOrange;
-    float green = (red + blue) / 2.0;
-    
-    if (percentOrange == 0) {
-        red = blue = green = 0.99;
+    float hectoKelvin = percentOrange * 45 + 20;
+    float red = 255.0;
+    float green = -155.25485562709179 + -0.44596950469579133 * (hectoKelvin - 2) + 104.49216199393888 * log(hectoKelvin - 2);
+    float blue = -254.76935184120902 + 0.8274096064007395 * (hectoKelvin - 10) + 115.67994401066147 * log(hectoKelvin - 10);
+
+    if (percentOrange == 1) {
+        green = 255.0;
+        blue = 255.0;
     }
+
+    red /= 255.0;
+    green /= 255.0;
+    blue /= 255.0;
     
-    if ([self wakeUpScreenIfNeeded]) {
-        [self setGammaWithRed:red green:green blue:blue];
-    }
+    [self setGammaWithRed:red green:green blue:blue];
 }
 
 + (void)autoChangeOrangenessIfNeededWithTransition:(BOOL)transition {
-    if ([userDefaults boolForKey:@"enabled"]) {
-        [self enableOrangenessWithDefaults:YES transition:transition];
-    }
-    
     if (![userDefaults boolForKey:@"colorChangingEnabled"]) {
         return;
     }
@@ -129,35 +129,31 @@
     
     if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
         if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-            [self enableOrangenessWithDefaults:YES transition:transition];
+            [self disableOrangeness];
         }
     }
     else {
         if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-            [self disableOrangenessWithDefaults:YES key:@"enabled" transition:transition];
+            [self enableOrangenessWithDefaults:YES transition:transition];
         }
     }
     [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
 }
 
 + (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition {
-    if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"rgbEnabled"] == NO) {
-        float orangeLevel = [userDefaults floatForKey:@"maxOrange"];
-        if (transition == YES) {
-            [self setGammaWithTransitionFrom:0 to:orangeLevel];
-        }
-        else {
-            [self setGammaWithOrangeness:orangeLevel];
-        }
-        if (defaults == YES) {
-            [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-            [userDefaults setBool:YES forKey:@"enabled"];
-        }
-        [userDefaults setObject:@"0" forKey:@"keyEnabled"];
+    float orangeLevel = [userDefaults floatForKey:@"maxOrange"];
+    [self wakeUpScreenIfNeeded];
+    if (transition == YES) {
+        [self setGammaWithTransitionFrom:1.0 to:orangeLevel];
     }
     else {
-        [self showFailedAlertWithKey:@"enabled"];
+        [self setGammaWithOrangeness:orangeLevel];
     }
+    if (defaults == YES) {
+        [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+        [userDefaults setBool:YES forKey:@"enabled"];
+    }
+    [userDefaults setObject:@"0" forKey:@"keyEnabled"];
     [userDefaults synchronize];
     [ForceTouchController updateShortcutItems];
 }
@@ -172,6 +168,9 @@
         }
         else {
             for (float i = oldPercentOrange; i >= newPercentOrange; i = i - 0.01) {
+                if (i < 0.01) {
+                    i = 0;
+                }
                 [NSThread sleepForTimeInterval:0.02];
                 [self setGammaWithOrangeness:i];
             }
@@ -180,11 +179,12 @@
 }
 
 + (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition {
+    [self wakeUpScreenIfNeeded];
     if (transition == YES) {
-        [self setGammaWithTransitionFrom:[userDefaults floatForKey:@"maxOrange"] to:0];
+        [self setGammaWithTransitionFrom:[userDefaults floatForKey:@"maxOrange"] to:1.0];
     }
     else {
-        [self setGammaWithOrangeness:0];
+        [self setGammaWithOrangeness:1.0];
     }
     if (defaults == YES) {
         [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];

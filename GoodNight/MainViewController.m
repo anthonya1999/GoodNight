@@ -153,6 +153,7 @@
 }
 
 - (IBAction)colorChangingEnabledSwitchChanged {
+    self.enabledSwitch.enabled = !self.colorChangingEnabledSwitch.on;
     [userDefaults setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
@@ -200,7 +201,7 @@
     NSString *headerText = @"";
     if (tableView) {
         if (section == 1) {
-            headerText = [NSString stringWithFormat:@"Temperature (%.2f)", (self.orangeSlider.value * 10)];
+            headerText = [NSString stringWithFormat:@"Temperature (%dK)", ((int)(self.orangeSlider.value * 45 + 20) * 100)];
         }
         if (section == 2) {
             headerText = @"Automatic Mode";
