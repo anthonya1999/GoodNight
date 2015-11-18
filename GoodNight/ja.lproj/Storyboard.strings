@@ -1,9 +1,9 @@
 
 /* Class = "UILabel"; text = "Color"; ObjectID = "11s-cm-juR"; */
-"11s-cm-juR.text" = "カラー";
+"11s-cm-juR.text" = "色合い";
 
 /* Class = "UIButton"; normalTitle = "Reset Color"; ObjectID = "3b9-9E-jai"; */
-"3b9-9E-jai.normalTitle" = "カラーをリセット";
+"3b9-9E-jai.normalTitle" = "色合いをリセット";
 
 /* Class = "UINavigationItem"; title = "Temperature"; ObjectID = "4Vg-Nr-nzj"; */
 "4Vg-Nr-nzj.title" = "色温度";
@@ -36,10 +36,10 @@
 "CYU-39-Ygg.text" = "PeekとPop";
 
 /* Class = "UILabel"; text = "Enabled"; ObjectID = "DEd-2G-670"; */
-"DEd-2G-670.text" = "カラー";
+"DEd-2G-670.text" = "色合い";
 
 /* Class = "UITableViewSection"; footerTitle = "This is used to lower the brightness even more than iOS will allow you to. The level at 10.0 is the default system level."; ObjectID = "HHn-QF-RHM"; */
-"HHn-QF-RHM.footerTitle" = "iOSで設定できる明るさよりも暗く設定することができます。明るさの10.0はシステムの既定の明るさです。";
+"HHn-QF-RHM.footerTitle" = "iOSで設定できる明るさよりも暗く設定することができます。システムの既定の明るさは10.0です。";
 
 /* Class = "UITableViewSection"; headerTitle = "Level"; ObjectID = "HHn-QF-RHM"; */
 "HHn-QF-RHM.headerTitle" = "明るさ";
@@ -54,7 +54,7 @@
 "Hxq-Dq-Y4D.title" = "クレジット";
 
 /* Class = "UILabel"; text = "Turn Off"; ObjectID = "L6d-BC-FhF"; */
-"L6d-BC-FhF.text" = "無効";
+"L6d-BC-FhF.text" = "オフ";
 
 /* Class = "UILabel"; text = "Credits"; ObjectID = "N8E-lE-C0m"; */
 "N8E-lE-C0m.text" = "クレジット";
@@ -69,10 +69,10 @@
 "RjI-Ss-CBD.text" = "明るさ";
 
 /* Class = "UINavigationItem"; title = "Color"; ObjectID = "S2o-ZV-vd5"; */
-"S2o-ZV-vd5.title" = "カラー";
+"S2o-ZV-vd5.title" = "色合い";
 
-/* Class = "UILabel"; text = "Developer"; ObjectID = "SGU-xW-FFI"; */
-"SGU-xW-FFI.text" = "開発者";
+/* Class = "UILabel"; text = "Main Developer"; ObjectID = "SGU-xW-FFI"; */
+"SGU-xW-FFI.text" = "主な開発者";
 
 /* Class = "UILabel"; text = "@tomf64"; ObjectID = "U06-pF-iEh"; */
 "U06-pF-iEh.text" = "@tomf64";
@@ -111,19 +111,22 @@
 "cuF-Xn-OKz.text" = "原作者";
 
 /* Class = "UILabel"; text = "Color"; ObjectID = "cuP-x9-tLJ"; */
-"cuP-x9-tLJ.text" = "カラー";
+"cuP-x9-tLJ.text" = "色合い";
 
 /* Class = "UITableViewSection"; headerTitle = "3D Touch"; ObjectID = "d7K-uO-iYf"; */
 "d7K-uO-iYf.headerTitle" = "3D Touch";
 
-/* Class = "UILabel"; text = "Original App Icon"; ObjectID = "fsx-Nq-M7L"; */
-"fsx-Nq-M7L.text" = "初版アプリアイコン";
+/* Class = "UILabel"; text = "Original Icon"; ObjectID = "fsx-Nq-M7L"; */
+"fsx-Nq-M7L.text" = "初版アイコン";
 
 /* Class = "UILabel"; text = "Exit After Action"; ObjectID = "gmr-tu-46I"; */
 "gmr-tu-46I.text" = "アクション後に終了";
 
 /* Class = "UILabel"; text = "Temperature"; ObjectID = "gnm-AZ-tgq"; */
 "gnm-AZ-tgq.text" = "色温度";
+
+/* Class = "UILabel"; text = "@sapphirinedream"; ObjectID = "lzW-zY-3Is"; */
+"lzW-zY-3Is.text" = "@sapphirinedream";
 
 /* Class = "UITableViewSection"; footerTitle = "Adjust the RGB sliders to change the color of the display."; ObjectID = "m8h-At-afu"; */
 "m8h-At-afu.footerTitle" = "RGBの各スライダーを動かしてディスプレイの色を変更します。";
@@ -132,13 +135,13 @@
 "m8h-At-afu.headerTitle" = "Blue";
 
 /* Class = "UILabel"; text = "Turn On"; ObjectID = "qY0-az-BKo"; */
-"qY0-az-BKo.text" = "有効";
+"qY0-az-BKo.text" = "オン";
 
 /* Class = "UILabel"; text = "@AAgatiello"; ObjectID = "rL7-9y-Aum"; */
 "rL7-9y-Aum.text" = "@AAgatiello";
 
-/* Class = "UILabel"; text = "Revised App Icon"; ObjectID = "sEn-hM-39V"; */
-"sEn-hM-39V.text" = "改訂版アプリアイコン";
+/* Class = "UILabel"; text = "Revised Icon"; ObjectID = "sEn-hM-39V"; */
+"sEn-hM-39V.text" = "改訂版アイコン";
 
 /* Class = "UITableViewSection"; footerTitle = "Enable automatic mode to turn on and off GoodNight at a set time. Please note that the change will not take effect immediately."; ObjectID = "sVp-Pb-V8y"; */
 "sVp-Pb-V8y.footerTitle" = "自動モードを有効にすると設定した時間にGoodNightが有効・無効になります。この変更はすぐには反映されない点にご注意ください。";
@@ -149,8 +152,12 @@
 /* Class = "UILabel"; text = "Automatic Color Changing"; ObjectID = "uoa-EP-vXq"; */
 "uoa-EP-vXq.text" = "自動で色温度を変更";
 
+/* Class = "UILabel"; text = "Developer"; ObjectID = "ykz-KC-Rec"; */
+"ykz-KC-Rec.text" = "開発者";
+
 /* Class = "UILabel"; text = "@Emu4iOS"; ObjectID = "zav-y7-j0P"; */
 "zav-y7-j0P.text" = "@Emu4iOS";
 
 /* Class = "UILabel"; text = "Settings"; ObjectID = "zo0-YY-UZU"; */
 "zo0-YY-UZU.text" = "設定";
+
