@@ -69,7 +69,7 @@
         [GammaController enableOrangenessWithDefaults:NO transition:YES];
     }
     else {
-        [GammaController disableOrangenessWithDefaults:NO key:@"enabled" transition:YES];
+        [GammaController disableOrangeness];
     }
 }
 
@@ -153,6 +153,7 @@
 }
 
 - (IBAction)colorChangingEnabledSwitchChanged {
+    self.enabledSwitch.enabled = !self.colorChangingEnabledSwitch.on;
     [userDefaults setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
@@ -169,11 +170,38 @@
     [userDefaults setFloat:self.orangeSlider.value forKey:@"maxOrange"];
 }
 
+- (NSArray <id <UIPreviewActionItem>> *)previewActionItems {
+    NSString *title = nil;
+    
+    if (![userDefaults boolForKey:@"enabled"]) {
+        title = @"Enable";
+    }
+    else if ([userDefaults boolForKey:@"enabled"]) {
+        title = @"Disable";
+    }
+    
+    UIPreviewAction *enableDisableAction = [UIPreviewAction actionWithTitle:title style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+        [self enableOrDisableBasedOnDefaults];
+    }];
+    UIPreviewAction *cancelButton = [UIPreviewAction actionWithTitle:@"Cancel" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
+    
+    return @[enableDisableAction, cancelButton];
+}
+
+- (void)enableOrDisableBasedOnDefaults {
+    if (![userDefaults boolForKey:@"enabled"]) {
+        [GammaController enableOrangenessWithDefaults:YES transition:YES];
+    }
+    else if ([userDefaults boolForKey:@"enabled"]) {
+        [GammaController disableOrangeness];
+    }
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSString *headerText = @"";
     if (tableView) {
         if (section == 1) {
-            headerText = [NSString stringWithFormat:@"Temperature (%.2f)", (self.orangeSlider.value * 10)];
+            headerText = [NSString stringWithFormat:@"Temperature (%dK)", ((int)(self.orangeSlider.value * 45 + 20) * 100)];
         }
         if (section == 2) {
             headerText = @"Automatic Mode";

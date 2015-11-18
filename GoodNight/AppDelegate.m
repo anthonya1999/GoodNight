@@ -108,12 +108,15 @@
     if ([url.scheme isEqualToString: @"goodnight"]) {
         if ([url.host isEqualToString: @"enable"] && ![userDefaults boolForKey:@"enabled"]) {
             [GammaController enableOrangenessWithDefaults:YES transition:YES];
+            if ([[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
+                [GammaController suspendApp];
+            }
         }
         else if ([url.host isEqualToString: @"disable"] && [userDefaults boolForKey:@"enabled"]) {
-            [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
-        }
-        if ([[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
-            [GammaController suspendApp];
+            [GammaController disableOrangeness];
+            if ([[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
+                [GammaController suspendApp];
+            }
         }
     }
     return NO;

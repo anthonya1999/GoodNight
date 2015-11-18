@@ -12,8 +12,7 @@
 
 - (instancetype)init
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    self = [storyboard instantiateViewControllerWithIdentifier:@"creditsViewController"];
+    self = [AppDelegate initWithIdentifier:@"creditsViewController"];
     return self;
 }
 
@@ -27,8 +26,7 @@
 - (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
     if ([userDefaults boolForKey:@"peekPopEnabled"]) {
-        CGPoint cellPostion = [self.tableView convertPoint:location fromView:self.view];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:cellPostion];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
     
         if (indexPath) {
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
@@ -60,12 +58,15 @@
                 username = @"GoodNightiOS";
             }
             if (indexPath.row == 3) {
-                username = @"Emu4iOS";
+                username = @"sapphirinedream";
             }
             if (indexPath.row == 4) {
-                username = @"The120thWhisper";
+                username = @"Emu4iOS";
             }
             if (indexPath.row == 5) {
+                username = @"The120thWhisper";
+            }
+            if (indexPath.row == 6) {
                 username = @"lyablin_nikita";
             }
             [self openTwitterAccount];

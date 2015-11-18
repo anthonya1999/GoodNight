@@ -53,14 +53,14 @@
         [GammaController setGammaWithCustomValues];
     }
     else {
-        [GammaController disableOrangenessWithDefaults:NO key:@"rgbEnabled" transition:NO];
+        [GammaController disableColorAdjustment];
     }
     [self viewDidLoad];
 }
 
 - (void)updateDisplayColorWithValue:(float)value forKey:(NSString *)key {
     if (value != 0 && key != nil) {
-    [userDefaults setFloat:value forKey:key];
+        [userDefaults setFloat:value forKey:key];
     }
     
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 3)];
@@ -82,6 +82,41 @@
     [userDefaults setFloat:self.blueSlider.value forKey:@"blueValue"];
     
     [self updateDisplayColorWithValue:0 forKey:nil];
+}
+
+- (NSArray <id <UIPreviewActionItem>> *)previewActionItems {
+    UIPreviewAction *redColor = [UIPreviewAction actionWithTitle:@"Red" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+        [self setGammaWithRedColor];
+    }];
+    UIPreviewAction *greenColor = [UIPreviewAction actionWithTitle:@"Green" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+        [self setGammaWithGreenColor];
+    }];
+    UIPreviewAction *blueColor = [UIPreviewAction actionWithTitle:@"Blue" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+        [self setGammaWithBlueColor];
+    }];
+    UIPreviewAction *cancelButton = [UIPreviewAction actionWithTitle:@"Cancel" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
+    return @[redColor, greenColor, blueColor, cancelButton];
+}
+
+- (void)setGammaWithRedColor {
+    [userDefaults setFloat:1.0 forKey:@"redValue"];
+    [userDefaults setFloat:0.0 forKey:@"greenValue"];
+    [userDefaults setFloat:0.0 forKey:@"blueValue"];
+    [GammaController setGammaWithCustomValues];
+}
+
+- (void)setGammaWithGreenColor {
+    [userDefaults setFloat:0.0 forKey:@"redValue"];
+    [userDefaults setFloat:1.0 forKey:@"greenValue"];
+    [userDefaults setFloat:0.0 forKey:@"blueValue"];
+    [GammaController setGammaWithCustomValues];
+}
+
+- (void)setGammaWithBlueColor {
+    [userDefaults setFloat:0.0 forKey:@"redValue"];
+    [userDefaults setFloat:0.0 forKey:@"greenValue"];
+    [userDefaults setFloat:1.0 forKey:@"blueValue"];
+    [GammaController setGammaWithCustomValues];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
