@@ -69,6 +69,9 @@
             if (indexPath.row == 6) {
                 username = @"lyablin_nikita";
             }
+            if (indexPath.row == 7) {
+                username = @"mariokorte";
+            }
             [self openTwitterAccount];
         }
         [tableView deselectRowAtIndexPath:indexPath animated:YES];

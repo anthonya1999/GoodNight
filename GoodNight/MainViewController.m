@@ -57,6 +57,13 @@
     self.orangeSlider.value = [userDefaults floatForKey:@"maxOrange"];
     self.colorChangingEnabledSwitch.on = [userDefaults boolForKey:@"colorChangingEnabled"];
     
+    float orange = 1.0f - self.orangeSlider.value;
+    
+    self.orangeSlider.tintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
+    
+    self.enabledSwitch.onTintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
+    self.colorChangingEnabledSwitch.onTintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
+    
     NSDate *date = [self dateForHour:[userDefaults integerForKey:@"autoStartHour"] andMinute:[userDefaults integerForKey:@"autoStartMinute"]];
     self.startTimeTextField.text = [self.timeFormatter stringFromDate:date];
     date = [self dateForHour:[userDefaults integerForKey:@"autoEndHour"] andMinute:[userDefaults integerForKey:@"autoEndMinute"]];
@@ -88,6 +95,8 @@
 - (void)toolbarDoneButtonClicked:(UIBarButtonItem *)button {
     [self.startTimeTextField resignFirstResponder];
     [self.endTimeTextField resignFirstResponder];
+    
+    [AppDelegate updateNotifications];
 }
 
 - (void)timePickerValueChanged:(UIDatePicker *)picker {
@@ -139,8 +148,6 @@
 
 - (void)userDefaultsChanged:(NSNotification *)notification {
     [self updateUI];
-    [app cancelAllLocalNotifications];
-    [AppDelegate updateNotifications];
 }
 
 - (IBAction)maxOrangeSliderChanged {
@@ -157,6 +164,8 @@
     [userDefaults setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
+    
+    [AppDelegate updateNotifications];
 }
 
 - (IBAction)resetSlider {
@@ -208,6 +217,24 @@
         }
     }
     return headerText;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    NSString *footerText = @"";
+    if (tableView) {
+        if (section == 1) {
+            footerText = @"Move the slider to adjust the display temperature.";
+        }
+        if (section == 2) {
+            NSDate *lastBackgroundUpdate = [userDefaults objectForKey:@"lastBackgroundCheck"];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"HH:mm dd MMM yyyy"];
+            
+            footerText = [NSString stringWithFormat:@"Enable automatic mode to turn on and off GoodNight at a set time. Please note that the change will not take effect immediately.\nLast background update: %@", [lastBackgroundUpdate isEqualToDate:[NSDate distantPast]] ? @"never" :  [dateFormatter stringFromDate:lastBackgroundUpdate]];
+        }
+    }
+    return footerText;
 }
 
 @end

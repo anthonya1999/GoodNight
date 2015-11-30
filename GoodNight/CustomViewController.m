@@ -32,6 +32,11 @@
     self.redSlider.value = [userDefaults floatForKey:@"redValue"];
     self.greenSlider.value = [userDefaults floatForKey:@"greenValue"];
     self.blueSlider.value = [userDefaults floatForKey:@"blueValue"];
+    
+    self.rgbSwitch.onTintColor = [UIColor colorWithRed:self.redSlider.value*0.8f green:self.greenSlider.value*0.8f blue:self.blueSlider.value*0.8f alpha:1.0];
+    self.redSlider.tintColor = [UIColor colorWithRed:1.0f green:1.0f-self.redSlider.value blue:1.0f-self.redSlider.value alpha:1.0];
+    self.greenSlider.tintColor = [UIColor colorWithRed:1.0f-self.greenSlider.value green:1.0f blue:1.0f-self.greenSlider.value alpha:1.0];
+    self.blueSlider.tintColor = [UIColor colorWithRed:1.0f-self.blueSlider.value green:1.0f-self.blueSlider.value blue:1.0f alpha:1.0];
 }
 
 - (IBAction)redChanged {

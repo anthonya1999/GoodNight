@@ -33,7 +33,8 @@
                                          @"dimForceTouch": @NO,
                                          @"rgbForceTouch": @NO,
                                          @"peekPopEnabled": @YES,
-                                         @"keyEnabled": @"0"};
+                                         @"keyEnabled": @"0",
+                                         @"lastBackgroundCheck": [NSDate distantPast]};
     
     [userDefaults registerDefaults:defaultsToRegister];
     [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
@@ -51,7 +52,12 @@
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"Fetch Background Task start");
+    [userDefaults setObject:[NSDate date] forKey:@"lastBackgroundCheck"];
+    [userDefaults synchronize];
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
+    [NSThread sleepForTimeInterval:5.0];
+    NSLog(@"Fetch Background Task end");
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
@@ -64,38 +70,44 @@
 + (void)updateNotifications {
     NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     
-    UILocalNotification *enableNotification = [[UILocalNotification alloc] init];
+    [app cancelAllLocalNotifications];
     
-    if (enableNotification == nil) {
-        return;
-    }
-    
-    NSDateComponents *compsForEnable = [[NSDateComponents alloc] init];
-    [compsForEnable setHour:[userDefaults integerForKey:@"autoStartHour"]];
-    [compsForEnable setMinute:[userDefaults integerForKey:@"autoStartMinute"]];
-    [enableNotification setSoundName:UILocalNotificationDefaultSoundName];
-    [enableNotification setAlertTitle:bundleName];
-    [enableNotification setAlertBody:[NSString stringWithFormat:@"Time to enable %@!", bundleName]];
-    [enableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
-    [enableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForEnable]];
-    
-    UILocalNotification *disableNotification = [[UILocalNotification alloc] init];
-    
-    if (disableNotification == nil) {
-        return;
-    }
-    
-    NSDateComponents *compsForDisable = [[NSDateComponents alloc] init];
-    [compsForDisable setHour:[userDefaults integerForKey:@"autoEndHour"]];
-    [compsForDisable setMinute:[userDefaults integerForKey:@"autoEndMinute"]];
-    [disableNotification setSoundName:UILocalNotificationDefaultSoundName];
-    [disableNotification setAlertTitle:bundleName];
-    [disableNotification setAlertBody:[NSString stringWithFormat:@"Time to disable %@!", bundleName]];
-    [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
-    [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
-    
-    if (app.scheduledLocalNotifications.count == 0) {
-        [app setScheduledLocalNotifications:@[enableNotification, disableNotification]];
+    if ([userDefaults boolForKey:@"colorChangingEnabled"]){
+        
+        UILocalNotification *enableNotification = [[UILocalNotification alloc] init];
+        
+        if (enableNotification == nil) {
+            return;
+        }
+        
+        NSDateComponents *compsForEnable = [[NSDateComponents alloc] init];
+        [compsForEnable setHour:[userDefaults integerForKey:@"autoStartHour"]];
+        [compsForEnable setMinute:[userDefaults integerForKey:@"autoStartMinute"]];
+        [enableNotification setSoundName:UILocalNotificationDefaultSoundName];
+        [enableNotification setAlertTitle:bundleName];
+        [enableNotification setAlertBody:[NSString stringWithFormat:@"Time to enable %@!", bundleName]];
+        [enableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
+        [enableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForEnable]];
+        [enableNotification setRepeatInterval:NSCalendarUnitDay];
+        
+        UILocalNotification *disableNotification = [[UILocalNotification alloc] init];
+        
+        if (disableNotification == nil) {
+            return;
+        }
+        
+        NSDateComponents *compsForDisable = [[NSDateComponents alloc] init];
+        [compsForDisable setHour:[userDefaults integerForKey:@"autoEndHour"]];
+        [compsForDisable setMinute:[userDefaults integerForKey:@"autoEndMinute"]];
+        [disableNotification setSoundName:UILocalNotificationDefaultSoundName];
+        [disableNotification setAlertTitle:bundleName];
+        [disableNotification setAlertBody:[NSString stringWithFormat:@"Time to disable %@!", bundleName]];
+        [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
+        [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
+        [disableNotification setRepeatInterval:NSCalendarUnitDay];
+        
+        [app scheduleLocalNotification:enableNotification];
+        [app scheduleLocalNotification:disableNotification];
     }
 }
 
@@ -135,6 +147,16 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    BOOL result = [app setKeepAliveTimeout:600 handler:^{
+        NSLog(@"KeepAliveTimeout Background Task start");
+        [userDefaults setObject:[NSDate date] forKey:@"lastBackgroundCheck"];
+        [userDefaults synchronize];
+        [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
+        [NSThread sleepForTimeInterval:5.0];
+        NSLog(@"KeepAliveTimeout Background Task end");
+    }];
+    
+    NSLog(@"Installed background handler: %@", result?@"Success":@"Fail");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -143,6 +165,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [app clearKeepAliveTimeout];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

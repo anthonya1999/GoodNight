@@ -30,6 +30,12 @@
 - (void)updateUI {
     self.dimSlider.value = [userDefaults floatForKey:@"dimLevel"];
     self.dimSwitch.on = [userDefaults boolForKey:@"dimEnabled"];
+    
+    float brightness = self.dimSlider.value;
+    
+    self.dimSwitch.onTintColor = [UIColor colorWithRed:(1.0f-brightness)*0.9f green:((2.0f-brightness)/2.0f)*0.9f blue:0.9f alpha:1.0];
+    self.dimSlider.tintColor = [UIColor colorWithRed:(1.0f-brightness)*0.9f green:((2.0f-brightness)/2.0f)*0.9f blue:0.9f alpha:1.0];
+
 }
 
 - (IBAction)brightnessSwitchChanged {
