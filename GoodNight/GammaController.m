@@ -12,13 +12,13 @@
 @implementation GammaController
 
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue {
-    NSUInteger rs = red * 0x100;
+    unsigned rs = red * 0x100;
     NSParameterAssert(rs <= 0x100);
     
-    NSUInteger gs = green * 0x100;
+    unsigned gs = green * 0x100;
     NSParameterAssert(gs <= 0x100);
     
-    NSUInteger bs = blue * 0x100;
+    unsigned bs = blue * 0x100;
     NSParameterAssert(bs <= 0x100);
     
     IOMobileFramebufferConnection fb = NULL;
@@ -31,7 +31,7 @@
     
     IOMobileFramebufferGetMainDisplay(&fb);
     
-    NSUInteger data[0xc0c / sizeof(NSUInteger)];
+    uint32_t data[0xc0c / sizeof(uint32_t)];
     memset(data, 0, sizeof(data));
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -58,12 +58,12 @@
     fread(data, 1, sizeof(data), file);
     fclose(file);
     
-    for (NSInteger i = 0; i < 256; ++i) {
-        NSInteger j = 255 - i;
+    for (size_t i = 0; i < 256; ++i) {
+        size_t j = 255 - i;
         
-        NSInteger r = j * rs >> 8;
-        NSInteger g = j * gs >> 8;
-        NSInteger b = j * bs >> 8;
+        size_t r = j * rs >> 8;
+        size_t g = j * gs >> 8;
+        size_t b = j * bs >> 8;
         
         data[j + 0x001] = data[r + 0x001];
         data[j + 0x102] = data[g + 0x102];
