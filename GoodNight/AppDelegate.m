@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "GammaController.h"
+#import "ForceTouchController.h"
 
 @implementation AppDelegate
 
@@ -16,6 +18,9 @@
     NSDictionary *defaultsToRegister = @{@"enabled": @NO,
                                          @"maxOrange": @0.4,
                                          @"colorChangingEnabled": @YES,
+                                         @"colorChangingLocationEnabled": @NO,
+                                         @"colorChangingLocationLatitude": @0.0,
+                                         @"colorChangingLocationLongitude": @0.0,
                                          @"redValue": @1.0,
                                          @"greenValue": @1.0,
                                          @"blueValue": @1.0,
@@ -27,6 +32,11 @@
                                          @"autoStartMinute": @0,
                                          @"autoEndHour": @7,
                                          @"autoEndMinute": @0,
+                                         @"colorChangingNightEnabled": @YES,
+                                         @"nightStartHour": @23,
+                                         @"nightStartMinute": @0,
+                                         @"nightEndHour": @6,
+                                         @"nightEndMinute": @0,
                                          @"suspendEnabled": @YES,
                                          @"forceTouchEnabled": @YES,
                                          @"tempForceTouch": @YES,
@@ -108,6 +118,46 @@
         
         [app scheduleLocalNotification:enableNotification];
         [app scheduleLocalNotification:disableNotification];
+    }
+    
+    if ([userDefaults boolForKey:@"colorChangingEnabled"] || [userDefaults boolForKey:@"colorChangingLocationEnabled"]){
+        if ([userDefaults boolForKey:@"colorChangingNightEnabled"]) {
+            
+            UILocalNotification *enableNightNotification = [[UILocalNotification alloc] init];
+            
+            if (enableNightNotification == nil) {
+                return;
+            }
+            
+            NSDateComponents *compsForNightEnable = [[NSDateComponents alloc] init];
+            [compsForNightEnable setHour:[userDefaults integerForKey:@"nightStartHour"]];
+            [compsForNightEnable setMinute:[userDefaults integerForKey:@"nightStartMinute"]];
+            [enableNightNotification setSoundName:UILocalNotificationDefaultSoundName];
+            [enableNightNotification setAlertTitle:bundleName];
+            [enableNightNotification setAlertBody:[NSString stringWithFormat:@"Time to enable night mode!"]];
+            [enableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
+            [enableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightEnable]];
+            [enableNightNotification setRepeatInterval:NSCalendarUnitDay];
+            
+            UILocalNotification *disableNightNotification = [[UILocalNotification alloc] init];
+            
+            if (disableNightNotification == nil) {
+                return;
+            }
+            
+            NSDateComponents *compsForNightDisable = [[NSDateComponents alloc] init];
+            [compsForNightDisable setHour:[userDefaults integerForKey:@"nightEndHour"]];
+            [compsForNightDisable setMinute:[userDefaults integerForKey:@"nightEndMinute"]];
+            [disableNightNotification setSoundName:UILocalNotificationDefaultSoundName];
+            [disableNightNotification setAlertTitle:bundleName];
+            [disableNightNotification setAlertBody:[NSString stringWithFormat:@"Time to disable night mode!"]];
+            [disableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
+            [disableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightDisable]];
+            [disableNightNotification setRepeatInterval:NSCalendarUnitDay];
+            
+            [app scheduleLocalNotification:enableNightNotification];
+            [app scheduleLocalNotification:disableNightNotification];
+        }
     }
 }
 
