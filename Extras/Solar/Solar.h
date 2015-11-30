@@ -1,4 +1,4 @@
-/* solar.h -- Solar position header
+/* Solar.h -- Solar position header
  This file is part of Redshift.
  
  Redshift is free software: you can redistribute it and/or modify

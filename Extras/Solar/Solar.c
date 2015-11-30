@@ -1,4 +1,4 @@
-/* solar.c -- Solar position source
+/* Solar.c -- Solar position source
  This file is part of Redshift.
  
  Redshift is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@
 
 #include <math.h>
 
-#include "solar.h"
+#include "Solar.h"
 #include "time.h"
 
 #define RAD(x)  ((x)*(M_PI/180))
