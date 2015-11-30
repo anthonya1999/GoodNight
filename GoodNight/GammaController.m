@@ -349,12 +349,12 @@
     if ([autoOrNightPrefix isEqualToString:@"auto"]){ //AutoTimes
         if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
             if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-                [self disableOrangeness];
+                [self enableOrangenessWithDefaults:YES transition:YES];
             }
         }
         else {
             if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-                [self enableOrangenessWithDefaults:YES transition:YES];
+                [self disableOrangeness];
             }
         }
     }
