@@ -7,6 +7,7 @@
 //
 
 #import "CreditsViewController.h"
+#import "AppDelegate.h"
 
 @implementation CreditsViewController
 

@@ -6,8 +6,14 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
+#import "GammaController.h"
+#import "ForceTouchController.h"
+
 #import "NSDate+Extensions.h"
 #include <dlfcn.h>
+
+#import "solar.h"
+#import "brightness.h"
 
 @implementation GammaController
 
@@ -87,12 +93,12 @@
     float red = 255.0;
     float green = -155.25485562709179 + -0.44596950469579133 * (hectoKelvin - 2) + 104.49216199393888 * log(hectoKelvin - 2);
     float blue = -254.76935184120902 + 0.8274096064007395 * (hectoKelvin - 10) + 115.67994401066147 * log(hectoKelvin - 10);
-
+    
     if (percentOrange == 1) {
         green = 255.0;
         blue = 255.0;
     }
-
+    
     red /= 255.0;
     green /= 255.0;
     blue /= 255.0;
@@ -101,53 +107,50 @@
 }
 
 + (void)autoChangeOrangenessIfNeededWithTransition:(BOOL)transition {
-    if (![userDefaults boolForKey:@"colorChangingEnabled"]) {
+    if (![userDefaults boolForKey:@"colorChangingEnabled"] && ![userDefaults boolForKey:@"colorChangingLocationEnabled"]) {
         return;
     }
     
-    NSDate *currentDate = [NSDate date];
-    NSDateComponents *autoOnOffComponents = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
-    
-    autoOnOffComponents.hour = [userDefaults integerForKey:@"autoStartHour"];
-    autoOnOffComponents.minute = [userDefaults integerForKey:@"autoStartMinute"];
-    NSDate *turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
-    
-    autoOnOffComponents.hour = [userDefaults integerForKey:@"autoEndHour"];
-    autoOnOffComponents.minute = [userDefaults integerForKey:@"autoEndMinute"];
-    NSDate *turnOffDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
-    
-    if ([turnOnDate isLaterThan:turnOffDate]) {
-        if ([currentDate isEarlierThan:turnOnDate] && [currentDate isEarlierThan:turnOffDate]) {
-            autoOnOffComponents.day = autoOnOffComponents.day - 1;
-            turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
-        }
-        else if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isEarlierThan:currentDate]) {
-            autoOnOffComponents.day = autoOnOffComponents.day + 1;
-            turnOffDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
-        }
+    if ([userDefaults boolForKey:@"colorChangingLocationEnabled"]) {
+        [self switchScreenTemperatureBasedOnLocation];
+    } else if ([userDefaults boolForKey:@"colorChangingEnabled"]){
+        [self switchScreenTemperatureBasedOnTime:@"auto"];
     }
     
-    if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
-        if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-            [self disableOrangeness];
-        }
+    if ([userDefaults boolForKey:@"colorChangingNightEnabled"] && [userDefaults boolForKey:@"enabled"]) {
+        [self switchScreenTemperatureBasedOnTime:@"night"];
     }
-    else {
-        if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-            [self enableOrangenessWithDefaults:YES transition:transition];
-        }
-    }
+    
     [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+    [userDefaults synchronize];
 }
 
 + (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition {
+    float orangeLevel = [userDefaults floatForKey:@"maxOrange"];
+    [self enableOrangenessWithDefaults:defaults transition:transition orangeLevel:orangeLevel];
+}
+
++ (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition orangeLevel:(float)orangeLevel {
+    float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
+    if (currentOrangeLevel == orangeLevel) {
+        return;
+    }
+    
     if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"rgbEnabled"] == NO) {
-        float orangeLevel = [userDefaults floatForKey:@"maxOrange"];
+        
         [self wakeUpScreenIfNeeded];
         if (transition == YES) {
-            [self setGammaWithTransitionFrom:1.0 to:orangeLevel];
+            
+            NSLog(@"Fading with transition");
+            NSLog(@"previous OrangeLevel: %f", currentOrangeLevel);
+            NSLog(@"new OrangeLevel: %f\n", orangeLevel);
+            
+            [self setGammaWithTransitionFrom:currentOrangeLevel to:orangeLevel];
         }
         else {
+            NSLog(@"Setting without transition");
+            NSLog(@"new OrangeLevel: %f\n", orangeLevel);
+            
             [self setGammaWithOrangeness:orangeLevel];
         }
         if (defaults == YES) {
@@ -159,6 +162,7 @@
     else {
         [self showFailedAlertWithKey:@"enabled"];
     }
+    [userDefaults setFloat:orangeLevel forKey:@"currentOrange"];
     [userDefaults synchronize];
     [ForceTouchController updateShortcutItems];
 }
@@ -184,17 +188,31 @@
 }
 
 + (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition {
+    float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
+    if (currentOrangeLevel == 1.0) {
+        return;
+    }
+    
     [self wakeUpScreenIfNeeded];
     if (transition == YES) {
-        [self setGammaWithTransitionFrom:[userDefaults floatForKey:@"maxOrange"] to:1.0];
+        float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
+        
+        NSLog(@"Fading with transition");
+        NSLog(@"previous OrangeLevel: %f", currentOrangeLevel);
+        NSLog(@"new OrangeLevel: %f\n", 1.0);
+        
+        [self setGammaWithTransitionFrom:currentOrangeLevel to:1.0];
     }
     else {
+        NSLog(@"Setting without transition");
+        NSLog(@"new OrangeLevel: %f\n", 1.0);
         [self setGammaWithOrangeness:1.0];
     }
     if (defaults == YES) {
         [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
         [userDefaults setBool:NO forKey:key];
     }
+    [userDefaults setFloat:1.0 forKey:@"currentOrange"];
     [userDefaults synchronize];
     [ForceTouchController updateShortcutItems];
 }
@@ -215,7 +233,7 @@
         NSParameterAssert(SBSUndimScreen);
         SBSUndimScreen();
     }
-
+    
     dlclose(SpringBoardServices);
     return !isLocked;
     
@@ -269,6 +287,86 @@
 
 + (void)disableOrangeness {
     [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
+}
+
++ (void)switchScreenTemperatureBasedOnLocation {
+    float latitude = [userDefaults floatForKey:@"colorChangingLocationLatitude"];
+    float longitude = [userDefaults floatForKey:@"colorChangingLocationLongitude"];
+    
+    double solarAngularElevation = solar_elevation([[NSDate date] timeIntervalSince1970], latitude, longitude);
+    
+    NSLog(@"latitude: %f\n", latitude);
+    NSLog(@"longitude: %f\n", longitude);
+    NSLog(@"current date: %f\n", [[NSDate date] timeIntervalSince1970]);
+    NSLog(@"solarAngularElevation %f\n", solarAngularElevation);
+    
+    float maxOrange = [userDefaults floatForKey:@"maxOrange"];
+    float maxOrangePercentage = maxOrange * 100;
+    float orangeness = (calculate_interpolated_value(solarAngularElevation, 0, maxOrangePercentage) / 100);
+    NSLog(@"orangeness %f\n", orangeness);
+    
+    if(orangeness > 0) {
+        float percent = orangeness / maxOrange;
+        
+        float diff = 1.0f - maxOrange;
+        
+        [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(1.0f-percent*diff, 1.0f)];
+    } else if (orangeness <= 0) {
+        [GammaController disableOrangeness];
+    }
+}
+
++ (void)switchScreenTemperatureBasedOnTime:(NSString*)autoOrNightPrefix{
+    
+    if (!autoOrNightPrefix || (![autoOrNightPrefix isEqualToString:@"auto"] && ![autoOrNightPrefix isEqualToString:@"night"])){
+        autoOrNightPrefix = @"auto";
+    }
+    NSDate *currentDate = [NSDate date];
+    NSDateComponents *autoOnOffComponents = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
+    
+    
+    
+    
+    autoOnOffComponents.hour = [userDefaults integerForKey:[autoOrNightPrefix stringByAppendingString:@"StartHour"]];
+    autoOnOffComponents.minute = [userDefaults integerForKey:[autoOrNightPrefix stringByAppendingString:@"StartMinute"]];
+    NSDate *turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
+    
+    autoOnOffComponents.hour = [userDefaults integerForKey:[autoOrNightPrefix stringByAppendingString:@"EndHour"]];
+    autoOnOffComponents.minute = [userDefaults integerForKey:[autoOrNightPrefix stringByAppendingString:@"EndMinute"]];
+    NSDate *turnOffDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
+    
+    if ([turnOnDate isLaterThan:turnOffDate]) {
+        if ([currentDate isEarlierThan:turnOnDate] && [currentDate isEarlierThan:turnOffDate]) {
+            autoOnOffComponents.day = autoOnOffComponents.day - 1;
+            turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
+        }
+        else if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isEarlierThan:currentDate]) {
+            autoOnOffComponents.day = autoOnOffComponents.day + 1;
+            turnOffDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
+        }
+    }
+    
+    if ([autoOrNightPrefix isEqualToString:@"auto"]){ //AutoTimes
+        if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
+            if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
+                [self enableOrangenessWithDefaults:YES transition:YES];
+            }
+        }
+        else {
+            if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
+                [self disableOrangeness];
+            }
+        }
+    }
+    else{ //NightTimes
+        if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
+            if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]] || ([currentDate timeIntervalSinceDate:[userDefaults objectForKey:@"lastAutoChangeDate"]] < 1)) {
+                [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
+            }
+        }
+    }
+    
+    
 }
 
 + (void)suspendApp {

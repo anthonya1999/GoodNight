@@ -6,12 +6,6 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
-#import "ForceTouchController.h"
-#import "GammaController.h"
-
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 

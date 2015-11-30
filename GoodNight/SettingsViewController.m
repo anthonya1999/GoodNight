@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SettingsViewController.h"
+#import "ForceTouchController.h"
 
 @implementation SettingsViewController
 

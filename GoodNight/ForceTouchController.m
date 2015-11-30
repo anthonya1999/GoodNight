@@ -6,6 +6,9 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
+#import "ForceTouchController.h"
+#import "GammaController.h"
+
 @implementation ForceTouchController
 
 + (UIApplicationShortcutItem *)shortcutItemForCurrentState {

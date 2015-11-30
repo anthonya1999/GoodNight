@@ -6,6 +6,9 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @interface GammaController : NSObject <UIAlertViewDelegate>
 
 typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
@@ -21,5 +24,7 @@ typedef kern_return_t IOMobileFramebufferReturn, SpringBoardServicesReturn;
 + (void)disableColorAdjustment;
 + (void)disableDimness;
 + (void)disableOrangeness;
++ (void)switchScreenTemperatureBasedOnLocation;
++ (void)switchScreenTemperatureBasedOnTime:(NSString*)autoOrNightPrefix;
 
 @end

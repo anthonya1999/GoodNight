@@ -7,6 +7,8 @@
 //
 
 #import "BrightnessViewController.h"
+#import "AppDelegate.h"
+#import "GammaController.h"
 
 @implementation BrightnessViewController
 
