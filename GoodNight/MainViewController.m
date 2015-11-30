@@ -219,4 +219,22 @@
     return headerText;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    NSString *footerText = @"";
+    if (tableView) {
+        if (section == 1) {
+            footerText = @"Move the slider to adjust the display temperature.";
+        }
+        if (section == 2) {
+            NSDate *lastBackgroundUpdate = [userDefaults objectForKey:@"lastBackgroundCheck"];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"HH:mm dd MMM yyyy"];
+            
+            footerText = [NSString stringWithFormat:@"Enable automatic mode to turn on and off GoodNight at a set time. Please note that the change will not take effect immediately.\nLast background update: %@", [lastBackgroundUpdate isEqualToDate:[NSDate distantPast]] ? @"never" :  [dateFormatter stringFromDate:lastBackgroundUpdate]];
+        }
+    }
+    return footerText;
+}
+
 @end

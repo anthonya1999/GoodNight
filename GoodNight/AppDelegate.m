@@ -33,7 +33,8 @@
                                          @"dimForceTouch": @NO,
                                          @"rgbForceTouch": @NO,
                                          @"peekPopEnabled": @YES,
-                                         @"keyEnabled": @"0"};
+                                         @"keyEnabled": @"0",
+                                         @"lastBackgroundCheck": [NSDate distantPast]};
     
     [userDefaults registerDefaults:defaultsToRegister];
     [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
@@ -52,6 +53,8 @@
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     NSLog(@"Fetch Background Task start");
+    [userDefaults setObject:[NSDate date] forKey:@"lastBackgroundCheck"];
+    [userDefaults synchronize];
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
     [NSThread sleepForTimeInterval:5.0];
     NSLog(@"Fetch Background Task end");
@@ -146,6 +149,8 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     BOOL result = [app setKeepAliveTimeout:600 handler:^{
         NSLog(@"KeepAliveTimeout Background Task start");
+        [userDefaults setObject:[NSDate date] forKey:@"lastBackgroundCheck"];
+        [userDefaults synchronize];
         [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
         [NSThread sleepForTimeInterval:5.0];
         NSLog(@"KeepAliveTimeout Background Task end");
