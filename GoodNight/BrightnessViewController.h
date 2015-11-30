@@ -6,6 +6,9 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @interface BrightnessViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISwitch *dimSwitch;

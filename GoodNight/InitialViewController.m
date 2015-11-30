@@ -7,6 +7,7 @@
 //
 
 #import "InitialViewController.h"
+#import "AppDelegate.h"
 
 @implementation InitialViewController
 

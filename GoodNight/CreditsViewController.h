@@ -6,6 +6,8 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <SafariServices/SFSafariViewController.h>
 
 static NSString *username = nil;

@@ -7,6 +7,8 @@
 //
 
 #import "CustomViewController.h"
+#import "GammaController.h"
+#import "AppDelegate.h"
 
 @implementation CustomViewController
 
