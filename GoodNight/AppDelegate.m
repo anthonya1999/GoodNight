@@ -16,7 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     NSDictionary *defaultsToRegister = @{@"enabled": @NO,
-                                         @"maxOrange": @0.4,
+                                         @"maxOrange": @0.3111111111,
                                          @"colorChangingEnabled": @YES,
                                          @"colorChangingLocationEnabled": @NO,
                                          @"colorChangingLocationLatitude": @0.0,
