@@ -88,6 +88,8 @@
 - (void)toolbarDoneButtonClicked:(UIBarButtonItem *)button {
     [self.startTimeTextField resignFirstResponder];
     [self.endTimeTextField resignFirstResponder];
+    
+    [AppDelegate updateNotifications];
 }
 
 - (void)timePickerValueChanged:(UIDatePicker *)picker {
@@ -139,8 +141,6 @@
 
 - (void)userDefaultsChanged:(NSNotification *)notification {
     [self updateUI];
-    [app cancelAllLocalNotifications];
-    [AppDelegate updateNotifications];
 }
 
 - (IBAction)maxOrangeSliderChanged {
@@ -157,6 +157,8 @@
     [userDefaults setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
+    
+    [AppDelegate updateNotifications];
 }
 
 - (IBAction)resetSlider {

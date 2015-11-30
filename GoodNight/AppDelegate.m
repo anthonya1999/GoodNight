@@ -67,38 +67,44 @@
 + (void)updateNotifications {
     NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     
-    UILocalNotification *enableNotification = [[UILocalNotification alloc] init];
+    [app cancelAllLocalNotifications];
     
-    if (enableNotification == nil) {
-        return;
-    }
-    
-    NSDateComponents *compsForEnable = [[NSDateComponents alloc] init];
-    [compsForEnable setHour:[userDefaults integerForKey:@"autoStartHour"]];
-    [compsForEnable setMinute:[userDefaults integerForKey:@"autoStartMinute"]];
-    [enableNotification setSoundName:UILocalNotificationDefaultSoundName];
-    [enableNotification setAlertTitle:bundleName];
-    [enableNotification setAlertBody:[NSString stringWithFormat:@"Time to enable %@!", bundleName]];
-    [enableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
-    [enableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForEnable]];
-    
-    UILocalNotification *disableNotification = [[UILocalNotification alloc] init];
-    
-    if (disableNotification == nil) {
-        return;
-    }
-    
-    NSDateComponents *compsForDisable = [[NSDateComponents alloc] init];
-    [compsForDisable setHour:[userDefaults integerForKey:@"autoEndHour"]];
-    [compsForDisable setMinute:[userDefaults integerForKey:@"autoEndMinute"]];
-    [disableNotification setSoundName:UILocalNotificationDefaultSoundName];
-    [disableNotification setAlertTitle:bundleName];
-    [disableNotification setAlertBody:[NSString stringWithFormat:@"Time to disable %@!", bundleName]];
-    [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
-    [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
-    
-    if (app.scheduledLocalNotifications.count == 0) {
-        [app setScheduledLocalNotifications:@[enableNotification, disableNotification]];
+    if ([userDefaults boolForKey:@"colorChangingEnabled"]){
+        
+        UILocalNotification *enableNotification = [[UILocalNotification alloc] init];
+        
+        if (enableNotification == nil) {
+            return;
+        }
+        
+        NSDateComponents *compsForEnable = [[NSDateComponents alloc] init];
+        [compsForEnable setHour:[userDefaults integerForKey:@"autoStartHour"]];
+        [compsForEnable setMinute:[userDefaults integerForKey:@"autoStartMinute"]];
+        [enableNotification setSoundName:UILocalNotificationDefaultSoundName];
+        [enableNotification setAlertTitle:bundleName];
+        [enableNotification setAlertBody:[NSString stringWithFormat:@"Time to enable %@!", bundleName]];
+        [enableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
+        [enableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForEnable]];
+        [enableNotification setRepeatInterval:NSCalendarUnitDay];
+        
+        UILocalNotification *disableNotification = [[UILocalNotification alloc] init];
+        
+        if (disableNotification == nil) {
+            return;
+        }
+        
+        NSDateComponents *compsForDisable = [[NSDateComponents alloc] init];
+        [compsForDisable setHour:[userDefaults integerForKey:@"autoEndHour"]];
+        [compsForDisable setMinute:[userDefaults integerForKey:@"autoEndMinute"]];
+        [disableNotification setSoundName:UILocalNotificationDefaultSoundName];
+        [disableNotification setAlertTitle:bundleName];
+        [disableNotification setAlertBody:[NSString stringWithFormat:@"Time to disable %@!", bundleName]];
+        [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
+        [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
+        [disableNotification setRepeatInterval:NSCalendarUnitDay];
+        
+        [app scheduleLocalNotification:enableNotification];
+        [app scheduleLocalNotification:disableNotification];
     }
 }
 
