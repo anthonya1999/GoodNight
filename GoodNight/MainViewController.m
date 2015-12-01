@@ -30,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
     self.timePicker = [[UIDatePicker alloc] init];
     self.timePicker.datePickerMode = UIDatePickerModeTime;
     self.timePicker.minuteInterval = 15;
@@ -60,9 +62,23 @@
     self.endTimeNightTextField.delegate = self;
     self.startTimeNightTextField.delegate = self;
     
+    
+    if ([userDefaults boolForKey:@"colorChangingNightEnabled"] && !([userDefaults boolForKey:@"colorChangingEnabled"] || [userDefaults boolForKey:@"colorChangingLocationEnabled"])){
+        //Could maybe happen at update from version without night mode
+        [userDefaults setBool:NO forKey:@"colorChangingNightEnabled"];
+    }
+    
     [self updateUI];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+}
+
+- (void)applicationWillEnterForeground:(NSNotification *)notification {
+    [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
+    //Update the header for current temperature
+    //Update the footer for last updated background mode if user keeps app open at this level
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (void)updateUI {
@@ -71,6 +87,7 @@
     self.colorChangingEnabledSwitch.on = [userDefaults boolForKey:@"colorChangingEnabled"];
     self.colorChangingLocationBasedSwitch.on = [userDefaults boolForKey:@"colorChangingLocationEnabled"];
     self.colorChangingNightModeSwitch.on = [userDefaults boolForKey:@"colorChangingNightEnabled"];
+    
     self.colorChangingNightModeSwitch.enabled = self.colorChangingEnabledSwitch.on || self.colorChangingLocationBasedSwitch.on;
     
     float orange = 1.0f - self.orangeSlider.value;
