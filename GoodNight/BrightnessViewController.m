@@ -22,6 +22,8 @@
     [super viewDidLoad];
     [self updateUI];
     
+    warningIgnored = NO;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
@@ -53,9 +55,27 @@
 }
 
 - (IBAction)dimSliderLevelChanged {
+    if (self.dimSlider.value < 0.1f && !warningIgnored){
+        if (![self presentedViewController]){
+        
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:@"If you further reduce the brightness you screen will go completely dark!" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Understood" style:UIAlertActionStyleDefault handler:nil]];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:@"I know what I'm doing" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                warningIgnored = YES;
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+    
+        self.dimSlider.value = 0.1f;
+    }
+    
+    
     [userDefaults setFloat:self.dimSlider.value forKey:@"dimLevel"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
-    
+
     if (self.dimSwitch.on) {
         [GammaController enableDimness];
     }

@@ -22,6 +22,8 @@
     [super viewDidLoad];
     [self updateUI];
     
+    warningIgnored = NO;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
@@ -41,15 +43,42 @@
     self.blueSlider.tintColor = [UIColor colorWithRed:1.0f-self.blueSlider.value green:1.0f-self.blueSlider.value blue:1.0f alpha:1.0];
 }
 
+
+- (void)checkWarningIssued:(UISlider*)currentSlider{
+    if (self.redSlider.value+self.greenSlider.value+self.blueSlider.value < 0.2f && !warningIgnored){
+        if (![self presentedViewController]){
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:@"If you further reduce the color you screen will go completely dark!" preferredStyle:UIAlertControllerStyleAlert];
+        
+            [alertController addAction:[UIAlertAction actionWithTitle:@"Understood" style:UIAlertActionStyleDefault handler:nil]];
+        
+            [alertController addAction:[UIAlertAction actionWithTitle:@"I know what I'm doing" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            warningIgnored = YES;
+            }]];
+
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+        
+        float minValue = 0.3f-(self.redSlider.value+self.greenSlider.value+self.blueSlider.value-currentSlider.value);
+        
+        currentSlider.value = minValue;
+    }
+}
+
 - (IBAction)redChanged {
+    [self checkWarningIssued:self.redSlider];
+    
     [self updateDisplayColorWithValue:self.redSlider.value forKey:@"redValue"];
 }
 
 - (IBAction)greenChanged {
+    [self checkWarningIssued:self.greenSlider];
+    
     [self updateDisplayColorWithValue:self.greenSlider.value forKey:@"greenValue"];
 }
 
 - (IBAction)blueChanged {
+    [self checkWarningIssued:self.blueSlider];
+    
     [self updateDisplayColorWithValue:self.blueSlider.value forKey:@"blueValue"];
 }
 
@@ -66,7 +95,7 @@
 }
 
 - (void)updateDisplayColorWithValue:(float)value forKey:(NSString *)key {
-    if (value != 0 && key != nil) {
+    if ( key != nil) {
         [userDefaults setFloat:value forKey:key];
     }
     
