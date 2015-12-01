@@ -17,7 +17,7 @@
 @property UIToolbar *timePickerToolbar;
 
 @property (weak, nonatomic) IBOutlet UISwitch *enabledSwitch;
-@property (weak, nonatomic) IBOutlet UISlider *orangeSlider;
+@property (weak, nonatomic) IBOutlet UISlider *orangeSlider, *currentOrangeSlider;
 @property (weak, nonatomic) IBOutlet UISwitch *colorChangingEnabledSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *colorChangingLocationBasedSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *colorChangingNightModeSwitch;

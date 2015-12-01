@@ -79,18 +79,27 @@
     //Update the footer for last updated background mode if user keeps app open at this level
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+    [self.currentOrangeSlider setValue:[userDefaults floatForKey:@"currentOrange"] animated:YES];
 }
 
 - (void)updateUI {
     self.enabledSwitch.on = [userDefaults boolForKey:@"enabled"];
     self.orangeSlider.value = [userDefaults floatForKey:@"maxOrange"];
+    
+    [self.currentOrangeSlider setValue:[userDefaults floatForKey:@"currentOrange"] animated:YES];
+
     self.colorChangingEnabledSwitch.on = [userDefaults boolForKey:@"colorChangingEnabled"];
     self.colorChangingLocationBasedSwitch.on = [userDefaults boolForKey:@"colorChangingLocationEnabled"];
     self.colorChangingNightModeSwitch.on = [userDefaults boolForKey:@"colorChangingNightEnabled"];
     
     self.colorChangingNightModeSwitch.enabled = self.colorChangingEnabledSwitch.on || self.colorChangingLocationBasedSwitch.on;
     
-    float orange = 1.0f - self.orangeSlider.value;
+    float orange = 1.0f - self.currentOrangeSlider.value;
+    
+    self.currentOrangeSlider.thumbTintColor = [UIColor colorWithRed:0.8f green:((2.0f-orange)/2.0f)*0.8f blue:(1.0f-orange)*0.8f alpha:0.4];
+    
+    
+    orange = 1.0f - self.orangeSlider.value;
     
     self.orangeSlider.tintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
     
@@ -386,7 +395,7 @@
     NSString *headerText = @"";
     if (tableView) {
         if (section == 1) {
-            headerText = [NSString stringWithFormat:@"Temperature (%dK)", (int)((self.orangeSlider.value * 45 + 20) * 10) * 10];
+            headerText = [NSString stringWithFormat:@"Temperature (%dK) (current: %dK)", (int)((self.orangeSlider.value * 45 + 20) * 10) * 10, (int)(([userDefaults floatForKey:@"currentOrange"] * 45 + 20) * 10)*10];
         }
         if (section == 2) {
             headerText = @"Automatic Mode";
