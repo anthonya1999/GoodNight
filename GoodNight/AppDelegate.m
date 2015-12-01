@@ -65,12 +65,10 @@
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    NSLog(@"Fetch Background Task start");
     [userDefaults setObject:[NSDate date] forKey:@"lastBackgroundCheck"];
     [userDefaults synchronize];
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
     [NSThread sleepForTimeInterval:5.0];
-    NSLog(@"Fetch Background Task end");
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
@@ -81,7 +79,7 @@
 }
 
 + (void)updateNotifications {
-    NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+    NSString *bundleName = @"GoodNight";
     
     [app cancelAllLocalNotifications];
     
@@ -166,26 +164,20 @@
 
 - (BOOL) installBackgroundTask:(UIApplication *)application{
     if (![userDefaults boolForKey:@"colorChangingEnabled"] && ![userDefaults boolForKey:@"colorChangingLocationEnabled"]) {
-        //If no auto option is enabled we do not need the keepAlive timer
         [application clearKeepAliveTimeout];
         [application setMinimumBackgroundFetchInterval:86400];
         return NO;
     }
     
-    //Initiate the BG fetch timer and the keepAliveTimeout
     [application setMinimumBackgroundFetchInterval:900];
     
     BOOL result = [app setKeepAliveTimeout:600 handler:^{
-        NSLog(@"KeepAliveTimeout Background Task start");
         [userDefaults setObject:[NSDate date] forKey:@"lastBackgroundCheck"];
         [userDefaults synchronize];
         [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
         [NSThread sleepForTimeInterval:5.0];
-        NSLog(@"KeepAliveTimeout Background Task end");
     }];
-    
-    NSLog(@"Installed background handler: %@", result?@"Success":@"Fail");
-    
+        
     return result;
 }
 

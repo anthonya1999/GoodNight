@@ -16,7 +16,7 @@
  Copyright (c) 2013 Jakub Tymejczyk <tymmej@gmail.com>
  */
 
-#include "brightness.h"
+#include "Brightness.h"
 
 /*also from Redshift*/
 float calculate_interpolated_value(double elevation, float day, float night)

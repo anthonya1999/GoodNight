@@ -12,8 +12,8 @@
 #import "NSDate+Extensions.h"
 #include <dlfcn.h>
 
-#import "solar.h"
-#import "brightness.h"
+#import "Solar.h"
+#import "Brightness.h"
 
 @implementation GammaController
 
@@ -140,17 +140,9 @@
         
         [self wakeUpScreenIfNeeded];
         if (transition == YES) {
-            
-            NSLog(@"Fading with transition");
-            NSLog(@"previous OrangeLevel: %f", currentOrangeLevel);
-            NSLog(@"new OrangeLevel: %f\n", orangeLevel);
-            
             [self setGammaWithTransitionFrom:currentOrangeLevel to:orangeLevel];
         }
         else {
-            NSLog(@"Setting without transition");
-            NSLog(@"new OrangeLevel: %f\n", orangeLevel);
-            
             [self setGammaWithOrangeness:orangeLevel];
         }
         if (defaults == YES) {
@@ -196,16 +188,9 @@
     [self wakeUpScreenIfNeeded];
     if (transition == YES) {
         float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
-        
-        NSLog(@"Fading with transition");
-        NSLog(@"previous OrangeLevel: %f", currentOrangeLevel);
-        NSLog(@"new OrangeLevel: %f\n", 1.0);
-        
         [self setGammaWithTransitionFrom:currentOrangeLevel to:1.0];
     }
     else {
-        NSLog(@"Setting without transition");
-        NSLog(@"new OrangeLevel: %f\n", 1.0);
         [self setGammaWithOrangeness:1.0];
     }
     if (defaults == YES) {
@@ -294,39 +279,27 @@
     float longitude = [userDefaults floatForKey:@"colorChangingLocationLongitude"];
     
     double solarAngularElevation = solar_elevation([[NSDate date] timeIntervalSince1970], latitude, longitude);
-    
-    NSLog(@"latitude: %f\n", latitude);
-    NSLog(@"longitude: %f\n", longitude);
-    NSLog(@"current date: %f\n", [[NSDate date] timeIntervalSince1970]);
-    NSLog(@"solarAngularElevation %f\n", solarAngularElevation);
-    
     float maxOrange = [userDefaults floatForKey:@"maxOrange"];
     float maxOrangePercentage = maxOrange * 100;
     float orangeness = (calculate_interpolated_value(solarAngularElevation, 0, maxOrangePercentage) / 100);
-    NSLog(@"orangeness %f\n", orangeness);
     
     if(orangeness > 0) {
         float percent = orangeness / maxOrange;
-        
         float diff = 1.0f - maxOrange;
-        
         [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(1.0f-percent*diff, 1.0f)];
-    } else if (orangeness <= 0) {
+    }
+    else if (orangeness <= 0) {
         [GammaController disableOrangeness];
     }
 }
 
 + (void)switchScreenTemperatureBasedOnTime:(NSString*)autoOrNightPrefix{
-    
     if (!autoOrNightPrefix || (![autoOrNightPrefix isEqualToString:@"auto"] && ![autoOrNightPrefix isEqualToString:@"night"])){
         autoOrNightPrefix = @"auto";
     }
+    
     NSDate *currentDate = [NSDate date];
     NSDateComponents *autoOnOffComponents = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
-    
-    
-    
-    
     autoOnOffComponents.hour = [userDefaults integerForKey:[autoOrNightPrefix stringByAppendingString:@"StartHour"]];
     autoOnOffComponents.minute = [userDefaults integerForKey:[autoOrNightPrefix stringByAppendingString:@"StartMinute"]];
     NSDate *turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
@@ -346,7 +319,7 @@
         }
     }
     
-    if ([autoOrNightPrefix isEqualToString:@"auto"]){ //AutoTimes
+    if ([autoOrNightPrefix isEqualToString:@"auto"]) {
         if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
             if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
                 [self enableOrangenessWithDefaults:YES transition:YES];
@@ -358,15 +331,13 @@
             }
         }
     }
-    else{ //NightTimes
+    else{
         if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
             if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]] || ([currentDate timeIntervalSinceDate:[userDefaults objectForKey:@"lastAutoChangeDate"]] < 1)) {
                 [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
             }
         }
     }
-    
-    
 }
 
 + (void)suspendApp {

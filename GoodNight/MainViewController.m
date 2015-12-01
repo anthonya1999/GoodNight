@@ -99,8 +99,6 @@
     self.colorChangingLocationBasedSwitch.onTintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
     self.colorChangingNightModeSwitch.onTintColor = [UIColor colorWithRed:0.8f green:0.495f blue:0.09f alpha:1.0];
     
-    
-    
     NSDate *date = [self dateForHour:[userDefaults integerForKey:@"autoStartHour"] andMinute:[userDefaults integerForKey:@"autoStartMinute"]];
     self.startTimeTextField.text = [self.timeFormatter stringFromDate:date];
     date = [self dateForHour:[userDefaults integerForKey:@"autoEndHour"] andMinute:[userDefaults integerForKey:@"autoEndMinute"]];
@@ -388,7 +386,7 @@
     NSString *headerText = @"";
     if (tableView) {
         if (section == 1) {
-            headerText = [NSString stringWithFormat:@"Temperature (%dK) (current: %dK)", (int)((self.orangeSlider.value * 45 + 20) * 10) * 10, (int)(([userDefaults floatForKey:@"currentOrange"] * 45 + 20) * 10)*10];
+            headerText = [NSString stringWithFormat:@"Temperature (%dK)", (int)((self.orangeSlider.value * 45 + 20) * 10) * 10];
         }
         if (section == 2) {
             headerText = @"Automatic Mode";
@@ -405,11 +403,9 @@
         }
         if (section == 2) {
             NSDate *lastBackgroundUpdate = [userDefaults objectForKey:@"lastBackgroundCheck"];
-            
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"HH:mm dd MMM yyyy"];
-            
-            footerText = [NSString stringWithFormat:@"Enable automatic mode to turn on and off GoodNight at a set time. Please note that the change will not take effect immediately.\nLast background update: %@", [lastBackgroundUpdate isEqualToDate:[NSDate distantPast]] ? @"never" :  [dateFormatter stringFromDate:lastBackgroundUpdate]];
+            footerText = [NSString stringWithFormat:@"Enable automatic mode to turn on and off GoodNight at a set time. Please note that the change will not take effect immediately.\n\nLast Background Update: %@", [lastBackgroundUpdate isEqualToDate:[NSDate distantPast]] ? @"Never" :  [dateFormatter stringFromDate:lastBackgroundUpdate]];
         }
     }
     return footerText;

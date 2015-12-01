@@ -12,7 +12,6 @@
 
 + (void)updateNotifications;
 + (id)initWithIdentifier:(NSString *)identifier;
-- (BOOL)installBackgroundTask:(UIApplication *)application;
 
 @property (strong, nonatomic) UIWindow *window;
 
