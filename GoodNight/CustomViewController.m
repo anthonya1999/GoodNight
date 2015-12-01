@@ -47,20 +47,34 @@
 - (void)checkWarningIssued:(UISlider*)currentSlider{
     if (self.redSlider.value+self.greenSlider.value+self.blueSlider.value < 0.2f && !warningIgnored){
         if (![self presentedViewController]){
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:@"If you further reduce the color you screen will go completely dark!" preferredStyle:UIAlertControllerStyleAlert];
+            
+            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:@"If you further reduce the color your screen will go completely dark!" preferredStyle:UIAlertControllerStyleAlert];
         
-            [alertController addAction:[UIAlertAction actionWithTitle:@"Understood" style:UIAlertActionStyleDefault handler:nil]];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"Understood" style:UIAlertActionStyleDefault handler:nil]];
         
-            [alertController addAction:[UIAlertAction actionWithTitle:@"I know what I'm doing" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-            warningIgnored = YES;
-            }]];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"I know what I'm doing" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                    warningIgnored = YES;
+                }]];
 
-            [self presentViewController:alertController animated:YES completion:nil];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+            else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"If you further reduce the color your screen will go completely dark!" delegate:self cancelButtonTitle:@"Understood" otherButtonTitles:@"I know what I'm doing",nil];
+                
+                [alertView show];
+            }
         }
         
         float minValue = 0.3f-(self.redSlider.value+self.greenSlider.value+self.blueSlider.value-currentSlider.value);
         
         currentSlider.value = minValue;
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"I know what I'm doing"]){
+        warningIgnored = YES;
     }
 }
 

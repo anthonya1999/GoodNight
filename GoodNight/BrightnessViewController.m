@@ -57,16 +57,25 @@
 - (IBAction)dimSliderLevelChanged {
     if (self.dimSlider.value < 0.1f && !warningIgnored){
         if (![self presentedViewController]){
+            
+            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:@"If you further reduce the brightness your screen will go completely dark!" preferredStyle:UIAlertControllerStyleAlert];
+                
+                [alertController addAction:[UIAlertAction actionWithTitle:@"Understood" style:UIAlertActionStyleDefault handler:nil]];
+                
+                [alertController addAction:[UIAlertAction actionWithTitle:@"I know what I'm doing" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                    warningIgnored = YES;
+                }]];
+                
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+            else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"If you further reduce the brightness your screen will go completely dark!" delegate:self cancelButtonTitle:@"Understood" otherButtonTitles:@"I know what I'm doing",nil];
+                
+                [alertView show];
+            }
         
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:@"If you further reduce the brightness you screen will go completely dark!" preferredStyle:UIAlertControllerStyleAlert];
             
-            [alertController addAction:[UIAlertAction actionWithTitle:@"Understood" style:UIAlertActionStyleDefault handler:nil]];
-            
-            [alertController addAction:[UIAlertAction actionWithTitle:@"I know what I'm doing" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-                warningIgnored = YES;
-            }]];
-            
-            [self presentViewController:alertController animated:YES completion:nil];
         }
     
         self.dimSlider.value = 0.1f;
@@ -78,6 +87,12 @@
 
     if (self.dimSwitch.on) {
         [GammaController enableDimness];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"I know what I'm doing"]){
+        warningIgnored = YES;
     }
 }
 
