@@ -57,25 +57,27 @@
 - (IBAction)dimSliderLevelChanged {
     if (self.dimSlider.value < 0.1f && !warningIgnored){
         if (![self presentedViewController]){
+            NSString *title = @"Warning";
+            NSString *message = @"If you further reduce the brightness your screen will go completely dark!";
+            NSString *cancelButton = @"Understood";
+            NSString *acknowledgeButton = @"I know what I'm doing";
             
             if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message:@"If you further reduce the brightness your screen will go completely dark!" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
                 
-                [alertController addAction:[UIAlertAction actionWithTitle:@"Understood" style:UIAlertActionStyleDefault handler:nil]];
+                [alertController addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleDefault handler:nil]];
                 
-                [alertController addAction:[UIAlertAction actionWithTitle:@"I know what I'm doing" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                [alertController addAction:[UIAlertAction actionWithTitle:acknowledgeButton style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                     warningIgnored = YES;
                 }]];
                 
                 [self presentViewController:alertController animated:YES completion:nil];
             }
             else{
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"If you further reduce the brightness your screen will go completely dark!" delegate:self cancelButtonTitle:@"Understood" otherButtonTitles:@"I know what I'm doing",nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelButton otherButtonTitles:acknowledgeButton,nil];
                 
                 [alertView show];
             }
-        
-            
         }
     
         self.dimSlider.value = 0.1f;
