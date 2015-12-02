@@ -395,7 +395,7 @@
     NSString *headerText = @"";
     if (tableView) {
         if (section == 1) {
-            headerText = [NSString stringWithFormat:@"Temperature (%dK) (current: %dK)", (int)((self.orangeSlider.value * 45 + 20) * 10) * 10, (int)(([userDefaults floatForKey:@"currentOrange"] * 45 + 20) * 10)*10];
+            headerText = [NSString stringWithFormat:@"Temperature (%dK)", (int)((self.orangeSlider.value * 45 + 20) * 10) * 10];
         }
         if (section == 2) {
             headerText = @"Automatic Mode";
@@ -408,7 +408,7 @@
     NSString *footerText = @"";
     if (tableView) {
         if (section == 1) {
-            footerText = @"Move the slider to adjust the display temperature.";
+            footerText = [NSString stringWithFormat:@"Move the slider to adjust the display temperature.\n\nCurrent Temperature: %dK", (int)(([userDefaults floatForKey:@"currentOrange"] * 45 + 20) * 10)*10];
         }
         if (section == 2) {
             NSDate *lastBackgroundUpdate = [userDefaults objectForKey:@"lastBackgroundCheck"];
