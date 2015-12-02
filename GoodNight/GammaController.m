@@ -195,7 +195,7 @@ static NSOperationQueue *queue = nil;
     
     [queue cancelAllOperations];
     
-    __block NSBlockOperation *operation = [[NSBlockOperation alloc] init];
+    NSBlockOperation *operation = [[NSBlockOperation alloc] init];
     __weak NSBlockOperation *weakOperation = operation;
     [operation addExecutionBlock:^{
         if (newPercentOrange > oldPercentOrange) {
