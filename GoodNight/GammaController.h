@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, TimeBasedAction) {
+    SwitchToOrangeness,
+    SwitchToStandard,
+    NoSwitchNeeded
+};
+
 @interface GammaController : NSObject <UIAlertViewDelegate>
 
 typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
@@ -25,6 +31,6 @@ typedef kern_return_t IOMobileFramebufferReturn, SpringBoardServicesReturn;
 + (void)disableDimness;
 + (void)disableOrangeness;
 + (void)switchScreenTemperatureBasedOnLocation;
-+ (void)switchScreenTemperatureBasedOnTime:(NSString*)autoOrNightPrefix;
++ (TimeBasedAction)timeBasedActionForPrefix:(NSString*)autoOrNightPrefix;
 
 @end

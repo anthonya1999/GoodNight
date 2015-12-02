@@ -111,14 +111,40 @@
         return;
     }
     
-    if ([userDefaults boolForKey:@"colorChangingLocationEnabled"]) {
-        [self switchScreenTemperatureBasedOnLocation];
-    } else if ([userDefaults boolForKey:@"colorChangingEnabled"]){
-        [self switchScreenTemperatureBasedOnTime:@"auto"];
-    }
+    BOOL nightModeWasEnabled = NO;
     
     if ([userDefaults boolForKey:@"colorChangingNightEnabled"] && [userDefaults boolForKey:@"enabled"]) {
-        [self switchScreenTemperatureBasedOnTime:@"night"];
+        TimeBasedAction nightAction = [self timeBasedActionForPrefix:@"night"];
+        switch (nightAction) {
+            case SwitchToOrangeness:
+                [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
+                nightModeWasEnabled = YES;
+                break;
+            default:
+                break;
+        }
+    }
+    
+    
+
+    if (!nightModeWasEnabled){
+        if ([userDefaults boolForKey:@"colorChangingLocationEnabled"]) {
+            [self switchScreenTemperatureBasedOnLocation];
+        } else if ([userDefaults boolForKey:@"colorChangingEnabled"]){
+            TimeBasedAction autoAction = [self timeBasedActionForPrefix:@"auto"];
+            
+            switch (autoAction) {
+                case SwitchToOrangeness:
+                    [self enableOrangenessWithDefaults:YES transition:YES];
+                    break;
+                case SwitchToStandard:
+                    [self disableOrangeness];
+                    break;
+                case NoSwitchNeeded:
+                default:
+                    break;
+            }
+        }
     }
     
     [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
@@ -293,7 +319,9 @@
     }
 }
 
-+ (void)switchScreenTemperatureBasedOnTime:(NSString*)autoOrNightPrefix{
+
+
++ (TimeBasedAction)timeBasedActionForPrefix:(NSString*)autoOrNightPrefix{
     if (!autoOrNightPrefix || (![autoOrNightPrefix isEqualToString:@"auto"] && ![autoOrNightPrefix isEqualToString:@"night"])){
         autoOrNightPrefix = @"auto";
     }
@@ -319,25 +347,19 @@
         }
     }
     
-    if ([autoOrNightPrefix isEqualToString:@"auto"]) {
-        if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
-            if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-                [self enableOrangenessWithDefaults:YES transition:YES];
-            }
-        }
-        else {
-            if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
-                [self disableOrangeness];
-            }
+    if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
+        if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
+            return SwitchToOrangeness;
         }
     }
-    else{
-        if ([turnOnDate isEarlierThan:currentDate] && [turnOffDate isLaterThan:currentDate]) {
-            if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]] || ([currentDate timeIntervalSinceDate:[userDefaults objectForKey:@"lastAutoChangeDate"]] < 1)) {
-                [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
-            }
+    else {
+        if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
+            return SwitchToStandard;
         }
     }
+
+    return NoSwitchNeeded;
+
 }
 
 + (void)suspendApp {
