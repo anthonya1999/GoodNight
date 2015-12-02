@@ -195,17 +195,19 @@ static NSOperationQueue *queue = nil;
     
     [queue cancelAllOperations];
     
-    __block NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+    __block NSBlockOperation *operation = [[NSBlockOperation alloc] init];
+    __weak NSBlockOperation *weakOperation = operation;
+    [operation addExecutionBlock:^{
         if (newPercentOrange > oldPercentOrange) {
             for (float i = oldPercentOrange; i <= newPercentOrange; i = i + 0.01) {
-                if (operation.isCancelled) break;
+                if (weakOperation.isCancelled) break;
                 [NSThread sleepForTimeInterval:0.02];
                 [self setGammaWithOrangeness:i];
             }
         }
         else {
             for (float i = oldPercentOrange; i >= newPercentOrange; i = i - 0.01) {
-                if (operation.isCancelled) break;
+                if (weakOperation.isCancelled) break;
                 if (i < 0.01) {
                     i = 0;
                 }
