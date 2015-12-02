@@ -52,7 +52,7 @@
             NSString *cancelButton = @"Understood";
             NSString *acknowledgeButton = @"I know what I'm doing";
             
-            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")){
+            if (NSClassFromString(@"UIAlertController") != nil) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
         
                 [alertController addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleDefault handler:nil]];
