@@ -214,7 +214,13 @@ static NSOperationQueue *queue = nil;
             }
         }
     }];
-    operation.qualityOfService = NSQualityOfServiceUserInteractive;
+    
+    if ([operation respondsToSelector:@selector(setQualityOfService:)]){
+        [operation setQualityOfService:NSQualityOfServiceUserInteractive];
+    }
+    else{
+        [operation setThreadPriority:1.0f];
+    }
     operation.queuePriority = NSOperationQueuePriorityVeryHigh;
 
     [queue addOperation:operation];
