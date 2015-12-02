@@ -185,16 +185,27 @@
     [ForceTouchController updateShortcutItems];
 }
 
+static NSOperationQueue *queue = nil;
+
 + (void)setGammaWithTransitionFrom:(float)oldPercentOrange to:(float)newPercentOrange {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    
+    if (!queue){
+        queue = [NSOperationQueue new];
+    }
+    
+    [queue cancelAllOperations];
+    
+    __block NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         if (newPercentOrange > oldPercentOrange) {
             for (float i = oldPercentOrange; i <= newPercentOrange; i = i + 0.01) {
+                if (operation.isCancelled) break;
                 [NSThread sleepForTimeInterval:0.02];
                 [self setGammaWithOrangeness:i];
             }
         }
         else {
             for (float i = oldPercentOrange; i >= newPercentOrange; i = i - 0.01) {
+                if (operation.isCancelled) break;
                 if (i < 0.01) {
                     i = 0;
                 }
@@ -202,7 +213,12 @@
                 [self setGammaWithOrangeness:i];
             }
         }
-    });
+    }];
+    operation.qualityOfService = NSQualityOfServiceUserInteractive;
+    operation.queuePriority = NSOperationQueuePriorityVeryHigh;
+
+    [queue addOperation:operation];
+
 }
 
 + (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition {
