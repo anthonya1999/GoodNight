@@ -17,6 +17,8 @@
     
     NSDictionary *defaultsToRegister = @{@"enabled": @NO,
                                          @"maxOrange": @0.3111111111,
+                                         @"nightOrange": @0.0,
+                                         @"currentOrange": @1.0,
                                          @"colorChangingEnabled": @NO,
                                          @"colorChangingLocationEnabled": @NO,
                                          @"colorChangingLocationLatitude": @0.0,
