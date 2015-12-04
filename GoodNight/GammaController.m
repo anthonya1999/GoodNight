@@ -117,13 +117,14 @@
         switch (nightAction) {
             case SwitchToOrangeness:
                 [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
+                // Fall through intended
+            case KeepOrangenessEnabled:
                 nightModeWasEnabled = YES;
                 break;
             default:
                 break;
         }
     }
-    
     
 
     if (!nightModeWasEnabled){
@@ -139,7 +140,6 @@
                 case SwitchToStandard:
                     [self disableOrangeness];
                     break;
-                case NoSwitchNeeded:
                 default:
                     break;
             }
@@ -370,15 +370,14 @@ static NSOperationQueue *queue = nil;
         if ([turnOnDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
             return SwitchToOrangeness;
         }
+        return KeepOrangenessEnabled;
     }
     else {
         if ([turnOffDate isLaterThan:[userDefaults objectForKey:@"lastAutoChangeDate"]]) {
             return SwitchToStandard;
         }
+        return KeepStandardEnabled;
     }
-
-    return NoSwitchNeeded;
-
 }
 
 + (void)suspendApp {

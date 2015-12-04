@@ -12,7 +12,8 @@
 typedef NS_ENUM(NSInteger, TimeBasedAction) {
     SwitchToOrangeness,
     SwitchToStandard,
-    NoSwitchNeeded
+    KeepOrangenessEnabled,
+    KeepStandardEnabled
 };
 
 @interface GammaController : NSObject <UIAlertViewDelegate>
