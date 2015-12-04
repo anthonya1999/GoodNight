@@ -228,11 +228,7 @@ static NSOperationQueue *queue = nil;
 }
 
 + (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition {
-    float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
-    if (currentOrangeLevel == 1.0) {
-        return;
-    }
-    
+
     [self wakeUpScreenIfNeeded];
     if (transition == YES) {
         float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
@@ -316,6 +312,10 @@ static NSOperationQueue *queue = nil;
 }
 
 + (void)disableOrangeness {
+    float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
+    if (!(currentOrangeLevel < 1.0f)) {
+        return;
+    }
     [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
 }
 
