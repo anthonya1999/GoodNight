@@ -40,7 +40,6 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"KVO: %@ changed property %@ to value %@", object, keyPath, change);
     [ForceTouchController updateShortcutItems];
 }
 
