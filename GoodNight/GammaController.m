@@ -7,7 +7,6 @@
 //
 
 #import "GammaController.h"
-#import "ForceTouchController.h"
 
 #import "NSDate+Extensions.h"
 #include <dlfcn.h>
@@ -182,7 +181,6 @@
     }
     [userDefaults setFloat:orangeLevel forKey:@"currentOrange"];
     [userDefaults synchronize];
-    [ForceTouchController updateShortcutItems];
 }
 
 static NSOperationQueue *queue = nil;
@@ -249,7 +247,6 @@ static NSOperationQueue *queue = nil;
     }
     [userDefaults setFloat:1.0 forKey:@"currentOrange"];
     [userDefaults synchronize];
-    [ForceTouchController updateShortcutItems];
 }
 
 + (BOOL)wakeUpScreenIfNeeded {
@@ -293,7 +290,6 @@ static NSOperationQueue *queue = nil;
         [self showFailedAlertWithKey:@"dimEnabled"];
     }
     [userDefaults synchronize];
-    [ForceTouchController updateShortcutItems];
 }
 
 + (void)setGammaWithCustomValues {
@@ -309,7 +305,6 @@ static NSOperationQueue *queue = nil;
         [self showFailedAlertWithKey:@"rgbEnabled"];
     }
     [userDefaults synchronize];
-    [ForceTouchController updateShortcutItems];
 }
 
 + (void)disableColorAdjustment {
