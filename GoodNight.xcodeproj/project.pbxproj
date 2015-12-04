@@ -288,7 +288,6 @@
 				927B86151BD7239E0091AF24 /* 3D Touch */,
 				929602A61BD1C26F00CDEC52 /* User Interface */,
 				929602A71BD1C2DE00CDEC52 /* Storyboards */,
-				B9E536551B38D90D0097BF90 /* Assets.xcassets */,
 				B9E536491B38D90D0097BF90 /* Supporting Files */,
 			);
 			path = GoodNight;
@@ -301,6 +300,7 @@
 				926F71231C0CF39B0039A4A2 /* Solar */,
 				921924341BCDC11800254487 /* NSDate+Extensions */,
 				92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */,
+				B9E536551B38D90D0097BF90 /* Assets.xcassets */,
 				B9E5365A1B38D90D0097BF90 /* Info.plist */,
 				92F4101C1BD0730A003AABB8 /* PrefixHeader.pch */,
 				B9E5364A1B38D90D0097BF90 /* main.m */,

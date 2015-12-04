@@ -117,7 +117,6 @@
         switch (nightAction) {
             case SwitchToOrangeness:
                 [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
-                // Fall through intended
             case KeepOrangenessEnabled:
                 nightModeWasEnabled = YES;
                 break;
@@ -130,7 +129,8 @@
     if (!nightModeWasEnabled){
         if ([userDefaults boolForKey:@"colorChangingLocationEnabled"]) {
             [self switchScreenTemperatureBasedOnLocation];
-        } else if ([userDefaults boolForKey:@"colorChangingEnabled"]){
+        }
+        else if ([userDefaults boolForKey:@"colorChangingEnabled"]){
             TimeBasedAction autoAction = [self timeBasedActionForPrefix:@"auto"];
             
             switch (autoAction) {
@@ -215,16 +215,14 @@ static NSOperationQueue *queue = nil;
         }
     }];
     
-    if ([operation respondsToSelector:@selector(setQualityOfService:)]){
+    if ([operation respondsToSelector:@selector(setQualityOfService:)]) {
         [operation setQualityOfService:NSQualityOfServiceUserInteractive];
     }
-    else{
+    else {
         [operation setThreadPriority:1.0f];
     }
     operation.queuePriority = NSOperationQueuePriorityVeryHigh;
-
     [queue addOperation:operation];
-
 }
 
 + (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition {

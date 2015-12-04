@@ -53,7 +53,7 @@
     [self registerForNotifications];
     [AppDelegate updateNotifications];
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && [[[self window] traitCollection] forceTouchCapability] == UIForceTouchCapabilityAvailable){
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.window.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable){
         [ForceTouchController sharedForceTouchController];
     }
     
@@ -168,7 +168,7 @@
     }
 }
 
-- (BOOL) installBackgroundTask:(UIApplication *)application{
+- (BOOL)installBackgroundTask:(UIApplication *)application {
     if (![userDefaults boolForKey:@"colorChangingEnabled"] && ![userDefaults boolForKey:@"colorChangingLocationEnabled"]) {
         [application clearKeepAliveTimeout];
         [application setMinimumBackgroundFetchInterval:86400];
@@ -183,7 +183,6 @@
         [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
         [NSThread sleepForTimeInterval:5.0];
     }];
-        
     return result;
 }
 

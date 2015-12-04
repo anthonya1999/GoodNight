@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface BrightnessViewController : UITableViewController <UIAlertViewDelegate>{
-    BOOL warningIgnored;
-}
+static BOOL warningIgnored;
 
-
+@interface BrightnessViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISwitch *dimSwitch;
 @property (weak, nonatomic) IBOutlet UISlider *dimSlider;

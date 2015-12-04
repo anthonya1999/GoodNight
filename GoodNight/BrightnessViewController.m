@@ -58,14 +58,14 @@
     if (self.dimSlider.value < 0.1f && !warningIgnored){
         if (![self presentedViewController]){
             NSString *title = @"Warning";
-            NSString *message = @"If you further reduce the brightness your screen will go completely dark!";
-            NSString *cancelButton = @"Understood";
-            NSString *acknowledgeButton = @"I know what I'm doing";
+            NSString *message = @"If you further reduce the brightness, your screen will go completely dark! If you accidently do this, you can restart your device to undo the effect.";
+            NSString *cancelButton = @"Cancel";
+            NSString *acknowledgeButton = @"Ignore";
             
             if (NSClassFromString(@"UIAlertController") != nil) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
                 
-                [alertController addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleDefault handler:nil]];
+                [alertController addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}]];
                 
                 [alertController addAction:[UIAlertAction actionWithTitle:acknowledgeButton style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                     warningIgnored = YES;
@@ -73,7 +73,7 @@
                 
                 [self presentViewController:alertController animated:YES completion:nil];
             }
-            else{
+            else {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelButton otherButtonTitles:acknowledgeButton,nil];
                 
                 [alertView show];
@@ -92,8 +92,8 @@
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"I know what I'm doing"]){
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Ignore"]){
         warningIgnored = YES;
     }
 }
