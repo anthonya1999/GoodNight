@@ -7,7 +7,6 @@
 //
 
 #import "GammaController.h"
-#import "ForceTouchController.h"
 
 #import "NSDate+Extensions.h"
 #include <dlfcn.h>
@@ -182,7 +181,6 @@
     }
     [userDefaults setFloat:orangeLevel forKey:@"currentOrange"];
     [userDefaults synchronize];
-    [ForceTouchController updateShortcutItems];
 }
 
 static NSOperationQueue *queue = nil;
@@ -230,11 +228,7 @@ static NSOperationQueue *queue = nil;
 }
 
 + (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition {
-    float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
-    if (currentOrangeLevel == 1.0) {
-        return;
-    }
-    
+
     [self wakeUpScreenIfNeeded];
     if (transition == YES) {
         float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
@@ -249,7 +243,6 @@ static NSOperationQueue *queue = nil;
     }
     [userDefaults setFloat:1.0 forKey:@"currentOrange"];
     [userDefaults synchronize];
-    [ForceTouchController updateShortcutItems];
 }
 
 + (BOOL)wakeUpScreenIfNeeded {
@@ -293,7 +286,6 @@ static NSOperationQueue *queue = nil;
         [self showFailedAlertWithKey:@"dimEnabled"];
     }
     [userDefaults synchronize];
-    [ForceTouchController updateShortcutItems];
 }
 
 + (void)setGammaWithCustomValues {
@@ -309,7 +301,6 @@ static NSOperationQueue *queue = nil;
         [self showFailedAlertWithKey:@"rgbEnabled"];
     }
     [userDefaults synchronize];
-    [ForceTouchController updateShortcutItems];
 }
 
 + (void)disableColorAdjustment {
@@ -321,6 +312,10 @@ static NSOperationQueue *queue = nil;
 }
 
 + (void)disableOrangeness {
+    float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
+    if (!(currentOrangeLevel < 1.0f)) {
+        return;
+    }
     [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
 }
 
