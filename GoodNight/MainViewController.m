@@ -30,8 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-    
     self.timePicker = [[UIDatePicker alloc] init];
     self.timePicker.datePickerMode = UIDatePickerModeTime;
     self.timePicker.minuteInterval = 15;
@@ -71,6 +69,8 @@
     [self updateUI];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)applicationWillEnterForeground:(NSNotification *)notification {
@@ -92,6 +92,7 @@
     self.colorChangingLocationBasedSwitch.on = [userDefaults boolForKey:@"colorChangingLocationEnabled"];
     self.colorChangingNightModeSwitch.on = [userDefaults boolForKey:@"colorChangingNightEnabled"];
     
+    self.enabledSwitch.enabled = !(self.colorChangingEnabledSwitch.on || self.colorChangingLocationBasedSwitch.on);
     self.colorChangingNightModeSwitch.enabled = self.colorChangingEnabledSwitch.on || self.colorChangingLocationBasedSwitch.on;
     
     float orange = 1.0f - self.currentOrangeSlider.value;
@@ -244,7 +245,7 @@
     }
 }
 
-- (IBAction)colorChangingEnabledSwitchChanged {
+- (IBAction)colorChangingEnabledSwitchChanged:(UISwitch *)sender {
     self.enabledSwitch.enabled = !self.colorChangingEnabledSwitch.on;
     [userDefaults setBool:self.colorChangingEnabledSwitch.on forKey:@"colorChangingEnabled"];
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
@@ -270,7 +271,11 @@
     
 }
 
-- (IBAction)colorChangingLocationSwitchValueChanged{
+- (IBAction)colorChangingLocationSwitchValueChanged:(UISwitch *)sender{
+    
+    if (!sender && !self.colorChangingLocationBasedSwitch.on){
+        return;
+    }
     
     if(self.colorChangingLocationBasedSwitch.on) {
         // Only one auto temperature change can be activated
@@ -340,11 +345,11 @@
         [userDefaults synchronize];
     } else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
         // revaluate the UISwitch status
-        [self colorChangingLocationSwitchValueChanged];
+        [self colorChangingLocationSwitchValueChanged:nil];
     }
 }
 
-- (IBAction)nightModeEnabledSwitchChanged {
+- (IBAction)nightModeEnabledSwitchChanged:(UISwitch *)sender {
     [userDefaults setBool:self.colorChangingNightModeSwitch.on forKey:@"colorChangingNightEnabled"];
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
     
