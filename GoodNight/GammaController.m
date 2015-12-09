@@ -276,6 +276,19 @@ static NSOperationQueue *queue = nil;
     [alert show];
 }
 
++ (void)checkCompatibility{
+    void *gestalt = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_GLOBAL | RTLD_LAZY);
+    CFStringRef (*MGCopyAnswer)(CFStringRef) = (CFStringRef (*)(CFStringRef))(dlsym(gestalt, "MGCopyAnswer"));
+    NSString *hwModelStr = CFBridgingRelease(MGCopyAnswer(CFSTR("HWModelStr")));
+    
+    if ([hwModelStr isEqualToString:@"J98aAP"]){ //iPadPro
+        NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Unfortunately the iPad Pro is not yet supported by this Version of %@.", bundleName] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 + (void)enableDimness {
     if ([self adjustmentForKeysEnabled:@"enabled" key2:@"rgbEnabled"] == NO) {
         float dimLevel = [userDefaults floatForKey:@"dimLevel"];

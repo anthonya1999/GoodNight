@@ -33,5 +33,6 @@ typedef kern_return_t IOMobileFramebufferReturn, SpringBoardServicesReturn;
 + (void)disableOrangeness;
 + (void)switchScreenTemperatureBasedOnLocation;
 + (TimeBasedAction)timeBasedActionForPrefix:(NSString*)autoOrNightPrefix;
++ (void)checkCompatibility;
 
 @end
