@@ -16,6 +16,55 @@
 
 @implementation GammaController
 
++(BOOL)invertScreenColours:(BOOL)invert{
+    typedef enum {
+        IOMobileFramebufferColorModeNormal = 0,
+        IOMobileFramebufferColorModeInverted,
+        IOMobileFramebufferColorModeGrayscale,
+        IOMobileFramebuffeColorModeGrayscaleIncreaseContrast,
+        IOMobileFramebufferColorModeInvertedGreyscale
+    } IOMobileFramebufferColorMode;
+    
+    IOMobileFramebufferConnection fb = NULL;
+    
+    void *IOMobileFramebuffer = dlopen("/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer", RTLD_LAZY);
+    NSParameterAssert(IOMobileFramebuffer);
+    
+    IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
+    NSParameterAssert(IOMobileFramebufferGetMainDisplay);
+    
+    IOMobileFramebufferGetMainDisplay(&fb);
+    
+    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorMode *mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetColorRemapMode");
+    NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
+    IOMobileFramebufferColorMode mode;
+    IOMobileFramebufferGetColorRemapMode(fb, &mode);
+    
+    IOMobileFramebufferReturn (*IOMobileFramebufferSetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorMode mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferSetColorRemapMode");
+    NSParameterAssert(IOMobileFramebufferSetColorRemapMode);
+    
+    IOMobileFramebufferSetColorRemapMode(fb, invert ? IOMobileFramebufferColorModeInverted : IOMobileFramebufferColorModeNormal);
+    
+    dlclose(IOMobileFramebuffer);
+    
+    return invert ? mode != IOMobileFramebufferColorModeInverted : mode != IOMobileFramebufferColorModeNormal;
+}
+
++(void)setDarkroomEnabled:(BOOL)enable{
+    if (enable){
+        if ([self invertScreenColours:YES]){
+            [self setGammaWithRed:1.0f green:0.0f blue:0.0f];
+        }
+    }
+    else{
+        if([self invertScreenColours:NO]){
+            [self setGammaWithRed:1.0f green:1.0f blue:1.0f];
+            [userDefaults setFloat:1.0f forKey:@"currentOrange"];
+            [self autoChangeOrangenessIfNeededWithTransition:NO];
+        }
+    }
+}
+
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue {
     unsigned rs = red * 0x100;
     NSParameterAssert(rs <= 0x100);

@@ -27,6 +27,7 @@
                                          @"greenValue": @1.0,
                                          @"blueValue": @1.0,
                                          @"dimEnabled": @NO,
+                                         @"darkroomEnabled": @NO,
                                          @"dimLevel": @1.0,
                                          @"rgbEnabled": @NO,
                                          @"lastAutoChangeDate": [NSDate distantPast],
