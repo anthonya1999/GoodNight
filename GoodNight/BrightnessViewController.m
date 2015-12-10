@@ -35,7 +35,6 @@
     self.dimSlider.value = [userDefaults floatForKey:@"dimLevel"];
     self.dimSwitch.on = [userDefaults boolForKey:@"dimEnabled"];
     self.darkroomSwitch.on = [userDefaults boolForKey:@"darkroomEnabled"];
-    self.darkroomSwitch.enabled = self.dimSwitch.on;
     
     float brightness = self.dimSlider.value;
     

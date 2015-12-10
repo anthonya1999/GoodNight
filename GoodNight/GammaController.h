@@ -16,10 +16,20 @@ typedef NS_ENUM(NSInteger, TimeBasedAction) {
     KeepStandardEnabled
 };
 
-@interface GammaController : NSObject <UIAlertViewDelegate>
+typedef NS_ENUM(NSInteger, IOMobileFramebufferColorRemapMode) {
+    IOMobileFramebufferColorRemapModeNormal = 0,
+    IOMobileFramebufferColorRemapModeInverted = 1,
+    IOMobileFramebufferColorRemapModeGrayscale = 2,
+    IOMobileFramebufferColorRemapModeGrayscaleIncreaseContrast = 3,
+    IOMobileFramebufferColorRemapModeInvertedGrayscale = 4
+};
 
 typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
 typedef kern_return_t IOMobileFramebufferReturn, SpringBoardServicesReturn;
+
+static IOMobileFramebufferConnection _framebufferConnection = NULL;
+
+@interface GammaController : NSObject <UIAlertViewDelegate>
 
 + (void)autoChangeOrangenessIfNeededWithTransition:(BOOL)transition;
 + (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition;

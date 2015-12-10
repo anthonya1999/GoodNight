@@ -17,37 +17,29 @@
 @implementation GammaController
 
 +(BOOL)invertScreenColours:(BOOL)invert{
-    typedef enum {
-        IOMobileFramebufferColorModeNormal = 0,
-        IOMobileFramebufferColorModeInverted,
-        IOMobileFramebufferColorModeGrayscale,
-        IOMobileFramebuffeColorModeGrayscaleIncreaseContrast,
-        IOMobileFramebufferColorModeInvertedGreyscale
-    } IOMobileFramebufferColorMode;
-    
-    IOMobileFramebufferConnection fb = NULL;
     
     void *IOMobileFramebuffer = dlopen("/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer", RTLD_LAZY);
     NSParameterAssert(IOMobileFramebuffer);
     
-    IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
-    NSParameterAssert(IOMobileFramebufferGetMainDisplay);
+    if (_framebufferConnection == NULL){
+        IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
+        NSParameterAssert(IOMobileFramebufferGetMainDisplay);
+        IOMobileFramebufferGetMainDisplay(&_framebufferConnection);
+    }
     
-    IOMobileFramebufferGetMainDisplay(&fb);
-    
-    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorMode *mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetColorRemapMode");
+    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode *mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetColorRemapMode");
     NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
-    IOMobileFramebufferColorMode mode;
-    IOMobileFramebufferGetColorRemapMode(fb, &mode);
+    IOMobileFramebufferColorRemapMode mode;
+    IOMobileFramebufferGetColorRemapMode(_framebufferConnection, &mode);
     
-    IOMobileFramebufferReturn (*IOMobileFramebufferSetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorMode mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferSetColorRemapMode");
+    IOMobileFramebufferReturn (*IOMobileFramebufferSetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferSetColorRemapMode");
     NSParameterAssert(IOMobileFramebufferSetColorRemapMode);
     
-    IOMobileFramebufferSetColorRemapMode(fb, invert ? IOMobileFramebufferColorModeInverted : IOMobileFramebufferColorModeNormal);
+    IOMobileFramebufferSetColorRemapMode(_framebufferConnection, invert ? IOMobileFramebufferColorRemapModeInverted : IOMobileFramebufferColorRemapModeNormal);
     
     dlclose(IOMobileFramebuffer);
     
-    return invert ? mode != IOMobileFramebufferColorModeInverted : mode != IOMobileFramebufferColorModeNormal;
+    return invert ? mode != IOMobileFramebufferColorRemapModeInverted : mode != IOMobileFramebufferColorRemapModeNormal;
 }
 
 +(void)setDarkroomEnabled:(BOOL)enable{
@@ -75,15 +67,14 @@
     unsigned bs = blue * 0x100;
     NSParameterAssert(bs <= 0x100);
     
-    IOMobileFramebufferConnection fb = NULL;
-    
     void *IOMobileFramebuffer = dlopen("/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer", RTLD_LAZY);
     NSParameterAssert(IOMobileFramebuffer);
     
-    IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
-    NSParameterAssert(IOMobileFramebufferGetMainDisplay);
-    
-    IOMobileFramebufferGetMainDisplay(&fb);
+    if (_framebufferConnection == NULL){
+        IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
+        NSParameterAssert(IOMobileFramebufferGetMainDisplay);
+        IOMobileFramebufferGetMainDisplay(&_framebufferConnection);
+    }
     
     uint32_t data[0xc0c / sizeof(uint32_t)];
     memset(data, 0, sizeof(data));
@@ -97,7 +88,7 @@
         IOMobileFramebufferReturn (*IOMobileFramebufferGetGammaTable)(IOMobileFramebufferConnection connection, void *data) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetGammaTable");
         NSParameterAssert(IOMobileFramebufferGetGammaTable);
         
-        IOMobileFramebufferGetGammaTable(fb, data);
+        IOMobileFramebufferGetGammaTable(_framebufferConnection, data);
         
         file = fopen([filePath UTF8String], "wb");
         NSParameterAssert(file != NULL);
@@ -127,7 +118,7 @@
     IOMobileFramebufferReturn (*IOMobileFramebufferSetGammaTable)(IOMobileFramebufferConnection connection, void *data) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferSetGammaTable");
     NSParameterAssert(IOMobileFramebufferSetGammaTable);
     
-    IOMobileFramebufferSetGammaTable(fb, data);
+    IOMobileFramebufferSetGammaTable(_framebufferConnection, data);
     
     dlclose(IOMobileFramebuffer);
 }
