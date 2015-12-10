@@ -119,10 +119,6 @@
     
     IOMobileFramebufferSetGammaTable(_framebufferConnection, data);
     
-    if (_framebufferConnection) {
-        CFRelease(_framebufferConnection);
-    }
-    
     dlclose(IOMobileFramebuffer);
 }
 
