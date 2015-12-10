@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
+typedef kern_return_t IOMobileFramebufferReturn, SpringBoardServicesReturn;
+
+#define IOMFB_PATH "/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer"
+#define SBS_PATH "/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices"
+
 typedef NS_ENUM(NSInteger, TimeBasedAction) {
     SwitchToOrangeness,
     SwitchToStandard,
@@ -23,9 +29,6 @@ typedef NS_ENUM(NSInteger, IOMobileFramebufferColorRemapMode) {
     IOMobileFramebufferColorRemapModeGrayscaleIncreaseContrast = 3,
     IOMobileFramebufferColorRemapModeInvertedGrayscale = 4
 };
-
-typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
-typedef kern_return_t IOMobileFramebufferReturn, SpringBoardServicesReturn;
 
 static IOMobileFramebufferConnection _framebufferConnection = NULL;
 
