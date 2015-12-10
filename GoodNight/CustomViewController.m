@@ -47,10 +47,10 @@
 - (void)checkWarningIssued:(UISlider*)currentSlider{
     if (self.redSlider.value+self.greenSlider.value+self.blueSlider.value < 0.2f && !warningIgnored){
         if (![self presentedViewController]){
-            NSString *title = @"Warning";
+            NSString *title = @"Cancel";
             NSString *message = @"If you further reduce the color your screen will go completely dark!";
             NSString *cancelButton = @"Understood";
-            NSString *acknowledgeButton = @"I know what I'm doing";
+            NSString *acknowledgeButton = @"Ignore";
             
             if (NSClassFromString(@"UIAlertController") != nil) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -77,7 +77,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"I know what I'm doing"]){
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Ignore"]){
         warningIgnored = YES;
     }
 }
@@ -109,7 +109,7 @@
     else {
         [GammaController disableColorAdjustment];
     }
-    [self viewDidLoad];
+    [self updateUI];
 }
 
 - (void)updateDisplayColorWithValue:(float)value forKey:(NSString *)key {
