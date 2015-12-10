@@ -16,6 +16,47 @@
 
 @implementation GammaController
 
++(BOOL)invertScreenColours:(BOOL)invert{
+    
+    void *IOMobileFramebuffer = dlopen("/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer", RTLD_LAZY);
+    NSParameterAssert(IOMobileFramebuffer);
+    
+    if (_framebufferConnection == NULL){
+        IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
+        NSParameterAssert(IOMobileFramebufferGetMainDisplay);
+        IOMobileFramebufferGetMainDisplay(&_framebufferConnection);
+    }
+    
+    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode *mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetColorRemapMode");
+    NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
+    IOMobileFramebufferColorRemapMode mode;
+    IOMobileFramebufferGetColorRemapMode(_framebufferConnection, &mode);
+    
+    IOMobileFramebufferReturn (*IOMobileFramebufferSetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferSetColorRemapMode");
+    NSParameterAssert(IOMobileFramebufferSetColorRemapMode);
+    
+    IOMobileFramebufferSetColorRemapMode(_framebufferConnection, invert ? IOMobileFramebufferColorRemapModeInverted : IOMobileFramebufferColorRemapModeNormal);
+    
+    dlclose(IOMobileFramebuffer);
+    
+    return invert ? mode != IOMobileFramebufferColorRemapModeInverted : mode != IOMobileFramebufferColorRemapModeNormal;
+}
+
++(void)setDarkroomEnabled:(BOOL)enable{
+    if (enable){
+        if ([self invertScreenColours:YES]){
+            [self setGammaWithRed:1.0f green:0.0f blue:0.0f];
+        }
+    }
+    else{
+        if([self invertScreenColours:NO]){
+            [self setGammaWithRed:1.0f green:1.0f blue:1.0f];
+            [userDefaults setFloat:1.0f forKey:@"currentOrange"];
+            [self autoChangeOrangenessIfNeededWithTransition:NO];
+        }
+    }
+}
+
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue {
     unsigned rs = red * 0x100;
     NSParameterAssert(rs <= 0x100);
@@ -26,15 +67,14 @@
     unsigned bs = blue * 0x100;
     NSParameterAssert(bs <= 0x100);
     
-    IOMobileFramebufferConnection fb = NULL;
-    
     void *IOMobileFramebuffer = dlopen("/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer", RTLD_LAZY);
     NSParameterAssert(IOMobileFramebuffer);
     
-    IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
-    NSParameterAssert(IOMobileFramebufferGetMainDisplay);
-    
-    IOMobileFramebufferGetMainDisplay(&fb);
+    if (_framebufferConnection == NULL){
+        IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
+        NSParameterAssert(IOMobileFramebufferGetMainDisplay);
+        IOMobileFramebufferGetMainDisplay(&_framebufferConnection);
+    }
     
     uint32_t data[0xc0c / sizeof(uint32_t)];
     memset(data, 0, sizeof(data));
@@ -48,7 +88,7 @@
         IOMobileFramebufferReturn (*IOMobileFramebufferGetGammaTable)(IOMobileFramebufferConnection connection, void *data) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetGammaTable");
         NSParameterAssert(IOMobileFramebufferGetGammaTable);
         
-        IOMobileFramebufferGetGammaTable(fb, data);
+        IOMobileFramebufferGetGammaTable(_framebufferConnection, data);
         
         file = fopen([filePath UTF8String], "wb");
         NSParameterAssert(file != NULL);
@@ -78,7 +118,7 @@
     IOMobileFramebufferReturn (*IOMobileFramebufferSetGammaTable)(IOMobileFramebufferConnection connection, void *data) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferSetGammaTable");
     NSParameterAssert(IOMobileFramebufferSetGammaTable);
     
-    IOMobileFramebufferSetGammaTable(fb, data);
+    IOMobileFramebufferSetGammaTable(_framebufferConnection, data);
     
     dlclose(IOMobileFramebuffer);
 }
@@ -274,6 +314,21 @@ static NSOperationQueue *queue = nil;
     [userDefaults synchronize];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
+}
+
++ (void)checkCompatibility{
+    void *libMobileGestalt = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_GLOBAL | RTLD_LAZY);
+    CFStringRef (*MGCopyAnswer)(CFStringRef) = dlsym(libMobileGestalt, "MGCopyAnswer");
+    NSString *hwModelStr = CFBridgingRelease(MGCopyAnswer(CFSTR("HWModelStr")));
+    
+    if ([hwModelStr isEqualToString:@"J98aAP"] || [hwModelStr isEqualToString:@"J99aAP"]){ //iPadPro
+        NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Unfortunately the iPad Pro is not yet supported by this Version of %@.", bundleName] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    dlclose(libMobileGestalt);
 }
 
 + (void)enableDimness {

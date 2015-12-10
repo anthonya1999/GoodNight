@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface CustomViewController : UITableViewController <UIAlertViewDelegate>{
-    BOOL warningIgnored;
-}
+static BOOL warningIgnored;
+
+@interface CustomViewController : UITableViewController <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISwitch *rgbSwitch;
 @property (weak, nonatomic) IBOutlet UISlider *redSlider;

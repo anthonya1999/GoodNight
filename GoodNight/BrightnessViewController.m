@@ -34,24 +34,43 @@
 - (void)updateUI {
     self.dimSlider.value = [userDefaults floatForKey:@"dimLevel"];
     self.dimSwitch.on = [userDefaults boolForKey:@"dimEnabled"];
+    self.darkroomSwitch.on = [userDefaults boolForKey:@"darkroomEnabled"];
     
     float brightness = self.dimSlider.value;
     
     self.dimSwitch.onTintColor = [UIColor colorWithRed:(1.0f-brightness)*0.9f green:((2.0f-brightness)/2.0f)*0.9f blue:0.9f alpha:1.0];
     self.dimSlider.tintColor = [UIColor colorWithRed:(1.0f-brightness)*0.9f green:((2.0f-brightness)/2.0f)*0.9f blue:0.9f alpha:1.0];
-
+    
 }
 
 - (IBAction)brightnessSwitchChanged {
     [userDefaults setBool:self.dimSwitch.on forKey:@"dimEnabled"];
-        
-    if (self.dimSwitch.on) {
+    
+    if (self.dimSwitch.on && self.darkroomSwitch.on) {
+        [GammaController setDarkroomEnabled:YES];
+    }
+    else if (self.dimSwitch.on){
+        [GammaController setDarkroomEnabled:NO];
         [GammaController enableDimness];
     }
     else {
+        [GammaController setDarkroomEnabled:NO];
         [GammaController disableDimness];
     }
-    [self viewDidLoad];
+    [self updateUI];
+}
+
+- (IBAction)darkroomSwitchChanged {
+    [userDefaults setBool:self.darkroomSwitch.on forKey:@"darkroomEnabled"];
+    
+    if (self.dimSwitch.on && self.darkroomSwitch.on) {
+        [GammaController setDarkroomEnabled:YES];
+    }
+    else if (self.dimSwitch.on){
+        [GammaController setDarkroomEnabled:NO];
+        [GammaController enableDimness];
+    }
+    [self updateUI];
 }
 
 - (IBAction)dimSliderLevelChanged {
@@ -61,33 +80,40 @@
             NSString *message = @"If you further reduce the brightness, your screen will go completely dark! If you accidently do this, you can restart your device to undo the effect.";
             NSString *cancelButton = @"Cancel";
             NSString *acknowledgeButton = @"Ignore";
+            NSString *darkroomButton = @"Enable Darkroom";
             
             if (NSClassFromString(@"UIAlertController") != nil) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
                 
-                [alertController addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}]];
+                [alertController addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {}]];
                 
                 [alertController addAction:[UIAlertAction actionWithTitle:acknowledgeButton style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                     warningIgnored = YES;
                 }]];
                 
+                [alertController addAction:[UIAlertAction actionWithTitle:darkroomButton style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    [self.darkroomSwitch setOn:YES animated:YES];
+                    [self darkroomSwitchChanged];
+                }]];
+                
                 [self presentViewController:alertController animated:YES completion:nil];
             }
             else {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelButton otherButtonTitles:acknowledgeButton,nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelButton otherButtonTitles:acknowledgeButton,darkroomButton,nil];
                 
                 [alertView show];
             }
         }
-    
+        
         self.dimSlider.value = 0.1f;
     }
     
     
     [userDefaults setFloat:self.dimSlider.value forKey:@"dimLevel"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
-
-    if (self.dimSwitch.on) {
+    
+    if (self.dimSwitch.on && !self.darkroomSwitch.on) {
+        [GammaController setDarkroomEnabled:NO];
         [GammaController enableDimness];
     }
 }
@@ -96,6 +122,10 @@
     if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Ignore"]){
         warningIgnored = YES;
     }
+    else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Enable Darkroom"]){
+        [self.darkroomSwitch setOn:YES animated:YES];
+        [self darkroomSwitchChanged];
+    }
 }
 
 - (IBAction)resetSlider {
@@ -103,7 +133,12 @@
     [userDefaults setFloat:self.dimSlider.value forKey:@"dimLevel"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
+    
+    [self.darkroomSwitch setOn:NO animated:YES];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    
     if (self.dimSwitch.on) {
+        [GammaController setDarkroomEnabled:NO];
         [GammaController enableDimness];
     }
 }

@@ -27,6 +27,7 @@
                                          @"greenValue": @1.0,
                                          @"blueValue": @1.0,
                                          @"dimEnabled": @NO,
+                                         @"darkroomEnabled": @NO,
                                          @"dimLevel": @1.0,
                                          @"rgbEnabled": @NO,
                                          @"lastAutoChangeDate": [NSDate distantPast],
@@ -233,6 +234,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [application clearKeepAliveTimeout];
+    [GammaController checkCompatibility];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
