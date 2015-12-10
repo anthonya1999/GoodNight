@@ -465,6 +465,7 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="is3-bs-BgY">
                                                     <rect key="frame" x="534" y="6" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.68627452850000004" green="0.074509806930000005" blue="0.1176470593" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="darkroomSwitchChanged" destination="JJf-7w-nfd" eventType="touchUpInside" id="Bx7-az-rJZ"/>
                                                     </connections>
