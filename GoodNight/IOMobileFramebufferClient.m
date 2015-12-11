@@ -46,8 +46,23 @@ static void * IOMobileFramebufferHandle = NULL;
     return self;
 }
 
+- (void)callFramebufferFunction:(NSString *)function withFirstParamPointer:(void *)pointer {
+    NSParameterAssert(pointer);
+    IOMobileFramebufferReturn (*IOMobileFramebufferFunction)(IOMobileFramebufferConnection, void *) = dlsym(IOMobileFramebufferHandle, function.UTF8String);
+    NSParameterAssert(IOMobileFramebufferFunction);
+
+    IOMobileFramebufferFunction(self.framebufferConnection, pointer);
+}
+
+- (void)callFramebufferFunction:(NSString *)function withFirstParamScalar:(uint32_t)scalar {
+    IOMobileFramebufferReturn (*IOMobileFramebufferFunction)(IOMobileFramebufferConnection, uint32_t) = dlsym(IOMobileFramebufferHandle, function.UTF8String);
+    NSParameterAssert(IOMobileFramebufferFunction);
+
+    IOMobileFramebufferFunction(self.framebufferConnection, scalar);
+}
+
 - (IOMobileFramebufferColorRemapMode)colorRemapMode {
-    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode *mode) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferGetColorRemapMode");
+    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection, IOMobileFramebufferColorRemapMode *) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferGetColorRemapMode");
     NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
 
     IOMobileFramebufferColorRemapMode mode;
@@ -59,25 +74,23 @@ static void * IOMobileFramebufferHandle = NULL;
 }
 
 - (void)setColorRemapMode:(IOMobileFramebufferColorRemapMode)mode {
-    IOMobileFramebufferReturn (*IOMobileFramebufferSetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode mode) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferSetColorRemapMode");
-    NSParameterAssert(IOMobileFramebufferSetColorRemapMode);
-
-    IOMobileFramebufferSetColorRemapMode(self.framebufferConnection, mode);
+    [self callFramebufferFunction:@"IOMobileFramebufferSetColorRemapMode" withFirstParamScalar:mode];
 }
 
 - (void)gammaTable:(IOMobileFramebufferGammaTable *)table {
-    IOMobileFramebufferReturn (*IOMobileFramebufferGetGammaTable)(IOMobileFramebufferConnection connection, IOMobileFramebufferGammaTable *) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferGetGammaTable");
-    NSParameterAssert(IOMobileFramebufferGetGammaTable);
-
-    IOMobileFramebufferGetGammaTable(self.framebufferConnection, table);
+    [self callFramebufferFunction:@"IOMobileFramebufferGetGammaTable" withFirstParamPointer:table];
 }
 
 - (void)setGammaTable:(IOMobileFramebufferGammaTable *)table {
-    IOMobileFramebufferReturn (*IOMobileFramebufferSetGammaTable)(IOMobileFramebufferConnection connection, IOMobileFramebufferGammaTable *) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferSetGammaTable");
-    NSParameterAssert(IOMobileFramebufferSetGammaTable);
-
-    IOMobileFramebufferSetGammaTable(self.framebufferConnection, table);
+    [self callFramebufferFunction:@"IOMobileFramebufferSetGammaTable" withFirstParamPointer:table];
 }
 
+- (void)setGamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix {
+    [self callFramebufferFunction:@"IOMobileFramebufferSetGamutMatrix" withFirstParamPointer:matrix];
+}
+
+- (void)gamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix {
+    [self callFramebufferFunction:@"IOMobileFramebufferGetGamutMatrix" withFirstParamPointer:matrix];
+}
 
 @end

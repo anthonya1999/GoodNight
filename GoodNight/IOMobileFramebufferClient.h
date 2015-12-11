@@ -21,6 +21,10 @@ typedef struct {
     uint32_t values[0xc0c/sizeof(uint32_t)];
 } IOMobileFramebufferGammaTable;
 
+typedef struct {
+    double values[9];
+} IOMobileFramebufferGamutMatrix;
+
 @interface IOMobileFramebufferClient : NSObject
 
 - (IOMobileFramebufferColorRemapMode)colorRemapMode;
@@ -28,5 +32,8 @@ typedef struct {
 
 - (void)gammaTable:(IOMobileFramebufferGammaTable *)table;
 - (void)setGammaTable:(IOMobileFramebufferGammaTable *)table;
+
+- (void)gamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix;
+- (void)setGamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix;
 
 @end
