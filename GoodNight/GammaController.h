@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define SBS_PATH "/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices"
-
-typedef kern_return_t SpringBoardServicesReturn;
-
 typedef NS_ENUM(NSInteger, TimeBasedAction) {
     SwitchToOrangeness,
     SwitchToStandard,

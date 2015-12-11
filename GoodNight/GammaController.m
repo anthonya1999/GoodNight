@@ -14,23 +14,15 @@
 #import "Solar.h"
 #import "Brightness.h"
 #import "IOMobileFramebufferClient.h"
+#import "SpringBoardServicesClient.h"
+#import "MobileGestaltClient.h"
 
 @implementation GammaController
 
-+ (IOMobileFramebufferClient *)framebufferClient {
-    static IOMobileFramebufferClient *_client = NULL;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _client = IOMobileFramebufferClient.new;
-    });
-
-    return _client;
-}
-
 + (BOOL)invertScreenColours:(BOOL)invert {
-    IOMobileFramebufferColorRemapMode mode = [self.framebufferClient colorRemapMode];
+    IOMobileFramebufferColorRemapMode mode = [[IOMobileFramebufferClient sharedIOMobileFramebufferClient] colorRemapMode];
 
-    [self.framebufferClient setColorRemapMode:invert ? IOMobileFramebufferColorRemapModeInverted : IOMobileFramebufferColorRemapModeNormal];
+    [[IOMobileFramebufferClient sharedIOMobileFramebufferClient] setColorRemapMode:invert ? IOMobileFramebufferColorRemapModeInverted : IOMobileFramebufferColorRemapModeNormal];
 
     return invert ? mode != IOMobileFramebufferColorRemapModeInverted : mode != IOMobileFramebufferColorRemapModeNormal;
 }
@@ -68,7 +60,7 @@
     FILE *file = fopen([filePath UTF8String], "rb");
     
     if (file == NULL) {
-        [self.framebufferClient gammaTable:&data];
+        [[IOMobileFramebufferClient sharedIOMobileFramebufferClient] gammaTable:&data];
         file = fopen([filePath UTF8String], "wb");
         NSParameterAssert(file != NULL);
         
@@ -94,7 +86,7 @@
         data.values[j + 0x203] = data.values[b + 0x203];
     }
     
-    [self.framebufferClient setGammaTable:&data];
+    [[IOMobileFramebufferClient sharedIOMobileFramebufferClient] setGammaTable:&data];
 }
 
 + (void)setGammaWithOrangeness:(float)percentOrange {
@@ -260,23 +252,11 @@
 }
 
 + (BOOL)wakeUpScreenIfNeeded {
-    void *SpringBoardServices = dlopen(SBS_PATH, RTLD_LAZY);
-    NSParameterAssert(SpringBoardServices);
-    mach_port_t (*SBSSpringBoardServerPort)() = dlsym(SpringBoardServices, "SBSSpringBoardServerPort");
-    NSParameterAssert(SBSSpringBoardServerPort);
-    mach_port_t sbsMachPort = SBSSpringBoardServerPort();
-    BOOL isLocked, passcodeEnabled;
-    void *(*SBGetScreenLockStatus)(mach_port_t port, BOOL *isLocked, BOOL *passcodeEnabled) = dlsym(SpringBoardServices, "SBGetScreenLockStatus");
-    NSParameterAssert(SBGetScreenLockStatus);
-    SBGetScreenLockStatus(sbsMachPort, &isLocked, &passcodeEnabled);
+    BOOL isLocked = [[SpringBoardServicesClient sharedSpringBoardServicesClient] SBGetScreenLockStatusIsLocked];
     
     if (isLocked) {
-        void *(*SBSUndimScreen)() = dlsym(SpringBoardServices, "SBSUndimScreen");
-        NSParameterAssert(SBSUndimScreen);
-        SBSUndimScreen();
+        [[SpringBoardServicesClient sharedSpringBoardServicesClient] SBSUndimScreen];
     }
-    
-    dlclose(SpringBoardServices);
     return !isLocked;
     
 }
@@ -285,17 +265,11 @@
     
     BOOL compatible = YES;
     
-    void *libMobileGestalt = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_GLOBAL | RTLD_LAZY);
-    NSParameterAssert(libMobileGestalt);
-    CFStringRef (*MGCopyAnswer)(CFStringRef model) = dlsym(libMobileGestalt, "MGCopyAnswer");
-    NSParameterAssert(MGCopyAnswer);
-    NSString *hwModelStr = CFBridgingRelease(MGCopyAnswer(CFSTR("HWModelStr")));
+    NSString *hwModelStr = [[MobileGestaltClient sharedMobileGestaltClient] MGGetHWModelStr];
     
     if ([hwModelStr isEqualToString:@"J98aAP"] || [hwModelStr isEqualToString:@"J99aAP"]) {
         compatible = NO;
     }
-
-    dlclose(libMobileGestalt);
     
     return compatible;
 }
@@ -395,15 +369,7 @@
 }
 
 + (void)suspendApp {
-    void *SpringBoardServices = dlopen(SBS_PATH, RTLD_LAZY);
-    NSParameterAssert(SpringBoardServices);
-    mach_port_t (*SBSSpringBoardServerPort)() = dlsym(SpringBoardServices, "SBSSpringBoardServerPort");
-    NSParameterAssert(SBSSpringBoardServerPort);
-    SpringBoardServicesReturn (*SBSuspend)(mach_port_t port) = dlsym(SpringBoardServices, "SBSuspend");
-    NSParameterAssert(SBSuspend);
-    mach_port_t sbsMachPort = SBSSpringBoardServerPort();
-    SBSuspend(sbsMachPort);
-    dlclose(SpringBoardServices);
+    [[SpringBoardServicesClient sharedSpringBoardServicesClient] SBSuspend];
 }
 
 + (BOOL)adjustmentForKeysEnabled:(NSString *)firstKey, ... {
