@@ -13,31 +13,25 @@
 
 #import "Solar.h"
 #import "Brightness.h"
+#import "IOMobileFramebufferClient.h"
 
 @implementation GammaController
 
++ (IOMobileFramebufferClient *)framebufferClient {
+    static IOMobileFramebufferClient *_client = NULL;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _client = IOMobileFramebufferClient.new;
+    });
+
+    return _client;
+}
+
 + (BOOL)invertScreenColours:(BOOL)invert {
-    void *IOMobileFramebuffer = dlopen(IOMFB_PATH, RTLD_LAZY);
-    NSParameterAssert(IOMobileFramebuffer);
-    
-    if (_framebufferConnection == NULL) {
-        IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
-        NSParameterAssert(IOMobileFramebufferGetMainDisplay);
-        IOMobileFramebufferGetMainDisplay(&_framebufferConnection);
-    }
-    
-    IOMobileFramebufferColorRemapMode mode = 0;
-    
-    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode *mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetColorRemapMode");
-    NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
-    IOMobileFramebufferReturn (*IOMobileFramebufferSetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode mode) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferSetColorRemapMode");
-    NSParameterAssert(IOMobileFramebufferSetColorRemapMode);
-    
-    IOMobileFramebufferGetColorRemapMode(_framebufferConnection, &mode);
-    IOMobileFramebufferSetColorRemapMode(_framebufferConnection, invert ? IOMobileFramebufferColorRemapModeInverted : IOMobileFramebufferColorRemapModeNormal);
-    
-    dlclose(IOMobileFramebuffer);
-    
+    IOMobileFramebufferColorRemapMode mode = [self.framebufferClient colorRemapMode];
+
+    [self.framebufferClient setColorRemapMode:invert ? IOMobileFramebufferColorRemapModeInverted : IOMobileFramebufferColorRemapModeNormal];
+
     return invert ? mode != IOMobileFramebufferColorRemapModeInverted : mode != IOMobileFramebufferColorRemapModeNormal;
 }
 
@@ -66,17 +60,7 @@
     unsigned bs = blue * 0x100;
     NSParameterAssert(bs <= 0x100);
     
-    void *IOMobileFramebuffer = dlopen(IOMFB_PATH, RTLD_LAZY);
-    NSParameterAssert(IOMobileFramebuffer);
-    
-    if (_framebufferConnection == NULL) {
-        IOMobileFramebufferReturn (*IOMobileFramebufferGetMainDisplay)(IOMobileFramebufferConnection *connection) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetMainDisplay");
-        NSParameterAssert(IOMobileFramebufferGetMainDisplay);
-        IOMobileFramebufferGetMainDisplay(&_framebufferConnection);
-    }
-    
-    uint32_t data[0xc0c / sizeof(uint32_t)];
-    memset(data, 0, sizeof(data));
+    IOMobileFramebufferGammaTable data;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -84,22 +68,18 @@
     FILE *file = fopen([filePath UTF8String], "rb");
     
     if (file == NULL) {
-        IOMobileFramebufferReturn (*IOMobileFramebufferGetGammaTable)(IOMobileFramebufferConnection connection, void *data) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferGetGammaTable");
-        NSParameterAssert(IOMobileFramebufferGetGammaTable);
-        
-        IOMobileFramebufferGetGammaTable(_framebufferConnection, data);
-        
+        [self.framebufferClient gammaTable:&data];
         file = fopen([filePath UTF8String], "wb");
         NSParameterAssert(file != NULL);
         
-        fwrite(data, 1, sizeof(data), file);
+        fwrite(&data, 1, sizeof(data), file);
         fclose(file);
         
         file = fopen([filePath UTF8String], "rb");
         NSParameterAssert(file != NULL);
     }
     
-    fread(data, 1, sizeof(data), file);
+    fread(&data, 1, sizeof(data), file);
     fclose(file);
     
     for (size_t i = 0; i < 256; ++i) {
@@ -109,17 +89,12 @@
         size_t g = j * gs >> 8;
         size_t b = j * bs >> 8;
         
-        data[j + 0x001] = data[r + 0x001];
-        data[j + 0x102] = data[g + 0x102];
-        data[j + 0x203] = data[b + 0x203];
+        data.values[j + 0x001] = data.values[r + 0x001];
+        data.values[j + 0x102] = data.values[g + 0x102];
+        data.values[j + 0x203] = data.values[b + 0x203];
     }
     
-    IOMobileFramebufferReturn (*IOMobileFramebufferSetGammaTable)(IOMobileFramebufferConnection connection, void *data) = dlsym(IOMobileFramebuffer, "IOMobileFramebufferSetGammaTable");
-    NSParameterAssert(IOMobileFramebufferSetGammaTable);
-    
-    IOMobileFramebufferSetGammaTable(_framebufferConnection, data);
-    
-    dlclose(IOMobileFramebuffer);
+    [self.framebufferClient setGammaTable:&data];
 }
 
 + (void)setGammaWithOrangeness:(float)percentOrange {
