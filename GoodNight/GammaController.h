@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
 typedef kern_return_t IOMobileFramebufferReturn, SpringBoardServicesReturn;
@@ -32,7 +31,7 @@ typedef NS_ENUM(NSInteger, IOMobileFramebufferColorRemapMode) {
 
 static IOMobileFramebufferConnection _framebufferConnection = NULL;
 
-@interface GammaController : NSObject <UIAlertViewDelegate>
+@interface GammaController : NSObject
 
 + (void)autoChangeOrangenessIfNeededWithTransition:(BOOL)transition;
 + (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition;
@@ -46,7 +45,8 @@ static IOMobileFramebufferConnection _framebufferConnection = NULL;
 + (void)disableOrangeness;
 + (void)switchScreenTemperatureBasedOnLocation;
 + (TimeBasedAction)timeBasedActionForPrefix:(NSString*)autoOrNightPrefix;
-+ (void)checkCompatibility;
++ (BOOL)checkCompatibility;
 + (void)setDarkroomEnabled:(BOOL)enable;
++ (BOOL)adjustmentForKeysEnabled:(NSString *)firstKey, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end

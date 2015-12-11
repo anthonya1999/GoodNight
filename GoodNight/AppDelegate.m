@@ -233,7 +233,11 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [application clearKeepAliveTimeout];
-    [GammaController checkCompatibility];
+    if (![GammaController checkCompatibility]){
+        NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Unfortunately the iPad Pro is not yet supported by this Version of %@.", bundleName] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

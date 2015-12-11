@@ -42,8 +42,8 @@
 }
 
 + (void)setDarkroomEnabled:(BOOL)enable {
-    if (enable){
-        if ([self invertScreenColours:YES]){
+    if (enable) {
+        if ([self invertScreenColours:YES]) {
             [self setGammaWithRed:1.0f green:0.0f blue:0.0f];
         }
     }
@@ -155,7 +155,9 @@
         TimeBasedAction nightAction = [self timeBasedActionForPrefix:@"night"];
         switch (nightAction) {
             case SwitchToOrangeness:
-                [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
+                [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
+                [userDefaults setBool:NO forKey:@"dimEnabled"];
+                [userDefaults setBool:NO forKey:@"rgbEnabled"];
             case KeepOrangenessEnabled:
                 nightModeWasEnabled = YES;
                 break;
@@ -174,9 +176,13 @@
             switch (autoAction) {
                 case SwitchToOrangeness:
                     [self enableOrangenessWithDefaults:YES transition:YES];
+                    [userDefaults setBool:NO forKey:@"dimEnabled"];
+                    [userDefaults setBool:NO forKey:@"rgbEnabled"];
                     break;
                 case SwitchToStandard:
                     [self disableOrangeness];
+                    [userDefaults setBool:NO forKey:@"dimEnabled"];
+                    [userDefaults setBool:NO forKey:@"rgbEnabled"];
                     break;
                 default:
                     break;
@@ -199,24 +205,19 @@
         return;
     }
     
-    if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"rgbEnabled"] == NO) {
-        
-        [self wakeUpScreenIfNeeded];
-        if (transition == YES) {
-            [self setGammaWithTransitionFrom:currentOrangeLevel to:orangeLevel];
-        }
-        else {
-            [self setGammaWithOrangeness:orangeLevel];
-        }
-        if (defaults == YES) {
-            [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-            [userDefaults setBool:YES forKey:@"enabled"];
-        }
-        [userDefaults setObject:@"0" forKey:@"keyEnabled"];
+    [self wakeUpScreenIfNeeded];
+    if (transition == YES) {
+        [self setGammaWithTransitionFrom:currentOrangeLevel to:orangeLevel];
     }
     else {
-        [self showFailedAlertWithKey:@"enabled"];
+        [self setGammaWithOrangeness:orangeLevel];
     }
+    if (defaults == YES) {
+        [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
+        [userDefaults setBool:YES forKey:@"enabled"];
+    }
+    
+    [userDefaults setObject:@"0" forKey:@"keyEnabled"];
     [userDefaults setFloat:orangeLevel forKey:@"currentOrange"];
     [userDefaults synchronize];
 }
@@ -305,64 +306,50 @@
     
 }
 
-+ (void)showFailedAlertWithKey:(NSString *)key {
-    [userDefaults setObject:@"1" forKey:@"keyEnabled"];
-    [userDefaults setBool:NO forKey:key];
-    [userDefaults synchronize];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-}
-
-+ (void)checkCompatibility {
++ (BOOL)checkCompatibility {
+    
+    BOOL compatible = YES;
+    
     void *libMobileGestalt = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_GLOBAL | RTLD_LAZY);
     NSParameterAssert(libMobileGestalt);
     CFStringRef (*MGCopyAnswer)(CFStringRef model) = dlsym(libMobileGestalt, "MGCopyAnswer");
     NSParameterAssert(MGCopyAnswer);
     NSString *hwModelStr = CFBridgingRelease(MGCopyAnswer(CFSTR("HWModelStr")));
     
-    if ([hwModelStr isEqualToString:@"J98aAP"] || [hwModelStr isEqualToString:@"J99aAP"]){
-        NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Unfortunately the iPad Pro is not yet supported by this Version of %@.", bundleName] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+    if ([hwModelStr isEqualToString:@"J98aAP"] || [hwModelStr isEqualToString:@"J99aAP"]) {
+        compatible = NO;
     }
 
     dlclose(libMobileGestalt);
+    
+    return compatible;
 }
 
 + (void)enableDimness {
-    if ([self adjustmentForKeysEnabled:@"enabled" key2:@"rgbEnabled"] == NO) {
-        float dimLevel = [userDefaults floatForKey:@"dimLevel"];
-        [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
-        [userDefaults setBool:YES forKey:@"dimEnabled"];
-        [userDefaults setObject:@"0" forKey:@"keyEnabled"];
-    }
-    else {
-        [self showFailedAlertWithKey:@"dimEnabled"];
-    }
+    float dimLevel = [userDefaults floatForKey:@"dimLevel"];
+    [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
+    [userDefaults setBool:YES forKey:@"dimEnabled"];
+    [userDefaults setObject:@"0" forKey:@"keyEnabled"];
     [userDefaults synchronize];
 }
 
 + (void)setGammaWithCustomValues {
-    if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"enabled"] == NO) {
-        float redValue = [userDefaults floatForKey:@"redValue"];
-        float greenValue = [userDefaults floatForKey:@"greenValue"];
-        float blueValue = [userDefaults floatForKey:@"blueValue"];
-        [self setGammaWithRed:redValue green:greenValue blue:blueValue];
-        [userDefaults setBool:YES forKey:@"rgbEnabled"];
-        [userDefaults setObject:@"0" forKey:@"keyEnabled"];
-    }
-    else {
-        [self showFailedAlertWithKey:@"rgbEnabled"];
-    }
+    float redValue = [userDefaults floatForKey:@"redValue"];
+    float greenValue = [userDefaults floatForKey:@"greenValue"];
+    float blueValue = [userDefaults floatForKey:@"blueValue"];
+    [self setGammaWithRed:redValue green:greenValue blue:blueValue];
+    [userDefaults setBool:YES forKey:@"rgbEnabled"];
+    [userDefaults setObject:@"0" forKey:@"keyEnabled"];
+
     [userDefaults synchronize];
 }
 
 + (void)disableColorAdjustment {
-    [GammaController disableOrangenessWithDefaults:YES key:@"rgbEnabled" transition:NO];
+    [self disableOrangenessWithDefaults:YES key:@"rgbEnabled" transition:NO];
 }
 
 + (void)disableDimness {
-    [GammaController disableOrangenessWithDefaults:YES key:@"dimEnabled" transition:NO];
+    [self disableOrangenessWithDefaults:YES key:@"dimEnabled" transition:NO];
 }
 
 + (void)disableOrangeness {
@@ -370,7 +357,7 @@
     if (!(currentOrangeLevel < 1.0f)) {
         return;
     }
-    [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
+    [self disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
 }
 
 + (void)switchScreenTemperatureBasedOnLocation {
@@ -385,10 +372,10 @@
     if(orangeness > 0) {
         float percent = orangeness / maxOrange;
         float diff = 1.0f - maxOrange;
-        [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(1.0f-percent*diff, 1.0f)];
+        [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(1.0f-percent*diff, 1.0f)];
     }
     else if (orangeness <= 0) {
-        [GammaController disableOrangeness];
+        [self disableOrangeness];
     }
 }
 
@@ -444,11 +431,22 @@
     dlclose(SpringBoardServices);
 }
 
-+ (BOOL)adjustmentForKeysEnabled:(NSString *)key1 key2:(NSString *)key2 {
-    if (![userDefaults boolForKey:key1] && ![userDefaults boolForKey:key2]) {
-        return NO;
++ (BOOL)adjustmentForKeysEnabled:(NSString *)firstKey, ... {
+    
+    BOOL adjustmentsEnabled = NO;
+    
+    va_list args;
+    va_start(args, firstKey);
+    for (NSString *arg = firstKey; arg != nil; arg = va_arg(args, NSString*))
+    {
+        if ([userDefaults boolForKey:arg]){
+            adjustmentsEnabled = YES;
+            break;
+        }
     }
-    return YES;
+    va_end(args);
+
+    return adjustmentsEnabled;
 }
 
 @end

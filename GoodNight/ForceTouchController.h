@@ -18,5 +18,6 @@ static BOOL forceTouchActionEnabled = NO;
 + (void)updateShortcutItems;
 + (BOOL)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem;
 + (void)exitIfKeyEnabled;
++ (void)showFailedAlertWithKey:(NSString *)key;
 
 @end
