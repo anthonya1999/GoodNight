@@ -42,9 +42,13 @@
 }
 
 + (void)setDarkroomEnabled:(BOOL)enable {
-    if (enable){
-        if ([self invertScreenColours:YES]){
-            [self setGammaWithRed:1.0f green:0.0f blue:0.0f];
+    if (enable) {
+        if ([self adjustmentForKeysEnabled:@"enabled",@"rgbEnabled",nil] == NO) {
+            if ([self invertScreenColours:YES]){
+                [self setGammaWithRed:1.0f green:0.0f blue:0.0f];
+            }
+        } else {
+            [self showFailedAlertWithKey:@"dimEnabled"];
         }
     }
     else {
@@ -199,7 +203,7 @@
         return;
     }
     
-    if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"rgbEnabled"] == NO) {
+    if ([self adjustmentForKeysEnabled:@"dimEnabled",@"rgbEnabled", nil] == NO) {
         
         [self wakeUpScreenIfNeeded];
         if (transition == YES) {
@@ -330,7 +334,7 @@
 }
 
 + (void)enableDimness {
-    if ([self adjustmentForKeysEnabled:@"enabled" key2:@"rgbEnabled"] == NO) {
+    if ([self adjustmentForKeysEnabled:@"enabled",@"rgbEnabled",nil] == NO) {
         float dimLevel = [userDefaults floatForKey:@"dimLevel"];
         [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
         [userDefaults setBool:YES forKey:@"dimEnabled"];
@@ -343,7 +347,7 @@
 }
 
 + (void)setGammaWithCustomValues {
-    if ([self adjustmentForKeysEnabled:@"dimEnabled" key2:@"enabled"] == NO) {
+    if ([self adjustmentForKeysEnabled:@"dimEnabled",@"enabled",nil] == NO) {
         float redValue = [userDefaults floatForKey:@"redValue"];
         float greenValue = [userDefaults floatForKey:@"greenValue"];
         float blueValue = [userDefaults floatForKey:@"blueValue"];
@@ -444,11 +448,22 @@
     dlclose(SpringBoardServices);
 }
 
-+ (BOOL)adjustmentForKeysEnabled:(NSString *)key1 key2:(NSString *)key2 {
-    if (![userDefaults boolForKey:key1] && ![userDefaults boolForKey:key2]) {
-        return NO;
++ (BOOL)adjustmentForKeysEnabled:(NSString *)firstKey, ... NS_REQUIRES_NIL_TERMINATION{
+    
+    BOOL adjustmentsEnabled = NO;
+    
+    va_list args;
+    va_start(args, firstKey);
+    for (NSString *arg = firstKey; arg != nil; arg = va_arg(args, NSString*))
+    {
+        if ([userDefaults boolForKey:arg]){
+            adjustmentsEnabled = YES;
+            break;
+        }
     }
-    return YES;
+    va_end(args);
+
+    return adjustmentsEnabled;
 }
 
 @end
