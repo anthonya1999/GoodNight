@@ -16,7 +16,7 @@ the source.
 
 ### Installing
 
-See [here](help/README.md).
+See [here](Help/README.md).
 
 ### Compatibility
 
