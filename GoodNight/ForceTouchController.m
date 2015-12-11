@@ -120,7 +120,12 @@
             [GammaController disableOrangeness];
         }
         else if (![userDefaults boolForKey:@"enabled"]) {
-            [GammaController enableOrangenessWithDefaults:YES transition:YES];
+            if (![GammaController adjustmentForKeysEnabled:@"dimEnabled", @"rgbEnabled", nil]) {
+                [GammaController enableOrangenessWithDefaults:YES transition:YES];
+            }
+            else {
+                [self showFailedAlertWithKey:@"enabled"];
+            }
         }
     }
     else if ([shortcutItem.type isEqualToString:@"dimForceTouchAction"]) {
@@ -128,7 +133,12 @@
             [GammaController disableDimness];
         }
         else if (![userDefaults boolForKey:@"dimEnabled"]) {
-            [GammaController enableDimness];
+            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"rgbEnabled", nil]) {
+                [GammaController enableDimness];
+            }
+            else {
+                [self showFailedAlertWithKey:@"dimEnabled"];
+            }
         }
     }
     else if ([shortcutItem.type isEqualToString:@"rgbForceTouchAction"]) {
@@ -136,7 +146,12 @@
             [GammaController disableColorAdjustment];
         }
         else if (![userDefaults boolForKey:@"rgbEnabled"]) {
-            [GammaController setGammaWithCustomValues];
+            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"dimEnabled", nil]) {
+                [GammaController setGammaWithCustomValues];
+            }
+            else {
+                [self showFailedAlertWithKey:@"rgbEnabled"];
+            }
         }
     }
     return NO;
@@ -146,6 +161,15 @@
     if ([userDefaults boolForKey:@"suspendEnabled"] && [[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
         [GammaController suspendApp];
     }
+}
+
+
++ (void)showFailedAlertWithKey:(NSString *)key {
+    [userDefaults setObject:@"1" forKey:@"keyEnabled"];
+    [userDefaults setBool:NO forKey:key];
+    [userDefaults synchronize];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

@@ -134,14 +134,45 @@
 }
 
 - (IBAction)enabledSwitchChanged {
-    [userDefaults setBool:self.enabledSwitch.on forKey:@"enabled"];
-    
-    if (self.enabledSwitch.on) {
-        [GammaController enableOrangenessWithDefaults:NO transition:YES];
+    if (![GammaController adjustmentForKeysEnabled:@"dimEnabled", @"rgbEnabled", nil]) {
+        [userDefaults setBool:self.enabledSwitch.on forKey:@"enabled"];
+        
+        if (self.enabledSwitch.on) {
+            [GammaController enableOrangenessWithDefaults:NO transition:YES];
+        }
+        else {
+            [GammaController disableOrangeness];
+        }
     }
     else {
-        [GammaController disableOrangeness];
+        NSString *title = @"Error";
+        NSString *message = @"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one.";
+        NSString *cancelButton = @"Cancel";
+        NSString *disableButton = @"Disable others";
+        
+        if (NSClassFromString(@"UIAlertController") != nil) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleCancel handler:nil]];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:disableButton style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                [userDefaults setBool:NO forKey:@"dimEnabled"];
+                [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                [userDefaults setBool:YES forKey:@"enabled"];
+                [GammaController setDarkroomEnabled:NO];
+                [self enabledSwitchChanged];
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelButton otherButtonTitles:nil];
+            
+            [alertView show];
+        }
     }
+    
+    [self updateUI];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

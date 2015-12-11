@@ -101,14 +101,44 @@
 }
 
 - (IBAction)colorSwitchChanged {
-    [userDefaults setBool:self.rgbSwitch.on forKey:@"rgbEnabled"];
+    if (![GammaController adjustmentForKeysEnabled:@"enabled", @"dimEnabled", nil]) {
+        [userDefaults setBool:self.rgbSwitch.on forKey:@"rgbEnabled"];
         
-    if (self.rgbSwitch.on) {
-        [GammaController setGammaWithCustomValues];
+        if (self.rgbSwitch.on) {
+            [GammaController setGammaWithCustomValues];
+        }
+        else {
+            [GammaController disableColorAdjustment];
+        }
     }
     else {
-        [GammaController disableColorAdjustment];
+        NSString *title = @"Error";
+        NSString *message = @"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one.";
+        NSString *cancelButton = @"Cancel";
+        NSString *disableButton = @"Disable others";
+        
+        if (NSClassFromString(@"UIAlertController") != nil) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleCancel handler:nil]];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:disableButton style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                [userDefaults setBool:NO forKey:@"enabled"];
+                [userDefaults setBool:NO forKey:@"dimEnabled"];
+                [userDefaults setBool:YES forKey:@"rgbEnabled"];
+                [GammaController setDarkroomEnabled:NO];
+                [self colorSwitchChanged];
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelButton otherButtonTitles:nil];
+            
+            [alertView show];
+        }
     }
+    
     [self updateUI];
 }
 
