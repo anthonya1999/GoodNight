@@ -17,7 +17,7 @@ have one).
 10. Hit `⌘R` to install. (You may get "Process launch failed: Security." That's
 OK.)
 11. On your iOS device, go to **Settings → General → Device Management →
-<your Apple ID\>** and hit **Trust**.
+\<your Apple ID\>** and hit **Trust**.
 12. Launch the GoodNight app on your iOS device from the Home screen.
 
 Note: If you'd like to test your own version of GoodNight, you must select
