@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
-typedef kern_return_t IOMobileFramebufferReturn, SpringBoardServicesReturn;
-
-#define IOMFB_PATH "/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer"
 #define SBS_PATH "/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices"
+
+typedef kern_return_t SpringBoardServicesReturn;
 
 typedef NS_ENUM(NSInteger, TimeBasedAction) {
     SwitchToOrangeness,
@@ -20,16 +18,6 @@ typedef NS_ENUM(NSInteger, TimeBasedAction) {
     KeepOrangenessEnabled,
     KeepStandardEnabled
 };
-
-typedef NS_ENUM(NSInteger, IOMobileFramebufferColorRemapMode) {
-    IOMobileFramebufferColorRemapModeNormal = 0,
-    IOMobileFramebufferColorRemapModeInverted = 1,
-    IOMobileFramebufferColorRemapModeGrayscale = 2,
-    IOMobileFramebufferColorRemapModeGrayscaleIncreaseContrast = 3,
-    IOMobileFramebufferColorRemapModeInvertedGrayscale = 4
-};
-
-static IOMobileFramebufferConnection _framebufferConnection = NULL;
 
 @interface GammaController : NSObject
 
