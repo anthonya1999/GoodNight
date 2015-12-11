@@ -159,7 +159,7 @@
         TimeBasedAction nightAction = [self timeBasedActionForPrefix:@"night"];
         switch (nightAction) {
             case SwitchToOrangeness:
-                [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
+                [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
             case KeepOrangenessEnabled:
                 nightModeWasEnabled = YES;
                 break;
@@ -362,11 +362,11 @@
 }
 
 + (void)disableColorAdjustment {
-    [GammaController disableOrangenessWithDefaults:YES key:@"rgbEnabled" transition:NO];
+    [self disableOrangenessWithDefaults:YES key:@"rgbEnabled" transition:NO];
 }
 
 + (void)disableDimness {
-    [GammaController disableOrangenessWithDefaults:YES key:@"dimEnabled" transition:NO];
+    [self disableOrangenessWithDefaults:YES key:@"dimEnabled" transition:NO];
 }
 
 + (void)disableOrangeness {
@@ -374,7 +374,7 @@
     if (!(currentOrangeLevel < 1.0f)) {
         return;
     }
-    [GammaController disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
+    [self disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
 }
 
 + (void)switchScreenTemperatureBasedOnLocation {
@@ -389,10 +389,10 @@
     if(orangeness > 0) {
         float percent = orangeness / maxOrange;
         float diff = 1.0f - maxOrange;
-        [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(1.0f-percent*diff, 1.0f)];
+        [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(1.0f-percent*diff, 1.0f)];
     }
     else if (orangeness <= 0) {
-        [GammaController disableOrangeness];
+        [self disableOrangeness];
     }
 }
 
