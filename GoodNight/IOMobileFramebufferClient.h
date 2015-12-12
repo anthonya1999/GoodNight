@@ -27,6 +27,8 @@ typedef struct {
 
 @interface IOMobileFramebufferClient : NSObject
 
++ (instancetype)sharedIOMobileFramebufferClient;
+
 - (IOMobileFramebufferColorRemapMode)colorRemapMode;
 - (void)setColorRemapMode:(IOMobileFramebufferColorRemapMode)mode;
 

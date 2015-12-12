@@ -22,12 +22,23 @@ typedef kern_return_t IOMobileFramebufferReturn;
 
 @implementation IOMobileFramebufferClient
 
-static void * IOMobileFramebufferHandle = NULL;
+static void *IOMobileFramebufferHandle = NULL;
 + (void)initialize {
     [super initialize];
 
     IOMobileFramebufferHandle = dlopen(IOMFB_PATH, RTLD_LAZY);
     NSParameterAssert(IOMobileFramebufferHandle);
+}
+
++ (instancetype)sharedIOMobileFramebufferClient {
+    static dispatch_once_t onceToken = 0;
+    static IOMobileFramebufferClient *sharedIOMobileFramebufferClient = nil;
+    
+    dispatch_once(&onceToken, ^{
+        sharedIOMobileFramebufferClient = [[self alloc] init];
+    });
+    
+    return sharedIOMobileFramebufferClient;
 }
 
 + (IOMobileFramebufferConnection)mainDisplayConnection {
@@ -44,6 +55,10 @@ static void * IOMobileFramebufferHandle = NULL;
         _framebufferConnection = [self.class mainDisplayConnection];
     }
     return self;
+}
+
+- (void)dealloc {
+    dlclose(IOMobileFramebufferHandle);
 }
 
 - (void)callFramebufferFunction:(NSString *)function withFirstParamPointer:(void *)pointer {

@@ -11,7 +11,7 @@
 
 @implementation ForceTouchController
 
-+ (id)sharedForceTouchController {
++ (instancetype)sharedForceTouchController {
     static dispatch_once_t onceToken = 0;
     static ForceTouchController *sharedForceTouchController = nil;
     
