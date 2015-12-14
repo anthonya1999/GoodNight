@@ -122,10 +122,11 @@
         TimeBasedAction nightAction = [self timeBasedActionForPrefix:@"night"];
         switch (nightAction) {
             case SwitchToOrangeness:
-                [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
                 [userDefaults setBool:NO forKey:@"dimEnabled"];
                 [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                //Fallthrough intended
             case KeepOrangenessEnabled:
+                [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
                 nightModeWasEnabled = YES;
                 break;
             default:
@@ -142,18 +143,16 @@
             
             switch (autoAction) {
                 case SwitchToOrangeness:
-                    [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"maxOrange"]];
                     [userDefaults setBool:NO forKey:@"dimEnabled"];
                     [userDefaults setBool:NO forKey:@"rgbEnabled"];
-                    break;
-                case SwitchToStandard:
-                    [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"dayOrange"]];
-                    [userDefaults setBool:NO forKey:@"dimEnabled"];
-                    [userDefaults setBool:NO forKey:@"rgbEnabled"];
-                    break;
+                    //Fallthrough intended
                 case KeepOrangenessEnabled:
                     [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"maxOrange"]];
                     break;
+                case SwitchToStandard:
+                    [userDefaults setBool:NO forKey:@"dimEnabled"];
+                    [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                    //Fallthrough intended
                 case KeepStandardEnabled:
                     [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"dayOrange"]];
                     break;
