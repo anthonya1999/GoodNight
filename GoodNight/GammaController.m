@@ -122,10 +122,11 @@
         TimeBasedAction nightAction = [self timeBasedActionForPrefix:@"night"];
         switch (nightAction) {
             case SwitchToOrangeness:
-                [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
                 [userDefaults setBool:NO forKey:@"dimEnabled"];
                 [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                //Fallthrough intended
             case KeepOrangenessEnabled:
+                [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
                 nightModeWasEnabled = YES;
                 break;
             default:
@@ -135,21 +136,25 @@
 
     if (!nightModeWasEnabled){
         if ([userDefaults boolForKey:@"colorChangingLocationEnabled"]) {
-            [self switchScreenTemperatureBasedOnLocation];
+            [self switchScreenTemperatureBasedOnLocationWithTransition:transition];
         }
         else if ([userDefaults boolForKey:@"colorChangingEnabled"]){
             TimeBasedAction autoAction = [self timeBasedActionForPrefix:@"auto"];
             
             switch (autoAction) {
                 case SwitchToOrangeness:
-                    [self enableOrangenessWithDefaults:YES transition:YES];
                     [userDefaults setBool:NO forKey:@"dimEnabled"];
                     [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                    //Fallthrough intended
+                case KeepOrangenessEnabled:
+                    [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"maxOrange"]];
                     break;
                 case SwitchToStandard:
-                    [self disableOrangeness];
                     [userDefaults setBool:NO forKey:@"dimEnabled"];
                     [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                    //Fallthrough intended
+                case KeepStandardEnabled:
+                    [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"dayOrange"]];
                     break;
                 default:
                     break;
@@ -181,7 +186,7 @@
     }
     if (defaults == YES) {
         [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-        [userDefaults setBool:YES forKey:@"enabled"];
+        [userDefaults setBool:(orangeLevel==1.0f)?NO:YES forKey:@"enabled"];
     }
     
     [userDefaults setObject:@"0" forKey:@"keyEnabled"];
@@ -233,9 +238,7 @@
     [queue addOperation:operation];
 }
 
-+ (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition {
-
-    [self wakeUpScreenIfNeeded];
++ (void)disableGammaWithTransition:(BOOL)transition {
     if (transition == YES) {
         float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
         [self setGammaWithTransitionFrom:currentOrangeLevel to:1.0];
@@ -243,10 +246,7 @@
     else {
         [self setGammaWithOrangeness:1.0];
     }
-    if (defaults == YES) {
-        [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-        [userDefaults setBool:NO forKey:key];
-    }
+    [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
     [userDefaults setFloat:1.0 forKey:@"currentOrange"];
     [userDefaults synchronize];
 }
@@ -294,11 +294,14 @@
 }
 
 + (void)disableColorAdjustment {
-    [self disableOrangenessWithDefaults:YES key:@"rgbEnabled" transition:NO];
+    [self disableGammaWithTransition:NO];
+    [userDefaults setBool:NO forKey:@"rgbEnabled"];
+
 }
 
 + (void)disableDimness {
-    [self disableOrangenessWithDefaults:YES key:@"dimEnabled" transition:NO];
+    [self disableGammaWithTransition:NO];
+    [userDefaults setBool:NO forKey:@"dimEnabled"];
 }
 
 + (void)disableOrangeness {
@@ -306,22 +309,26 @@
     if (!(currentOrangeLevel < 1.0f)) {
         return;
     }
-    [self disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
+    
+    [self wakeUpScreenIfNeeded];
+    [self disableGammaWithTransition:YES];
+    [userDefaults setBool:NO forKey:@"enabled"];
 }
 
-+ (void)switchScreenTemperatureBasedOnLocation {
++ (void)switchScreenTemperatureBasedOnLocationWithTransition:(BOOL)transition {
     float latitude = [userDefaults floatForKey:@"colorChangingLocationLatitude"];
     float longitude = [userDefaults floatForKey:@"colorChangingLocationLongitude"];
     
     double solarAngularElevation = solar_elevation([[NSDate date] timeIntervalSince1970], latitude, longitude);
     float maxOrange = [userDefaults floatForKey:@"maxOrange"];
     float maxOrangePercentage = maxOrange * 100;
-    float orangeness = (calculate_interpolated_value(solarAngularElevation, 0, maxOrangePercentage) / 100);
+    float dayOrange = [userDefaults floatForKey:@"dayOrange"];
+    float dayOrangePercentage = dayOrange * 100;
+    
+    float orangeness = (calculate_interpolated_value(solarAngularElevation, dayOrangePercentage, maxOrangePercentage) / 100);
     
     if(orangeness > 0) {
-        float percent = orangeness / maxOrange;
-        float diff = 1.0f - maxOrange;
-        [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(1.0f-percent*diff, 1.0f)];
+        [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:MIN(orangeness, 1.0f)];
     }
     else if (orangeness <= 0) {
         [self disableOrangeness];

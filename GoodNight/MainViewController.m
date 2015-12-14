@@ -84,9 +84,27 @@
 
 - (void)updateUI {
     self.enabledSwitch.on = [userDefaults boolForKey:@"enabled"];
-    self.orangeSlider.value = [userDefaults floatForKey:@"maxOrange"];
-    
+
     [self.currentOrangeSlider setValue:[userDefaults floatForKey:@"currentOrange"] animated:YES];
+    float orange = 1.0f - self.currentOrangeSlider.value;
+    self.currentOrangeSlider.thumbTintColor = [UIColor colorWithRed:0.8f green:((2.0f-orange)/2.0f)*0.8f blue:(1.0f-orange)*0.8f alpha:0.4];
+    
+    switch (self.timeOfDaySegmentedControl.selectedSegmentIndex) {
+        case 0:
+            self.orangeSlider.value = [userDefaults floatForKey:@"dayOrange"];
+            break;
+        case 1:
+            self.orangeSlider.value = [userDefaults floatForKey:@"maxOrange"];
+            break;
+        case 2:
+            self.orangeSlider.value = [userDefaults floatForKey:@"nightOrange"];
+            break;
+    }
+    
+    orange = 1.0f - self.orangeSlider.value;
+    self.orangeSlider.tintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
+    
+    self.enabledSwitch.onTintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
 
     self.colorChangingEnabledSwitch.on = [userDefaults boolForKey:@"colorChangingEnabled"];
     self.colorChangingLocationBasedSwitch.on = [userDefaults boolForKey:@"colorChangingLocationEnabled"];
@@ -94,20 +112,6 @@
     
     self.enabledSwitch.enabled = !(self.colorChangingEnabledSwitch.on || self.colorChangingLocationBasedSwitch.on);
     self.colorChangingNightModeSwitch.enabled = self.colorChangingEnabledSwitch.on || self.colorChangingLocationBasedSwitch.on;
-    
-    float orange = 1.0f - self.currentOrangeSlider.value;
-    
-    self.currentOrangeSlider.thumbTintColor = [UIColor colorWithRed:0.8f green:((2.0f-orange)/2.0f)*0.8f blue:(1.0f-orange)*0.8f alpha:0.4];
-    
-    
-    orange = 1.0f - self.orangeSlider.value;
-    
-    self.orangeSlider.tintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
-    
-    self.enabledSwitch.onTintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
-    self.colorChangingEnabledSwitch.onTintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
-    self.colorChangingLocationBasedSwitch.onTintColor = [UIColor colorWithRed:0.9f green:((2.0f-orange)/2.0f)*0.9f blue:(1.0f-orange)*0.9f alpha:1.0];
-    self.colorChangingNightModeSwitch.onTintColor = [UIColor colorWithRed:0.8f green:0.495f blue:0.09f alpha:1.0];
     
     NSDate *date = [self dateForHour:[userDefaults integerForKey:@"autoStartHour"] andMinute:[userDefaults integerForKey:@"autoStartMinute"]];
     self.startTimeTextField.text = [self.timeFormatter stringFromDate:date];
@@ -232,7 +236,7 @@
     [userDefaults setInteger:components.minute forKey:[defaultsKeyPrefix stringByAppendingString:@"Minute"]];
     
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
-    [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
+    [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -267,11 +271,30 @@
     [self updateUI];
 }
 
+
+- (IBAction)timeOfDaySegmentedControlChanged {
+    [self updateUI];
+}
+
 - (IBAction)maxOrangeSliderChanged {
-    [userDefaults setFloat:self.orangeSlider.value forKey:@"maxOrange"];
-    //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    NSString *key;
+    switch (self.timeOfDaySegmentedControl.selectedSegmentIndex) {
+        case 0:
+            key = @"dayOrange";
+            break;
+        case 1:
+            key = @"maxOrange";
+            break;
+        case 2:
+            key = @"nightOrange";
+            break;
+    }
+    [userDefaults setFloat:self.orangeSlider.value forKey:key];
     
-    if (self.enabledSwitch.on) {
+    if (self.colorChangingEnabledSwitch.on || self.colorChangingLocationBasedSwitch.on){
+        [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
+    }
+    else if (self.enabledSwitch.on) {
         [GammaController enableOrangenessWithDefaults:NO transition:NO];
     }
 }
@@ -294,6 +317,10 @@
         [self.colorChangingNightModeSwitch setOn:NO animated:YES];
         self.colorChangingNightModeSwitch.enabled = NO;
         [userDefaults setBool:NO forKey:@"colorChangingNightEnabled"];
+        
+        [self.enabledSwitch setOn:NO animated:YES];
+        [userDefaults setBool:NO forKey:@"enabled"];
+        [GammaController disableOrangeness];
     }
     
     [AppDelegate updateNotifications];
@@ -364,6 +391,10 @@
         [self.colorChangingNightModeSwitch setOn:NO animated:YES];
         self.colorChangingNightModeSwitch.enabled = NO;
         [userDefaults setBool:NO forKey:@"colorChangingNightEnabled"];
+        
+        [self.enabledSwitch setOn:NO animated:YES];
+        [userDefaults setBool:NO forKey:@"enabled"];
+        [GammaController disableOrangeness];
     }
     
     [userDefaults synchronize];
@@ -390,14 +421,30 @@
 }
 
 - (IBAction)resetSlider {
-    self.orangeSlider.value = 0.3111111111;
+    [userDefaults setFloat:0.3111111111f forKey:@"maxOrange"];
+    [userDefaults setFloat:1.0f forKey:@"dayOrange"];
+    [userDefaults setFloat:0.0f forKey:@"nightOrange"];
+    
+    switch (self.timeOfDaySegmentedControl.selectedSegmentIndex) {
+        case 0:
+            self.orangeSlider.value = [userDefaults floatForKey:@"dayOrange"];
+            break;
+        case 1:
+            self.orangeSlider.value = [userDefaults floatForKey:@"maxOrange"];
+            break;
+        case 2:
+            self.orangeSlider.value = [userDefaults floatForKey:@"nightOrange"];
+            break;
+    }
+
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
-    if (self.enabledSwitch.on) {
+    if (self.colorChangingEnabledSwitch.on || self.colorChangingLocationBasedSwitch.on){
+        [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
+    }
+    else if (self.enabledSwitch.on) {
         [GammaController setGammaWithTransitionFrom:[userDefaults floatForKey:@"maxOrange"] to:self.orangeSlider.value];
     }
-    
-    [userDefaults setFloat:self.orangeSlider.value forKey:@"maxOrange"];
 }
 
 - (NSArray <id <UIPreviewActionItem>> *)previewActionItems {

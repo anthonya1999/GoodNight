@@ -20,14 +20,14 @@ typedef NS_ENUM(NSInteger, TimeBasedAction) {
 + (void)autoChangeOrangenessIfNeededWithTransition:(BOOL)transition;
 + (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition;
 + (void)setGammaWithTransitionFrom:(float)oldPercentOrange to:(float)newPercentOrange;
-+ (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition;
++ (void)disableGammaWithTransition:(BOOL)transition;
 + (void)enableDimness;
 + (void)setGammaWithCustomValues;
 + (void)suspendApp;
 + (void)disableColorAdjustment;
 + (void)disableDimness;
 + (void)disableOrangeness;
-+ (void)switchScreenTemperatureBasedOnLocation;
++ (void)switchScreenTemperatureBasedOnLocationWithTransition:(BOOL)transition;
 + (TimeBasedAction)timeBasedActionForPrefix:(NSString*)autoOrNightPrefix;
 + (BOOL)checkCompatibility;
 + (void)setDarkroomEnabled:(BOOL)enable;
