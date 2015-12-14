@@ -86,7 +86,7 @@
 - (void)displaySplashAnimation {
     UIView *splashView = [[UIView alloc] initWithFrame:self.window.frame];
     splashView.backgroundColor = [UIColor whiteColor];
-    UIImageView *logoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"launch.png"]];
+    UIImageView *logoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"launch"]];
     [splashView addSubview:logoImage];
     
     logoImage.contentMode = UIViewContentModeCenter;
