@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, TimeBasedAction) {
 + (void)disableColorAdjustment;
 + (void)disableDimness;
 + (void)disableOrangeness;
-+ (void)switchScreenTemperatureBasedOnLocation;
++ (void)switchScreenTemperatureBasedOnLocationWithTransition:(BOOL)transition;
 + (TimeBasedAction)timeBasedActionForPrefix:(NSString*)autoOrNightPrefix;
 + (BOOL)checkCompatibility;
 + (void)setDarkroomEnabled:(BOOL)enable;

@@ -136,7 +136,7 @@
 
     if (!nightModeWasEnabled){
         if ([userDefaults boolForKey:@"colorChangingLocationEnabled"]) {
-            [self switchScreenTemperatureBasedOnLocation];
+            [self switchScreenTemperatureBasedOnLocationWithTransition:transition];
         }
         else if ([userDefaults boolForKey:@"colorChangingEnabled"]){
             TimeBasedAction autoAction = [self timeBasedActionForPrefix:@"auto"];
@@ -314,7 +314,7 @@
     [self disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
 }
 
-+ (void)switchScreenTemperatureBasedOnLocation {
++ (void)switchScreenTemperatureBasedOnLocationWithTransition:(BOOL)transition {
     float latitude = [userDefaults floatForKey:@"colorChangingLocationLatitude"];
     float longitude = [userDefaults floatForKey:@"colorChangingLocationLongitude"];
     
@@ -327,7 +327,7 @@
     float orangeness = (calculate_interpolated_value(solarAngularElevation, dayOrangePercentage, maxOrangePercentage) / 100);
     
     if(orangeness > 0) {
-        [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(orangeness, 1.0f)];
+        [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:MIN(orangeness, 1.0f)];
     }
     else if (orangeness <= 0) {
         [self disableOrangeness];

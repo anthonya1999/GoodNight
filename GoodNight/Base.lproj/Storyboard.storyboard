@@ -68,6 +68,7 @@
                                                         <segment title="Night"/>
                                                         <segment title="Bedtime"/>
                                                     </segments>
+                                                    <color key="tintColor" red="0.80000000000000004" green="0.49411764705882355" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="timeOfDaySegmentedControlChanged" destination="Eiw-Nq-vcn" eventType="valueChanged" id="Q83-8m-7Me"/>
                                                     </connections>
@@ -130,6 +131,7 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7bR-L3-HEE">
                                                     <rect key="frame" x="536" y="6" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.80000000000000004" green="0.4941176471" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="colorChangingLocationSwitchValueChanged:" destination="Eiw-Nq-vcn" eventType="touchUpInside" id="NKH-67-dVL"/>
                                                     </connections>
@@ -162,6 +164,7 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BMd-O8-eYt">
                                                     <rect key="frame" x="536" y="6" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.80000000000000004" green="0.4941176471" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="colorChangingEnabledSwitchChanged:" destination="Eiw-Nq-vcn" eventType="touchUpInside" id="mEW-9Q-FQ1"/>
                                                     </connections>
@@ -262,6 +265,7 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Yci-RR-nor">
                                                     <rect key="frame" x="536" y="6" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.80000000000000004" green="0.4941176471" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="nightModeEnabledSwitchChanged:" destination="Eiw-Nq-vcn" eventType="touchUpInside" id="wXK-M3-AFP"/>
                                                     </connections>
