@@ -239,7 +239,7 @@
     [userDefaults setInteger:components.minute forKey:[defaultsKeyPrefix stringByAppendingString:@"Minute"]];
     
     [userDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
-    [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
+    [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -321,6 +321,10 @@
         [self.colorChangingNightModeSwitch setOn:NO animated:YES];
         self.colorChangingNightModeSwitch.enabled = NO;
         [userDefaults setBool:NO forKey:@"colorChangingNightEnabled"];
+        
+        [self.enabledSwitch setOn:NO animated:YES];
+        [userDefaults setBool:NO forKey:@"enabled"];
+        [GammaController disableOrangeness];
     }
     
     [AppDelegate updateNotifications];
@@ -391,6 +395,10 @@
         [self.colorChangingNightModeSwitch setOn:NO animated:YES];
         self.colorChangingNightModeSwitch.enabled = NO;
         [userDefaults setBool:NO forKey:@"colorChangingNightEnabled"];
+        
+        [self.enabledSwitch setOn:NO animated:YES];
+        [userDefaults setBool:NO forKey:@"enabled"];
+        [GammaController disableOrangeness];
     }
     
     [userDefaults synchronize];

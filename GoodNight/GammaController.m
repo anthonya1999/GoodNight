@@ -186,7 +186,7 @@
     }
     if (defaults == YES) {
         [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-        [userDefaults setBool:YES forKey:@"enabled"];
+        [userDefaults setBool:(orangeLevel==1.0f)?NO:YES forKey:@"enabled"];
     }
     
     [userDefaults setObject:@"0" forKey:@"keyEnabled"];
