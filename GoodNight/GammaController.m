@@ -238,9 +238,7 @@
     [queue addOperation:operation];
 }
 
-+ (void)disableOrangenessWithDefaults:(BOOL)defaults key:(NSString *)key transition:(BOOL)transition {
-
-    [self wakeUpScreenIfNeeded];
++ (void)disableGammaWithTransition:(BOOL)transition {
     if (transition == YES) {
         float currentOrangeLevel = [userDefaults floatForKey:@"currentOrange"];
         [self setGammaWithTransitionFrom:currentOrangeLevel to:1.0];
@@ -248,10 +246,7 @@
     else {
         [self setGammaWithOrangeness:1.0];
     }
-    if (defaults == YES) {
-        [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
-        [userDefaults setBool:NO forKey:key];
-    }
+    [userDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
     [userDefaults setFloat:1.0 forKey:@"currentOrange"];
     [userDefaults synchronize];
 }
@@ -299,11 +294,14 @@
 }
 
 + (void)disableColorAdjustment {
-    [self disableOrangenessWithDefaults:YES key:@"rgbEnabled" transition:NO];
+    [self disableGammaWithTransition:NO];
+    [userDefaults setBool:NO forKey:@"rgbEnabled"];
+
 }
 
 + (void)disableDimness {
-    [self disableOrangenessWithDefaults:YES key:@"dimEnabled" transition:NO];
+    [self disableGammaWithTransition:NO];
+    [userDefaults setBool:NO forKey:@"dimEnabled"];
 }
 
 + (void)disableOrangeness {
@@ -311,7 +309,10 @@
     if (!(currentOrangeLevel < 1.0f)) {
         return;
     }
-    [self disableOrangenessWithDefaults:YES key:@"enabled" transition:YES];
+    
+    [self wakeUpScreenIfNeeded];
+    [self disableGammaWithTransition:YES];
+    [userDefaults setBool:NO forKey:@"enabled"];
 }
 
 + (void)switchScreenTemperatureBasedOnLocationWithTransition:(BOOL)transition {
