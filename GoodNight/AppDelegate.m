@@ -17,6 +17,7 @@
     
     NSDictionary *defaultsToRegister = @{@"enabled": @NO,
                                          @"maxOrange": @0.3111111111,
+                                         @"dayOrange": @1.0,
                                          @"nightOrange": @0.0,
                                          @"currentOrange": @1.0,
                                          @"colorChangingEnabled": @NO,
@@ -62,6 +63,9 @@
         [self installBackgroundTask:application];
     }
     
+    [self.window makeKeyAndVisible];
+    [self displaySplashAnimation];
+    
     return YES;
 }
 
@@ -77,6 +81,43 @@
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
     [NSThread sleepForTimeInterval:5.0];
     completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)displaySplashAnimation {
+    UIView *splashView = [[UIView alloc] initWithFrame:self.window.frame];
+    splashView.backgroundColor = [UIColor whiteColor];
+    UIImageView *logoImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"launch.png"]];
+    [splashView addSubview:logoImage];
+    
+    logoImage.contentMode = UIViewContentModeCenter;
+    CGRect frame = logoImage.frame;
+    frame.origin.x = self.window.frame.size.width/2 - frame.size.width/2;
+    frame.origin.y = self.window.frame.size.height/2 - frame.size.height/2;
+    logoImage.frame = frame;
+    
+    [self.window addSubview:splashView];
+    
+    float animationDuration = 0.25;
+    [UIView animateWithDuration:animationDuration
+            delay:0.25
+            options:UIViewAnimationOptionCurveEaseInOut
+            animations:^{
+                logoImage.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1.0);
+            }
+            completion:^(BOOL finished){
+                [UIView animateWithDuration:animationDuration
+                        delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                        animations:^{
+                            splashView.alpha = 0;
+                            logoImage.layer.transform = CATransform3DMakeScale(2.0, 2.0, 1.0);
+                        }
+                        completion:^(BOOL finished){
+                            [splashView removeFromSuperview];
+                        }
+                ];
+            }
+     ];
 }
 
 - (void)registerForNotifications {

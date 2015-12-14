@@ -122,7 +122,7 @@
         TimeBasedAction nightAction = [self timeBasedActionForPrefix:@"night"];
         switch (nightAction) {
             case SwitchToOrangeness:
-                [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
+                [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
                 [userDefaults setBool:NO forKey:@"dimEnabled"];
                 [userDefaults setBool:NO forKey:@"rgbEnabled"];
             case KeepOrangenessEnabled:
@@ -142,14 +142,20 @@
             
             switch (autoAction) {
                 case SwitchToOrangeness:
-                    [self enableOrangenessWithDefaults:YES transition:YES];
+                    [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"maxOrange"]];
                     [userDefaults setBool:NO forKey:@"dimEnabled"];
                     [userDefaults setBool:NO forKey:@"rgbEnabled"];
                     break;
                 case SwitchToStandard:
-                    [self disableOrangeness];
+                    [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"dayOrange"]];
                     [userDefaults setBool:NO forKey:@"dimEnabled"];
                     [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                    break;
+                case KeepOrangenessEnabled:
+                    [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"maxOrange"]];
+                    break;
+                case KeepStandardEnabled:
+                    [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"dayOrange"]];
                     break;
                 default:
                     break;
@@ -316,12 +322,13 @@
     double solarAngularElevation = solar_elevation([[NSDate date] timeIntervalSince1970], latitude, longitude);
     float maxOrange = [userDefaults floatForKey:@"maxOrange"];
     float maxOrangePercentage = maxOrange * 100;
-    float orangeness = (calculate_interpolated_value(solarAngularElevation, 0, maxOrangePercentage) / 100);
+    float dayOrange = [userDefaults floatForKey:@"dayOrange"];
+    float dayOrangePercentage = dayOrange * 100;
+    
+    float orangeness = (calculate_interpolated_value(solarAngularElevation, dayOrangePercentage, maxOrangePercentage) / 100);
     
     if(orangeness > 0) {
-        float percent = orangeness / maxOrange;
-        float diff = 1.0f - maxOrange;
-        [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(1.0f-percent*diff, 1.0f)];
+        [self enableOrangenessWithDefaults:YES transition:YES orangeLevel:MIN(orangeness, 1.0f)];
     }
     else if (orangeness <= 0) {
         [self disableOrangeness];
