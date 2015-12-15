@@ -15,42 +15,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NSDictionary *defaultsToRegister = @{@"enabled": @NO,
-                                         @"maxOrange": @0.3111111111,
-                                         @"dayOrange": @1.0,
-                                         @"nightOrange": @0.0,
-                                         @"currentOrange": @1.0,
-                                         @"colorChangingEnabled": @NO,
-                                         @"colorChangingLocationEnabled": @NO,
-                                         @"colorChangingLocationLatitude": @0.0,
-                                         @"colorChangingLocationLongitude": @0.0,
-                                         @"redValue": @1.0,
-                                         @"greenValue": @1.0,
-                                         @"blueValue": @1.0,
-                                         @"dimEnabled": @NO,
-                                         @"darkroomEnabled": @NO,
-                                         @"dimLevel": @1.0,
-                                         @"rgbEnabled": @NO,
-                                         @"lastAutoChangeDate": [NSDate distantPast],
-                                         @"autoStartHour": @19,
-                                         @"autoStartMinute": @0,
-                                         @"autoEndHour": @7,
-                                         @"autoEndMinute": @0,
-                                         @"colorChangingNightEnabled": @NO,
-                                         @"nightStartHour": @23,
-                                         @"nightStartMinute": @0,
-                                         @"nightEndHour": @6,
-                                         @"nightEndMinute": @0,
-                                         @"suspendEnabled": @YES,
-                                         @"forceTouchEnabled": @YES,
-                                         @"tempForceTouch": @YES,
-                                         @"dimForceTouch": @NO,
-                                         @"rgbForceTouch": @NO,
-                                         @"peekPopEnabled": @YES,
-                                         @"keyEnabled": @"0",
-                                         @"lastBackgroundCheck": [NSDate distantPast]};
-    
+    NSString *defaultsPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
+    NSDictionary *defaultsToRegister = [NSDictionary dictionaryWithContentsOfFile:defaultsPath];
     [userDefaults registerDefaults:defaultsToRegister];
+
     [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
     [self registerForNotifications];
     [AppDelegate updateNotifications];
@@ -145,7 +113,9 @@
         [compsForEnable setHour:[userDefaults integerForKey:@"autoStartHour"]];
         [compsForEnable setMinute:[userDefaults integerForKey:@"autoStartMinute"]];
         [enableNotification setSoundName:UILocalNotificationDefaultSoundName];
-        [enableNotification setAlertTitle:bundleName];
+        if ([enableNotification respondsToSelector:@selector(setAlertTitle:)]){
+            [enableNotification setAlertTitle:bundleName];
+        }
         [enableNotification setAlertBody:[NSString stringWithFormat:@"Time to enable %@!", bundleName]];
         [enableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
         [enableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForEnable]];
@@ -161,7 +131,9 @@
         [compsForDisable setHour:[userDefaults integerForKey:@"autoEndHour"]];
         [compsForDisable setMinute:[userDefaults integerForKey:@"autoEndMinute"]];
         [disableNotification setSoundName:UILocalNotificationDefaultSoundName];
-        [disableNotification setAlertTitle:bundleName];
+        if ([disableNotification respondsToSelector:@selector(setAlertTitle:)]){
+            [disableNotification setAlertTitle:bundleName];
+        }
         [disableNotification setAlertBody:[NSString stringWithFormat:@"Time to disable %@!", bundleName]];
         [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
         [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
@@ -184,7 +156,9 @@
             [compsForNightEnable setHour:[userDefaults integerForKey:@"nightStartHour"]];
             [compsForNightEnable setMinute:[userDefaults integerForKey:@"nightStartMinute"]];
             [enableNightNotification setSoundName:UILocalNotificationDefaultSoundName];
-            [enableNightNotification setAlertTitle:bundleName];
+            if ([enableNightNotification respondsToSelector:@selector(setAlertTitle:)]){
+                [enableNightNotification setAlertTitle:bundleName];
+            }
             [enableNightNotification setAlertBody:[NSString stringWithFormat:@"Time to enable night mode!"]];
             [enableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
             [enableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightEnable]];
@@ -200,7 +174,9 @@
             [compsForNightDisable setHour:[userDefaults integerForKey:@"nightEndHour"]];
             [compsForNightDisable setMinute:[userDefaults integerForKey:@"nightEndMinute"]];
             [disableNightNotification setSoundName:UILocalNotificationDefaultSoundName];
-            [disableNightNotification setAlertTitle:bundleName];
+            if ([disableNightNotification respondsToSelector:@selector(setAlertTitle:)]){
+                [disableNightNotification setAlertTitle:bundleName];
+            }
             [disableNightNotification setAlertBody:[NSString stringWithFormat:@"Time to disable night mode!"]];
             [disableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
             [disableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightDisable]];
