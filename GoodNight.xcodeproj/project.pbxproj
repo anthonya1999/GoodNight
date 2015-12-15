@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		32AFEC481C1B1B8A00142DD9 /* IOMobileFramebufferClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AFEC471C1B1B8A00142DD9 /* IOMobileFramebufferClient.m */; };
-		75885DD91C2045A200B57791 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75885DD81C2045A200B57791 /* Defaults.plist */; };
 		921810341BC1B1C300D32E92 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810331BC1B1C300D32E92 /* CreditsViewController.m */; };
 		921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810361BC1B3C000D32E92 /* BrightnessViewController.m */; };
+		921DE7511C20D591005C3F92 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 921DE7501C20D591005C3F92 /* Defaults.plist */; };
 		924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */; };
 		925B81211BE2BCE1003A6C4B /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B81201BE2BCE1003A6C4B /* NotificationCenter.framework */; };
 		925B81251BE2BCE1003A6C4B /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B81241BE2BCE1003A6C4B /* TodayViewController.m */; };
@@ -25,7 +25,6 @@
 		92F23ABF1BD72ADD00A097CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F23AC11BD72ADD00A097CB /* LaunchScreen.storyboard */; };
 		92F23AC21BD72AE700A097CB /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F23AC41BD72AE700A097CB /* Storyboard.storyboard */; };
 		ACCE45A21C1B6D3100CD094C /* SpringBoardServicesClient.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE45A11C1B6D3100CD094C /* SpringBoardServicesClient.m */; };
-		ACCE45A51C1B750B00CD094C /* MobileGestaltClient.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE45A41C1B750B00CD094C /* MobileGestaltClient.m */; };
 		B96BB64F1B38D96600F1C3AE /* GammaController.m in Sources */ = {isa = PBXBuildFile; fileRef = B96BB64E1B38D96600F1C3AE /* GammaController.m */; };
 		B9E5364B1B38D90D0097BF90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E5364A1B38D90D0097BF90 /* main.m */; };
 		B9E5364E1B38D90D0097BF90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E5364D1B38D90D0097BF90 /* AppDelegate.m */; };
@@ -63,11 +62,11 @@
 		511EBE611BEBB1E200D5DAF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		511EBE621BEBB1E200D5DAF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Storyboard.strings; sourceTree = "<group>"; };
 		511EBE631BEBB1E200D5DAF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainInterface.strings; sourceTree = "<group>"; };
-		75885DD81C2045A200B57791 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		921810321BC1B1C300D32E92 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
 		921810331BC1B1C300D32E92 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		921810351BC1B3C000D32E92 /* BrightnessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessViewController.h; sourceTree = "<group>"; };
 		921810361BC1B3C000D32E92 /* BrightnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessViewController.m; sourceTree = "<group>"; };
+		921DE7501C20D591005C3F92 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 		925B811E1BE2BCE1003A6C4B /* GoodNight Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "GoodNight Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,8 +94,6 @@
 		92F4101C1BD0730A003AABB8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		ACCE45A01C1B6D3100CD094C /* SpringBoardServicesClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoardServicesClient.h; sourceTree = "<group>"; };
 		ACCE45A11C1B6D3100CD094C /* SpringBoardServicesClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringBoardServicesClient.m; sourceTree = "<group>"; };
-		ACCE45A31C1B750B00CD094C /* MobileGestaltClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileGestaltClient.h; sourceTree = "<group>"; };
-		ACCE45A41C1B750B00CD094C /* MobileGestaltClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileGestaltClient.m; sourceTree = "<group>"; };
 		B96BB64D1B38D96600F1C3AE /* GammaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GammaController.h; sourceTree = "<group>"; };
 		B96BB64E1B38D96600F1C3AE /* GammaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GammaController.m; sourceTree = "<group>"; };
 		B9E536461B38D90D0097BF90 /* GoodNight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodNight.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,12 +184,7 @@
 		926B68F91BC1B91D00F12297 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				ACCE45A31C1B750B00CD094C /* MobileGestaltClient.h */,
-				ACCE45A41C1B750B00CD094C /* MobileGestaltClient.m */,
-				ACCE45A01C1B6D3100CD094C /* SpringBoardServicesClient.h */,
-				ACCE45A11C1B6D3100CD094C /* SpringBoardServicesClient.m */,
-				32AFEC461C1B1B8A00142DD9 /* IOMobileFramebufferClient.h */,
-				32AFEC471C1B1B8A00142DD9 /* IOMobileFramebufferClient.m */,
+				92BC7DF41C1F859600574361 /* Clients */,
 				B96BB64D1B38D96600F1C3AE /* GammaController.h */,
 				B96BB64E1B38D96600F1C3AE /* GammaController.m */,
 			);
@@ -277,6 +269,33 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		92BC7DF41C1F859600574361 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				92BC7DF71C1F876700574361 /* IOMobileFramebuffer */,
+				92BC7DF61C1F85D500574361 /* SpringBoardServices */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		92BC7DF61C1F85D500574361 /* SpringBoardServices */ = {
+			isa = PBXGroup;
+			children = (
+				ACCE45A01C1B6D3100CD094C /* SpringBoardServicesClient.h */,
+				ACCE45A11C1B6D3100CD094C /* SpringBoardServicesClient.m */,
+			);
+			name = SpringBoardServices;
+			sourceTree = "<group>";
+		};
+		92BC7DF71C1F876700574361 /* IOMobileFramebuffer */ = {
+			isa = PBXGroup;
+			children = (
+				32AFEC461C1B1B8A00142DD9 /* IOMobileFramebufferClient.h */,
+				32AFEC471C1B1B8A00142DD9 /* IOMobileFramebufferClient.m */,
+			);
+			name = IOMobileFramebuffer;
+			sourceTree = "<group>";
+		};
 		B9E5363D1B38D90D0097BF90 = {
 			isa = PBXGroup;
 			children = (
@@ -316,10 +335,10 @@
 				926F71201C0CF39B0039A4A2 /* Brightness */,
 				926F71231C0CF39B0039A4A2 /* Solar */,
 				921924341BCDC11800254487 /* NSDate+Extensions */,
-				75885DD81C2045A200B57791 /* Defaults.plist */,
 				92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */,
 				B9E536551B38D90D0097BF90 /* Assets.xcassets */,
 				B9E5365A1B38D90D0097BF90 /* Info.plist */,
+				921DE7501C20D591005C3F92 /* Defaults.plist */,
 				92F4101C1BD0730A003AABB8 /* PrefixHeader.pch */,
 				B9E5364A1B38D90D0097BF90 /* main.m */,
 			);
@@ -376,7 +395,7 @@
 				TargetAttributes = {
 					925B811D1BE2BCE1003A6C4B = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = RZ4ZD385GT;
+						DevelopmentTeam = 9QKLXG4845;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 0;
@@ -385,7 +404,7 @@
 					};
 					B9E536451B38D90D0097BF90 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = RZ4ZD385GT;
+						DevelopmentTeam = 9QKLXG4845;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -429,7 +448,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75885DD91C2045A200B57791 /* Defaults.plist in Resources */,
+				921DE7511C20D591005C3F92 /* Defaults.plist in Resources */,
 				92F23ABF1BD72ADD00A097CB /* LaunchScreen.storyboard in Resources */,
 				B9E536561B38D90D0097BF90 /* Assets.xcassets in Resources */,
 				92F23AC21BD72AE700A097CB /* Storyboard.storyboard in Resources */,
@@ -462,7 +481,6 @@
 				926F71261C0CF39B0039A4A2 /* Brightness.c in Sources */,
 				B9E5364E1B38D90D0097BF90 /* AppDelegate.m in Sources */,
 				929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */,
-				ACCE45A51C1B750B00CD094C /* MobileGestaltClient.m in Sources */,
 				B9E5364B1B38D90D0097BF90 /* main.m in Sources */,
 				B96BB64F1B38D96600F1C3AE /* GammaController.m in Sources */,
 				926F71271C0CF39B0039A4A2 /* Solar.c in Sources */,
@@ -571,7 +589,6 @@
 				GCC_PREFIX_HEADER = GoodNight/PrefixHeader.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/GoodNight/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adatech.goodnight;
 				PRODUCT_NAME = GoodNight;
@@ -590,7 +607,6 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = GoodNight/PrefixHeader.pch;
 				INFOPLIST_FILE = "GoodNight Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adatech.goodnight.GoodNight-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -635,7 +651,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "GoodNight Widget/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adatech.goodnight.GoodNight-Widget";
@@ -707,7 +722,6 @@
 				GCC_PREFIX_HEADER = GoodNight/PrefixHeader.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/GoodNight/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adatech.goodnight;
 				PRODUCT_NAME = GoodNight;

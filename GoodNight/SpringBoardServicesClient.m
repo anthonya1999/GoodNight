@@ -9,28 +9,17 @@
 #import <dlfcn.h>
 #import "SpringBoardServicesClient.h"
 
-typedef mach_port_t SpringBoardServicesMachPort;
-typedef kern_return_t SpringBoardServicesReturn;
-
 #define SBS_PATH "/System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices"
-
-@interface SpringBoardServicesClient ()
-
-@property (nonatomic, readonly) SpringBoardServicesMachPort sbsMachPort;
-
-@end
 
 @implementation SpringBoardServicesClient
 
-static void *SpringBoardServicesHandle = NULL;
 + (void)initialize {
     [super initialize];
-
     SpringBoardServicesHandle = dlopen(SBS_PATH, RTLD_LAZY);
     NSParameterAssert(SpringBoardServicesHandle);
 }
 
-+ (instancetype)sharedSpringBoardServicesClient {
++ (instancetype)sharedInstance {
     static dispatch_once_t onceToken = 0;
     static SpringBoardServicesClient *sharedSpringBoardServicesClient = nil;
     
@@ -41,12 +30,10 @@ static void *SpringBoardServicesHandle = NULL;
     return sharedSpringBoardServicesClient;
 }
 
-+ (SpringBoardServicesMachPort)mainSpringBoardServicesMachPort {
-    SpringBoardServicesMachPort port;
-    SpringBoardServicesMachPort (*SBSSpringBoardServerPort)() = dlsym(SpringBoardServicesHandle, "SBSSpringBoardServerPort");
++ (mach_port_t)mainSpringBoardServicesMachPort {
+    mach_port_t (*SBSSpringBoardServerPort)() = dlsym(SpringBoardServicesHandle, "SBSSpringBoardServerPort");
     NSParameterAssert(SBSSpringBoardServerPort);
-    port = SBSSpringBoardServerPort();
-    return port;
+    return SBSSpringBoardServerPort();
 }
 
 - (instancetype)init {
@@ -62,11 +49,10 @@ static void *SpringBoardServicesHandle = NULL;
 }
 
 - (void)callSBGetScreenLockStatusWithLocked:(BOOL*)isLocked andPasscodeEnabled:(BOOL*)passcodeEnabled{
-    void *(*SBGetScreenLockStatus)(SpringBoardServicesMachPort port, BOOL *isLocked, BOOL *passcodeEnabled) = dlsym(SpringBoardServicesHandle, "SBGetScreenLockStatus");
+    void *(*SBGetScreenLockStatus)(mach_port_t port, BOOL *isLocked, BOOL *passcodeEnabled) = dlsym(SpringBoardServicesHandle, "SBGetScreenLockStatus");
     NSParameterAssert(SBGetScreenLockStatus);
     SBGetScreenLockStatus(self.sbsMachPort, isLocked, passcodeEnabled);
 }
-
 
 - (BOOL)SBGetScreenLockStatusIsLocked{
     BOOL isLocked, passcodeEnabled;
@@ -81,7 +67,7 @@ static void *SpringBoardServicesHandle = NULL;
 }
 
 - (void)SBSuspend{
-    SpringBoardServicesReturn (*SBSuspend)(SpringBoardServicesMachPort port) = dlsym(SpringBoardServicesHandle, "SBSuspend");
+    SpringBoardServicesReturn (*SBSuspend)(mach_port_t port) = dlsym(SpringBoardServicesHandle, "SBSuspend");
     NSParameterAssert(SBSuspend);
     SBSuspend(self.sbsMachPort);
 }

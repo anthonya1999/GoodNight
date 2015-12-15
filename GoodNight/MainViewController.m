@@ -84,6 +84,7 @@
 
 - (void)updateUI {
     self.enabledSwitch.on = [userDefaults boolForKey:@"enabled"];
+    
     self.colorChangingEnabledSwitch.on = [userDefaults boolForKey:@"colorChangingEnabled"];
     self.colorChangingLocationBasedSwitch.on = [userDefaults boolForKey:@"colorChangingLocationEnabled"];
     self.colorChangingNightModeSwitch.on = [userDefaults boolForKey:@"colorChangingNightEnabled"];
@@ -98,10 +99,6 @@
     else{
         self.timeOfDaySegmentedControl.enabled = YES;
     }
-    
-    
-    
-    
 
     [self.currentOrangeSlider setValue:[userDefaults floatForKey:@"currentOrange"] animated:YES];
     float orange = 1.0f - self.currentOrangeSlider.value;
@@ -163,7 +160,7 @@
         NSString *title = @"Error";
         NSString *message = @"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one.";
         NSString *cancelButton = @"Cancel";
-        NSString *disableButton = @"Disable others";
+        NSString *disableButton = @"Disable";
         
         if (NSClassFromString(@"UIAlertController") != nil) {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];

@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, IOMobileFramebufferColorRemapMode) {
+static void *IOMobileFramebufferHandle = NULL;
+typedef struct __IOMobileFramebuffer *IOMobileFramebufferConnection;
+typedef kern_return_t IOMobileFramebufferReturn;
+
+#define IOMFB_PATH "/System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer"
+
+typedef NS_ENUM(int, IOMobileFramebufferColorRemapMode) {
     IOMobileFramebufferColorRemapModeError = -1,
     IOMobileFramebufferColorRemapModeNormal = 0,
     IOMobileFramebufferColorRemapModeInverted = 1,
@@ -17,23 +23,23 @@ typedef NS_ENUM(NSInteger, IOMobileFramebufferColorRemapMode) {
     IOMobileFramebufferColorRemapModeInvertedGrayscale = 4
 };
 
-typedef struct {
-    uint32_t values[0xc0c/sizeof(uint32_t)];
-} IOMobileFramebufferGammaTable;
+typedef long s1516;
+extern s1516 GamutMatrixValue(double value);
 
 typedef struct {
-    double values[9];
+    union {
+        s1516 matrix[3][3];
+    } content;
 } IOMobileFramebufferGamutMatrix;
 
 @interface IOMobileFramebufferClient : NSObject
 
-+ (instancetype)sharedIOMobileFramebufferClient;
+@property (nonatomic, readonly) IOMobileFramebufferConnection framebufferConnection;
+
++ (instancetype)sharedInstance;
 
 - (IOMobileFramebufferColorRemapMode)colorRemapMode;
 - (void)setColorRemapMode:(IOMobileFramebufferColorRemapMode)mode;
-
-- (void)gammaTable:(IOMobileFramebufferGammaTable *)table;
-- (void)setGammaTable:(IOMobileFramebufferGammaTable *)table;
 
 - (void)gamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix;
 - (void)setGamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix;

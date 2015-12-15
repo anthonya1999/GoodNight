@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+static void *SpringBoardServicesHandle = NULL;
+typedef kern_return_t SpringBoardServicesReturn;
+
 @interface SpringBoardServicesClient : NSObject
 
-+ (instancetype)sharedSpringBoardServicesClient;
+@property (nonatomic, readonly) mach_port_t sbsMachPort;
 
++ (instancetype)sharedInstance;
 - (BOOL)SBGetScreenLockStatusIsLocked;
 - (BOOL)SBGetScreenLockStatusIsPasscodeEnabled;
 - (void)SBSuspend;
