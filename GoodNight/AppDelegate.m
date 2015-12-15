@@ -15,42 +15,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NSDictionary *defaultsToRegister = @{@"enabled": @NO,
-                                         @"maxOrange": @0.3111111111,
-                                         @"dayOrange": @1.0,
-                                         @"nightOrange": @0.0,
-                                         @"currentOrange": @1.0,
-                                         @"colorChangingEnabled": @NO,
-                                         @"colorChangingLocationEnabled": @NO,
-                                         @"colorChangingLocationLatitude": @0.0,
-                                         @"colorChangingLocationLongitude": @0.0,
-                                         @"redValue": @1.0,
-                                         @"greenValue": @1.0,
-                                         @"blueValue": @1.0,
-                                         @"dimEnabled": @NO,
-                                         @"darkroomEnabled": @NO,
-                                         @"dimLevel": @1.0,
-                                         @"rgbEnabled": @NO,
-                                         @"lastAutoChangeDate": [NSDate distantPast],
-                                         @"autoStartHour": @19,
-                                         @"autoStartMinute": @0,
-                                         @"autoEndHour": @7,
-                                         @"autoEndMinute": @0,
-                                         @"colorChangingNightEnabled": @NO,
-                                         @"nightStartHour": @23,
-                                         @"nightStartMinute": @0,
-                                         @"nightEndHour": @6,
-                                         @"nightEndMinute": @0,
-                                         @"suspendEnabled": @YES,
-                                         @"forceTouchEnabled": @YES,
-                                         @"tempForceTouch": @YES,
-                                         @"dimForceTouch": @NO,
-                                         @"rgbForceTouch": @NO,
-                                         @"peekPopEnabled": @YES,
-                                         @"keyEnabled": @"0",
-                                         @"lastBackgroundCheck": [NSDate distantPast]};
-    
+    NSString *defaultsPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
+    NSDictionary *defaultsToRegister = [NSDictionary dictionaryWithContentsOfFile:defaultsPath];
     [userDefaults registerDefaults:defaultsToRegister];
+
     [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
     [self registerForNotifications];
     [AppDelegate updateNotifications];
