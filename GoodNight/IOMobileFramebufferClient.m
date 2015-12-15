@@ -107,7 +107,7 @@ s1516 GamutMatrixValue(double value) {
     else {
         functionName = @"IOMobileFramebufferGetGamutCSC";
     }
-    [self callFramebufferFunction:@"" withFirstParamPointer:matrix];
+    [self callFramebufferFunction:functionName withFirstParamPointer:matrix];
 }
 
 @end
