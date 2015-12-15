@@ -145,7 +145,9 @@
         [compsForEnable setHour:[userDefaults integerForKey:@"autoStartHour"]];
         [compsForEnable setMinute:[userDefaults integerForKey:@"autoStartMinute"]];
         [enableNotification setSoundName:UILocalNotificationDefaultSoundName];
-        [enableNotification setAlertTitle:bundleName];
+        if ([enableNotification respondsToSelector:@selector(setAlertTitle:)]){
+            [enableNotification setAlertTitle:bundleName];
+        }
         [enableNotification setAlertBody:[NSString stringWithFormat:@"Time to enable %@!", bundleName]];
         [enableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
         [enableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForEnable]];
@@ -161,7 +163,9 @@
         [compsForDisable setHour:[userDefaults integerForKey:@"autoEndHour"]];
         [compsForDisable setMinute:[userDefaults integerForKey:@"autoEndMinute"]];
         [disableNotification setSoundName:UILocalNotificationDefaultSoundName];
-        [disableNotification setAlertTitle:bundleName];
+        if ([disableNotification respondsToSelector:@selector(setAlertTitle:)]){
+            [disableNotification setAlertTitle:bundleName];
+        }
         [disableNotification setAlertBody:[NSString stringWithFormat:@"Time to disable %@!", bundleName]];
         [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
         [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
@@ -184,7 +188,9 @@
             [compsForNightEnable setHour:[userDefaults integerForKey:@"nightStartHour"]];
             [compsForNightEnable setMinute:[userDefaults integerForKey:@"nightStartMinute"]];
             [enableNightNotification setSoundName:UILocalNotificationDefaultSoundName];
-            [enableNightNotification setAlertTitle:bundleName];
+            if ([enableNightNotification respondsToSelector:@selector(setAlertTitle:)]){
+                [enableNightNotification setAlertTitle:bundleName];
+            }
             [enableNightNotification setAlertBody:[NSString stringWithFormat:@"Time to enable night mode!"]];
             [enableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
             [enableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightEnable]];
@@ -200,7 +206,9 @@
             [compsForNightDisable setHour:[userDefaults integerForKey:@"nightEndHour"]];
             [compsForNightDisable setMinute:[userDefaults integerForKey:@"nightEndMinute"]];
             [disableNightNotification setSoundName:UILocalNotificationDefaultSoundName];
-            [disableNightNotification setAlertTitle:bundleName];
+            if ([disableNightNotification respondsToSelector:@selector(setAlertTitle:)]){
+                [disableNightNotification setAlertTitle:bundleName];
+            }
             [disableNightNotification setAlertBody:[NSString stringWithFormat:@"Time to disable night mode!"]];
             [disableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
             [disableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightDisable]];
