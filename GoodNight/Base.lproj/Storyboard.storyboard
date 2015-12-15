@@ -136,7 +136,7 @@
                                                         <action selector="colorChangingLocationSwitchValueChanged:" destination="Eiw-Nq-vcn" eventType="touchUpInside" id="NKH-67-dVL"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automatic Color Changing (Location)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoa-EP-vXq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color Changing (Location)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoa-EP-vXq">
                                                     <rect key="frame" x="18" y="12" width="510" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="510" id="Cj1-EK-KYh"/>
@@ -169,7 +169,7 @@
                                                         <action selector="colorChangingEnabledSwitchChanged:" destination="Eiw-Nq-vcn" eventType="touchUpInside" id="mEW-9Q-FQ1"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automatic Color Changing (Time)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgd-Ps-vkZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color Changing (Time)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgd-Ps-vkZ">
                                                     <rect key="frame" x="18" y="12" width="510" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="510" id="vTG-Qc-7aj"/>
