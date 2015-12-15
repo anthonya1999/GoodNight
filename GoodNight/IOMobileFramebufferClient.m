@@ -77,10 +77,9 @@ static void *IOMobileFramebufferHandle = NULL;
 }
 
 - (IOMobileFramebufferColorRemapMode)colorRemapMode {
-    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection, IOMobileFramebufferColorRemapMode *) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferGetColorRemapMode");
+    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode *mode) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferGetColorRemapMode");
     NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
-
-    IOMobileFramebufferColorRemapMode mode;
+    IOMobileFramebufferColorRemapMode mode = IOMobileFramebufferColorRemapModeNormal;
     IOMobileFramebufferReturn ret = IOMobileFramebufferGetColorRemapMode(self.framebufferConnection, &mode);
 
     if (ret == 0) return mode;
