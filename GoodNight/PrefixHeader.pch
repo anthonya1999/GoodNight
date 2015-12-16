@@ -11,6 +11,7 @@
 
 #define userDefaults [NSUserDefaults standardUserDefaults]
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define iPadProIsCurrentDevice ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad && [UIScreen mainScreen].bounds.size.height == 1366)
 #define app [UIApplication sharedApplication]
 
 #endif

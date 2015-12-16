@@ -23,6 +23,10 @@ typedef NS_ENUM(int, IOMobileFramebufferColorRemapMode) {
     IOMobileFramebufferColorRemapModeInvertedGrayscale = 4
 };
 
+typedef struct {
+    uint32_t values[0xc0c/sizeof(uint32_t)];
+} IOMobileFramebufferGammaTable;
+
 typedef long s1516;
 extern s1516 GamutMatrixValue(double value);
 
@@ -43,5 +47,7 @@ typedef struct {
 
 - (void)gamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix;
 - (void)setGamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix;
+- (void)gammaTable:(IOMobileFramebufferGammaTable *)table;
+- (void)setGammaTable:(IOMobileFramebufferGammaTable *)table;
 
 @end

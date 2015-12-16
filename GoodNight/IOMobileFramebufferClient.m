@@ -89,25 +89,19 @@ s1516 GamutMatrixValue(double value) {
 }
 
 - (void)setGamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix {
-    NSString *functionName = nil;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
-        functionName = @"IOMobileFramebufferSetGamutMatrix";
-    }
-    else {
-        functionName = @"IOMobileFramebufferSetGamutCSC";
-    }
-    [self callFramebufferFunction:functionName withFirstParamPointer:matrix];
+    [self callFramebufferFunction:@"IOMobileFramebufferSetGamutMatrix" withFirstParamPointer:matrix];
 }
 
 - (void)gamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix {
-    NSString *functionName = nil;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
-        functionName = @"IOMobileFramebufferGetGamutMatrix";
-    }
-    else {
-        functionName = @"IOMobileFramebufferGetGamutCSC";
-    }
-    [self callFramebufferFunction:functionName withFirstParamPointer:matrix];
+    [self callFramebufferFunction:@"IOMobileFramebufferGetGamutMatrix" withFirstParamPointer:matrix];
+}
+
+- (void)setGammaTable:(IOMobileFramebufferGammaTable *)table {
+    [self callFramebufferFunction:@"IOMobileFramebufferSetGammaTable" withFirstParamPointer:table];
+}
+
+- (void)gammaTable:(IOMobileFramebufferGammaTable *)table {
+    [self callFramebufferFunction:@"IOMobileFramebufferGetGammaTable" withFirstParamPointer:table];
 }
 
 @end

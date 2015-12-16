@@ -7,6 +7,7 @@
 //
 
 #import "GammaController.h"
+#import <UIKit/UIKit.h>
 
 #import "NSDate+Extensions.h"
 #include <dlfcn.h>
@@ -42,21 +43,69 @@
 }
 
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue {
-    IOMobileFramebufferGamutMatrix gamutMatrix;
-    memset(&gamutMatrix, 0, sizeof(gamutMatrix));
-    
-    if ([userDefaults boolForKey:@"enabled"]) {
-        red += 0.5;
-        green = (green / 3) + 0.5;
-        blue = (blue / 10) + 0.5;
+    if (iPadProIsCurrentDevice) {
+        IOMobileFramebufferGamutMatrix gamutMatrix;
+        memset(&gamutMatrix, 0, sizeof(gamutMatrix));
+        
+        if ([userDefaults boolForKey:@"enabled"]) {
+            red += 0.5;
+            green = (green / 3) + 0.5;
+            blue = (blue / 10) + 0.5;
+        }
+        
+        gamutMatrix.content.matrix[0][0] = GamutMatrixValue(red);
+        gamutMatrix.content.matrix[1][1] = GamutMatrixValue(green);
+        gamutMatrix.content.matrix[2][2] = GamutMatrixValue(blue);
+        
+        [[IOMobileFramebufferClient sharedInstance] setGamutMatrix:&gamutMatrix];
+        [[IOMobileFramebufferClient sharedInstance] gamutMatrix:&gamutMatrix];
     }
-    
-    gamutMatrix.content.matrix[0][0] = GamutMatrixValue(red);
-    gamutMatrix.content.matrix[1][1] = GamutMatrixValue(green);
-    gamutMatrix.content.matrix[2][2] = GamutMatrixValue(blue);
-
-    [[IOMobileFramebufferClient sharedInstance] setGamutMatrix:&gamutMatrix];
-    [[IOMobileFramebufferClient sharedInstance] gamutMatrix:&gamutMatrix];
+    else {
+        unsigned rs = red * 0x100;
+        NSParameterAssert(rs <= 0x100);
+        
+        unsigned gs = green * 0x100;
+        NSParameterAssert(gs <= 0x100);
+        
+        unsigned bs = blue * 0x100;
+        NSParameterAssert(bs <= 0x100);
+        
+        IOMobileFramebufferGammaTable data;
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *filePath = [documentsDirectory stringByAppendingString:@"/gammatable.dat"];
+        FILE *file = fopen([filePath UTF8String], "rb");
+        
+        if (file == NULL) {
+            [[IOMobileFramebufferClient sharedInstance] gammaTable:&data];
+            file = fopen([filePath UTF8String], "wb");
+            NSParameterAssert(file != NULL);
+            
+            fwrite(&data, 1, sizeof(data), file);
+            fclose(file);
+            
+            file = fopen([filePath UTF8String], "rb");
+            NSParameterAssert(file != NULL);
+        }
+        
+        fread(&data, 1, sizeof(data), file);
+        fclose(file);
+        
+        for (size_t i = 0; i < 256; ++i) {
+            size_t j = 255 - i;
+            
+            size_t r = j * rs >> 8;
+            size_t g = j * gs >> 8;
+            size_t b = j * bs >> 8;
+            
+            data.values[j + 0x001] = data.values[r + 0x001];
+            data.values[j + 0x102] = data.values[g + 0x102];
+            data.values[j + 0x203] = data.values[b + 0x203];
+        }
+        
+        [[IOMobileFramebufferClient sharedInstance] setGammaTable:&data];
+    }
 }
 
 + (void)setGammaWithOrangeness:(float)percentOrange {
