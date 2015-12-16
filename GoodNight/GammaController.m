@@ -43,10 +43,10 @@
 }
 
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue {
-    if ([[IOMobileFramebufferClient sharedInstance] gamutMatrixFunctionIsAvailable]) {
+    if (![[IOMobileFramebufferClient sharedInstance] gammaTableFunctionIsUsable]) {
         [self setGammaWithMatrixAndRed:red green:green blue:blue];
     }
-    else if (![[IOMobileFramebufferClient sharedInstance] gamutMatrixFunctionIsAvailable]) {
+    else {
         [self setGammaWithTableAndRed:red green:green blue:blue];
     }
 }
