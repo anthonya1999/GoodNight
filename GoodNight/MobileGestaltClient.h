@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+static void *MobileGestaltClientHandle = NULL;
+static CFStringRef HWModelString = NULL;
+
+#define LMG_PATH "/usr/lib/libMobileGestalt.dylib"
+
 @interface MobileGestaltClient : NSObject
 
 + (instancetype)sharedInstance;
 
-- (NSString*)MGGetHWModelStr;
+- (CFStringRef)MGGetHWModelStr;
 
 @end

@@ -9,12 +9,7 @@
 #import <dlfcn.h>
 #import "MobileGestaltClient.h"
 
-#define LMG_PATH "/usr/lib/libMobileGestalt.dylib"
-
 @implementation MobileGestaltClient
-
-static void *MobileGestaltClientHandle = NULL;
-static NSString *HWModelString = nil;
 
 + (void)initialize {
     [super initialize];
@@ -38,16 +33,16 @@ static NSString *HWModelString = nil;
     dlclose(MobileGestaltClientHandle);
 }
 
-- (NSString*)callMGCopyAnswer:(NSString*)input{
+- (CFStringRef)callMGCopyAnswer:(CFStringRef)input {
     CFStringRef (*MGCopyAnswer)(CFStringRef model) = dlsym(MobileGestaltClientHandle, "MGCopyAnswer");
     NSParameterAssert(MGCopyAnswer);
-    NSString *answer = CFBridgingRelease(MGCopyAnswer((__bridge CFStringRef)input));
+    CFStringRef answer = MGCopyAnswer(input);
     return answer;
 }
 
-- (NSString*)MGGetHWModelStr{
-    if (!HWModelString){
-        HWModelString = [self callMGCopyAnswer:@"HWModelStr"];
+- (CFStringRef)MGGetHWModelStr {
+    if (!HWModelString) {
+        HWModelString = [self callMGCopyAnswer:CFSTR("HWModelStr")];
     }
     return HWModelString;
 }

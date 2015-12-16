@@ -128,13 +128,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		755923FC1C214F6B000E62AE /* libMobileGestalt */ = {
+		755923FC1C214F6B000E62AE /* MobileGestalt */ = {
 			isa = PBXGroup;
 			children = (
 				755923FD1C214F7C000E62AE /* MobileGestaltClient.h */,
 				755923FE1C214F7C000E62AE /* MobileGestaltClient.m */,
 			);
-			name = libMobileGestalt;
+			name = MobileGestalt;
 			sourceTree = "<group>";
 		};
 		921924341BCDC11800254487 /* NSDate+Extensions */ = {
@@ -284,9 +284,9 @@
 		92BC7DF41C1F859600574361 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
-				755923FC1C214F6B000E62AE /* libMobileGestalt */,
 				92BC7DF71C1F876700574361 /* IOMobileFramebuffer */,
 				92BC7DF61C1F85D500574361 /* SpringBoardServices */,
+				755923FC1C214F6B000E62AE /* MobileGestalt */,
 			);
 			name = Clients;
 			sourceTree = "<group>";
@@ -408,7 +408,7 @@
 				TargetAttributes = {
 					925B811D1BE2BCE1003A6C4B = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = RZ4ZD385GT;
+						DevelopmentTeam = 9QKLXG4845;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 0;
@@ -417,7 +417,7 @@
 					};
 					B9E536451B38D90D0097BF90 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = RZ4ZD385GT;
+						DevelopmentTeam = 9QKLXG4845;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
