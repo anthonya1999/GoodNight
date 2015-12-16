@@ -14,7 +14,7 @@
 @implementation MobileGestaltClient
 
 static void *MobileGestaltClientHandle = NULL;
-static NSString *HWModelString;
+static NSString *HWModelString = nil;
 
 + (void)initialize {
     [super initialize];
