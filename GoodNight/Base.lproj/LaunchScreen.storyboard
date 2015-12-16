@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -21,19 +20,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="zx3-wb-oHE">
                                 <rect key="frame" x="150" y="150" width="300" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="0dn-Q4-E67"/>
-                                    <constraint firstAttribute="height" constant="300" id="atc-nO-aQu"/>
+                                    <constraint firstAttribute="width" constant="300" id="ZYm-gx-yK1"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zx3-wb-oHE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Nae-KH-ahC"/>
-                            <constraint firstItem="zx3-wb-oHE" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="130" id="hII-Az-W93"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="zx3-wb-oHE" secondAttribute="bottom" constant="150" id="i0T-2o-iM9"/>
-                            <constraint firstItem="zx3-wb-oHE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="r3z-4m-6uL"/>
-                            <constraint firstItem="zx3-wb-oHE" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="130" id="vjQ-dM-Njg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zx3-wb-oHE" secondAttribute="trailing" constant="130" id="xt8-fN-clc"/>
+                            <constraint firstItem="zx3-wb-oHE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Hdg-2i-zD9"/>
+                            <constraint firstItem="zx3-wb-oHE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="TOr-S7-MpH"/>
                         </constraints>
                     </view>
                 </viewController>
