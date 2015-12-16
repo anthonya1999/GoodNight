@@ -120,11 +120,4 @@ s1516 GamutMatrixValue(double value) {
     [self callFramebufferFunction:@"IOMobileFramebufferGetGammaTable" withFirstParamPointer:table];
 }
 
-- (BOOL)gammaTableFunctionIsUsable {
-    if (iPadProIsCurrentDevice) {
-        return NO;
-    }
-    return YES;
-}
-
 @end
