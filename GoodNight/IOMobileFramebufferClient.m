@@ -89,11 +89,25 @@ s1516 GamutMatrixValue(double value) {
 }
 
 - (void)setGamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix {
-    [self callFramebufferFunction:@"IOMobileFramebufferSetGamutMatrix" withFirstParamPointer:matrix];
+    NSString *functionName = nil;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3") && SYSTEM_VERSION_LESS_THAN(@"9.0")) {
+        functionName = @"IOMobileFramebufferSetGamutCSC";
+    }
+    else if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        functionName = @"IOMobileFramebufferSetGamutMatrix";
+    }
+    [self callFramebufferFunction:functionName withFirstParamPointer:matrix];
 }
 
 - (void)gamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix {
-    [self callFramebufferFunction:@"IOMobileFramebufferGetGamutMatrix" withFirstParamPointer:matrix];
+    NSString *functionName = nil;
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3") && SYSTEM_VERSION_LESS_THAN(@"9.0")) {
+        functionName = @"IOMobileFramebufferGetGamutCSC";
+    }
+    else if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        functionName = @"IOMobileFramebufferGetGamutMatrix";
+    }
+    [self callFramebufferFunction:functionName withFirstParamPointer:matrix];
 }
 
 - (void)setGammaTable:(IOMobileFramebufferGammaTable *)table {
@@ -102,6 +116,16 @@ s1516 GamutMatrixValue(double value) {
 
 - (void)gammaTable:(IOMobileFramebufferGammaTable *)table {
     [self callFramebufferFunction:@"IOMobileFramebufferGetGammaTable" withFirstParamPointer:table];
+}
+
+- (BOOL)gamutMatrixFunctionIsAvailable {
+    if (iPadProIsCurrentDevice) {
+        return YES;
+    }
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3")) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

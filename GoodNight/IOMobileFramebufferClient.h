@@ -50,4 +50,6 @@ typedef struct {
 - (void)gammaTable:(IOMobileFramebufferGammaTable *)table;
 - (void)setGammaTable:(IOMobileFramebufferGammaTable *)table;
 
+- (BOOL)gamutMatrixFunctionIsAvailable;
+
 @end
