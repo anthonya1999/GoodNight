@@ -72,13 +72,15 @@ s1516 GamutMatrixValue(double value) {
 }
 
 - (IOMobileFramebufferColorRemapMode)colorRemapMode {
-    IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode *mode) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferGetColorRemapMode");
-    NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
-    IOMobileFramebufferColorRemapMode mode = IOMobileFramebufferColorRemapModeNormal;
-    IOMobileFramebufferReturn returnValue = IOMobileFramebufferGetColorRemapMode(self.framebufferConnection, &mode);
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode *mode) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferGetColorRemapMode");
+        NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
+        IOMobileFramebufferColorRemapMode mode = IOMobileFramebufferColorRemapModeNormal;
+        IOMobileFramebufferReturn returnValue = IOMobileFramebufferGetColorRemapMode(self.framebufferConnection, &mode);
 
-    if (returnValue == 0) {
-        return mode;
+        if (returnValue == 0) {
+            return mode;
+        }
     }
 
     return IOMobileFramebufferColorRemapModeError;
@@ -116,16 +118,6 @@ s1516 GamutMatrixValue(double value) {
 
 - (void)gammaTable:(IOMobileFramebufferGammaTable *)table {
     [self callFramebufferFunction:@"IOMobileFramebufferGetGammaTable" withFirstParamPointer:table];
-}
-
-- (BOOL)gamutMatrixFunctionIsAvailable {
-    if (iPadProIsCurrentDevice) {
-        return YES;
-    }
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3")) {
-        return YES;
-    }
-    return NO;
 }
 
 @end

@@ -16,6 +16,7 @@
 #import "Brightness.h"
 #import "IOMobileFramebufferClient.h"
 #import "SpringBoardServicesClient.h"
+#import "MobileGestaltClient.h"
 
 @implementation GammaController
 
@@ -43,10 +44,10 @@
 }
 
 + (void)setGammaWithRed:(float)red green:(float)green blue:(float)blue {
-    if ([[IOMobileFramebufferClient sharedInstance] gamutMatrixFunctionIsAvailable]) {
+    if (![self gammaTableFunctionIsUsable]) {
         [self setGammaWithMatrixAndRed:red green:green blue:blue];
     }
-    else if (![[IOMobileFramebufferClient sharedInstance] gamutMatrixFunctionIsAvailable]) {
+    else {
         [self setGammaWithTableAndRed:red green:green blue:blue];
     }
 }
@@ -409,6 +410,15 @@
     va_end(args);
 
     return adjustmentsEnabled;
+}
+
++ (BOOL)gammaTableFunctionIsUsable {
+    NSString *hwModelStr = [[MobileGestaltClient sharedInstance] MGGetHWModelStr];
+    
+    if ([hwModelStr isEqualToString:@"J98aAP"] || [hwModelStr isEqualToString:@"J99aAP"]) {
+        return NO;
+    }
+    return YES;
 }
 
 @end

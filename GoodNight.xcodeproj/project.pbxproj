@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32AFEC481C1B1B8A00142DD9 /* IOMobileFramebufferClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AFEC471C1B1B8A00142DD9 /* IOMobileFramebufferClient.m */; };
+		755923FF1C214F7C000E62AE /* MobileGestaltClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 755923FE1C214F7C000E62AE /* MobileGestaltClient.m */; };
 		921810341BC1B1C300D32E92 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810331BC1B1C300D32E92 /* CreditsViewController.m */; };
 		921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810361BC1B3C000D32E92 /* BrightnessViewController.m */; };
 		921DE7511C20D591005C3F92 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 921DE7501C20D591005C3F92 /* Defaults.plist */; };
@@ -62,6 +63,8 @@
 		511EBE611BEBB1E200D5DAF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		511EBE621BEBB1E200D5DAF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Storyboard.strings; sourceTree = "<group>"; };
 		511EBE631BEBB1E200D5DAF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		755923FD1C214F7C000E62AE /* MobileGestaltClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileGestaltClient.h; sourceTree = "<group>"; };
+		755923FE1C214F7C000E62AE /* MobileGestaltClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileGestaltClient.m; sourceTree = "<group>"; };
 		921810321BC1B1C300D32E92 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
 		921810331BC1B1C300D32E92 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		921810351BC1B3C000D32E92 /* BrightnessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessViewController.h; sourceTree = "<group>"; };
@@ -125,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		755923FC1C214F6B000E62AE /* libMobileGestalt */ = {
+			isa = PBXGroup;
+			children = (
+				755923FD1C214F7C000E62AE /* MobileGestaltClient.h */,
+				755923FE1C214F7C000E62AE /* MobileGestaltClient.m */,
+			);
+			name = libMobileGestalt;
+			sourceTree = "<group>";
+		};
 		921924341BCDC11800254487 /* NSDate+Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +284,7 @@
 		92BC7DF41C1F859600574361 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				755923FC1C214F6B000E62AE /* libMobileGestalt */,
 				92BC7DF71C1F876700574361 /* IOMobileFramebuffer */,
 				92BC7DF61C1F85D500574361 /* SpringBoardServices */,
 			);
@@ -395,7 +408,7 @@
 				TargetAttributes = {
 					925B811D1BE2BCE1003A6C4B = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 9QKLXG4845;
+						DevelopmentTeam = RZ4ZD385GT;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 0;
@@ -404,7 +417,7 @@
 					};
 					B9E536451B38D90D0097BF90 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 9QKLXG4845;
+						DevelopmentTeam = RZ4ZD385GT;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -481,6 +494,7 @@
 				926F71261C0CF39B0039A4A2 /* Brightness.c in Sources */,
 				B9E5364E1B38D90D0097BF90 /* AppDelegate.m in Sources */,
 				929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */,
+				755923FF1C214F7C000E62AE /* MobileGestaltClient.m in Sources */,
 				B9E5364B1B38D90D0097BF90 /* main.m in Sources */,
 				B96BB64F1B38D96600F1C3AE /* GammaController.m in Sources */,
 				926F71271C0CF39B0039A4A2 /* Solar.c in Sources */,
