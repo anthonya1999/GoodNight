@@ -17,8 +17,8 @@ s1516 GamutMatrixValue(double value) {
     const uint8_t integerBits = fractionalBits - 1;
     const double largestInteger = pow(2, integerBits);
     const double largestFraction = pow(2, fractionalBits);
-    const double range = largestInteger - 1 + ((largestFraction - 1) / largestFraction) + largestInteger;
-    return (((value * range) - (range / 2)) * (largestFraction + 0.5));
+    const double range = largestInteger - 1 + ((largestFraction-1)/largestFraction) + largestInteger;
+    return (s1516)((value * range/2) * largestFraction + 0.5);
 }
 
 + (void)initialize {
