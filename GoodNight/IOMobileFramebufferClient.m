@@ -90,7 +90,7 @@ s1516 GamutMatrixValue(double value) {
     [self callFramebufferFunction:@"IOMobileFramebufferSetColorRemapMode" withFirstParamScalar:mode];
 }
 
-- (void)setBrightnessCorrection:(uint32_t)correction {
+- (void)setBrightnessCorrection:(IOMobileFramebufferBrightnessCorrectionValue)correction {
     [self callFramebufferFunction:@"IOMobileFramebufferSetBrightnessCorrection" withFirstParamScalar:correction];
 }
 
