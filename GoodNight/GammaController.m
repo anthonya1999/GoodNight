@@ -203,6 +203,9 @@
     }
     
     [self wakeUpScreenIfNeeded];
+    
+    [[IOMobileFramebufferClient sharedInstance] resetBrightnessCorrection];
+    
     if (transition == YES) {
         [self setGammaWithTransitionFrom:currentOrangeLevel to:orangeLevel];
     }
@@ -287,6 +290,8 @@
 }
 
 + (void)enableDimness {
+    [[IOMobileFramebufferClient sharedInstance] resetBrightnessCorrection];
+    
     float dimLevel = [userDefaults floatForKey:@"dimLevel"];
     [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
     [userDefaults setBool:YES forKey:@"dimEnabled"];
@@ -295,6 +300,8 @@
 }
 
 + (void)setGammaWithCustomValues {
+    [[IOMobileFramebufferClient sharedInstance] resetBrightnessCorrection];
+    
     float redValue = [userDefaults floatForKey:@"redValue"];
     float greenValue = [userDefaults floatForKey:@"greenValue"];
     float blueValue = [userDefaults floatForKey:@"blueValue"];

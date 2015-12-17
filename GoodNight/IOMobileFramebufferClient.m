@@ -90,6 +90,14 @@ s1516 GamutMatrixValue(double value) {
     [self callFramebufferFunction:@"IOMobileFramebufferSetColorRemapMode" withFirstParamScalar:mode];
 }
 
+- (void)setBrightnessCorrection:(uint32_t)correction {
+    [self callFramebufferFunction:@"IOMobileFramebufferSetBrightnessCorrection" withFirstParamScalar:correction];
+}
+
+- (void)resetBrightnessCorrection {
+    [self setBrightnessCorrection:IOMobileFramebufferBrightnessCorrectionDefaultValue];
+}
+
 - (void)setGamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix {
     NSString *functionName = nil;
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3") && SYSTEM_VERSION_LESS_THAN(@"9.0")) {

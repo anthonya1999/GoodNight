@@ -36,6 +36,9 @@ typedef struct {
     } content;
 } IOMobileFramebufferGamutMatrix;
 
+static const uint32_t IOMobileFramebufferBrightnessCorrectionReducedWhitepointValue = 57344;
+static const uint32_t IOMobileFramebufferBrightnessCorrectionDefaultValue = 65535;
+
 @interface IOMobileFramebufferClient : NSObject
 
 @property (nonatomic, readonly) IOMobileFramebufferConnection framebufferConnection;
@@ -44,6 +47,9 @@ typedef struct {
 
 - (IOMobileFramebufferColorRemapMode)colorRemapMode;
 - (void)setColorRemapMode:(IOMobileFramebufferColorRemapMode)mode;
+
+- (void)setBrightnessCorrection:(uint32_t)correction;
+- (void)resetBrightnessCorrection;
 
 - (void)gamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix;
 - (void)setGamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix;
