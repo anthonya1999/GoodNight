@@ -36,8 +36,10 @@ typedef struct {
     } content;
 } IOMobileFramebufferGamutMatrix;
 
-static const uint32_t IOMobileFramebufferBrightnessCorrectionReducedWhitepointValue = 57344;
-static const uint32_t IOMobileFramebufferBrightnessCorrectionDefaultValue = 65535;
+typedef NS_ENUM(uint32_t, IOMobileFramebufferBrightnessCorrectionValue) {
+    IOMobileFramebufferBrightnessCorrectionReducedWhitepointValue = 57344,
+    IOMobileFramebufferBrightnessCorrectionDefaultValue = 65535
+};
 
 @interface IOMobileFramebufferClient : NSObject
 
@@ -48,7 +50,7 @@ static const uint32_t IOMobileFramebufferBrightnessCorrectionDefaultValue = 6553
 - (IOMobileFramebufferColorRemapMode)colorRemapMode;
 - (void)setColorRemapMode:(IOMobileFramebufferColorRemapMode)mode;
 
-- (void)setBrightnessCorrection:(uint32_t)correction;
+- (void)setBrightnessCorrection:(IOMobileFramebufferBrightnessCorrectionValue)correction;
 - (void)resetBrightnessCorrection;
 
 - (void)gamutMatrix:(IOMobileFramebufferGamutMatrix *)matrix;
