@@ -21,6 +21,7 @@
 		926F71261C0CF39B0039A4A2 /* Brightness.c in Sources */ = {isa = PBXBuildFile; fileRef = 926F71211C0CF39B0039A4A2 /* Brightness.c */; };
 		926F71271C0CF39B0039A4A2 /* Solar.c in Sources */ = {isa = PBXBuildFile; fileRef = 926F71241C0CF39B0039A4A2 /* Solar.c */; };
 		927B86141BD720E60091AF24 /* ForceTouchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B86131BD720E60091AF24 /* ForceTouchController.m */; };
+		9287A1EA1C2499BB00764AD5 /* WhitePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287A1E91C2499BB00764AD5 /* WhitePointViewController.m */; };
 		9296029F1BD1B89100CDEC52 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9296029E1BD1B89100CDEC52 /* InitialViewController.m */; };
 		929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929602A11BD1BC3000CDEC52 /* SettingsViewController.m */; };
 		92F23ABF1BD72ADD00A097CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F23AC11BD72ADD00A097CB /* LaunchScreen.storyboard */; };
@@ -87,6 +88,8 @@
 		926F71251C0CF39B0039A4A2 /* Solar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Solar.h; sourceTree = "<group>"; };
 		927B86121BD720E60091AF24 /* ForceTouchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForceTouchController.h; sourceTree = "<group>"; };
 		927B86131BD720E60091AF24 /* ForceTouchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForceTouchController.m; sourceTree = "<group>"; };
+		9287A1E81C2499BB00764AD5 /* WhitePointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhitePointViewController.h; sourceTree = "<group>"; };
+		9287A1E91C2499BB00764AD5 /* WhitePointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhitePointViewController.m; sourceTree = "<group>"; };
 		9296029D1BD1B89100CDEC52 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		9296029E1BD1B89100CDEC52 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		929602A01BD1BC3000CDEC52 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -232,6 +235,15 @@
 			name = "3D Touch";
 			sourceTree = "<group>";
 		};
+		9287A1E71C2499A900764AD5 /* White Point */ = {
+			isa = PBXGroup;
+			children = (
+				9287A1E81C2499BB00764AD5 /* WhitePointViewController.h */,
+				9287A1E91C2499BB00764AD5 /* WhitePointViewController.m */,
+			);
+			name = "White Point";
+			sourceTree = "<group>";
+		};
 		929602A31BD1C22D00CDEC52 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +276,7 @@
 			children = (
 				929602A51BD1C25A00CDEC52 /* Initial View */,
 				926B68F61BC1B8E800F12297 /* Temperature */,
+				9287A1E71C2499A900764AD5 /* White Point */,
 				926B68F71BC1B8F200F12297 /* Brightness */,
 				926B68F81BC1B8FA00F12297 /* Color */,
 				929602A31BD1C22D00CDEC52 /* Settings */,
@@ -275,8 +288,8 @@
 		929602A71BD1C2DE00CDEC52 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				92F23AC11BD72ADD00A097CB /* LaunchScreen.storyboard */,
 				92F23AC41BD72AE700A097CB /* Storyboard.storyboard */,
+				92F23AC11BD72ADD00A097CB /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -496,6 +509,7 @@
 				929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */,
 				755923FF1C214F7C000E62AE /* MobileGestaltClient.m in Sources */,
 				B9E5364B1B38D90D0097BF90 /* main.m in Sources */,
+				9287A1EA1C2499BB00764AD5 /* WhitePointViewController.m in Sources */,
 				B96BB64F1B38D96600F1C3AE /* GammaController.m in Sources */,
 				926F71271C0CF39B0039A4A2 /* Solar.c in Sources */,
 				926F711F1C0CF3930039A4A2 /* NSDate+Extensions.m in Sources */,

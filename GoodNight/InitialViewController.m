@@ -32,9 +32,12 @@
                     identifier = @"mainViewController";
                 }
                 if (indexPath.row == 1) {
-                    identifier = @"brightnessViewController";
+                    identifier = @"whitepointController";
                 }
                 if (indexPath.row == 2) {
+                    identifier = @"brightnessViewController";
+                }
+                if (indexPath.row == 3) {
                     identifier = @"colorViewController";
                 }
             }
@@ -70,9 +73,12 @@
             identifier = @"mainViewController";
         }
         if (indexPath.row == 1) {
-            identifier = @"brightnessViewController";
+            identifier = @"whitepointController";
         }
         if (indexPath.row == 2) {
+            identifier = @"brightnessViewController";
+        }
+        if (indexPath.row == 3) {
             identifier = @"colorViewController";
         }
     }

@@ -30,8 +30,12 @@
 	<integer>1</integer>
 	<key>colorChangingEnabled</key>
 	<false/>
+	<key>whitePointValue</key>
+	<real>0.65535</real>
+	<key>whitePointEnabled</key>
+	<false/>
 	<key>lastAutoChangeDate</key>
-	<date>0000-12-30T00:00:00Z</date>
+	<date>1-12-30T00:00:00Z</date>
 	<key>autoStartHour</key>
 	<integer>19</integer>
 	<key>autoStartMinute</key>
@@ -69,6 +73,6 @@
 	<key>keyEnabled</key>
 	<string>0</string>
 	<key>lastBackgroundCheck</key>
-	<date>0000-12-30T00:00:00Z</date>
+	<date>1-12-30T00:00:00Z</date>
 </dict>
 </plist>
