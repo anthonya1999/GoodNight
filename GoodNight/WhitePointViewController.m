@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.whitePointSlider.minimumValue = 0.25009;
+    self.whitePointSlider.minimumValue = 0.43110;
     self.whitePointSlider.maximumValue = 0.65535;
     self.whitePointSlider.value = [userDefaults floatForKey:@"whitePointValue"];
     self.whitePointSwitch.on = [userDefaults boolForKey:@"whitePointEnabled"];
@@ -29,6 +29,7 @@
 
 - (IBAction)whitePointSliderChanged {
     [userDefaults setFloat:self.whitePointSlider.value forKey:@"whitePointValue"];
+    
     if (self.whitePointSwitch.on) {
         [[IOMobileFramebufferClient sharedInstance] setBrightnessCorrection:[userDefaults floatForKey:@"whitePointValue"] * 100000];
     }
