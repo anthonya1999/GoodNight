@@ -20,26 +20,12 @@
 
 @implementation GammaController
 
-+ (BOOL)invertScreenColors:(BOOL)invert {
-    IOMobileFramebufferColorRemapMode mode = [[IOMobileFramebufferClient sharedInstance] colorRemapMode];
-
-    [[IOMobileFramebufferClient sharedInstance] setColorRemapMode:invert ? IOMobileFramebufferColorRemapModeInverted : IOMobileFramebufferColorRemapModeNormal];
-
-    return invert ? mode != IOMobileFramebufferColorRemapModeInverted : mode != IOMobileFramebufferColorRemapModeNormal;
-}
-
 + (void)setDarkroomEnabled:(BOOL)enable {
     if (enable) {
-        if ([self invertScreenColors:YES]) {
-            [self setGammaWithRed:1.0f green:0.0f blue:0.0f];
-        }
+        [[IOMobileFramebufferClient sharedInstance] setWhiteOnBlackMode:YES];
     }
     else {
-        if ([self invertScreenColors:NO]) {
-            [self setGammaWithRed:1.0f green:1.0f blue:1.0f];
-            [userDefaults setFloat:1.0f forKey:@"currentOrange"];
-            [self autoChangeOrangenessIfNeededWithTransition:NO];
-        }
+        [[IOMobileFramebufferClient sharedInstance] setWhiteOnBlackMode:NO];
     }
 }
 
