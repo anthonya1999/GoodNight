@@ -57,9 +57,9 @@
     memset(&gamutMatrix, 0, sizeof(gamutMatrix));
     
     if ([userDefaults boolForKey:@"enabled"]) {
-        red = (red * 1.3) + 0.05;
-        green = (green / 1.4) + 0.05;
-        blue = (blue / 1.3) + 0.05;
+        red = ((red * 1.3) + 0.05);
+        green = (((green * 1.3) / 2.1008403361) + 0.05);
+        blue = (((blue * 1.3) / 4.6296296296) + 0.05);
     }
     
     gamutMatrix.content.matrix[0][0] = GamutMatrixValue(red);
