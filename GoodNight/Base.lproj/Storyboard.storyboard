@@ -569,7 +569,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="vVJ-7N-if8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="" footerTitle="" id="GSf-nO-tba">
                                 <cells>
@@ -583,7 +583,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfL-vk-Rye">
                                                     <rect key="frame" x="18" y="11" width="508" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aCX-4m-fzX">
@@ -607,11 +607,11 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Level" footerTitle="Adjust the white point of the device, even below what you can in the Settings app." id="k6i-lQ-T09">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Sco-mL-4Wi">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Sco-mL-4Wi">
                                         <rect key="frame" x="0.0" y="193" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sco-mL-4Wi" id="Rid-gJ-GZz">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gmi-Ba-Z1Q">
@@ -625,6 +625,34 @@
                                                 <constraint firstItem="gmi-Ba-Z1Q" firstAttribute="centerY" secondItem="Rid-gJ-GZz" secondAttribute="centerY" id="KWj-xY-ZQu"/>
                                                 <constraint firstItem="gmi-Ba-Z1Q" firstAttribute="leading" secondItem="Rid-gJ-GZz" secondAttribute="leadingMargin" constant="10" id="Lpp-n5-VFf"/>
                                                 <constraint firstItem="gmi-Ba-Z1Q" firstAttribute="centerX" secondItem="Rid-gJ-GZz" secondAttribute="centerX" id="ej8-WC-bQm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="" footerTitle="" id="5CB-X2-esY">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="RCg-ny-taV">
+                                        <rect key="frame" x="0.0" y="282" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RCg-ny-taV" id="tjC-r4-wlV">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjc-gE-PH3">
+                                                    <rect key="frame" x="202" y="7" width="197" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="197" id="bej-pA-TwJ"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Reset White Point"/>
+                                                    <connections>
+                                                        <action selector="whitePointValueReset" destination="Mqb-61-w1a" eventType="touchUpInside" id="dQS-1Q-O7L"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gjc-gE-PH3" firstAttribute="centerX" secondItem="tjC-r4-wlV" secondAttribute="centerX" id="Ei4-DL-F6a"/>
+                                                <constraint firstItem="gjc-gE-PH3" firstAttribute="centerY" secondItem="tjC-r4-wlV" secondAttribute="centerY" id="IgF-d2-EUK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -686,7 +714,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

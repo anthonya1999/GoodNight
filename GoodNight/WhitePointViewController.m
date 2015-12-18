@@ -45,4 +45,13 @@
     }
 }
 
+- (IBAction)whitePointValueReset {
+    self.whitePointSlider.value = self.whitePointSlider.maximumValue;
+    [userDefaults setFloat:self.whitePointSlider.value forKey:@"whitePointValue"];
+    
+    if (self.whitePointSwitch.on) {
+        [[IOMobileFramebufferClient sharedInstance] setBrightnessCorrection:[userDefaults floatForKey:@"whitePointValue"] * 100000];
+    }
+}
+
 @end
