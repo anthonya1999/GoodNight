@@ -1,4 +1,5 @@
 # GoodNight
+Project name thanks to @Emu4iOS.
 
 Based off of Thomas Finch's [GammaThingy][1].
 
