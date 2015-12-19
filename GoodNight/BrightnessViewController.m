@@ -176,9 +176,9 @@
     
     [self.darkroomSwitch setOn:NO animated:YES];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [GammaController setDarkroomEnabled:NO];
     
     if (self.dimSwitch.on) {
-        [GammaController setDarkroomEnabled:NO];
         [GammaController enableDimness];
     }
 }
