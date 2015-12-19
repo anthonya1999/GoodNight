@@ -171,6 +171,7 @@ static uint32_t minWhitePointValue;
             case SwitchToOrangeness:
                 [userDefaults setBool:NO forKey:@"dimEnabled"];
                 [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                [userDefaults setBool:NO forKey:@"whitePointEnabled"];
             case KeepOrangenessEnabled:
                 [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"nightOrange"]];
                 nightModeWasEnabled = YES;
@@ -191,12 +192,14 @@ static uint32_t minWhitePointValue;
                 case SwitchToOrangeness:
                     [userDefaults setBool:NO forKey:@"dimEnabled"];
                     [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                    [userDefaults setBool:NO forKey:@"whitePointEnabled"];
                 case KeepOrangenessEnabled:
                     [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"maxOrange"]];
                     break;
                 case SwitchToStandard:
                     [userDefaults setBool:NO forKey:@"dimEnabled"];
                     [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                    [userDefaults setBool:NO forKey:@"whitePointEnabled"];
                 case KeepStandardEnabled:
                     [self enableOrangenessWithDefaults:YES transition:transition orangeLevel:[userDefaults floatForKey:@"dayOrange"]];
                     break;
