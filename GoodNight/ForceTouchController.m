@@ -11,7 +11,7 @@
 
 @implementation ForceTouchController
 
-+ (instancetype)sharedForceTouchController {
++ (instancetype)sharedInstance {
     static dispatch_once_t onceToken = 0;
     static ForceTouchController *sharedForceTouchController = nil;
     
@@ -20,6 +20,7 @@
         [userDefaults addObserver:sharedForceTouchController forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:NULL];
         [userDefaults addObserver:sharedForceTouchController forKeyPath:@"dimEnabled" options:NSKeyValueObservingOptionNew context:NULL];
         [userDefaults addObserver:sharedForceTouchController forKeyPath:@"rgbEnabled" options:NSKeyValueObservingOptionNew context:NULL];
+        [userDefaults addObserver:sharedForceTouchController forKeyPath:@"whitePointEnabled" options:NSKeyValueObservingOptionNew context:NULL];
         [userDefaults addObserver:sharedForceTouchController forKeyPath:@"keyEnabled" options:NSKeyValueObservingOptionNew context:NULL];
     });
     
@@ -30,6 +31,7 @@
     [userDefaults removeObserver:self forKeyPath:@"enabled"];
     [userDefaults removeObserver:self forKeyPath:@"dimEnabled"];
     [userDefaults removeObserver:self forKeyPath:@"rgbEnabled"];
+    [userDefaults removeObserver:self forKeyPath:@"whitePointEnabled"];
     [userDefaults removeObserver:self forKeyPath:@"keyEnabled"];
 }
 
@@ -82,6 +84,19 @@
         }
     }
     
+    else if ([userDefaults boolForKey:@"whitePointForceTouch"]) {
+        shortcutType = @"whitePointForceTouchAction";
+        
+        if (![userDefaults boolForKey:@"whitePointEnabled"]) {
+            forceTouchActionEnabled = NO;
+            shortcutTitle = @"Enable White Point";
+        }
+        else if ([userDefaults boolForKey:@"whitePointEnabled"]) {
+            forceTouchActionEnabled = YES;
+            shortcutTitle = @"Disable White Point";
+        }
+    }
+    
     if (forceTouchActionEnabled == NO) {
         shortcutSubtitle = turnOnText;
         iconTemplate = @"enable-switch";
@@ -120,7 +135,7 @@
             [GammaController disableOrangeness];
         }
         else if (![userDefaults boolForKey:@"enabled"]) {
-            if (![GammaController adjustmentForKeysEnabled:@"dimEnabled", @"rgbEnabled", nil]) {
+            if (![GammaController adjustmentForKeysEnabled:@"dimEnabled", @"rgbEnabled", @"whitePointEnabled", nil]) {
                 [GammaController enableOrangenessWithDefaults:YES transition:YES];
             }
             else {
@@ -133,7 +148,7 @@
             [GammaController disableDimness];
         }
         else if (![userDefaults boolForKey:@"dimEnabled"]) {
-            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"rgbEnabled", nil]) {
+            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"rgbEnabled", @"whitePointEnabled", nil]) {
                 [GammaController enableDimness];
             }
             else {
@@ -146,11 +161,26 @@
             [GammaController disableColorAdjustment];
         }
         else if (![userDefaults boolForKey:@"rgbEnabled"]) {
-            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"dimEnabled", nil]) {
+            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"dimEnabled", @"whitePointEnabled", nil]) {
                 [GammaController setGammaWithCustomValues];
             }
             else {
                 [self showFailedAlertWithKey:@"rgbEnabled"];
+            }
+        }
+    }
+    else if ([shortcutItem.type isEqualToString:@"whitePointForceTouchAction"]) {
+        if ([userDefaults boolForKey:@"whitePointEnabled"]) {
+            [GammaController resetWhitePoint];
+            [userDefaults setBool:NO forKey:@"whitePointEnabled"];
+        }
+        else if (![userDefaults boolForKey:@"whitePointEnabled"]) {
+            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"dimEnabled", @"rgbEnabled", nil]) {
+                [GammaController setWhitePoint:[userDefaults boolForKey:@"whitePointValue"]];
+                [userDefaults setBool:YES forKey:@"whitePointEnabled"];
+            }
+            else {
+                [self showFailedAlertWithKey:@"whitePointEnabled"];
             }
         }
     }

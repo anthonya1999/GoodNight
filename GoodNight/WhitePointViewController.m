@@ -98,4 +98,30 @@
     }
 }
 
+- (void)enableOrDisableBasedOnDefaults {
+    if ([userDefaults boolForKey:@"whitePointEnabled"]) {
+        [GammaController resetWhitePoint];
+        [userDefaults setBool:NO forKey:@"whitePointEnabled"];
+    }
+    else {
+        [GammaController setWhitePoint:[userDefaults floatForKey:@"whitePointValue"] * 100000];
+        [userDefaults setBool:YES forKey:@"whitePointEnabled"];
+    }
+}
+
+- (NSArray <id <UIPreviewActionItem>> *)previewActionItems {
+    NSString *title = nil;
+    if ([userDefaults boolForKey:@"whitePointEnabled"]) {
+        title = @"Disable";
+    }
+    else {
+        title = @"Enable";
+    }
+    UIPreviewAction *enableDisableAction = [UIPreviewAction actionWithTitle:title style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+        [self enableOrDisableBasedOnDefaults];
+    }];
+    UIPreviewAction * _Nullable cancelAction = [UIPreviewAction actionWithTitle:@"Cancel" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
+    return @[enableDisableAction, cancelAction];
+}
+
 @end

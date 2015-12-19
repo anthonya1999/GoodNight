@@ -24,7 +24,7 @@
     [AppDelegate updateNotifications];
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.window.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable){
-        [ForceTouchController sharedForceTouchController];
+        [ForceTouchController sharedInstance];
     }
     
     if (application.applicationState == UIApplicationStateBackground) {

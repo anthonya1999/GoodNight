@@ -34,6 +34,8 @@
 	<real>0.65535</real>
 	<key>whitePointEnabled</key>
 	<false/>
+	<key>whitePointForceTouch</key>
+	<false/>
 	<key>lastAutoChangeDate</key>
 	<date>1-12-30T00:00:00Z</date>
 	<key>autoStartHour</key>

@@ -27,6 +27,7 @@
     self.temperatureForceTouch.on = [userDefaults boolForKey:@"tempForceTouch"];
     self.dimForceTouch.on = [userDefaults boolForKey:@"dimForceTouch"];
     self.rgbForceTouch.on = [userDefaults boolForKey:@"rgbForceTouch"];
+    self.wpForceTouchSwitch.on = [userDefaults boolForKey:@"whitePointForceTouch"];
 }
 
 - (IBAction)suspendSwitchChanged {
@@ -51,6 +52,9 @@
     else if ([userDefaults boolForKey:@"dimForceTouch"]) {
         [userDefaults setBool:NO forKey:@"dimForceTouch"];
     }
+    else if ([userDefaults boolForKey:@"whitePointForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"whitePointForceTouch"];
+    }
     [userDefaults setBool:self.temperatureForceTouch.on forKey:@"tempForceTouch"];
     [self checkForForceTouchActions];
 }
@@ -61,6 +65,9 @@
     }
     else if ([userDefaults boolForKey:@"rgbForceTouch"]) {
         [userDefaults setBool:NO forKey:@"rgbForceTouch"];
+    }
+    else if ([userDefaults boolForKey:@"whitePointForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"whitePointForceTouch"];
     }
     [userDefaults setBool:self.dimForceTouch.on forKey:@"dimForceTouch"];
     [self checkForForceTouchActions];
@@ -73,12 +80,29 @@
     else if ([userDefaults boolForKey:@"dimForceTouch"]) {
         [userDefaults setBool:NO forKey:@"dimForceTouch"];
     }
+    else if ([userDefaults boolForKey:@"whitePointForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"whitePointForceTouch"];
+    }
     [userDefaults setBool:self.rgbForceTouch.on forKey:@"rgbForceTouch"];
     [self checkForForceTouchActions];
 }
 
 - (IBAction)peekPopSwitchChanged {
     [userDefaults setBool:self.peekPopSwitch.on forKey:@"peekPopEnabled"];
+}
+
+- (IBAction)wpForceTouchSwitchChanged {
+    if ([userDefaults boolForKey:@"tempForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"tempForceTouch"];
+    }
+    else if ([userDefaults boolForKey:@"dimForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"dimForceTouch"];
+    }
+    else if ([userDefaults boolForKey:@"rgbForceTouch"]) {
+        [userDefaults setBool:NO forKey:@"rgbForceTouch"];
+    }
+    [userDefaults setBool:self.wpForceTouchSwitch.on forKey:@"whitePointForceTouch"];
+    [self checkForForceTouchActions];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -90,7 +114,7 @@
             return 1;
         }
         if (section == 2) {
-            return 3;
+            return 4;
         }
     }
     return 0;
@@ -121,7 +145,7 @@
 }
 
 - (void)checkForForceTouchActions {
-    if (![userDefaults boolForKey:@"dimForceTouch"] && ![userDefaults boolForKey:@"tempForceTouch"] && ![userDefaults boolForKey:@"rgbForceTouch"]) {
+    if (![userDefaults boolForKey:@"dimForceTouch"] && ![userDefaults boolForKey:@"tempForceTouch"] && ![userDefaults boolForKey:@"rgbForceTouch"] && ![userDefaults boolForKey:@"whitePointForceTouch"]) {
         [userDefaults setBool:NO forKey:@"forceTouchEnabled"];
         [self.tableView reloadData];
     }

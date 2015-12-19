@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *temperatureForceTouch;
 @property (weak, nonatomic) IBOutlet UISwitch *dimForceTouch;
 @property (weak, nonatomic) IBOutlet UISwitch *rgbForceTouch;
+@property (weak, nonatomic) IBOutlet UISwitch *wpForceTouchSwitch;
 
 @end

@@ -1324,8 +1324,38 @@ Please follow these accounts on Twitter to support everyone who contributed to t
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yNe-CP-4AW">
+                                        <rect key="frame" x="0.0" y="376" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yNe-CP-4AW" id="PoW-io-a1e">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White Point" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CP-f5-U4r">
+                                                    <rect key="frame" x="18" y="11" width="485" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dus-8b-yPq">
+                                                    <rect key="frame" x="534" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="wpForceTouchSwitchChanged" destination="wYc-jV-49x" eventType="touchUpInside" id="2ib-Qr-ok1"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Dus-8b-yPq" firstAttribute="leading" secondItem="1CP-f5-U4r" secondAttribute="trailing" constant="31" id="0fS-kZ-GRt"/>
+                                                <constraint firstItem="Dus-8b-yPq" firstAttribute="centerY" secondItem="1CP-f5-U4r" secondAttribute="centerY" id="R16-0M-eW3"/>
+                                                <constraint firstItem="1CP-f5-U4r" firstAttribute="leading" secondItem="PoW-io-a1e" secondAttribute="leadingMargin" constant="10" id="T7f-IU-4yd"/>
+                                                <constraint firstItem="Dus-8b-yPq" firstAttribute="centerY" secondItem="PoW-io-a1e" secondAttribute="centerY" id="ag2-GH-RTB"/>
+                                                <constraint firstItem="1CP-f5-U4r" firstAttribute="top" secondItem="PoW-io-a1e" secondAttribute="topMargin" constant="3" id="gKs-OY-f6U"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Dus-8b-yPq" secondAttribute="trailing" constant="9" id="o8K-gF-ege"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="qO7-UB-WbI">
-                                        <rect key="frame" x="0.0" y="375.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="419.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qO7-UB-WbI" id="7eZ-n4-rRU">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1355,7 +1385,7 @@ Please follow these accounts on Twitter to support everyone who contributed to t
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="5sl-eh-owO">
-                                        <rect key="frame" x="0.0" y="419.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="463.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5sl-eh-owO" id="JfE-fc-q5Q">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1401,6 +1431,7 @@ Please follow these accounts on Twitter to support everyone who contributed to t
                         <outlet property="rgbForceTouch" destination="M3n-ss-bK8" id="die-RK-Xoz"/>
                         <outlet property="suspendSwitch" destination="iU9-zD-jyb" id="xCh-2B-yDJ"/>
                         <outlet property="temperatureForceTouch" destination="TcP-35-wAU" id="KCI-XO-5T5"/>
+                        <outlet property="wpForceTouchSwitch" destination="Dus-8b-yPq" id="prm-y3-CBw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P95-yt-e81" userLabel="First Responder" sceneMemberID="firstResponder"/>

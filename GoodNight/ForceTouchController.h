@@ -13,7 +13,7 @@ static BOOL forceTouchActionEnabled = NO;
 
 @interface ForceTouchController : NSObject
 
-+ (instancetype)sharedForceTouchController;
++ (instancetype)sharedInstance;
 + (UIApplicationShortcutItem *)shortcutItemForCurrentState;
 + (void)updateShortcutItems;
 + (BOOL)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem;
