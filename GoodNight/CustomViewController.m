@@ -101,7 +101,7 @@
 }
 
 - (IBAction)colorSwitchChanged {
-    if (![GammaController adjustmentForKeysEnabled:@"enabled", @"dimEnabled", nil]) {
+    if (![GammaController adjustmentForKeysEnabled:@"enabled", @"dimEnabled",@"whitePointEnabled", nil]) {
         [userDefaults setBool:self.rgbSwitch.on forKey:@"rgbEnabled"];
         
         if (self.rgbSwitch.on) {
@@ -125,6 +125,7 @@
             [alertController addAction:[UIAlertAction actionWithTitle:disableButton style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                 [userDefaults setBool:NO forKey:@"enabled"];
                 [userDefaults setBool:NO forKey:@"dimEnabled"];
+                [userDefaults setBool:NO forKey:@"whitePointEnabled"];
                 [userDefaults setBool:YES forKey:@"rgbEnabled"];
                 [GammaController setDarkroomEnabled:NO];
                 [self colorSwitchChanged];
