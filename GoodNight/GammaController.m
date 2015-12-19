@@ -18,17 +18,15 @@
 #import "SpringBoardServicesClient.h"
 #import "MobileGestaltClient.h"
 
-static uint32_t minWhitePointValue;
-
 @implementation GammaController
 
-+ (void) initialize {
++ (void)initialize {
     if (self == [GammaController class]) {
-        minWhitePointValue = [[IOMobileFramebufferClient sharedInstance] gamutMatrixFunctionIsUsable] ? 25009 : 43110;
+        minWhitePointValue = [[IOMobileFramebufferClient sharedInstance] gamutMatrixFunctionIsUsable] ? 30345 : 43110;
     }
 }
 
-+ (void)setWhitePoint:(uint32_t)value{
++ (void)setWhitePoint:(uint32_t)value {
     if (value > IOMobileFramebufferBrightnessCorrectionDefault){
         value = IOMobileFramebufferBrightnessCorrectionDefault;
     }
@@ -44,14 +42,13 @@ static uint32_t minWhitePointValue;
     [[IOMobileFramebufferClient sharedInstance] setBrightnessCorrection:value];
 }
 
-+ (void)resetWhitePoint{
++ (void)resetWhitePoint {
     [[IOMobileFramebufferClient sharedInstance] resetBrightnessCorrection];
 }
 
-+ (uint32_t)getMinimumWhitePoint{
++ (uint32_t)getMinimumWhitePoint {
     return minWhitePointValue;
 }
-
 
 + (void)setDarkroomEnabled:(BOOL)enable {
     if (enable) {

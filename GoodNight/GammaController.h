@@ -15,6 +15,7 @@ typedef NS_ENUM(int, TimeBasedAction) {
     KeepStandardEnabled
 };
 
+static uint32_t minWhitePointValue;
 
 @interface GammaController : NSObject
 

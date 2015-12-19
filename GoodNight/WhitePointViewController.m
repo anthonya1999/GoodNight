@@ -21,12 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.whitePointSlider.minimumValue = ((float)[GammaController getMinimumWhitePoint])/100000;
-
+    self.whitePointSlider.minimumValue = ((float)[GammaController getMinimumWhitePoint]) / 100000;
     self.whitePointSlider.maximumValue = 0.65535;
-    
     [self updateUI];
-    
 }
 
 - (void)updateUI {
@@ -37,7 +34,6 @@
     
     self.whitePointSwitch.onTintColor = [UIColor colorWithRed:(1.0f-brightness)*0.9f green:((2.0f-brightness)/2.0f)*0.9f blue:0.9f alpha:1.0];
     self.whitePointSlider.tintColor = [UIColor colorWithRed:(1.0f-brightness)*0.9f green:((2.0f-brightness)/2.0f)*0.9f blue:0.9f alpha:1.0];
-    
 }
 
 - (IBAction)whitePointSliderChanged {
@@ -53,13 +49,13 @@
         [userDefaults setBool:self.whitePointSwitch.on forKey:@"whitePointEnabled"];
         
         if (self.whitePointSwitch.on) {
-            
             [GammaController setWhitePoint:[userDefaults floatForKey:@"whitePointValue"] * 100000];
         }
         else {
             [GammaController resetWhitePoint];
         }
     }
+    
     else {
         NSString *title = @"Error";
         NSString *message = @"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one.";
