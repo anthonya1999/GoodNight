@@ -15,7 +15,12 @@ typedef NS_ENUM(int, TimeBasedAction) {
     KeepStandardEnabled
 };
 
+
 @interface GammaController : NSObject
+
++ (void)setWhitePoint:(uint32_t)value;
++ (void)resetWhitePoint;
++ (uint32_t)getMinimumWhitePoint;
 
 + (void)autoChangeOrangenessIfNeededWithTransition:(BOOL)transition;
 + (void)setGammaWithMatrixAndRed:(float)red green:(float)green blue:(float)blue;

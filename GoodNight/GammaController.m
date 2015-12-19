@@ -18,7 +18,40 @@
 #import "SpringBoardServicesClient.h"
 #import "MobileGestaltClient.h"
 
+static uint32_t minWhitePointValue;
+
 @implementation GammaController
+
++ (void) initialize {
+    if (self == [GammaController class]) {
+        minWhitePointValue = [[IOMobileFramebufferClient sharedInstance] gamutMatrixFunctionIsUsable] ? 25009 : 43110;
+    }
+}
+
++ (void)setWhitePoint:(uint32_t)value{
+    if (value > IOMobileFramebufferBrightnessCorrectionDefault){
+        value = IOMobileFramebufferBrightnessCorrectionDefault;
+    }
+    if (value < minWhitePointValue){
+        value = minWhitePointValue;
+    }
+    
+    if ([[IOMobileFramebufferClient sharedInstance] gamutMatrixFunctionIsUsable]) {
+        [userDefaults setBool:NO forKey:@"enabled"];
+        [GammaController setGammaWithMatrixAndRed:1 green:1 blue:1];
+    }
+    
+    [[IOMobileFramebufferClient sharedInstance] setBrightnessCorrection:value];
+}
+
++ (void)resetWhitePoint{
+    [[IOMobileFramebufferClient sharedInstance] resetBrightnessCorrection];
+}
+
++ (uint32_t)getMinimumWhitePoint{
+    return minWhitePointValue;
+}
+
 
 + (void)setDarkroomEnabled:(BOOL)enable {
     if (enable) {
@@ -190,7 +223,7 @@
     
     [self wakeUpScreenIfNeeded];
     
-    [[IOMobileFramebufferClient sharedInstance] resetBrightnessCorrection];
+    [self resetWhitePoint];
     
     if (transition == YES) {
         [self setGammaWithTransitionFrom:currentOrangeLevel to:orangeLevel];
@@ -276,7 +309,7 @@
 }
 
 + (void)enableDimness {
-    [[IOMobileFramebufferClient sharedInstance] resetBrightnessCorrection];
+    [self resetWhitePoint];
     
     float dimLevel = [userDefaults floatForKey:@"dimLevel"];
     [self setGammaWithRed:dimLevel green:dimLevel blue:dimLevel];
@@ -286,7 +319,7 @@
 }
 
 + (void)setGammaWithCustomValues {
-    [[IOMobileFramebufferClient sharedInstance] resetBrightnessCorrection];
+    [self resetWhitePoint];
     
     float redValue = [userDefaults floatForKey:@"redValue"];
     float greenValue = [userDefaults floatForKey:@"greenValue"];
