@@ -113,4 +113,11 @@ s1516 GamutMatrixValue(double value) {
     [self callFramebufferFunction:@"IOMobileFramebufferGetGammaTable" withFirstParamPointer:table];
 }
 
+- (BOOL)gamutMatrixFunctionIsUsable {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3")) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

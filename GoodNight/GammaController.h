@@ -18,6 +18,7 @@ typedef NS_ENUM(int, TimeBasedAction) {
 @interface GammaController : NSObject
 
 + (void)autoChangeOrangenessIfNeededWithTransition:(BOOL)transition;
++ (void)setGammaWithMatrixAndRed:(float)red green:(float)green blue:(float)blue;
 + (void)enableOrangenessWithDefaults:(BOOL)defaults transition:(BOOL)transition;
 + (void)setGammaWithTransitionFrom:(float)oldPercentOrange to:(float)newPercentOrange;
 + (void)disableGammaWithTransition:(BOOL)transition;

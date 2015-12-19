@@ -605,7 +605,8 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Level" footerTitle="Adjust the white point of the device, even below what you can in the Settings app." id="k6i-lQ-T09">
+                            <tableViewSection headerTitle="Level" id="k6i-lQ-T09">
+                                <string key="footerTitle">Adjust the white point of the device to reduce the intensity of bright colors. You may even set it below what you can in the default Settings app.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Sco-mL-4Wi">
                                         <rect key="frame" x="0.0" y="193" width="600" height="44"/>
@@ -633,7 +634,7 @@
                             <tableViewSection headerTitle="" footerTitle="" id="5CB-X2-esY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="RCg-ny-taV">
-                                        <rect key="frame" x="0.0" y="282" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="298" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RCg-ny-taV" id="tjC-r4-wlV">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
