@@ -430,20 +430,27 @@
 }
 
 + (BOOL)adjustmentForKeysEnabled:(NSString *)firstKey, ... {
-    
-    BOOL adjustmentsEnabled = NO;
-    
+
     va_list args;
     va_start(args, firstKey);
-    for (NSString *arg = firstKey; arg != nil; arg = va_arg(args, NSString*))
+    BOOL adjustmentsEnabled = [self adjustmentForKeysEnabled:firstKey withParameters:args];
+    va_end(args);
+
+    return adjustmentsEnabled;
+}
+
++ (BOOL)adjustmentForKeysEnabled:(NSString *)firstKey withParameters:(va_list)valist
+{
+    BOOL adjustmentsEnabled = NO;
+    
+    for (NSString *arg = firstKey; arg != nil; arg = va_arg(valist, NSString*))
     {
         if ([userDefaults boolForKey:arg]){
             adjustmentsEnabled = YES;
             break;
         }
     }
-    va_end(args);
-
+    
     return adjustmentsEnabled;
 }
 

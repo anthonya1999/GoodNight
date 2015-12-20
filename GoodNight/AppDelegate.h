@@ -12,6 +12,7 @@
 
 + (void)updateNotifications;
 + (id)initWithIdentifier:(NSString *)identifier;
++ (BOOL)checkAlertNeededWithViewController:(UIViewController*)vc andExecutionBlock:(void(^)(UIAlertAction *action))block forKeys:(NSString *)firstKey, ...  NS_REQUIRES_NIL_TERMINATION;
 
 @property (strong, nonatomic) UIWindow *window;
 
