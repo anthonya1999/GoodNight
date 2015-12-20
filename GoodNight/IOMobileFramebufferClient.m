@@ -71,6 +71,25 @@ s1516 GamutMatrixValue(double value) {
     IOMobileFramebufferFunction(self.framebufferConnection, scalar);
 }
 
+- (IOMobileFramebufferColorRemapMode)colorRemapMode {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode *mode) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferGetColorRemapMode");
+        NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
+        IOMobileFramebufferColorRemapMode mode = IOMobileFramebufferColorRemapModeNormal;
+        IOMobileFramebufferReturn returnValue = IOMobileFramebufferGetColorRemapMode(self.framebufferConnection, &mode);
+        
+        if (returnValue == 0) {
+            return mode;
+        }
+    }
+    
+    return IOMobileFramebufferColorRemapModeError;
+}
+
+- (void)setColorRemapMode:(IOMobileFramebufferColorRemapMode)mode {
+    [self callFramebufferFunction:@"IOMobileFramebufferSetColorRemapMode" withFirstParamScalar:mode];
+}
+
 - (void)setWhiteOnBlackMode:(BOOL)enabled {
     [self callFramebufferFunction:@"IOMobileFramebufferSetWhiteOnBlackMode" withFirstParamScalar:enabled];
 }
