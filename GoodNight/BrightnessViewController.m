@@ -102,15 +102,45 @@
 }
 
 - (IBAction)darkroomSwitchChanged {
-    [userDefaults setBool:self.darkroomSwitch.on forKey:@"darkroomEnabled"];
-    
-    if (self.darkroomSwitch.on) {
-        [GammaController setDarkroomEnabled:YES];
+    if (![GammaController adjustmentForKeysEnabled:@"enabled", @"rgbEnabled", @"whitePointEnabled", nil]) {
+        [userDefaults setBool:self.darkroomSwitch.on forKey:@"darkroomEnabled"];
+        
+        if (self.darkroomSwitch.on) {
+            [GammaController setDarkroomEnabled:YES];
+        }
+        else {
+            [GammaController setDarkroomEnabled:NO];
+        }
     }
     else {
-        [GammaController setDarkroomEnabled:NO];
+        NSString *title = @"Error";
+        NSString *message = @"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one.";
+        NSString *cancelButton = @"Cancel";
+        NSString *disableButton = @"Disable";
+        
+        if (NSClassFromString(@"UIAlertController") != nil) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:cancelButton style:UIAlertActionStyleCancel handler:nil]];
+            
+            [alertController addAction:[UIAlertAction actionWithTitle:disableButton style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                [userDefaults setBool:NO forKey:@"enabled"];
+                [userDefaults setBool:NO forKey:@"rgbEnabled"];
+                [userDefaults setBool:NO forKey:@"whitePointEnabled"];
+                [userDefaults setBool:NO forKey:@"dimEnabled"];
+                [self.darkroomSwitch setOn:YES animated:YES];
+                [self darkroomSwitchChanged];
+            }]];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:cancelButton otherButtonTitles:nil];
+            
+            [alertView show];
+        }
     }
-    
+
     [self updateUI];
 }
 
