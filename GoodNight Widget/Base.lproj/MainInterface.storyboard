@@ -17,10 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HGf-K8-CYy">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGf-K8-CYy">
                                 <rect key="frame" x="20" y="5" width="280" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOd-Wo-5gC">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOd-Wo-5gC">
                                         <rect key="frame" x="8" y="4" width="108" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="7dt-ms-HIz"/>
@@ -36,13 +36,17 @@
                                             <action selector="toggleButtonClicked" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="NuU-vj-AQ3"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUd-BI-2Lc">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUd-BI-2Lc">
                                         <rect key="frame" x="29" y="44" width="222" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="222" id="f1V-Oi-VVc"/>
+                                            <constraint firstAttribute="height" constant="21" id="fp0-1O-Fma"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGb-YH-tIs">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGb-YH-tIs">
                                         <rect key="frame" x="164" y="4" width="108" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="0DC-Wl-dpc"/>
@@ -67,7 +71,9 @@
                                     <constraint firstItem="zOd-Wo-5gC" firstAttribute="leading" secondItem="HGf-K8-CYy" secondAttribute="leading" constant="8" id="D4G-ug-dew"/>
                                     <constraint firstItem="lUd-BI-2Lc" firstAttribute="centerX" secondItem="HGf-K8-CYy" secondAttribute="centerX" id="KlC-40-sh4"/>
                                     <constraint firstItem="DGb-YH-tIs" firstAttribute="top" secondItem="HGf-K8-CYy" secondAttribute="top" constant="4" id="Rvh-v8-jMH"/>
+                                    <constraint firstAttribute="width" constant="280" id="Ul0-sK-Bru"/>
                                     <constraint firstAttribute="bottom" secondItem="lUd-BI-2Lc" secondAttribute="bottom" constant="5" id="YNA-Uu-Fc1"/>
+                                    <constraint firstAttribute="height" constant="70" id="o6R-mx-Lui"/>
                                     <constraint firstItem="zOd-Wo-5gC" firstAttribute="top" secondItem="HGf-K8-CYy" secondAttribute="top" constant="4" id="rzw-cu-6nF"/>
                                 </constraints>
                             </view>
