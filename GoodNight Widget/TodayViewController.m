@@ -48,8 +48,26 @@
 
 - (void)updateUI {
     BOOL enabled = [groupDefaults boolForKey:@"enabled"];
+    float nightOrange = [groupDefaults floatForKey:@"maxOrange"];
+    float dayOrange = [groupDefaults floatForKey:@"dayOrange"];
+    float currentOrange = [groupDefaults floatForKey:@"currentOrange"];
+    
     self.toggleButton.selected = enabled;
-    self.toggleButton.layer.backgroundColor = enabled ? [[UIColor colorWithRed:0.8f green:0.495f blue:0.09f alpha:1.0] CGColor] : [[UIColor grayColor] CGColor];
+    self.toggleButton.layer.backgroundColor = enabled ? [[UIColor colorWithRed:0.9f green:((2.0f-(1.0f-nightOrange))/2.0f)*0.9f blue:(1.0f-(1.0f-nightOrange))*0.9f alpha:1.0] CGColor] : [[UIColor grayColor] CGColor];
+    
+    if (dayOrange == 1.0f){
+        [self.toggleButton setTitle: @"Gamma on" forState: UIControlStateNormal];
+        [self.toggleButton setTitle: @"Gamma off" forState: UIControlStateSelected];
+    }
+    else if (dayOrange < 1.0f && dayOrange == currentOrange){
+        [self.toggleButton setTitle: @"Gamma night" forState: UIControlStateNormal];
+        [self.toggleButton setTitle: @"Gamma off" forState: UIControlStateSelected];
+        self.toggleButton.layer.backgroundColor = enabled ? [[UIColor colorWithRed:1.0f green:(2.0f-(1.0f-dayOrange))/2.0f blue:1.0f-(1.0f-dayOrange) alpha:1.0] CGColor] : [[UIColor grayColor] CGColor];
+    }
+    else if (dayOrange < 1.0f && dayOrange != currentOrange){
+        [self.toggleButton setTitle: @"Gamma night" forState: UIControlStateNormal];
+        [self.toggleButton setTitle: @"Gamma day" forState: UIControlStateSelected];
+    }
     
     BOOL darkroomEnabled = [groupDefaults boolForKey:@"darkroomEnabled"];
     
@@ -61,9 +79,23 @@
 
 - (IBAction)toggleButtonClicked {
     BOOL enabled = [groupDefaults boolForKey:@"enabled"];
+    float dayOrange = [groupDefaults floatForKey:@"dayOrange"];
+    float currentOrange = [groupDefaults floatForKey:@"currentOrange"];
     
-    if (enabled){
+    if (enabled && dayOrange == 1.0f){
         [GammaController disableOrangeness];
+    }
+    else if (enabled && dayOrange < 1.0f && dayOrange == currentOrange){
+        [GammaController disableOrangeness];
+    }
+    else if (enabled && dayOrange < 1.0f && dayOrange != currentOrange){
+        [GammaController setDarkroomEnabled:NO];
+        [NSThread sleepForTimeInterval:0.1];
+        [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:dayOrange];
+        [groupDefaults setBool:NO forKey:@"dimEnabled"];
+        [groupDefaults setBool:NO forKey:@"rgbEnabled"];
+        [groupDefaults setBool:NO forKey:@"whitePointEnabled"];
+        [groupDefaults setBool:NO forKey:@"darkroomEnabled"];
     }
     else{
         [GammaController setDarkroomEnabled:NO];
