@@ -16,6 +16,7 @@ typedef NS_ENUM(int, TimeBasedAction) {
 };
 
 static uint32_t minWhitePointValue;
+static NSOperationQueue *animationQueue = nil;
 
 @interface GammaController : NSObject
 

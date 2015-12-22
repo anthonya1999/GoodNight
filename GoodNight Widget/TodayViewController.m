@@ -72,6 +72,7 @@
         [groupDefaults setBool:NO forKey:@"dimEnabled"];
         [groupDefaults setBool:NO forKey:@"rgbEnabled"];
         [groupDefaults setBool:NO forKey:@"whitePointEnabled"];
+        [groupDefaults setBool:NO forKey:@"darkroomEnabled"];
     }
 
     [groupDefaults setBool:YES forKey:@"manualOverride"];

@@ -57,6 +57,9 @@
 }
 
 + (void)setDarkroomEnabled:(BOOL)enable {
+    [animationQueue cancelAllOperations];
+    [NSThread sleepForTimeInterval:0.1f];
+    
     if (enable) {
         if ([self invertScreenColors:YES]) {
             [self setGammaWithRed:0.8f green:0.f blue:0.f];
@@ -284,13 +287,12 @@
 }
 
 + (void)setGammaWithTransitionFrom:(float)oldPercentOrange to:(float)newPercentOrange {
-    static NSOperationQueue *queue = nil;
 
-    if (!queue) {
-        queue = [NSOperationQueue new];
+    if (!animationQueue) {
+        animationQueue = [NSOperationQueue new];
     }
     
-    [queue cancelAllOperations];
+    [animationQueue cancelAllOperations];
     
     NSBlockOperation *operation = [[NSBlockOperation alloc] init];
     __weak NSBlockOperation *weakOperation = operation;
@@ -324,7 +326,7 @@
         [operation setThreadPriority:1.0f];
     }
     operation.queuePriority = NSOperationQueuePriorityVeryHigh;
-    [queue addOperation:operation];
+    [animationQueue addOperation:operation];
 }
 
 + (void)disableGammaWithTransition:(BOOL)transition {
