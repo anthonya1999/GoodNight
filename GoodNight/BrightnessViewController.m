@@ -78,6 +78,7 @@
     
     if (!adjustmentsEnabled) {
         [groupDefaults setBool:self.dimSwitch.on forKey:@"dimEnabled"];
+        [groupDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
 
         if (self.dimSwitch.on) {
             [GammaController enableDimness];
@@ -104,6 +105,7 @@
     
     if (!adjustmentsEnabled) {
         [groupDefaults setBool:self.darkroomSwitch.on forKey:@"darkroomEnabled"];
+        [groupDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
 
         if (self.darkroomSwitch.on) {
             [GammaController setDarkroomEnabled:YES];

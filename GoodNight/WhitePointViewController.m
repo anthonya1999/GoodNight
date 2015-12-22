@@ -59,6 +59,7 @@
     
     if (!adjustmentsEnabled) {
         [groupDefaults setBool:self.whitePointSwitch.on forKey:@"whitePointEnabled"];
+        [groupDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
         
         if (self.whitePointSwitch.on) {
             [GammaController setWhitePoint:[groupDefaults floatForKey:@"whitePointValue"] * 100000];

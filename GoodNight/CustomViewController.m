@@ -114,6 +114,7 @@
     
     if (!adjustmentsEnabled) {
         [groupDefaults setBool:self.rgbSwitch.on forKey:@"rgbEnabled"];
+        [groupDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
         
         if (self.rgbSwitch.on) {
             [GammaController setGammaWithCustomValues];

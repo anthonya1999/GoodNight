@@ -284,13 +284,23 @@
             break;
     }
     [groupDefaults setFloat:self.orangeSlider.value forKey:key];
-    
+
+    [GammaController enableOrangenessWithDefaults:NO transition:NO orangeLevel:self.orangeSlider.value];
+}
+
+- (IBAction)maxOrangeSliderChangingEnded {
     if (self.colorChangingEnabledSwitch.on || self.colorChangingLocationBasedSwitch.on){
+        [groupDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
         [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
     }
     else if (self.enabledSwitch.on) {
         [GammaController enableOrangenessWithDefaults:NO transition:NO];
     }
+    else {
+        [GammaController disableOrangeness];
+    }
+    
+    [groupDefaults synchronize];
 }
 
 - (IBAction)colorChangingEnabledSwitchChanged:(UISwitch *)sender {

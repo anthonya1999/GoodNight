@@ -238,17 +238,18 @@
                     [GammaController disableOrangeness];
                     [groupDefaults setBool:NO forKey:@"dimEnabled"];
                     [groupDefaults setBool:NO forKey:@"rgbEnabled"];
+                    [groupDefaults setBool:NO forKey:@"whitePointEnabled"];
                 }
                 else{
-                    [GammaController enableOrangenessWithDefaults:YES transition:YES orangeLevel:newOrangeLevel];
+                    [GammaController enableOrangenessWithDefaults:YES transition:transition orangeLevel:newOrangeLevel];
                     [groupDefaults setBool:NO forKey:@"dimEnabled"];
                     [groupDefaults setBool:NO forKey:@"rgbEnabled"];
+                    [groupDefaults setBool:NO forKey:@"whitePointEnabled"];
                 }
                 break;
             default:
                 break;
         }
-        
     }
     
     [groupDefaults setObject:[NSDate date] forKey:@"lastAutoChangeDate"];
