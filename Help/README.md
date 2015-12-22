@@ -9,7 +9,7 @@
 6. Change **Team** to your own Apple ID.
 7. Click **Fix Issue** below **Team**.
 ![help-img-1](help-img-1.png)
-8. Open **Capabilities** tab and make sure ++App Groups** is enabled. 
+8. Open **Capabilities** tab and make sure **App Groups** is enabled. 
 9. Enter `group.com.<something>.goodnight` as group name (click +) and check this group.
 10. Repeat 4-9 for **GoodNight-Widget**. (Make sure the **Bundle Identifier** has
 the same arbitrary string as the first one.)
