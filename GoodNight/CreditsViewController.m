@@ -26,7 +26,7 @@
 
 - (UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location
 {
-    if ([userDefaults boolForKey:@"peekPopEnabled"]) {
+    if ([groupDefaults boolForKey:@"peekPopEnabled"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
     
         if (indexPath) {

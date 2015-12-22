@@ -32,10 +32,10 @@
 }
 
 - (void)updateUI {
-    self.rgbSwitch.on = [userDefaults boolForKey:@"rgbEnabled"];
-    self.redSlider.value = [userDefaults floatForKey:@"redValue"];
-    self.greenSlider.value = [userDefaults floatForKey:@"greenValue"];
-    self.blueSlider.value = [userDefaults floatForKey:@"blueValue"];
+    self.rgbSwitch.on = [groupDefaults boolForKey:@"rgbEnabled"];
+    self.redSlider.value = [groupDefaults floatForKey:@"redValue"];
+    self.greenSlider.value = [groupDefaults floatForKey:@"greenValue"];
+    self.blueSlider.value = [groupDefaults floatForKey:@"blueValue"];
     
     self.rgbSwitch.onTintColor = [UIColor colorWithRed:self.redSlider.value*0.8f green:self.greenSlider.value*0.8f blue:self.blueSlider.value*0.8f alpha:1.0];
     self.redSlider.tintColor = [UIColor colorWithRed:1.0f green:1.0f-self.redSlider.value blue:1.0f-self.redSlider.value alpha:1.0];
@@ -103,17 +103,17 @@
 - (IBAction)colorSwitchChanged {
     BOOL adjustmentsEnabled = [AppDelegate checkAlertNeededWithViewController:self
                 andExecutionBlock:^(UIAlertAction *action) {
-                    [userDefaults setBool:NO forKey:@"enabled"];
-                    [userDefaults setBool:NO forKey:@"dimEnabled"];
-                    [userDefaults setBool:NO forKey:@"whitePointEnabled"];
-                    [userDefaults setBool:YES forKey:@"rgbEnabled"];
+                    [groupDefaults setBool:NO forKey:@"enabled"];
+                    [groupDefaults setBool:NO forKey:@"dimEnabled"];
+                    [groupDefaults setBool:NO forKey:@"whitePointEnabled"];
+                    [groupDefaults setBool:YES forKey:@"rgbEnabled"];
                     [GammaController setDarkroomEnabled:NO];
                     [self colorSwitchChanged];
                 }
                 forKeys:@"enabled", @"dimEnabled",@"whitePointEnabled", nil];
     
     if (!adjustmentsEnabled) {
-        [userDefaults setBool:self.rgbSwitch.on forKey:@"rgbEnabled"];
+        [groupDefaults setBool:self.rgbSwitch.on forKey:@"rgbEnabled"];
         
         if (self.rgbSwitch.on) {
             [GammaController setGammaWithCustomValues];
@@ -128,7 +128,7 @@
 
 - (void)updateDisplayColorWithValue:(float)value forKey:(NSString *)key {
     if ( key != nil) {
-        [userDefaults setFloat:value forKey:key];
+        [groupDefaults setFloat:value forKey:key];
     }
     
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 3)];
@@ -141,13 +141,13 @@
 
 - (IBAction)resetDisplayColor {
     self.redSlider.value = 1.0;
-    [userDefaults setFloat:self.redSlider.value forKey:@"redValue"];
+    [groupDefaults setFloat:self.redSlider.value forKey:@"redValue"];
     
     self.greenSlider.value = 1.0;
-    [userDefaults setFloat:self.greenSlider.value forKey:@"greenValue"];
+    [groupDefaults setFloat:self.greenSlider.value forKey:@"greenValue"];
     
     self.blueSlider.value = 1.0;
-    [userDefaults setFloat:self.blueSlider.value forKey:@"blueValue"];
+    [groupDefaults setFloat:self.blueSlider.value forKey:@"blueValue"];
     
     [self updateDisplayColorWithValue:0 forKey:nil];
 }
@@ -167,23 +167,23 @@
 }
 
 - (void)setGammaWithRedColor {
-    [userDefaults setFloat:1.0 forKey:@"redValue"];
-    [userDefaults setFloat:0.0 forKey:@"greenValue"];
-    [userDefaults setFloat:0.0 forKey:@"blueValue"];
+    [groupDefaults setFloat:1.0 forKey:@"redValue"];
+    [groupDefaults setFloat:0.0 forKey:@"greenValue"];
+    [groupDefaults setFloat:0.0 forKey:@"blueValue"];
     [GammaController setGammaWithCustomValues];
 }
 
 - (void)setGammaWithGreenColor {
-    [userDefaults setFloat:0.0 forKey:@"redValue"];
-    [userDefaults setFloat:1.0 forKey:@"greenValue"];
-    [userDefaults setFloat:0.0 forKey:@"blueValue"];
+    [groupDefaults setFloat:0.0 forKey:@"redValue"];
+    [groupDefaults setFloat:1.0 forKey:@"greenValue"];
+    [groupDefaults setFloat:0.0 forKey:@"blueValue"];
     [GammaController setGammaWithCustomValues];
 }
 
 - (void)setGammaWithBlueColor {
-    [userDefaults setFloat:0.0 forKey:@"redValue"];
-    [userDefaults setFloat:0.0 forKey:@"greenValue"];
-    [userDefaults setFloat:1.0 forKey:@"blueValue"];
+    [groupDefaults setFloat:0.0 forKey:@"redValue"];
+    [groupDefaults setFloat:0.0 forKey:@"greenValue"];
+    [groupDefaults setFloat:1.0 forKey:@"blueValue"];
     [GammaController setGammaWithCustomValues];
 }
 

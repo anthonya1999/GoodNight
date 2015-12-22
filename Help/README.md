@@ -9,17 +9,20 @@
 6. Change **Team** to your own Apple ID.
 7. Click **Fix Issue** below **Team**.
 ![help-img-1](help-img-1.png)
-8. Repeat 4-7 for **GoodNight-Widget**. (Make sure the **Bundle Identifier** has
+8. Open **Capabilities** tab and make sure ++App Groups** is enabled. 
+9. Enter `group.com.<something>.goodnight` as group name (click +) and check this group.
+10. Repeat 4-9 for **GoodNight-Widget**. (Make sure the **Bundle Identifier** has
 the same arbitrary string as the first one.)
-9. Select your iOS Device in Xcode, then unlock it (type in your passcode if you
+11. Open `PrefixHeader.pch` and also change the definition of **appGroupID** to `group.com.<something>.goodnight`.
+12. Select your iOS Device in Xcode, then unlock it (type in your passcode if you
 have one).
 ![help-img-2](help-img-2.png)
-10. Hit `⌘R` to install. (You may get "Process launch failed: Security." That's
+13. Hit `⌘R` to install. (You may get "Process launch failed: Security." That's
 OK.)
-11. On your iOS device, go to **Settings → General → Profile (or Device Management in iOS 8) →
+14. On your iOS device, go to **Settings → General → Profile (or Device Management in iOS 8) →
 \<your Apple ID\>** and hit **Trust**.  Note that **Profile** can also be known as **Profiles** or **Profiles & Device Management**. 
-12. If your device was not connected to the Internet when you trusted the app developer above, you now need to connect to the Internet and tap the **Verify App** button.
-13. Launch the GoodNight app on your iOS device from the Home screen.
+15. If your device was not connected to the Internet when you trusted the app developer above, you now need to connect to the Internet and tap the **Verify App** button.
+16. Launch the GoodNight app on your iOS device from the Home screen.
 
 Note: If you'd like to test your own version of GoodNight, you must select
 "Generic iOS Device", or your own device (if plugged in, of course), to

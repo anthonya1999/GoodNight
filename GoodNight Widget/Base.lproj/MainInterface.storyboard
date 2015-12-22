@@ -1,50 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15C27e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="M4Y-Lb-cyx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Today View Controller-->
         <scene sceneID="cwh-vc-ff4">
             <objects>
                 <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lWb-vf-Fke"/>
+                        <viewControllerLayoutGuide type="bottom" id="mzD-km-XJR"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DGb-YH-tIs">
-                                <rect key="frame" x="142" y="21" width="98" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Disable">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="disableButtonClicked" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="ugH-Bw-d1S"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zOd-Wo-5gC">
-                                <rect key="frame" x="1" y="21" width="98" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Enable">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="enableButtonClicked" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="r6r-lo-E6i"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oHY-7W-Hii">
-                                <rect key="frame" x="22" y="74" width="196" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Turn on or off the temperature
-adjustment.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HGf-K8-CYy">
+                                <rect key="frame" x="20" y="5" width="280" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOd-Wo-5gC">
+                                        <rect key="frame" x="8" y="4" width="108" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="7dt-ms-HIz"/>
+                                            <constraint firstAttribute="width" constant="108" id="xbk-MI-MWl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Gamma on">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" title="Gamma off"/>
+                                        <connections>
+                                            <action selector="toggleButtonClicked" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="NuU-vj-AQ3"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUd-BI-2Lc">
+                                        <rect key="frame" x="29" y="44" width="222" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGb-YH-tIs">
+                                        <rect key="frame" x="164" y="4" width="108" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="0DC-Wl-dpc"/>
+                                            <constraint firstAttribute="width" constant="108" id="9Kk-rc-mUW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Darkroom on">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" title="Darkroom off">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="darkroomButtonClicked" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="1wq-El-Cm9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="DGb-YH-tIs" secondAttribute="trailing" constant="8" id="4gV-fA-qeQ"/>
+                                    <constraint firstItem="zOd-Wo-5gC" firstAttribute="leading" secondItem="HGf-K8-CYy" secondAttribute="leading" constant="8" id="D4G-ug-dew"/>
+                                    <constraint firstItem="lUd-BI-2Lc" firstAttribute="centerX" secondItem="HGf-K8-CYy" secondAttribute="centerX" id="KlC-40-sh4"/>
+                                    <constraint firstItem="DGb-YH-tIs" firstAttribute="top" secondItem="HGf-K8-CYy" secondAttribute="top" constant="4" id="Rvh-v8-jMH"/>
+                                    <constraint firstAttribute="bottom" secondItem="lUd-BI-2Lc" secondAttribute="bottom" constant="5" id="YNA-Uu-Fc1"/>
+                                    <constraint firstItem="zOd-Wo-5gC" firstAttribute="top" secondItem="HGf-K8-CYy" secondAttribute="top" constant="4" id="rzw-cu-6nF"/>
+                                </constraints>
+                            </view>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="HGf-K8-CYy" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX" id="Gkq-uR-yZo"/>
+                            <constraint firstItem="HGf-K8-CYy" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" id="H32-37-Xy9"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="6o1-7O-LRT"/>
@@ -52,16 +83,16 @@ adjustment.</string>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="110"/>
+                    <size key="freeformSize" width="320" height="80"/>
                     <connections>
-                        <outlet property="disableButton" destination="DGb-YH-tIs" id="IMT-Lv-nQR"/>
-                        <outlet property="enableButton" destination="zOd-Wo-5gC" id="iNI-wt-69c"/>
-                        <outlet property="temperatureLabel" destination="oHY-7W-Hii" id="YXa-ME-gzi"/>
+                        <outlet property="darkroomButton" destination="DGb-YH-tIs" id="UYz-kL-W4d"/>
+                        <outlet property="temperatureLabel" destination="lUd-BI-2Lc" id="oLP-Po-Fga"/>
+                        <outlet property="toggleButton" destination="zOd-Wo-5gC" id="qDR-Uw-jOM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="284"/>
+            <point key="canvasLocation" x="887" y="262"/>
         </scene>
     </scenes>
 </document>

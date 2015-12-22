@@ -25,16 +25,22 @@
     warningIgnored = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void)userDefaultsChanged:(NSNotification *)notification {
     [self updateUI];
 }
 
+- (void)applicationDidBecomeActive:(NSNotification *)notification {
+    [self updateUI];
+}
+
 - (void)updateUI {
-    self.dimSlider.value = [userDefaults floatForKey:@"dimLevel"];
-    self.dimSwitch.on = [userDefaults boolForKey:@"dimEnabled"];
-    self.darkroomSwitch.on = [userDefaults boolForKey:@"darkroomEnabled"];
+    self.dimSlider.value = [groupDefaults floatForKey:@"dimLevel"];
+    self.dimSwitch.on = [groupDefaults boolForKey:@"dimEnabled"];
+    self.darkroomSwitch.on = [groupDefaults boolForKey:@"darkroomEnabled"];
     
     if (self.dimSwitch.on) {
         self.darkroomSwitch.enabled = NO;
@@ -62,17 +68,17 @@
 - (IBAction)brightnessSwitchChanged {
     BOOL adjustmentsEnabled = [AppDelegate checkAlertNeededWithViewController:self
                 andExecutionBlock:^(UIAlertAction *action) {
-                    [userDefaults setBool:NO forKey:@"enabled"];
-                    [userDefaults setBool:NO forKey:@"rgbEnabled"];
-                    [userDefaults setBool:NO forKey:@"whitePointEnabled"];
-                    [userDefaults setBool:YES forKey:@"dimEnabled"];
+                    [groupDefaults setBool:NO forKey:@"enabled"];
+                    [groupDefaults setBool:NO forKey:@"rgbEnabled"];
+                    [groupDefaults setBool:NO forKey:@"whitePointEnabled"];
+                    [groupDefaults setBool:YES forKey:@"dimEnabled"];
                     [self brightnessSwitchChanged];
                 }
                 forKeys:@"enabled", @"rgbEnabled", @"whitePointEnabled", nil];
     
     if (!adjustmentsEnabled) {
-        [userDefaults setBool:self.dimSwitch.on forKey:@"dimEnabled"];
-        
+        [groupDefaults setBool:self.dimSwitch.on forKey:@"dimEnabled"];
+
         if (self.dimSwitch.on) {
             [GammaController enableDimness];
         }
@@ -87,18 +93,18 @@
 - (IBAction)darkroomSwitchChanged {
     BOOL adjustmentsEnabled = [AppDelegate checkAlertNeededWithViewController:self
                 andExecutionBlock:^(UIAlertAction *action) {
-                    [userDefaults setBool:NO forKey:@"enabled"];
-                    [userDefaults setBool:NO forKey:@"rgbEnabled"];
-                    [userDefaults setBool:NO forKey:@"whitePointEnabled"];
-                    [userDefaults setBool:NO forKey:@"dimEnabled"];
+                    [groupDefaults setBool:NO forKey:@"enabled"];
+                    [groupDefaults setBool:NO forKey:@"rgbEnabled"];
+                    [groupDefaults setBool:NO forKey:@"whitePointEnabled"];
+                    [groupDefaults setBool:NO forKey:@"dimEnabled"];
                     [self.darkroomSwitch setOn:YES animated:YES];
                     [self darkroomSwitchChanged];
                 }
                 forKeys:@"enabled", @"rgbEnabled", @"whitePointEnabled", nil];
     
     if (!adjustmentsEnabled) {
-        [userDefaults setBool:self.darkroomSwitch.on forKey:@"darkroomEnabled"];
-        
+        [groupDefaults setBool:self.darkroomSwitch.on forKey:@"darkroomEnabled"];
+
         if (self.darkroomSwitch.on) {
             [GammaController setDarkroomEnabled:YES];
         }
@@ -106,7 +112,7 @@
             [GammaController setDarkroomEnabled:NO];
         }
     }
- 
+
     [self updateUI];
 }
 
@@ -146,7 +152,7 @@
     }
     
     
-    [userDefaults setFloat:self.dimSlider.value forKey:@"dimLevel"];
+    [groupDefaults setFloat:self.dimSlider.value forKey:@"dimLevel"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     if (self.dimSwitch.on && !self.darkroomSwitch.on) {
@@ -167,12 +173,12 @@
 
 - (IBAction)resetSlider {
     self.dimSlider.value = 1.0;
-    [userDefaults setFloat:self.dimSlider.value forKey:@"dimLevel"];
+    [groupDefaults setFloat:self.dimSlider.value forKey:@"dimLevel"];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     
     
     [self.darkroomSwitch setOn:NO animated:YES];
-    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [groupDefaults setBool:NO forKey:@"darkroomEnabled"];
     [GammaController setDarkroomEnabled:NO];
     
     if (self.dimSwitch.on) {
@@ -183,10 +189,10 @@
 - (NSArray <id <UIPreviewActionItem>> *)previewActionItems {
     NSString *title = nil;
     
-    if (![userDefaults boolForKey:@"dimEnabled"]) {
+    if (![groupDefaults boolForKey:@"dimEnabled"]) {
         title = @"Enable";
     }
-    else if ([userDefaults boolForKey:@"dimEnabled"]) {
+    else if ([groupDefaults boolForKey:@"dimEnabled"]) {
         title = @"Disable";
     }
     
@@ -199,10 +205,10 @@
 }
 
 - (void)enableOrDisableBasedOnDefaults {
-    if (![userDefaults boolForKey:@"dimEnabled"]) {
+    if (![groupDefaults boolForKey:@"dimEnabled"]) {
         [GammaController enableDimness];
     }
-    else if ([userDefaults boolForKey:@"dimEnabled"]) {
+    else if ([groupDefaults boolForKey:@"dimEnabled"]) {
         [GammaController disableDimness];
     }
 }

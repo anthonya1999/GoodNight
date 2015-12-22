@@ -27,8 +27,8 @@
 }
 
 - (void)updateUI {
-    self.whitePointSlider.value = [userDefaults floatForKey:@"whitePointValue"];
-    self.whitePointSwitch.on = [userDefaults boolForKey:@"whitePointEnabled"];
+    self.whitePointSlider.value = [groupDefaults floatForKey:@"whitePointValue"];
+    self.whitePointSwitch.on = [groupDefaults boolForKey:@"whitePointEnabled"];
     
     float brightness = self.whitePointSlider.value;
     
@@ -37,10 +37,10 @@
 }
 
 - (IBAction)whitePointSliderChanged {
-    [userDefaults setFloat:self.whitePointSlider.value forKey:@"whitePointValue"];
+    [groupDefaults setFloat:self.whitePointSlider.value forKey:@"whitePointValue"];
     
     if (self.whitePointSwitch.on) {
-        [GammaController setWhitePoint:[userDefaults floatForKey:@"whitePointValue"] * 100000];
+        [GammaController setWhitePoint:[groupDefaults floatForKey:@"whitePointValue"] * 100000];
     }
 }
 
@@ -48,20 +48,20 @@
     BOOL adjustmentsEnabled = [AppDelegate checkAlertNeededWithViewController:self
                 andExecutionBlock:^(UIAlertAction *action) {
                     [GammaController disableColorAdjustment];
-                    [userDefaults setBool:NO forKey:@"enabled"];
-                    [userDefaults setBool:NO forKey:@"rgbEnabled"];
-                    [userDefaults setBool:NO forKey:@"dimEnabled"];
-                    [userDefaults setBool:YES forKey:@"whitePointEnabled"];
+                    [groupDefaults setBool:NO forKey:@"enabled"];
+                    [groupDefaults setBool:NO forKey:@"rgbEnabled"];
+                    [groupDefaults setBool:NO forKey:@"dimEnabled"];
+                    [groupDefaults setBool:YES forKey:@"whitePointEnabled"];
                     [self.whitePointSwitch setOn:YES animated:YES];
                     [self whitePointSwitchChanged];
                 }
                 forKeys:@"enabled", @"rgbEnabled", @"dimEnabled", nil];
     
     if (!adjustmentsEnabled) {
-        [userDefaults setBool:self.whitePointSwitch.on forKey:@"whitePointEnabled"];
+        [groupDefaults setBool:self.whitePointSwitch.on forKey:@"whitePointEnabled"];
         
         if (self.whitePointSwitch.on) {
-            [GammaController setWhitePoint:[userDefaults floatForKey:@"whitePointValue"] * 100000];
+            [GammaController setWhitePoint:[groupDefaults floatForKey:@"whitePointValue"] * 100000];
         }
         else {
             [GammaController resetWhitePoint];
@@ -73,27 +73,27 @@
 
 - (IBAction)whitePointValueReset {
     self.whitePointSlider.value = self.whitePointSlider.maximumValue;
-    [userDefaults setFloat:self.whitePointSlider.value forKey:@"whitePointValue"];
+    [groupDefaults setFloat:self.whitePointSlider.value forKey:@"whitePointValue"];
     
     if (self.whitePointSwitch.on) {
-        [GammaController setWhitePoint:[userDefaults floatForKey:@"whitePointValue"] * 100000];
+        [GammaController setWhitePoint:[groupDefaults floatForKey:@"whitePointValue"] * 100000];
     }
 }
 
 - (void)enableOrDisableBasedOnDefaults {
-    if ([userDefaults boolForKey:@"whitePointEnabled"]) {
+    if ([groupDefaults boolForKey:@"whitePointEnabled"]) {
         [GammaController resetWhitePoint];
-        [userDefaults setBool:NO forKey:@"whitePointEnabled"];
+        [groupDefaults setBool:NO forKey:@"whitePointEnabled"];
     }
     else {
-        [GammaController setWhitePoint:[userDefaults floatForKey:@"whitePointValue"] * 100000];
-        [userDefaults setBool:YES forKey:@"whitePointEnabled"];
+        [GammaController setWhitePoint:[groupDefaults floatForKey:@"whitePointValue"] * 100000];
+        [groupDefaults setBool:YES forKey:@"whitePointEnabled"];
     }
 }
 
 - (NSArray <id <UIPreviewActionItem>> *)previewActionItems {
     NSString *title = nil;
-    if ([userDefaults boolForKey:@"whitePointEnabled"]) {
+    if ([groupDefaults boolForKey:@"whitePointEnabled"]) {
         title = @"Disable";
     }
     else {
