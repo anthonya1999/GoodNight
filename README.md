@@ -17,7 +17,8 @@ the source.
 
 ### Installing
 
-See [here](Help/README.md).
+See [here] (Help/README.md) for written instructions.  
+Click on [this link] (https://www.youtube.com/watch?v=Yu62IlaqPQM) to see the official install video.  
 
 ### Compatibility
 
