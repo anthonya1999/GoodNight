@@ -17,7 +17,7 @@
 the same arbitrary string as the first one.)
 12. Open `PrefixHeader.pch` and also change the definition of **appGroupID** to `group.com.<something>.goodnight`.
 ![3](3.png)
-13. Ensure that `GoodNight/GoodNight/Supporting Files GoodNight.entitlements` and `GoodNight/GoodNight Widget/Supporting Files GoodNight.entitlements` reference the correct group.
+13. Ensure that `GoodNight/GoodNight/Supporting Files/GoodNight.entitlements` and `GoodNight/GoodNight Widget/Supporting Files/GoodNight.entitlements` reference the correct group.
 ![4](4.png)
 14. Select your iOS Device in Xcode, then unlock it (type in your passcode if you
 have one).
