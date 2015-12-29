@@ -51,9 +51,15 @@
 }
 
 + (BOOL)invertScreenColors:(BOOL)invert {
-    IOMobileFramebufferColorRemapMode mode = [[IOMobileFramebufferClient sharedInstance] colorRemapMode];
-    [[IOMobileFramebufferClient sharedInstance] setColorRemapMode:invert ? IOMobileFramebufferColorRemapModeInvertedGrayscale : IOMobileFramebufferColorRemapModeNormal];
-    return invert ? mode != IOMobileFramebufferColorRemapModeInvertedGrayscale : mode != IOMobileFramebufferColorRemapModeNormal;
+    if ([[IOMobileFramebufferClient sharedInstance] setColorRemapFunctionIsUsable]){
+        IOMobileFramebufferColorRemapMode mode = [[IOMobileFramebufferClient sharedInstance] colorRemapMode];
+        [[IOMobileFramebufferClient sharedInstance] setColorRemapMode:invert ? IOMobileFramebufferColorRemapModeInvertedGrayscale : IOMobileFramebufferColorRemapModeNormal];
+        return invert ? mode != IOMobileFramebufferColorRemapModeInvertedGrayscale : mode != IOMobileFramebufferColorRemapModeNormal;
+    }
+    else{
+        [[IOMobileFramebufferClient sharedInstance] setWhiteOnBlackMode:invert];
+        return YES;
+    }
 }
 
 + (void)setDarkroomEnabled:(BOOL)enable {

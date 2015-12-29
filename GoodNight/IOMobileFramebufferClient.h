@@ -60,5 +60,6 @@ typedef NS_ENUM(uint32_t, IOMobileFramebufferBrightnessCorrection) {
 - (void)setGammaTable:(IOMobileFramebufferGammaTable *)table;
 
 - (BOOL)gamutMatrixFunctionIsUsable;
+- (BOOL)setColorRemapFunctionIsUsable;
 
 @end

@@ -72,7 +72,7 @@ s1516 GamutMatrixValue(double value) {
 }
 
 - (IOMobileFramebufferColorRemapMode)colorRemapMode {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3")) {
         IOMobileFramebufferReturn (*IOMobileFramebufferGetColorRemapMode)(IOMobileFramebufferConnection connection, IOMobileFramebufferColorRemapMode *mode) = dlsym(IOMobileFramebufferHandle, "IOMobileFramebufferGetColorRemapMode");
         NSParameterAssert(IOMobileFramebufferGetColorRemapMode);
         IOMobileFramebufferColorRemapMode mode = IOMobileFramebufferColorRemapModeNormal;
@@ -134,6 +134,13 @@ s1516 GamutMatrixValue(double value) {
 
 - (BOOL)gamutMatrixFunctionIsUsable {
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3")) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)setColorRemapFunctionIsUsable {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
         return YES;
     }
     return NO;
