@@ -10,6 +10,24 @@
 #import "AppDelegate.h"
 #import "GammaController.h"
 
+
+// The multiple (in degrees Kelvin) to round orange values to
+#define ORANGE_VALUE_INCREMENT 100.0f
+
+// Given an currentOrangeValue as a float in the range [0.0, 1.0], converts it to Kelvin, rounds
+// to the nearest ORANGE_VALUE_INCREMENT, and returns the new orange value as a float.
+float roundOrangeValue(float currentOrangeValue) {
+    // Get the current slider value in Kelvin (rounded
+    float temperature = (currentOrangeValue * 4500.0f) + 2000.0f;
+
+    // Round to the nearest ORANGE_VALUE_INCREMENT degree Kelvin
+    float temperatureRounded = roundf(temperature / ORANGE_VALUE_INCREMENT) * ORANGE_VALUE_INCREMENT;
+
+    // Convert back to float value in range [0.0, 1.0] to get slider value
+    return ((temperatureRounded - 2000.0f) / 4500.0f);
+}
+
+
 @implementation MainViewController
 
 - (instancetype)init
@@ -271,6 +289,9 @@
 }
 
 - (IBAction)maxOrangeSliderChanged {
+    // Round the slider's value to a nice temperature increment
+    self.orangeSlider.value = roundOrangeValue(self.orangeSlider.value);
+
     NSString *key;
     switch (self.timeOfDaySegmentedControl.selectedSegmentIndex) {
         case 0:
