@@ -116,7 +116,7 @@
 "XCP-4l-yAl.text" = "Tempratuur";
 
 /* Class = "UILabel"; text = "Low Temperature Bedtime Mode"; ObjectID = "XOR-4k-2mx"; */
-"XOR-4k-2mx.text" = "Laage Temperatuur Bet tijd modus";
+"XOR-4k-2mx.text" = "Laage Temp. Bedtijd modus";
 
 /* Class = "UILabel"; text = "White Point"; ObjectID = "YLS-kE-orK"; */
 "YLS-kE-orK.text" = "Wit Punt";
