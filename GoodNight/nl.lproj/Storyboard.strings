@@ -110,10 +110,10 @@
 "W8x-Wm-9bF.footerTitle" = "Verplaats de sider om de scherm temperatuur aan te passen.";
 
 /* Class = "UITableViewSection"; headerTitle = "Temperature"; ObjectID = "W8x-Wm-9bF"; */
-"W8x-Wm-9bF.headerTitle" = "Tempratuur";
+"W8x-Wm-9bF.headerTitle" = "Temperatuur";
 
 /* Class = "UILabel"; text = "Temperature"; ObjectID = "XCP-4l-yAl"; */
-"XCP-4l-yAl.text" = "Tempratuur";
+"XCP-4l-yAl.text" = "Temperatuur";
 
 /* Class = "UILabel"; text = "Low Temperature Bedtime Mode"; ObjectID = "XOR-4k-2mx"; */
 "XOR-4k-2mx.text" = "Laage Temp. Bedtijd modus";
