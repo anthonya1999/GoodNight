@@ -107,8 +107,11 @@ s1516 GamutMatrixValue(double value) {
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3") && SYSTEM_VERSION_LESS_THAN(@"9.0")) {
         functionName = @"IOMobileFramebufferSetGamutCSC";
     }
-    else if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    else if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && SYSTEM_VERSION_LESS_THAN(@"9.3")) {
         functionName = @"IOMobileFramebufferSetGamutMatrix";
+    }
+    else if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.3")) {
+        functionName = @"IOMobileFramebufferSetMatrix";
     }
     [self callFramebufferFunction:functionName withFirstParamPointer:matrix];
 }
@@ -118,8 +121,11 @@ s1516 GamutMatrixValue(double value) {
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.3") && SYSTEM_VERSION_LESS_THAN(@"9.0")) {
         functionName = @"IOMobileFramebufferGetGamutCSC";
     }
-    else if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    else if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && SYSTEM_VERSION_LESS_THAN(@"9.3")) {
         functionName = @"IOMobileFramebufferGetGamutMatrix";
+    }
+    else if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.3")) {
+        functionName = @"IOMobileFramebufferGetMatrix";
     }
     [self callFramebufferFunction:functionName withFirstParamPointer:matrix];
 }
