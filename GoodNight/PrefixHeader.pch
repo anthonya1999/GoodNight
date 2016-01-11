@@ -9,7 +9,7 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
-#define appGroupID @"group.com.adatech.goodnight"
+#define appGroupID @"com.agatiello.adhoc.GoodNight"
 #define userDefaults [NSUserDefaults standardUserDefaults]
 #define groupDefaults [[NSUserDefaults alloc] initWithSuiteName:appGroupID]
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)

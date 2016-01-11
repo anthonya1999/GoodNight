@@ -466,7 +466,7 @@
 				TargetAttributes = {
 					925B811D1BE2BCE1003A6C4B = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = RZ4ZD385GT;
+						DevelopmentTeam = BYK5B23A5C;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -478,7 +478,7 @@
 					};
 					B9E536451B38D90D0097BF90 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 3E46UDD33Y;
+						DevelopmentTeam = BYK5B23A5C;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -682,7 +682,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/GoodNight/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adatech.goodnight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agatiello.adhoc.GoodNight;
 				PRODUCT_NAME = GoodNight;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -702,7 +702,7 @@
 				INFOPLIST_FILE = "GoodNight Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.adatech.goodnight.GoodNight-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.agatiello.adhoc.GoodNight.GoodNight-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -749,7 +749,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.adatech.goodnight.GoodNight-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.agatiello.adhoc.GoodNight.GoodNight-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -821,7 +821,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/GoodNight/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.adatech.goodnight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agatiello.adhoc.GoodNight;
 				PRODUCT_NAME = GoodNight;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
