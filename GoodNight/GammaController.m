@@ -330,7 +330,7 @@
         [operation setQualityOfService:NSQualityOfServiceUserInteractive];
     }
     else {
-        [operation setThreadPriority:1.0f];
+        [operation setQueuePriority:1.0f];
     }
     operation.queuePriority = NSOperationQueuePriorityVeryHigh;
     [animationQueue addOperation:operation];
@@ -446,7 +446,7 @@
     }
     
     NSDate *currentDate = [NSDate date];
-    NSDateComponents *autoOnOffComponents = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
+    NSDateComponents *autoOnOffComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:[NSDate date]];
     autoOnOffComponents.hour = [groupDefaults integerForKey:[autoOrNightPrefix stringByAppendingString:@"StartHour"]];
     autoOnOffComponents.minute = [groupDefaults integerForKey:[autoOrNightPrefix stringByAppendingString:@"StartMinute"]];
     NSDate *turnOnDate = [[NSCalendar currentCalendar] dateFromComponents:autoOnOffComponents];
