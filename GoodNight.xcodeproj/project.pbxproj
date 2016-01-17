@@ -75,6 +75,9 @@
 		511EBE611BEBB1E200D5DAF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		511EBE621BEBB1E200D5DAF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Storyboard.strings; sourceTree = "<group>"; };
 		511EBE631BEBB1E200D5DAF7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		75472CDA1C45313E00D9B85D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Storyboard.strings; sourceTree = "<group>"; };
+		75472CDB1C45313E00D9B85D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		75472CDC1C45313F00D9B85D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		755924001C21546A000E62AE /* MobileGestaltClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileGestaltClient.h; sourceTree = "<group>"; };
 		755924011C21546A000E62AE /* MobileGestaltClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileGestaltClient.m; sourceTree = "<group>"; };
 		75885DCA1C2026B700B57791 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Defaults.plist; path = GoodNight/Defaults.plist; sourceTree = "<group>"; };
@@ -592,6 +595,7 @@
 				925B81271BE2BCE1003A6C4B /* Base */,
 				511EBE631BEBB1E200D5DAF7 /* ja */,
 				3971266E1C3EE5F40066FE4C /* nl */,
+				75472CDC1C45313F00D9B85D /* de */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -602,6 +606,7 @@
 				92F23AC01BD72ADD00A097CB /* Base */,
 				511EBE611BEBB1E200D5DAF7 /* ja */,
 				397126681C3EE5F30066FE4C /* nl */,
+				75472CDB1C45313E00D9B85D /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -612,6 +617,7 @@
 				92F23AC31BD72AE700A097CB /* Base */,
 				511EBE621BEBB1E200D5DAF7 /* ja */,
 				397126621C3EE5F30066FE4C /* nl */,
+				75472CDA1C45313E00D9B85D /* de */,
 			);
 			name = Storyboard.storyboard;
 			sourceTree = "<group>";

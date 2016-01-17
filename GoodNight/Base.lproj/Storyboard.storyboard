@@ -91,6 +91,8 @@
                                                     <rect key="frame" x="16" y="7" width="568" height="31"/>
                                                     <connections>
                                                         <action selector="maxOrangeSliderChanged" destination="Eiw-Nq-vcn" eventType="valueChanged" id="aD1-4r-wJO"/>
+                                                        <action selector="maxOrangeSliderChangingEnded" destination="Eiw-Nq-vcn" eventType="touchUpOutside" id="Ayt-C1-CB4"/>
+                                                        <action selector="maxOrangeSliderChangingEnded" destination="Eiw-Nq-vcn" eventType="touchUpInside" id="QmD-99-5eB"/>
                                                     </connections>
                                                 </slider>
                                                 <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="p7I-og-ebq">
@@ -103,9 +105,6 @@
                                                     <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <color key="thumbTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.15483710106382978" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="maxOrangeSliderChanged" destination="Eiw-Nq-vcn" eventType="valueChanged" id="Dv0-xb-eH0"/>
-                                                    </connections>
                                                 </slider>
                                             </subviews>
                                             <constraints>
@@ -1334,7 +1333,7 @@ Please follow these accounts on Twitter to support everyone who contributed to t
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="White Point" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CP-f5-U4r">
                                                     <rect key="frame" x="18" y="11" width="485" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dus-8b-yPq">
