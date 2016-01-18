@@ -25,6 +25,8 @@
         [defaults addObserver:sharedForceTouchController forKeyPath:@"rgbEnabled" options:NSKeyValueObservingOptionNew context:NULL];
         [defaults addObserver:sharedForceTouchController forKeyPath:@"whitePointEnabled" options:NSKeyValueObservingOptionNew context:NULL];
         [defaults addObserver:sharedForceTouchController forKeyPath:@"keyEnabled" options:NSKeyValueObservingOptionNew context:NULL];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:sharedForceTouchController selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     });
     
     return sharedForceTouchController;
