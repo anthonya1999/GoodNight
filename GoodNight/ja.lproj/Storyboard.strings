@@ -1,6 +1,15 @@
 
+/* Class = "UILabel"; text = "Darkroom Mode"; ObjectID = "0MU-13-FQq"; */
+"0MU-13-FQq.text" = "暗室モード";
+
 /* Class = "UILabel"; text = "Color"; ObjectID = "11s-cm-juR"; */
 "11s-cm-juR.text" = "色合い";
+
+/* Class = "UILabel"; text = "White Point"; ObjectID = "1CP-f5-U4r"; */
+"1CP-f5-U4r.text" = "ホワイトポイント";
+
+/* Class = "UILabel"; text = "Turn On Night Mode at"; ObjectID = "2RL-7A-Jgi"; */
+"2RL-7A-Jgi.text" = "就寝モードにする時間";
 
 /* Class = "UIButton"; normalTitle = "Reset Color"; ObjectID = "3b9-9E-jai"; */
 "3b9-9E-jai.normalTitle" = "色合いをリセット";
@@ -20,11 +29,17 @@
 /* Class = "UITableViewSection"; headerTitle = "Quick Actions"; ObjectID = "8MS-SQ-yf5"; */
 "8MS-SQ-yf5.headerTitle" = "クイックアクション";
 
+/* Class = "UILabel"; text = "@mariokorte"; ObjectID = "8Vq-ki-oHq"; */
+"8Vq-ki-oHq.text" = "@mariokorte";
+
 /* Class = "UITableViewSection"; headerTitle = "Green"; ObjectID = "9QK-jU-15B"; */
 "9QK-jU-15B.headerTitle" = "Green";
 
 /* Class = "UITableViewSection"; footerTitle = "Note: GoodNight does not have any affiliation to f.lux.\n\nPlease follow these accounts on Twitter to support everyone who contributed to this app!"; ObjectID = "A54-ci-d60"; */
 "A54-ci-d60.footerTitle" = "注意: GoodNightはf.luxと提携しているわけではありません。\n\nTwitterでフォローしてこのアプリに貢献した人たちを応援しよう！";
+
+/* Class = "UINavigationItem"; title = "White Point"; ObjectID = "AQk-tV-eyn"; */
+"AQk-tV-eyn.title" = "ホワイトポイント";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "BCi-ST-1vH"; */
 "BCi-ST-1vH.title" = "設定";
@@ -54,7 +69,10 @@
 "Hxq-Dq-Y4D.title" = "クレジット";
 
 /* Class = "UILabel"; text = "Turn Off"; ObjectID = "L6d-BC-FhF"; */
-"L6d-BC-FhF.text" = "オフ";
+"L6d-BC-FhF.text" = "無効にする時間";
+
+/* Class = "UILabel"; text = "Turn Off Night Mode at"; ObjectID = "MXo-dO-vSI"; */
+"MXo-dO-vSI.text" = "就寝モードを切る時間";
 
 /* Class = "UILabel"; text = "Credits"; ObjectID = "N8E-lE-C0m"; */
 "N8E-lE-C0m.text" = "クレジット";
@@ -62,8 +80,14 @@
 /* Class = "UILabel"; text = "App Account"; ObjectID = "NLe-zR-7GT"; */
 "NLe-zR-7GT.text" = "アプリアカウント";
 
+/* Class = "UILabel"; text = "Developer"; ObjectID = "R77-0f-Jee"; */
+"R77-0f-Jee.text" = "開発者";
+
 /* Class = "UILabel"; text = "Enabled"; ObjectID = "RdN-jv-mWT"; */
 "RdN-jv-mWT.text" = "色温度";
+
+/* Class = "UILabel"; text = "Enabled"; ObjectID = "RfL-vk-Rye"; */
+"RfL-vk-Rye.text" = "ホワイトポイント";
 
 /* Class = "UILabel"; text = "Enabled"; ObjectID = "RjI-Ss-CBD"; */
 "RjI-Ss-CBD.text" = "明るさ";
@@ -92,6 +116,12 @@
 /* Class = "UILabel"; text = "Temperature"; ObjectID = "XCP-4l-yAl"; */
 "XCP-4l-yAl.text" = "色温度";
 
+/* Class = "UILabel"; text = "Low Temperature Bedtime Mode"; ObjectID = "XOR-4k-2mx"; */
+"XOR-4k-2mx.text" = "就寝時の色温度を下げる";
+
+/* Class = "UILabel"; text = "White Point"; ObjectID = "YLS-kE-orK"; */
+"YLS-kE-orK.text" = "ホワイトポイント";
+
 /* Class = "UILabel"; text = "Brightness"; ObjectID = "Z7w-E7-tpp"; */
 "Z7w-E7-tpp.text" = "明るさ";
 
@@ -119,11 +149,20 @@
 /* Class = "UILabel"; text = "Original Icon"; ObjectID = "fsx-Nq-M7L"; */
 "fsx-Nq-M7L.text" = "初版アイコン";
 
+/* Class = "UIButton"; normalTitle = "Reset White Point"; ObjectID = "gjc-gE-PH3"; */
+"gjc-gE-PH3.normalTitle" = "ホワイトポイントをリセット";
+
 /* Class = "UILabel"; text = "Exit After Action"; ObjectID = "gmr-tu-46I"; */
 "gmr-tu-46I.text" = "アクション後に終了";
 
 /* Class = "UILabel"; text = "Temperature"; ObjectID = "gnm-AZ-tgq"; */
 "gnm-AZ-tgq.text" = "色温度";
+
+/* Class = "UITableViewSection"; footerTitle = "Adjust the white point of the device to reduce the intensity of bright colors. You may even set it below what you can in the default Settings app."; ObjectID = "k6i-lQ-T09"; */
+"k6i-lQ-T09.footerTitle" = "ホワイトポイントを調整すると明るい色の強さを軽減できます。iOSで設定できるホワイトポイントより低い設定もできます。";
+
+/* Class = "UITableViewSection"; headerTitle = "Level"; ObjectID = "k6i-lQ-T09"; */
+"k6i-lQ-T09.headerTitle" = "ホワイトポイント";
 
 /* Class = "UILabel"; text = "@sapphirinedream"; ObjectID = "lzW-zY-3Is"; */
 "lzW-zY-3Is.text" = "@sapphirinedream";
@@ -135,10 +174,22 @@
 "m8h-At-afu.headerTitle" = "Blue";
 
 /* Class = "UILabel"; text = "Turn On"; ObjectID = "qY0-az-BKo"; */
-"qY0-az-BKo.text" = "オン";
+"qY0-az-BKo.text" = "有効にする時間";
 
 /* Class = "UILabel"; text = "@AAgatiello"; ObjectID = "rL7-9y-Aum"; */
 "rL7-9y-Aum.text" = "@AAgatiello";
+
+/* Class = "UISegmentedControl"; rLX-do-N8E.segmentTitles[0] = "Day"; ObjectID = "rLX-do-N8E"; */
+"rLX-do-N8E.segmentTitles[0]" = "日中";
+
+/* Class = "UISegmentedControl"; rLX-do-N8E.segmentTitles[1] = "Night"; ObjectID = "rLX-do-N8E"; */
+"rLX-do-N8E.segmentTitles[1]" = "夜間";
+
+/* Class = "UISegmentedControl"; rLX-do-N8E.segmentTitles[2] = "Bedtime"; ObjectID = "rLX-do-N8E"; */
+"rLX-do-N8E.segmentTitles[2]" = "就寝";
+
+/* Class = "UILabel"; text = "Color Changing (Time)"; ObjectID = "rgd-Ps-vkZ"; */
+"rgd-Ps-vkZ.text" = "指定時間で変更";
 
 /* Class = "UILabel"; text = "Revised Icon"; ObjectID = "sEn-hM-39V"; */
 "sEn-hM-39V.text" = "改訂版アイコン";
@@ -160,4 +211,3 @@
 
 /* Class = "UILabel"; text = "Settings"; ObjectID = "zo0-YY-UZU"; */
 "zo0-YY-UZU.text" = "設定";
-
