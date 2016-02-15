@@ -1,9 +1,15 @@
 
-/* Class = "UIButton"; normalTitle = "Disable"; ObjectID = "DGb-YH-tIs"; */
-"DGb-YH-tIs.normalTitle" = "オフ";
+/* Class = "UIButton"; normalTitle = "Darkroom on"; ObjectID = "DGb-YH-tIs"; */
+"DGb-YH-tIs.normalTitle" = "暗室ON";
 
-/* Class = "UILabel"; text = "Turn on or off the temperature\nadjustment."; ObjectID = "oHY-7W-Hii"; */
-"oHY-7W-Hii.text" = "色温度の調整";
+/* Class = "UIButton"; selectedTitle = "Darkroom off"; ObjectID = "DGb-YH-tIs"; */
+"DGb-YH-tIs.selectedTitle" = "暗室OFF";
 
-/* Class = "UIButton"; normalTitle = "Enable"; ObjectID = "zOd-Wo-5gC"; */
-"zOd-Wo-5gC.normalTitle" = "オン";
+/* Class = "UILabel"; text = "Label"; ObjectID = "lUd-BI-2Lc"; */
+"lUd-BI-2Lc.text" = "ラベル";
+
+/* Class = "UIButton"; normalTitle = "Gamma on"; ObjectID = "zOd-Wo-5gC"; */
+"zOd-Wo-5gC.normalTitle" = "ガンマON";
+
+/* Class = "UIButton"; selectedTitle = "Gamma off"; ObjectID = "zOd-Wo-5gC"; */
+"zOd-Wo-5gC.selectedTitle" = "ガンマOFF";
