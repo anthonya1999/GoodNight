@@ -6,17 +6,14 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
-#import "ForceTouchController.h"
-#import "GammaController.h"
-
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#define appGroupID @"group.com.agatiello.adhoc.GoodNight"
 #define userDefaults [NSUserDefaults standardUserDefaults]
+#define groupDefaults [[NSUserDefaults alloc] initWithSuiteName:appGroupID]
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define app [UIApplication sharedApplication]
 
 #endif

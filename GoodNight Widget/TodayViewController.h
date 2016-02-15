@@ -10,8 +10,8 @@
 
 @interface TodayViewController : UIViewController <NCWidgetProviding>
 
-@property (weak, nonatomic) IBOutlet UIButton *enableButton;
-@property (weak, nonatomic) IBOutlet UIButton *disableButton;
+@property (weak, nonatomic) IBOutlet UIButton *toggleButton;
+@property (weak, nonatomic) IBOutlet UIButton *darkroomButton;
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 
 @end

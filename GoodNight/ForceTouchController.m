@@ -6,7 +6,49 @@
 //  Copyright © 2015 ADA Tech, LLC. All rights reserved.
 //
 
+#import "ForceTouchController.h"
+#import "GammaController.h"
+
 @implementation ForceTouchController
+
++ (instancetype)sharedInstance {
+    static dispatch_once_t onceToken = 0;
+    static ForceTouchController *sharedForceTouchController = nil;
+    
+    dispatch_once(&onceToken, ^{
+        sharedForceTouchController = [[self alloc] init];
+        
+        NSUserDefaults *defaults = userDefaults;
+        [defaults addSuiteNamed:appGroupID];
+        [defaults addObserver:sharedForceTouchController forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew context:NULL];
+        [defaults addObserver:sharedForceTouchController forKeyPath:@"dimEnabled" options:NSKeyValueObservingOptionNew context:NULL];
+        [defaults addObserver:sharedForceTouchController forKeyPath:@"rgbEnabled" options:NSKeyValueObservingOptionNew context:NULL];
+        [defaults addObserver:sharedForceTouchController forKeyPath:@"whitePointEnabled" options:NSKeyValueObservingOptionNew context:NULL];
+        [defaults addObserver:sharedForceTouchController forKeyPath:@"keyEnabled" options:NSKeyValueObservingOptionNew context:NULL];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:sharedForceTouchController selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+    });
+    
+    return sharedForceTouchController;
+}
+
+- (void)userDefaultsChanged:(NSNotification *)notification {
+    [ForceTouchController updateShortcutItems];
+}
+
+- (void)dealloc {
+    NSUserDefaults *defaults = userDefaults;
+    [defaults addSuiteNamed:appGroupID];
+    [defaults removeObserver:self forKeyPath:@"enabled"];
+    [defaults removeObserver:self forKeyPath:@"dimEnabled"];
+    [defaults removeObserver:self forKeyPath:@"rgbEnabled"];
+    [defaults removeObserver:self forKeyPath:@"whitePointEnabled"];
+    [defaults removeObserver:self forKeyPath:@"keyEnabled"];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    [ForceTouchController updateShortcutItems];
+}
 
 + (UIApplicationShortcutItem *)shortcutItemForCurrentState {
     NSString *shortcutType, *shortcutTitle, *shortcutSubtitle, *iconTemplate = nil;
@@ -14,42 +56,55 @@
     static NSString * const turnOnText = @"Turn on this adjustment";
     static NSString * const turnOffText = @"Turn off this adjustment";
     
-    if ([userDefaults boolForKey:@"tempForceTouch"]) {
+    if ([groupDefaults boolForKey:@"tempForceTouch"]) {
         shortcutType = @"temperatureForceTouchAction";
         
-        if (![userDefaults boolForKey:@"enabled"]) {
+        if (![groupDefaults boolForKey:@"enabled"]) {
             forceTouchActionEnabled = NO;
             shortcutTitle = @"Enable Temperature";
         }
-        else if ([userDefaults boolForKey:@"enabled"])  {
+        else if ([groupDefaults boolForKey:@"enabled"])  {
             forceTouchActionEnabled = YES;
             shortcutTitle = @"Disable Temperature";
         }
     }
     
-    else if ([userDefaults boolForKey:@"dimForceTouch"]) {
+    else if ([groupDefaults boolForKey:@"dimForceTouch"]) {
         shortcutType = @"dimForceTouchAction";
         
-        if (![userDefaults boolForKey:@"dimEnabled"]) {
+        if (![groupDefaults boolForKey:@"dimEnabled"]) {
             forceTouchActionEnabled = NO;
             shortcutTitle = @"Enable Dimness";
         }
-        else if ([userDefaults boolForKey:@"dimEnabled"]) {
+        else if ([groupDefaults boolForKey:@"dimEnabled"]) {
             forceTouchActionEnabled = YES;
             shortcutTitle = @"Disable Dimness";
         }
     }
     
-    else if ([userDefaults boolForKey:@"rgbForceTouch"]) {
+    else if ([groupDefaults boolForKey:@"rgbForceTouch"]) {
         shortcutType = @"rgbForceTouchAction";
         
-        if (![userDefaults boolForKey:@"rgbEnabled"]) {
+        if (![groupDefaults boolForKey:@"rgbEnabled"]) {
             forceTouchActionEnabled = NO;
             shortcutTitle = @"Enable Color";
         }
-        else if ([userDefaults boolForKey:@"rgbEnabled"]) {
+        else if ([groupDefaults boolForKey:@"rgbEnabled"]) {
             forceTouchActionEnabled = YES;
             shortcutTitle = @"Disable Color";
+        }
+    }
+    
+    else if ([groupDefaults boolForKey:@"whitePointForceTouch"]) {
+        shortcutType = @"whitePointForceTouchAction";
+        
+        if (![groupDefaults boolForKey:@"whitePointEnabled"]) {
+            forceTouchActionEnabled = NO;
+            shortcutTitle = @"Enable White Point";
+        }
+        else if ([groupDefaults boolForKey:@"whitePointEnabled"]) {
+            forceTouchActionEnabled = YES;
+            shortcutTitle = @"Disable White Point";
         }
     }
     
@@ -70,7 +125,7 @@
 
 + (void)updateShortcutItems {
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && [app respondsToSelector:@selector(shortcutItems)] && [app respondsToSelector:@selector(setShortcutItems:)]) {
-        if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
+        if ([groupDefaults boolForKey:@"forceTouchEnabled"]) {
             UIApplicationShortcutItem *shortcut = [self shortcutItemForCurrentState];
             if (shortcut != nil) {
                 NSArray *shortcutArray = @[shortcut];
@@ -87,36 +142,75 @@
 
 + (BOOL)handleShortcutItem:(UIApplicationShortcutItem *)shortcutItem {
     if ([shortcutItem.type isEqualToString:@"temperatureForceTouchAction"]) {
-        if ([userDefaults boolForKey:@"enabled"]) {
+        if ([groupDefaults boolForKey:@"enabled"]) {
             [GammaController disableOrangeness];
         }
-        else if (![userDefaults boolForKey:@"enabled"]) {
-            [GammaController enableOrangenessWithDefaults:YES transition:YES];
+        else if (![groupDefaults boolForKey:@"enabled"]) {
+            if (![GammaController adjustmentForKeysEnabled:@"dimEnabled", @"rgbEnabled", @"whitePointEnabled", nil]) {
+                [GammaController enableOrangenessWithDefaults:YES transition:YES];
+            }
+            else {
+                [self showFailedAlertWithKey:@"enabled"];
+            }
         }
     }
     else if ([shortcutItem.type isEqualToString:@"dimForceTouchAction"]) {
-        if ([userDefaults boolForKey:@"dimEnabled"]) {
+        if ([groupDefaults boolForKey:@"dimEnabled"]) {
             [GammaController disableDimness];
         }
-        else if (![userDefaults boolForKey:@"dimEnabled"]) {
-            [GammaController enableDimness];
+        else if (![groupDefaults boolForKey:@"dimEnabled"]) {
+            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"rgbEnabled", @"whitePointEnabled", nil]) {
+                [GammaController enableDimness];
+            }
+            else {
+                [self showFailedAlertWithKey:@"dimEnabled"];
+            }
         }
     }
     else if ([shortcutItem.type isEqualToString:@"rgbForceTouchAction"]) {
-        if ([userDefaults boolForKey:@"rgbEnabled"]) {
+        if ([groupDefaults boolForKey:@"rgbEnabled"]) {
             [GammaController disableColorAdjustment];
         }
-        else if (![userDefaults boolForKey:@"rgbEnabled"]) {
-            [GammaController setGammaWithCustomValues];
+        else if (![groupDefaults boolForKey:@"rgbEnabled"]) {
+            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"dimEnabled", @"whitePointEnabled", nil]) {
+                [GammaController setGammaWithCustomValues];
+            }
+            else {
+                [self showFailedAlertWithKey:@"rgbEnabled"];
+            }
+        }
+    }
+    else if ([shortcutItem.type isEqualToString:@"whitePointForceTouchAction"]) {
+        if ([groupDefaults boolForKey:@"whitePointEnabled"]) {
+            [GammaController resetWhitePoint];
+            [groupDefaults setBool:NO forKey:@"whitePointEnabled"];
+        }
+        else if (![groupDefaults boolForKey:@"whitePointEnabled"]) {
+            if (![GammaController adjustmentForKeysEnabled:@"enabled", @"dimEnabled", @"rgbEnabled", nil]) {
+                [GammaController setWhitePoint:[groupDefaults boolForKey:@"whitePointValue"]];
+                [groupDefaults setBool:YES forKey:@"whitePointEnabled"];
+            }
+            else {
+                [self showFailedAlertWithKey:@"whitePointEnabled"];
+            }
         }
     }
     return NO;
 }
 
 + (void)exitIfKeyEnabled {
-    if ([userDefaults boolForKey:@"suspendEnabled"] && [[userDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
+    if ([groupDefaults boolForKey:@"suspendEnabled"] && [[groupDefaults objectForKey:@"keyEnabled"] isEqualToString:@"0"]) {
         [GammaController suspendApp];
     }
+}
+
+
++ (void)showFailedAlertWithKey:(NSString *)key {
+    [groupDefaults setObject:@"1" forKey:@"keyEnabled"];
+    [groupDefaults setBool:NO forKey:key];
+    [groupDefaults synchronize];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

@@ -1,0 +1,213 @@
+/* Class = "UILabel"; text = "Darkroom Mode"; ObjectID = "0MU-13-FQq"; */
+"0MU-13-FQq.text" = "Darkroom-Modus";
+
+/* Class = "UILabel"; text = "White Point"; ObjectID = "1CP-f5-U4r"; */
+"1CP-f5-U4r.text" = "Witpunt";
+
+/* Class = "UILabel"; text = "Turn On Night Mode at"; ObjectID = "2RL-7A-Jgi"; */
+"2RL-7A-Jgi.text" = "Zet Bedtijdmodus aan om";
+
+/* Class = "UIButton"; normalTitle = "Reset Color"; ObjectID = "3b9-9E-jai"; */
+"3b9-9E-jai.normalTitle" = "Herstel kleur";
+
+/* Class = "UINavigationItem"; title = "Temperature"; ObjectID = "4Vg-Nr-nzj"; */
+"4Vg-Nr-nzj.title" = "Temperatuur";
+
+/* Class = "UITableViewSection"; headerTitle = "Adjustments"; ObjectID = "4vE-yL-w9c"; */
+"4vE-yL-w9c.headerTitle" = "Aanpassingen";
+
+/* Class = "UILabel"; text = "Brightness"; ObjectID = "6fu-67-EaW"; */
+"6fu-67-EaW.text" = "Helderheid";
+
+/* Class = "UINavigationItem"; title = "GoodNight"; ObjectID = "7aR-Cj-lwl"; */
+"7aR-Cj-lwl.title" = "GoodNight";
+
+/* Class = "UITableViewSection"; headerTitle = "Quick Actions"; ObjectID = "8MS-SQ-yf5"; */
+"8MS-SQ-yf5.headerTitle" = "Snelle Acties";
+
+/* Class = "UILabel"; text = "@mariokorte"; ObjectID = "8Vq-ki-oHq"; */
+"8Vq-ki-oHq.text" = "@mariokorte";
+
+/* Class = "UITableViewSection"; headerTitle = "Green"; ObjectID = "9QK-jU-15B"; */
+"9QK-jU-15B.headerTitle" = "Groen";
+
+/* Class = "UILabel"; text = "Color"; ObjectID = "11s-cm-juR"; */
+"11s-cm-juR.text" = "Kleur";
+
+/* Class = "UITableViewSection"; footerTitle = "Note: GoodNight does not have any affiliation to f.lux.\n\nPlease follow these accounts on Twitter to support everyone who contributed to this app!"; ObjectID = "A54-ci-d60"; */
+"A54-ci-d60.footerTitle" = "Opmerking: GoodNight heeft geen verwantschap met f.lux.\n\nVolg deze acounts op twitter om mensen die meegeholpen hebben met de de app te steunen.";
+
+/* Class = "UINavigationItem"; title = "White Point"; ObjectID = "AQk-tV-eyn"; */
+"AQk-tV-eyn.title" = "Witpunt";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "BCi-ST-1vH"; */
+"BCi-ST-1vH.title" = "Instellingen";
+
+/* Class = "UILabel"; text = "@lyablin_nikita"; ObjectID = "CCf-Yj-mxt"; */
+"CCf-Yj-mxt.text" = "@lyablin_nikita";
+
+/* Class = "UILabel"; text = "Peek and Pop"; ObjectID = "CYU-39-Ygg"; */
+"CYU-39-Ygg.text" = "Peek en pop";
+
+/* Class = "UILabel"; text = "Enabled"; ObjectID = "DEd-2G-670"; */
+"DEd-2G-670.text" = "Aanzetten";
+
+/* Class = "UITableViewSection"; footerTitle = "This is used to lower the brightness even more than iOS will allow you to. The level at 10.0 is the default system level."; ObjectID = "HHn-QF-RHM"; */
+"HHn-QF-RHM.footerTitle" = "Dit kan je gebruiken om de helderheid verder om laag te zetten dan iOS toestaat. 10.0 is de standaard helderheid.";
+
+/* Class = "UITableViewSection"; headerTitle = "Level"; ObjectID = "HHn-QF-RHM"; */
+"HHn-QF-RHM.headerTitle" = "Niveau";
+
+/* Class = "UIButton"; normalTitle = "Reset Brightness"; ObjectID = "HgQ-wX-8Is"; */
+"HgQ-wX-8Is.normalTitle" = "Herstel Helderheid";
+
+/* Class = "UILabel"; text = "Quick Actions"; ObjectID = "Hsw-N0-71J"; */
+"Hsw-N0-71J.text" = "Snelle Acties";
+
+/* Class = "UINavigationItem"; title = "Credits"; ObjectID = "Hxq-Dq-Y4D"; */
+"Hxq-Dq-Y4D.title" = "Credits";
+
+/* Class = "UILabel"; text = "Turn Off Color Changing at"; ObjectID = "L6d-BC-FhF"; */
+"L6d-BC-FhF.text" = "Zet kleurverandering uit om";
+
+/* Class = "UILabel"; text = "Turn Off Night Mode at"; ObjectID = "MXo-dO-vSI"; */
+"MXo-dO-vSI.text" = "Zet Bedtijdmodus uit om";
+
+/* Class = "UILabel"; text = "Credits"; ObjectID = "N8E-lE-C0m"; */
+"N8E-lE-C0m.text" = "Credits";
+
+/* Class = "UILabel"; text = "App Account"; ObjectID = "NLe-zR-7GT"; */
+"NLe-zR-7GT.text" = "App-account";
+
+/* Class = "UILabel"; text = "Developer"; ObjectID = "R77-0f-Jee"; */
+"R77-0f-Jee.text" = "Ontwikkelaar";
+
+/* Class = "UILabel"; text = "Enabled"; ObjectID = "RdN-jv-mWT"; */
+"RdN-jv-mWT.text" = "Aanzetten";
+
+/* Class = "UILabel"; text = "Enabled"; ObjectID = "RfL-vk-Rye"; */
+"RfL-vk-Rye.text" = "Aanzetten";
+
+/* Class = "UILabel"; text = "Enabled"; ObjectID = "RjI-Ss-CBD"; */
+"RjI-Ss-CBD.text" = "Aanzetten";
+
+/* Class = "UINavigationItem"; title = "Color"; ObjectID = "S2o-ZV-vd5"; */
+"S2o-ZV-vd5.title" = "Kleur";
+
+/* Class = "UILabel"; text = "Main Developer"; ObjectID = "SGU-xW-FFI"; */
+"SGU-xW-FFI.text" = "Hoofdontwikkelaar";
+
+/* Class = "UILabel"; text = "@tomf64"; ObjectID = "U06-pF-iEh"; */
+"U06-pF-iEh.text" = "@tomf64";
+
+/* Class = "UILabel"; text = "App Name"; ObjectID = "V54-Rm-b5g"; */
+"V54-Rm-b5g.text" = "App-naam";
+
+/* Class = "UITableViewSection"; headerTitle = "Red"; ObjectID = "VjQ-Q5-UNS"; */
+"VjQ-Q5-UNS.headerTitle" = "Rood";
+
+/* Class = "UITableViewSection"; footerTitle = "Move the slider to adjust the display temperature."; ObjectID = "W8x-Wm-9bF"; */
+"W8x-Wm-9bF.footerTitle" = "Verplaats de slider om de schermtemperatuur aan te passen.";
+
+/* Class = "UITableViewSection"; headerTitle = "Temperature"; ObjectID = "W8x-Wm-9bF"; */
+"W8x-Wm-9bF.headerTitle" = "Temperatuur";
+
+/* Class = "UILabel"; text = "Temperature"; ObjectID = "XCP-4l-yAl"; */
+"XCP-4l-yAl.text" = "Temperatuur";
+
+/* Class = "UILabel"; text = "Low Temperature Bedtime Mode"; ObjectID = "XOR-4k-2mx"; */
+"XOR-4k-2mx.text" = "Lage-temperatuur Bedtijdmodus";
+
+/* Class = "UILabel"; text = "White Point"; ObjectID = "YLS-kE-orK"; */
+"YLS-kE-orK.text" = "Witpunt";
+
+/* Class = "UILabel"; text = "Brightness"; ObjectID = "Z7w-E7-tpp"; */
+"Z7w-E7-tpp.text" = "Helderheid";
+
+/* Class = "UINavigationItem"; title = "Brightness"; ObjectID = "aMl-Nz-dI0"; */
+"aMl-Nz-dI0.title" = "Helderheid";
+
+/* Class = "UILabel"; text = "@The120thWhisper"; ObjectID = "bb7-mt-zUF"; */
+"bb7-mt-zUF.text" = "@The120thWhisper";
+
+/* Class = "UIButton"; normalTitle = "Reset Temperature"; ObjectID = "c9r-PG-aUi"; */
+"c9r-PG-aUi.normalTitle" = "Herstel Temperatuur";
+
+/* Class = "UILabel"; text = "@GoodNightiOS"; ObjectID = "caN-8C-dUw"; */
+"caN-8C-dUw.text" = "@GoodNightiOS";
+
+/* Class = "UILabel"; text = "Original Source"; ObjectID = "cuF-Xn-OKz"; */
+"cuF-Xn-OKz.text" = "Orginele Code";
+
+/* Class = "UILabel"; text = "Color"; ObjectID = "cuP-x9-tLJ"; */
+"cuP-x9-tLJ.text" = "Kleur";
+
+/* Class = "UITableViewSection"; headerTitle = "3D Touch"; ObjectID = "d7K-uO-iYf"; */
+"d7K-uO-iYf.headerTitle" = "3D Touch";
+
+/* Class = "UILabel"; text = "Original Icon"; ObjectID = "fsx-Nq-M7L"; */
+"fsx-Nq-M7L.text" = "Orgineel Icoon";
+
+/* Class = "UIButton"; normalTitle = "Reset White Point"; ObjectID = "gjc-gE-PH3"; */
+"gjc-gE-PH3.normalTitle" = "Herstel Witpunt";
+
+/* Class = "UILabel"; text = "Exit After Action"; ObjectID = "gmr-tu-46I"; */
+"gmr-tu-46I.text" = "Verander na actie";
+
+/* Class = "UILabel"; text = "Temperature"; ObjectID = "gnm-AZ-tgq"; */
+"gnm-AZ-tgq.text" = "Temperatuur";
+
+/* Class = "UITableViewSection"; footerTitle = "Adjust the white point of the device to reduce the intensity of bright colors. You may even set it below what you can in the default Settings app."; ObjectID = "k6i-lQ-T09"; */
+"k6i-lQ-T09.footerTitle" = "Verander het witpunt van je apparaat om de intensiteit van de kleuren aan te passen. Je kunt het zelfs lager zetten dan in de standaard Instellingen app.";
+
+/* Class = "UITableViewSection"; headerTitle = "Level"; ObjectID = "k6i-lQ-T09"; */
+"k6i-lQ-T09.headerTitle" = "Niveau";
+
+/* Class = "UILabel"; text = "@sapphirinedream"; ObjectID = "lzW-zY-3Is"; */
+"lzW-zY-3Is.text" = "@sapphirinedream";
+
+/* Class = "UITableViewSection"; footerTitle = "Adjust the RGB sliders to change the color of the display."; ObjectID = "m8h-At-afu"; */
+"m8h-At-afu.footerTitle" = "Verplaats de RGB sliders om de kleur te veranderen van het scherm.";
+
+/* Class = "UITableViewSection"; headerTitle = "Blue"; ObjectID = "m8h-At-afu"; */
+"m8h-At-afu.headerTitle" = "Blauw";
+
+/* Class = "UILabel"; text = "Turn On Color Changing at"; ObjectID = "qY0-az-BKo"; */
+"qY0-az-BKo.text" = "Zet kleurverandering aan om";
+
+/* Class = "UILabel"; text = "@AAgatiello"; ObjectID = "rL7-9y-Aum"; */
+"rL7-9y-Aum.text" = "@AAgatiello";
+
+/* Class = "UISegmentedControl"; rLX-do-N8E.segmentTitles[0] = "Day"; ObjectID = "rLX-do-N8E"; */
+"rLX-do-N8E.segmentTitles[0]" = "Dag";
+
+/* Class = "UISegmentedControl"; rLX-do-N8E.segmentTitles[1] = "Night"; ObjectID = "rLX-do-N8E"; */
+"rLX-do-N8E.segmentTitles[1]" = "Nacht";
+
+/* Class = "UISegmentedControl"; rLX-do-N8E.segmentTitles[2] = "Bedtime"; ObjectID = "rLX-do-N8E"; */
+"rLX-do-N8E.segmentTitles[2]" = "Bedtijd";
+
+/* Class = "UILabel"; text = "Color Changing (Time)"; ObjectID = "rgd-Ps-vkZ"; */
+"rgd-Ps-vkZ.text" = "Kleurverandering (tijd)";
+
+/* Class = "UILabel"; text = "Revised Icon"; ObjectID = "sEn-hM-39V"; */
+"sEn-hM-39V.text" = "Herzien Icoon";
+
+/* Class = "UITableViewSection"; footerTitle = "Enable automatic mode to turn on and off GoodNight at a set time. Please note that the change will not take effect immediately."; ObjectID = "sVp-Pb-V8y"; */
+"sVp-Pb-V8y.footerTitle" = "Zet automatische mode aan om GoodNight automatisch aan en uit te laten gaan. Let op dat de verandering niet meteen zichtbaar is.";
+
+/* Class = "UITableViewSection"; headerTitle = "Automatic Mode"; ObjectID = "sVp-Pb-V8y"; */
+"sVp-Pb-V8y.headerTitle" = "Automatische Modus";
+
+/* Class = "UILabel"; text = "Color Changing (Location)"; ObjectID = "uoa-EP-vXq"; */
+"uoa-EP-vXq.text" = "Kleurverandering (locatie)";
+
+/* Class = "UILabel"; text = "Developer"; ObjectID = "ykz-KC-Rec"; */
+"ykz-KC-Rec.text" = "Ontwikkelaar";
+
+/* Class = "UILabel"; text = "@Emu4iOS"; ObjectID = "zav-y7-j0P"; */
+"zav-y7-j0P.text" = "@Emu4iOS";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "zo0-YY-UZU"; */
+"zo0-YY-UZU.text" = "Instellingen";
+

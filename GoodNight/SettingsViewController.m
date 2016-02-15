@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SettingsViewController.h"
+#import "ForceTouchController.h"
 
 @implementation SettingsViewController
 
@@ -20,23 +21,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.suspendSwitch.on = [userDefaults boolForKey:@"suspendEnabled"];
-    self.forceTouchSwitch.on = [userDefaults boolForKey:@"forceTouchEnabled"];
-    self.peekPopSwitch.on = [userDefaults boolForKey:@"peekPopEnabled"];
-    self.temperatureForceTouch.on = [userDefaults boolForKey:@"tempForceTouch"];
-    self.dimForceTouch.on = [userDefaults boolForKey:@"dimForceTouch"];
-    self.rgbForceTouch.on = [userDefaults boolForKey:@"rgbForceTouch"];
+    self.suspendSwitch.on = [groupDefaults boolForKey:@"suspendEnabled"];
+    self.forceTouchSwitch.on = [groupDefaults boolForKey:@"forceTouchEnabled"];
+    self.peekPopSwitch.on = [groupDefaults boolForKey:@"peekPopEnabled"];
+    self.temperatureForceTouch.on = [groupDefaults boolForKey:@"tempForceTouch"];
+    self.dimForceTouch.on = [groupDefaults boolForKey:@"dimForceTouch"];
+    self.rgbForceTouch.on = [groupDefaults boolForKey:@"rgbForceTouch"];
+    self.wpForceTouchSwitch.on = [groupDefaults boolForKey:@"whitePointForceTouch"];
 }
 
 - (IBAction)suspendSwitchChanged {
-    [userDefaults setBool:self.suspendSwitch.on forKey:@"suspendEnabled"];
+    [groupDefaults setBool:self.suspendSwitch.on forKey:@"suspendEnabled"];
 }
 
 - (IBAction)forceTouchSwitchChanged {
-    [userDefaults setBool:self.forceTouchSwitch.on forKey:@"forceTouchEnabled"];
+    [groupDefaults setBool:self.forceTouchSwitch.on forKey:@"forceTouchEnabled"];
     
-    if (![userDefaults boolForKey:@"dimForceTouch"] && ![userDefaults boolForKey:@"tempForceTouch"] && ![userDefaults boolForKey:@"rgbForceTouch"]) {
-        [userDefaults setBool:YES forKey:@"tempForceTouch"];
+    if (![groupDefaults boolForKey:@"dimForceTouch"] && ![groupDefaults boolForKey:@"tempForceTouch"] && ![groupDefaults boolForKey:@"rgbForceTouch"]) {
+        [groupDefaults setBool:YES forKey:@"tempForceTouch"];
         [self viewDidLoad];
     }
     [self.tableView reloadData];
@@ -44,40 +46,63 @@
 }
 
 - (IBAction)tempForceTouchSwitchChanged {
-    if ([userDefaults boolForKey:@"rgbForceTouch"]) {
-        [userDefaults setBool:NO forKey:@"rgbForceTouch"];
+    if ([groupDefaults boolForKey:@"rgbForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"rgbForceTouch"];
     }
-    else if ([userDefaults boolForKey:@"dimForceTouch"]) {
-        [userDefaults setBool:NO forKey:@"dimForceTouch"];
+    else if ([groupDefaults boolForKey:@"dimForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"dimForceTouch"];
     }
-    [userDefaults setBool:self.temperatureForceTouch.on forKey:@"tempForceTouch"];
+    else if ([groupDefaults boolForKey:@"whitePointForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"whitePointForceTouch"];
+    }
+    [groupDefaults setBool:self.temperatureForceTouch.on forKey:@"tempForceTouch"];
     [self checkForForceTouchActions];
 }
 
 - (IBAction)dimForceTouchSwitchChanged {
-    if ([userDefaults boolForKey:@"tempForceTouch"]) {
-        [userDefaults setBool:NO forKey:@"tempForceTouch"];
+    if ([groupDefaults boolForKey:@"tempForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"tempForceTouch"];
     }
-    else if ([userDefaults boolForKey:@"rgbForceTouch"]) {
-        [userDefaults setBool:NO forKey:@"rgbForceTouch"];
+    else if ([groupDefaults boolForKey:@"rgbForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"rgbForceTouch"];
     }
-    [userDefaults setBool:self.dimForceTouch.on forKey:@"dimForceTouch"];
+    else if ([groupDefaults boolForKey:@"whitePointForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"whitePointForceTouch"];
+    }
+    [groupDefaults setBool:self.dimForceTouch.on forKey:@"dimForceTouch"];
     [self checkForForceTouchActions];
 }
 
 - (IBAction)rgbForceTouchSwitchChanged {
-    if ([userDefaults boolForKey:@"tempForceTouch"]) {
-        [userDefaults setBool:NO forKey:@"tempForceTouch"];
+    if ([groupDefaults boolForKey:@"tempForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"tempForceTouch"];
     }
-    else if ([userDefaults boolForKey:@"dimForceTouch"]) {
-        [userDefaults setBool:NO forKey:@"dimForceTouch"];
+    else if ([groupDefaults boolForKey:@"dimForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"dimForceTouch"];
     }
-    [userDefaults setBool:self.rgbForceTouch.on forKey:@"rgbForceTouch"];
+    else if ([groupDefaults boolForKey:@"whitePointForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"whitePointForceTouch"];
+    }
+    [groupDefaults setBool:self.rgbForceTouch.on forKey:@"rgbForceTouch"];
     [self checkForForceTouchActions];
 }
 
 - (IBAction)peekPopSwitchChanged {
-    [userDefaults setBool:self.peekPopSwitch.on forKey:@"peekPopEnabled"];
+    [groupDefaults setBool:self.peekPopSwitch.on forKey:@"peekPopEnabled"];
+}
+
+- (IBAction)wpForceTouchSwitchChanged {
+    if ([groupDefaults boolForKey:@"tempForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"tempForceTouch"];
+    }
+    else if ([groupDefaults boolForKey:@"dimForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"dimForceTouch"];
+    }
+    else if ([groupDefaults boolForKey:@"rgbForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"rgbForceTouch"];
+    }
+    [groupDefaults setBool:self.wpForceTouchSwitch.on forKey:@"whitePointForceTouch"];
+    [self checkForForceTouchActions];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -89,7 +114,7 @@
             return 1;
         }
         if (section == 2) {
-            return 3;
+            return 4;
         }
     }
     return 0;
@@ -97,7 +122,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
-        if ([userDefaults boolForKey:@"forceTouchEnabled"]) {
+        if ([groupDefaults boolForKey:@"forceTouchEnabled"]) {
             return 3;
         }
     }
@@ -120,8 +145,8 @@
 }
 
 - (void)checkForForceTouchActions {
-    if (![userDefaults boolForKey:@"dimForceTouch"] && ![userDefaults boolForKey:@"tempForceTouch"] && ![userDefaults boolForKey:@"rgbForceTouch"]) {
-        [userDefaults setBool:NO forKey:@"forceTouchEnabled"];
+    if (![groupDefaults boolForKey:@"dimForceTouch"] && ![groupDefaults boolForKey:@"tempForceTouch"] && ![groupDefaults boolForKey:@"rgbForceTouch"] && ![groupDefaults boolForKey:@"whitePointForceTouch"]) {
+        [groupDefaults setBool:NO forKey:@"forceTouchEnabled"];
         [self.tableView reloadData];
     }
     [ForceTouchController updateShortcutItems];
