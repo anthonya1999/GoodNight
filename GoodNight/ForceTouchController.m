@@ -53,19 +53,19 @@
 + (UIApplicationShortcutItem *)shortcutItemForCurrentState {
     NSString *shortcutType, *shortcutTitle, *shortcutSubtitle, *iconTemplate = nil;
     
-    static NSString * const turnOnText = @"Turn on this adjustment";
-    static NSString * const turnOffText = @"Turn off this adjustment";
+    NSString * turnOnText = NSLocalizedString(@"Turn on this adjustment", @"");
+    NSString * turnOffText = NSLocalizedString(@"Turn off this adjustment", @"");
     
     if ([groupDefaults boolForKey:@"tempForceTouch"]) {
         shortcutType = @"temperatureForceTouchAction";
         
         if (![groupDefaults boolForKey:@"enabled"]) {
             forceTouchActionEnabled = NO;
-            shortcutTitle = @"Enable Temperature";
+            shortcutTitle = NSLocalizedString(@"Enable Temperature", @"");
         }
         else if ([groupDefaults boolForKey:@"enabled"])  {
             forceTouchActionEnabled = YES;
-            shortcutTitle = @"Disable Temperature";
+            shortcutTitle = NSLocalizedString(@"Disable Temperature", @"");
         }
     }
     
@@ -74,11 +74,11 @@
         
         if (![groupDefaults boolForKey:@"dimEnabled"]) {
             forceTouchActionEnabled = NO;
-            shortcutTitle = @"Enable Dimness";
+            shortcutTitle = NSLocalizedString(@"Enable Dimness", @"");
         }
         else if ([groupDefaults boolForKey:@"dimEnabled"]) {
             forceTouchActionEnabled = YES;
-            shortcutTitle = @"Disable Dimness";
+            shortcutTitle = NSLocalizedString(@"Disable Dimness", @"");
         }
     }
     
@@ -87,11 +87,11 @@
         
         if (![groupDefaults boolForKey:@"rgbEnabled"]) {
             forceTouchActionEnabled = NO;
-            shortcutTitle = @"Enable Color";
+            shortcutTitle = NSLocalizedString(@"Enable Color", @"");
         }
         else if ([groupDefaults boolForKey:@"rgbEnabled"]) {
             forceTouchActionEnabled = YES;
-            shortcutTitle = @"Disable Color";
+            shortcutTitle = NSLocalizedString(@"Disable Color", @"");
         }
     }
     
@@ -100,11 +100,11 @@
         
         if (![groupDefaults boolForKey:@"whitePointEnabled"]) {
             forceTouchActionEnabled = NO;
-            shortcutTitle = @"Enable White Point";
+            shortcutTitle = NSLocalizedString(@"Enable White Point", @"");
         }
         else if ([groupDefaults boolForKey:@"whitePointEnabled"]) {
             forceTouchActionEnabled = YES;
-            shortcutTitle = @"Disable White Point";
+            shortcutTitle = NSLocalizedString(@"Disable White Point", @"");
         }
     }
     
@@ -209,7 +209,7 @@
     [groupDefaults setObject:@"1" forKey:@"keyEnabled"];
     [groupDefaults setBool:NO forKey:key];
     [groupDefaults synchronize];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"") message:NSLocalizedString(@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one.", @"") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0025148E1CDCCFCC00482F87 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0025148C1CDCCFCC00482F87 /* Localizable.strings */; };
 		32AFEC481C1B1B8A00142DD9 /* IOMobileFramebufferClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AFEC471C1B1B8A00142DD9 /* IOMobileFramebufferClient.m */; };
 		755924021C21546A000E62AE /* MobileGestaltClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 755924011C21546A000E62AE /* MobileGestaltClient.m */; };
 		755924081C21B147000E62AE /* MobileGestaltClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 755924011C21546A000E62AE /* MobileGestaltClient.m */; };
@@ -67,6 +68,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0015F1D21CDCAA94007C6539 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Storyboard.strings; sourceTree = "<group>"; };
+		0015F1D31CDCAA94007C6539 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		0015F1D41CDCAA94007C6539 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		0025148D1CDCCFCC00482F87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0025148F1CDCCFD100482F87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		002514901CDCCFD300482F87 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		002514911CDCCFD400482F87 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		002514921CDCCFD600482F87 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		32AFEC461C1B1B8A00142DD9 /* IOMobileFramebufferClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOMobileFramebufferClient.h; sourceTree = "<group>"; };
 		32AFEC471C1B1B8A00142DD9 /* IOMobileFramebufferClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOMobileFramebufferClient.m; sourceTree = "<group>"; };
 		397126621C3EE5F30066FE4C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Storyboard.strings; sourceTree = "<group>"; };
@@ -411,6 +420,7 @@
 		B9E536491B38D90D0097BF90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0025148C1CDCCFCC00482F87 /* Localizable.strings */,
 				92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */,
 				B9E536551B38D90D0097BF90 /* Assets.xcassets */,
 				B9E5365A1B38D90D0097BF90 /* Info.plist */,
@@ -529,6 +539,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0025148E1CDCCFCC00482F87 /* Localizable.strings in Resources */,
 				75885DCB1C2026B700B57791 /* Defaults.plist in Resources */,
 				92F23ABF1BD72ADD00A097CB /* LaunchScreen.storyboard in Resources */,
 				B9E536561B38D90D0097BF90 /* Assets.xcassets in Resources */,
@@ -589,6 +600,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0025148C1CDCCFCC00482F87 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0025148D1CDCCFCC00482F87 /* Base */,
+				0025148F1CDCCFD100482F87 /* ja */,
+				002514901CDCCFD300482F87 /* nl */,
+				002514911CDCCFD400482F87 /* de */,
+				002514921CDCCFD600482F87 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		925B81261BE2BCE1003A6C4B /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -596,6 +619,7 @@
 				511EBE631BEBB1E200D5DAF7 /* ja */,
 				3971266E1C3EE5F40066FE4C /* nl */,
 				75472CDC1C45313F00D9B85D /* de */,
+				0015F1D41CDCAA94007C6539 /* fr */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -607,6 +631,7 @@
 				511EBE611BEBB1E200D5DAF7 /* ja */,
 				397126681C3EE5F30066FE4C /* nl */,
 				75472CDB1C45313E00D9B85D /* de */,
+				0015F1D31CDCAA94007C6539 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -618,6 +643,7 @@
 				511EBE621BEBB1E200D5DAF7 /* ja */,
 				397126621C3EE5F30066FE4C /* nl */,
 				75472CDA1C45313E00D9B85D /* de */,
+				0015F1D21CDCAA94007C6539 /* fr */,
 			);
 			name = Storyboard.storyboard;
 			sourceTree = "<group>";

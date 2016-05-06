@@ -95,15 +95,15 @@
 - (NSArray <id <UIPreviewActionItem>> *)previewActionItems {
     NSString *title = nil;
     if ([groupDefaults boolForKey:@"whitePointEnabled"]) {
-        title = @"Disable";
+        title = NSLocalizedString(@"Disable", @"");
     }
     else {
-        title = @"Enable";
+        title = NSLocalizedString(@"Enable", @"");
     }
     UIPreviewAction *enableDisableAction = [UIPreviewAction actionWithTitle:title style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
         [self enableOrDisableBasedOnDefaults];
     }];
-    UIPreviewAction * _Nullable cancelAction = [UIPreviewAction actionWithTitle:@"Cancel" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
+    UIPreviewAction * _Nullable cancelAction = [UIPreviewAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
     return @[enableDisableAction, cancelAction];
 }
 

@@ -134,10 +134,10 @@
     if (tableView) {
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
             if (section == 0) {
-                headerText = @"3D Touch";
+                headerText = NSLocalizedString(@"3D Touch", @"");
             }
             if (section == 2) {
-                headerText = @"Quick Actions";
+                headerText = NSLocalizedString(@"Quick Actions", @"");
             }
         }
     }
@@ -158,17 +158,17 @@
     if (tableView) {
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
             if (section == 0) {
-                footerText = @"Turn on or off 3D Touch quick actions or \"Peek and Pop\" capability.";
+                footerText = NSLocalizedString(@"Turn on or off 3D Touch quick actions or \"Peek and Pop\" capability.", @"");
             }
             if (section == 1) {
-                footerText = @"When enabled, the \"Exit After Action\" exits the app after you enable or disable the set adjustment using 3D Touch.";
+                footerText = NSLocalizedString(@"When enabled, the \"Exit After Action\" exits the app after you enable or disable the set adjustment using 3D Touch.", @"");
             }
             if (section == 2) {
-                footerText = @"Choose the adjustment that you would like to enable and disable using 3D Touch. You may only have one enabled at a time.";
+                footerText = NSLocalizedString(@"Choose the adjustment that you would like to enable and disable using 3D Touch. You may only have one enabled at a time.", @"");
             }
         }
         else {
-            footerText = @"There are no settings for your device at this moment. However, some may be added in a future update.";
+            footerText = NSLocalizedString(@"There are no settings for your device at this moment. However, some may be added in a future update.", @"");
         }
     }
     return footerText;

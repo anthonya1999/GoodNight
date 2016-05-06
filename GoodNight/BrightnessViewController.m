@@ -121,11 +121,11 @@
 - (IBAction)dimSliderLevelChanged {
     if (self.dimSlider.value < 0.1f && !warningIgnored){
         if (![self presentedViewController]){
-            NSString *title = @"Warning";
-            NSString *message = @"If you further reduce the brightness, your screen will go completely dark! If you accidently do this, you can restart your device to undo the effect.";
-            NSString *cancelButton = @"Cancel";
-            NSString *acknowledgeButton = @"Ignore";
-            NSString *darkroomButton = @"Enable Darkroom";
+            NSString *title = NSLocalizedString(@"Warning", @"");
+            NSString *message = NSLocalizedString(@"If you further reduce the brightness, your screen will go completely dark! If you accidently do this, you can restart your device to undo the effect.", @"");
+            NSString *cancelButton = NSLocalizedString(@"Cancel", @"");
+            NSString *acknowledgeButton = NSLocalizedString(@"Ignore", @"");
+            NSString *darkroomButton = NSLocalizedString(@"Enable Darkroom", @"");
             
             if (NSClassFromString(@"UIAlertController") != nil) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -164,10 +164,10 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Ignore"]){
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:NSLocalizedString(@"Ignore", @"")]){
         warningIgnored = YES;
     }
-    else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Enable Darkroom"]){
+    else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:NSLocalizedString(@"Enable Darkroom", @"")]){
         [self.darkroomSwitch setOn:YES animated:YES];
         [self darkroomSwitchChanged];
     }
@@ -201,7 +201,7 @@
     UIPreviewAction *enableDisableAction = [UIPreviewAction actionWithTitle:title style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
         [self enableOrDisableBasedOnDefaults];
     }];
-    UIPreviewAction *cancelButton = [UIPreviewAction actionWithTitle:@"Cancel" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
+    UIPreviewAction *cancelButton = [UIPreviewAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
     
     return @[enableDisableAction, cancelButton];
 }
@@ -219,7 +219,7 @@
     NSString *headerText = @"";
     if (tableView) {
         if (section == 1) {
-            headerText = [NSString stringWithFormat:@"Level (%.2f)", (self.dimSlider.value * 10)];
+            headerText = [NSString stringWithFormat:NSLocalizedString(@"Level (%.2f)", @""), (self.dimSlider.value * 10)];
         }
     }
     return headerText;

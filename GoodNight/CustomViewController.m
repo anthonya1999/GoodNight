@@ -47,10 +47,10 @@
 - (void)checkWarningIssued:(UISlider*)currentSlider{
     if (self.redSlider.value+self.greenSlider.value+self.blueSlider.value < 0.2f && !warningIgnored){
         if (![self presentedViewController]){
-            NSString *title = @"Cancel";
-            NSString *message = @"If you further reduce the color your screen will go completely dark!";
-            NSString *cancelButton = @"Understood";
-            NSString *acknowledgeButton = @"Ignore";
+            NSString *title = NSLocalizedString(@"Cancel", @"");
+            NSString *message = NSLocalizedString(@"If you further reduce the color your screen will go completely dark!", @"");
+            NSString *cancelButton = NSLocalizedString(@"Understood", @"");
+            NSString *acknowledgeButton = NSLocalizedString(@"Ignore", @"");
             
             if (NSClassFromString(@"UIAlertController") != nil) {
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -77,7 +77,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Ignore"]){
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:NSLocalizedString(@"Ignore", @"")]){
         warningIgnored = YES;
     }
 }
@@ -154,16 +154,16 @@
 }
 
 - (NSArray <id <UIPreviewActionItem>> *)previewActionItems {
-    UIPreviewAction *redColor = [UIPreviewAction actionWithTitle:@"Red" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+    UIPreviewAction *redColor = [UIPreviewAction actionWithTitle:NSLocalizedString(@"Red", @"") style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
         [self setGammaWithRedColor];
     }];
-    UIPreviewAction *greenColor = [UIPreviewAction actionWithTitle:@"Green" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+    UIPreviewAction *greenColor = [UIPreviewAction actionWithTitle:NSLocalizedString(@"Green", @"") style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
         [self setGammaWithGreenColor];
     }];
-    UIPreviewAction *blueColor = [UIPreviewAction actionWithTitle:@"Blue" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+    UIPreviewAction *blueColor = [UIPreviewAction actionWithTitle:NSLocalizedString(@"Blue", @"") style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
         [self setGammaWithBlueColor];
     }];
-    UIPreviewAction *cancelButton = [UIPreviewAction actionWithTitle:@"Cancel" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
+    UIPreviewAction *cancelButton = [UIPreviewAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
     return @[redColor, greenColor, blueColor, cancelButton];
 }
 
@@ -192,13 +192,13 @@
     NSString *headerText = @"";
     if (tableView) {
         if (section == 1) {
-            headerText = [NSString stringWithFormat:@"Red (%.2f)", (self.redSlider.value * 10)];
+            headerText = [NSString stringWithFormat:NSLocalizedString(@"Red (%.2f)", @""), (self.redSlider.value * 10)];
         }
         if (section == 2) {
-            headerText = [NSString stringWithFormat:@"Green (%.2f)", (self.greenSlider.value * 10)];
+            headerText = [NSString stringWithFormat:NSLocalizedString(@"Green (%.2f)", @""), (self.greenSlider.value * 10)];
         }
         if (section == 3) {
-            headerText = [NSString stringWithFormat:@"Blue (%.2f)", (self.blueSlider.value * 10)];
+            headerText = [NSString stringWithFormat:NSLocalizedString(@"Blue (%.2f)", @""), (self.blueSlider.value * 10)];
         }
     }
     return headerText;
