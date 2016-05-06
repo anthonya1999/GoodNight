@@ -116,7 +116,7 @@
         if ([enableNotification respondsToSelector:@selector(setAlertTitle:)]){
             [enableNotification setAlertTitle:bundleName];
         }
-        [enableNotification setAlertBody:[NSString stringWithFormat:@"Time to enable %@!", bundleName]];
+        [enableNotification setAlertBody:[NSString stringWithFormat:NSLocalizedString(@"Time to enable %@!", @""), bundleName]];
         [enableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
         [enableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForEnable]];
         [enableNotification setRepeatInterval:NSCalendarUnitDay];
@@ -134,7 +134,7 @@
         if ([disableNotification respondsToSelector:@selector(setAlertTitle:)]){
             [disableNotification setAlertTitle:bundleName];
         }
-        [disableNotification setAlertBody:[NSString stringWithFormat:@"Time to disable %@!", bundleName]];
+        [disableNotification setAlertBody:[NSString stringWithFormat:NSLocalizedString(@"Time to disable %@!", @""), bundleName]];
         [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
         [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
         [disableNotification setRepeatInterval:NSCalendarUnitDay];
@@ -159,7 +159,7 @@
             if ([enableNightNotification respondsToSelector:@selector(setAlertTitle:)]){
                 [enableNightNotification setAlertTitle:bundleName];
             }
-            [enableNightNotification setAlertBody:[NSString stringWithFormat:@"Time to enable night mode!"]];
+            [enableNightNotification setAlertBody:[NSString stringWithFormat:NSLocalizedString(@"Time to enable night mode!", @"")]];
             [enableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
             [enableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightEnable]];
             [enableNightNotification setRepeatInterval:NSCalendarUnitDay];
@@ -177,7 +177,7 @@
             if ([disableNightNotification respondsToSelector:@selector(setAlertTitle:)]){
                 [disableNightNotification setAlertTitle:bundleName];
             }
-            [disableNightNotification setAlertBody:[NSString stringWithFormat:@"Time to disable night mode!"]];
+            [disableNightNotification setAlertBody:[NSString stringWithFormat:NSLocalizedString(@"Time to disable night mode!", @"")]];
             [disableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
             [disableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightDisable]];
             [disableNightNotification setRepeatInterval:NSCalendarUnitDay];
@@ -214,8 +214,8 @@
     va_end(args);
     
     if (adjustmentsEnabled) {
-        NSString *title = @"Error";
-        NSString *message = @"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one.";
+        NSString *title = NSLocalizedString(@"Error", @"");
+        NSString *message = NSLocalizedString(@"You may only use one adjustment at a time. Please disable any other adjustments before enabling this one.", @"");
         NSString *cancelButton = @"Cancel";
         NSString *disableButton = @"Disable";
         

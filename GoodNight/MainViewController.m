@@ -403,10 +403,10 @@ float roundOrangeValue(float currentOrangeValue) {
             [groupDefaults setObject:[NSDate distantPast] forKey:@"lastAutoChangeDate"];
             
         } else if(!requestedLocationAuthorization) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No access to location"
-                                                            message:@"You must enable location services in settings."
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No access to location", @"")
+                                                            message:NSLocalizedString(@"You must enable location services in settings.", @"")
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
                                                   otherButtonTitles:nil];
             [alert show];
             [self.colorChangingLocationBasedSwitch setOn:NO animated:YES];
@@ -483,16 +483,16 @@ float roundOrangeValue(float currentOrangeValue) {
     NSString *title = nil;
     
     if (![groupDefaults boolForKey:@"enabled"]) {
-        title = @"Enable";
+        title = NSLocalizedString(@"Enable", @"");
     }
     else if ([groupDefaults boolForKey:@"enabled"]) {
-        title = @"Disable";
+        title = NSLocalizedString(@"Disable", @"");
     }
     
     UIPreviewAction *enableDisableAction = [UIPreviewAction actionWithTitle:title style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
         [self enableOrDisableBasedOnDefaults];
     }];
-    UIPreviewAction *cancelButton = [UIPreviewAction actionWithTitle:@"Cancel" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
+    UIPreviewAction *cancelButton = [UIPreviewAction actionWithTitle:NSLocalizedString(@"Cancel", @"") style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {}];
     
     return @[enableDisableAction, cancelButton];
 }
@@ -510,10 +510,10 @@ float roundOrangeValue(float currentOrangeValue) {
     NSString *headerText = @"";
     if (tableView) {
         if (section == 1) {
-            headerText = [NSString stringWithFormat:@"Temperature (%dK)", (int)((self.orangeSlider.value * 45 + 20) * 10) * 10];
+            headerText = [NSString stringWithFormat:NSLocalizedString(@"Temperature (%dK)", @""), (int)((self.orangeSlider.value * 45 + 20) * 10) * 10];
         }
         if (section == 2) {
-            headerText = @"Automatic Mode";
+            headerText = NSLocalizedString(@"Automatic Mode", @"");
         }
     }
     return headerText;
@@ -523,13 +523,13 @@ float roundOrangeValue(float currentOrangeValue) {
     NSString *footerText = @"";
     if (tableView) {
         if (section == 1) {
-            footerText = [NSString stringWithFormat:@"Move the slider to adjust the display temperature.\n\nCurrent Temperature: %dK", (int)(([groupDefaults floatForKey:@"currentOrange"] * 45 + 20) * 10)*10];
+            footerText = [NSString stringWithFormat:NSLocalizedString(@"Move the slider to adjust the display temperature.\n\nCurrent Temperature: %dK", @""), (int)(([groupDefaults floatForKey:@"currentOrange"] * 45 + 20) * 10)*10];
         }
         if (section == 2) {
             NSDate *lastBackgroundUpdate = [groupDefaults objectForKey:@"lastBackgroundCheck"];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"HH:mm dd MMM yyyy"];
-            footerText = [NSString stringWithFormat:@"Enable automatic mode to turn on and off GoodNight at a set time. Please note that the change will not take effect immediately.\n\nLast Background Update: %@", [lastBackgroundUpdate isEqualToDate:[NSDate distantPast]] ? @"Never" :  [dateFormatter stringFromDate:lastBackgroundUpdate]];
+            footerText = [NSString stringWithFormat:NSLocalizedString(@"Enable automatic mode to turn on and off GoodNight at a set time. Please note that the change will not take effect immediately.\n\nLast Background Update: %@", @""), [lastBackgroundUpdate isEqualToDate:[NSDate distantPast]] ? NSLocalizedString(@"Never", @"") :  [dateFormatter stringFromDate:lastBackgroundUpdate]];
         }
     }
     return footerText;
