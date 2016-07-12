@@ -90,8 +90,12 @@
 
 - (void)registerForNotifications {
     if ([app respondsToSelector:@selector(registerUserNotificationSettings:)]){
-        UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        UIUserNotificationType types = (UIUserNotificationTypeAlert|
+                                        UIUserNotificationTypeSound|
+                                        UIUserNotificationTypeBadge);
+        
+        UIUserNotificationSettings *settings;
+        settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
         [app registerUserNotificationSettings:settings];
     }
 }
@@ -100,6 +104,45 @@
     NSString *bundleName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
     
     [app cancelAllLocalNotifications];
+    
+    UIMutableUserNotificationAction *action1;
+    action1 = [[UIMutableUserNotificationAction alloc] init];
+    [action1 setActivationMode:UIUserNotificationActivationModeBackground];
+    [action1 setTitle: NSLocalizedString(@"Enable", "")];
+    [action1 setIdentifier:@"goodNightActionEnable"];
+    [action1 setDestructive:NO];
+    [action1 setAuthenticationRequired:NO];
+    
+    UIMutableUserNotificationCategory *actionCategory;
+    actionCategory = [[UIMutableUserNotificationCategory alloc] init];
+    [actionCategory setIdentifier:@"goodNightActionCategoryEnable"];
+    [actionCategory setActions:@[action1]
+                    forContext:UIUserNotificationActionContextDefault];
+    
+    UIMutableUserNotificationAction *action2;
+    action2 = [[UIMutableUserNotificationAction alloc] init];
+    [action2 setActivationMode:UIUserNotificationActivationModeBackground];
+    [action2 setTitle: NSLocalizedString(@"Disable", "")];
+    [action2 setIdentifier:@"goodNightActionDisable"];
+    [action2 setDestructive:NO];
+    [action2 setAuthenticationRequired:NO];
+    
+    UIMutableUserNotificationCategory *actionCategory2;
+    actionCategory2 = [[UIMutableUserNotificationCategory alloc] init];
+    [actionCategory2 setIdentifier:@"goodNightActionCategoryDisable"];
+    [actionCategory2 setActions:@[action2]
+                    forContext:UIUserNotificationActionContextDefault];
+    
+    NSSet *categories = [NSSet setWithObjects:actionCategory, actionCategory2, nil];
+    UIUserNotificationType types = (UIUserNotificationTypeAlert|
+                                    UIUserNotificationTypeSound|
+                                    UIUserNotificationTypeBadge);
+    
+    UIUserNotificationSettings *settings;
+    settings = [UIUserNotificationSettings settingsForTypes:types
+                                                 categories:categories];
+    
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     
     if ([groupDefaults boolForKey:@"colorChangingEnabled"]){
         
@@ -120,6 +163,7 @@
         [enableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
         [enableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForEnable]];
         [enableNotification setRepeatInterval:NSCalendarUnitDay];
+        [enableNotification setCategory:@"goodNightActionCategoryEnable"];
         
         UILocalNotification *disableNotification = [[UILocalNotification alloc] init];
         
@@ -138,6 +182,7 @@
         [disableNotification setTimeZone:[NSTimeZone defaultTimeZone]];
         [disableNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForDisable]];
         [disableNotification setRepeatInterval:NSCalendarUnitDay];
+        [disableNotification setCategory:@"goodNightActionCategoryDisable"];
         
         [app scheduleLocalNotification:enableNotification];
         [app scheduleLocalNotification:disableNotification];
@@ -163,6 +208,7 @@
             [enableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
             [enableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightEnable]];
             [enableNightNotification setRepeatInterval:NSCalendarUnitDay];
+            [enableNightNotification setCategory:@"goodNightActionCategoryEnable"];
             
             UILocalNotification *disableNightNotification = [[UILocalNotification alloc] init];
             
@@ -181,6 +227,7 @@
             [disableNightNotification setTimeZone:[NSTimeZone defaultTimeZone]];
             [disableNightNotification setFireDate:[[NSCalendar currentCalendar] dateFromComponents:compsForNightDisable]];
             [disableNightNotification setRepeatInterval:NSCalendarUnitDay];
+            [disableNightNotification setCategory:@"goodNightActionCategoryDisable"];
             
             [app scheduleLocalNotification:enableNightNotification];
             [app scheduleLocalNotification:disableNightNotification];
@@ -238,10 +285,24 @@
     return adjustmentsEnabled;
 }
 
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
+    
+    if ([identifier isEqualToString:@"goodNightActionEnable"]) {
+        [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
+    }
+    else if ([identifier isEqualToString:@"goodNightActionDisable"]) {
+        [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
+    }
+    if (completionHandler) {
+        
+        completionHandler();
+    }
+}
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [GammaController autoChangeOrangenessIfNeededWithTransition:YES];
     [ForceTouchController exitIfKeyEnabled];
+    [GammaController suspendApp];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id) annotation {
@@ -283,7 +344,8 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [GammaController autoChangeOrangenessIfNeededWithTransition:NO];
+
     [application clearKeepAliveTimeout];
 }
 
