@@ -42,6 +42,7 @@ The macOS version of GoodNight is very basic at the moment. You can currently en
 * Red: 1  
 * Green: 0.5  
 * Blue: 0.1  
+  
 Of course, in the future more features will become available. I plan to implement a slider and white point adjuster, as well as a touch bar slider for the new 2016 MacBook Pros! Please create pull requests! Thanks so much for everyone's help.
 
 [1]: https://github.com/thomasfinch/GammaThingy
