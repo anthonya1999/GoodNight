@@ -11,7 +11,7 @@
 
 @implementation ViewController
 
-- (IBAction)setGamma:(NSButton *)sender {
+- (IBAction)setGamma:(NSButton *)button {
     float redValue = self.redField.floatValue;
     float greenValue = self.greenField.floatValue;
     float blueValue = self.blueField.floatValue;
