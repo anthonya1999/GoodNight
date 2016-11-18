@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>GoodNight-Mac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>GoodNight.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +22,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>922B281C1DDE81CF0075C274</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>925B811D1BE2BCE1003A6C4B</key>
 		<dict>
 			<key>primary</key>
