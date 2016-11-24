@@ -51,7 +51,7 @@
 }
 
 - (IBAction)sliderValueDidChange:(NSSlider *)slider {
-    [self.darkroomButton setTitle:@"Enable Darkroom"];
+    [self.darkroomButton setState:NSOffState];
     [userDefaults setFloat:self.temperatureSlider.floatValue forKey:@"orangeValue"];
     [userDefaults synchronize];
     [TemperatureViewController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
@@ -65,25 +65,27 @@
 
 - (IBAction)toggleDarkroom:(NSButton *)button {
     [self resetTemperature:nil];
-    
-    if ([self.darkroomButton.title isEqualToString:@"Enable Darkroom"]) {
+
+    if (self.darkroomButton.state == NSOffState) {
+        [self resetTemperature:nil];
         [userDefaults setBool:YES forKey:@"darkroomEnabled"];
         [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
-        [self.darkroomButton setTitle:@"Disable Darkroom"];
+        [self.darkroomButton setState:NSOnState];
     }
     else {
         [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-        [self.darkroomButton setTitle:@"Enable Darkroom"];
+        [self.darkroomButton setState:NSOffState];
     }
     [userDefaults synchronize];
 }
 
 - (IBAction)resetTemperature:(NSButton *)button {
     [userDefaults setFloat:1 forKey:@"orangeValue"];
-    [userDefaults synchronize];
     self.temperatureSlider.floatValue = [userDefaults floatForKey:@"orangeValue"];
     self.temperatureLabel.stringValue = @"Temperature: 6500K";
-    [self.darkroomButton setTitle:@"Enable Darkroom"];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults synchronize];
+    [self.darkroomButton setState:NSOffState];
     CGDisplayRestoreColorSyncSettings();
 }
 
