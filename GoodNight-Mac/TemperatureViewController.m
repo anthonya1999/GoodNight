@@ -11,7 +11,7 @@
 
 @implementation TemperatureViewController
 
-- (void)setGammaWithRed:(float)r green:(float)g blue:(float)b {
++ (void)setGammaWithRed:(float)r green:(float)g blue:(float)b {
     float red[256];
     float green[256];
     float blue[256];
@@ -47,7 +47,7 @@
     green /= 255.0;
     blue /= 255.0;
     
-    [self setGammaWithRed:red green:green blue:blue];
+    [TemperatureViewController setGammaWithRed:red green:green blue:blue];
 }
 
 - (IBAction)sliderValueDidChange:(NSSlider *)slider {
@@ -65,7 +65,7 @@
     [self resetTemperature:nil];
 
     if ([self.darkroomButton.title isEqualToString:@"Enable Darkroom"]) {
-        [self setGammaWithRed:1 green:0 blue:0];
+        [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
         [self.darkroomButton setTitle:@"Disable Darkroom"];
     }
     else {
@@ -76,6 +76,7 @@
 - (IBAction)resetTemperature:(NSButton *)button {
     self.temperatureSlider.floatValue = 1;
     self.temperatureLabel.stringValue = @"Temperature: 6500K";
+    [self.darkroomButton setTitle:@"Enable Darkroom"];
     CGDisplayRestoreColorSyncSettings();
 }
 

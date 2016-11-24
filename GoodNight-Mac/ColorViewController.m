@@ -7,6 +7,7 @@
 //
 
 #import "ColorViewController.h"
+#import "TemperatureViewController.h"
 
 @implementation ColorViewController
 
@@ -15,11 +16,7 @@
     float greenValue = self.greenField.floatValue;
     float blueValue = self.blueField.floatValue;
     
-    CGGammaValue redTable[] = {0, redValue};
-    CGGammaValue greenTable[] = {0, greenValue};
-    CGGammaValue blueTable[] = {0, blueValue};
-    
-    CGSetDisplayTransferByTable(CGMainDisplayID(), 2, (const float *)&redTable, (const float *)&greenTable, (const float *)&blueTable);
+    [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
 }
 
 - (IBAction)resetColor:(NSButton *)button {

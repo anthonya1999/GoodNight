@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet NSTextField *temperatureLabel;
 @property (weak, nonatomic) IBOutlet NSButton *darkroomButton;
 
++ (void)setGammaWithRed:(float)r green:(float)g blue:(float)b;
+
 @end

@@ -641,7 +641,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="orv-8V-3Ie">
-                                <rect key="frame" x="170" y="47" width="161" height="32"/>
+                                <rect key="frame" x="170" y="45" width="161" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="149" id="24l-eu-bRo"/>
                                 </constraints>
@@ -653,13 +653,6 @@
                                     <action selector="resetTemperature:" target="wpb-NC-hX3" id="xAj-ny-LfI"/>
                                 </connections>
                             </button>
-                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Exh-Wa-Vqs">
-                                <rect key="frame" x="3" y="119" width="494" height="19"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="I8y-Vn-hLE"/>
-                                <connections>
-                                    <action selector="sliderValueDidChange:" target="wpb-NC-hX3" id="Y6U-wE-NFP"/>
-                                </connections>
-                            </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LwU-hw-VEa">
                                 <rect key="frame" x="3" y="181" width="494" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Temperature: 6500K" id="Xg5-7F-wXl">
@@ -668,9 +661,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kaB-Z5-QNa">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kaB-Z5-QNa">
                                 <rect key="frame" x="178" y="15" width="144" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Enable Darkroom" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4Wg-7F-tqL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -679,16 +671,25 @@
                                     <action selector="toggleDarkroom:" target="wpb-NC-hX3" id="Cf6-pT-tko"/>
                                 </connections>
                             </button>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Exh-Wa-Vqs">
+                                <rect key="frame" x="18" y="113" width="464" height="24"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.99999999999999989" tickMarkPosition="below" numberOfTickMarks="50" allowsTickMarkValuesOnly="YES" sliderType="linear" id="I8y-Vn-hLE"/>
+                                <connections>
+                                    <action selector="sliderValueDidChange:" target="wpb-NC-hX3" id="Y6U-wE-NFP"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <constraints>
                             <constraint firstItem="LwU-hw-VEa" firstAttribute="centerX" secondItem="eLv-aZ-geS" secondAttribute="centerX" id="4lf-y3-LZG"/>
-                            <constraint firstItem="orv-8V-3Ie" firstAttribute="top" secondItem="Exh-Wa-Vqs" secondAttribute="bottom" constant="46" id="8XK-4f-k1a"/>
-                            <constraint firstItem="Exh-Wa-Vqs" firstAttribute="top" secondItem="LwU-hw-VEa" secondAttribute="bottom" constant="45" id="GAH-WH-30Y"/>
-                            <constraint firstItem="LwU-hw-VEa" firstAttribute="leading" secondItem="Exh-Wa-Vqs" secondAttribute="leading" id="QxK-EP-6KQ"/>
-                            <constraint firstItem="LwU-hw-VEa" firstAttribute="trailing" secondItem="Exh-Wa-Vqs" secondAttribute="trailing" id="aKE-IT-ZMs"/>
+                            <constraint firstItem="orv-8V-3Ie" firstAttribute="top" secondItem="Exh-Wa-Vqs" secondAttribute="bottom" constant="41" id="8XK-4f-k1a"/>
+                            <constraint firstItem="Exh-Wa-Vqs" firstAttribute="top" secondItem="LwU-hw-VEa" secondAttribute="bottom" constant="46" id="GAH-WH-30Y"/>
+                            <constraint firstItem="kaB-Z5-QNa" firstAttribute="top" secondItem="orv-8V-3Ie" secondAttribute="bottom" constant="9" id="NXM-7n-b44"/>
+                            <constraint firstItem="LwU-hw-VEa" firstAttribute="leading" secondItem="Exh-Wa-Vqs" secondAttribute="leading" constant="-15" id="QxK-EP-6KQ"/>
+                            <constraint firstItem="LwU-hw-VEa" firstAttribute="trailing" secondItem="Exh-Wa-Vqs" secondAttribute="trailing" constant="15" id="aKE-IT-ZMs"/>
                             <constraint firstItem="LwU-hw-VEa" firstAttribute="leading" secondItem="eLv-aZ-geS" secondAttribute="leading" constant="5" id="dlf-r6-Eor"/>
                             <constraint firstItem="LwU-hw-VEa" firstAttribute="top" secondItem="eLv-aZ-geS" secondAttribute="top" constant="52" id="kyw-kU-HNq"/>
                             <constraint firstItem="Exh-Wa-Vqs" firstAttribute="centerX" secondItem="orv-8V-3Ie" secondAttribute="centerX" id="tZv-NF-To5"/>
+                            <constraint firstItem="kaB-Z5-QNa" firstAttribute="centerX" secondItem="orv-8V-3Ie" secondAttribute="centerX" id="xm3-Lc-w3Z"/>
                         </constraints>
                     </view>
                     <connections>
