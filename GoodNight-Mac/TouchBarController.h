@@ -12,7 +12,7 @@
 @interface TouchBarController : NSTouchBar
 
 @property (strong, nonatomic) IBOutlet NSSliderTouchBarItem *touchBarTemperatureSlider;
-@property (weak, nonatomic) IBOutlet NSButton *touchBarResetButton;
-@property (weak, nonatomic) IBOutlet NSButton *touchBarDarkroomButton;
+@property (strong, nonatomic) IBOutlet NSButton *touchBarResetButton;
+@property (strong, nonatomic) IBOutlet NSButton *touchBarDarkroomButton;
 
 @end

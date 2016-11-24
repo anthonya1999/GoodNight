@@ -67,7 +67,6 @@
     [self resetTemperature:nil];
 
     if (self.darkroomButton.state == NSOffState) {
-        [self resetTemperature:nil];
         [userDefaults setBool:YES forKey:@"darkroomEnabled"];
         [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
         [self.darkroomButton setState:NSOnState];

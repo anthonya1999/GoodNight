@@ -623,51 +623,57 @@
                     </window>
                     <touchBar key="touchBar" id="end-1e-SWK" customClass="TouchBarController">
                         <touchBarItems>
-                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="9fe-z1-X63"/>
-                            <touchBarItem id="uIY-lR-O3f">
-                                <viewController key="viewController" id="ZsU-45-eEw">
-                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SvR-q8-P67">
+                            <touchBarItem id="aVk-pP-2yz">
+                                <viewController key="viewController" id="IJt-aq-91N">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZgV-8m-Poh">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
-                                        <buttonCell key="cell" type="push" title="Reset Temperature" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3F9-8q-rvk">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Rnk-EB-JF3"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Reset Temperature" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RdA-cB-4eJ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="resetTemperature:" target="end-1e-SWK" id="jCn-lM-vfc"/>
+                                            <action selector="resetTemperature:" target="end-1e-SWK" id="exr-HS-fR4"/>
                                         </connections>
                                     </button>
                                 </viewController>
                                 <size key="designTimeSize" width="135" height="30"/>
                             </touchBarItem>
-                            <sliderTouchBarItem label="6500K" id="DCK-Po-ekD">
-                                <sliderAccessory key="minimumValueAccessory" id="dTB-VX-FQ6">
-                                    <sliderAccessoryBehavior key="behavior" id="Ams-ib-hhd"/>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="9fe-z1-X63"/>
+                            <sliderTouchBarItem label="6500K" id="VAd-ag-FB3">
+                                <sliderAccessory key="minimumValueAccessory" id="xGW-x2-Iem">
+                                    <sliderAccessoryBehavior key="behavior" id="Vgc-Gz-x81"/>
                                 </sliderAccessory>
-                                <sliderAccessory key="maximumValueAccessory" id="T1w-hu-e4b">
-                                    <sliderAccessoryBehavior key="behavior" id="NcM-dD-j6W"/>
+                                <sliderAccessory key="maximumValueAccessory" id="A5e-Ss-oEs">
+                                    <sliderAccessoryBehavior key="behavior" id="vpS-iN-5nC"/>
                                 </sliderAccessory>
-                                <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ih1-uK-KrC">
-                                    <rect key="frame" x="58" y="0.0" width="600" height="29"/>
+                                <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1SI-V6-PsW">
+                                    <rect key="frame" x="0.0" y="0.0" width="96" height="21"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="29" id="T6C-tU-iaD"/>
+                                        <constraint firstAttribute="height" constant="30" id="IZg-nb-684"/>
                                     </constraints>
-                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="70j-Tu-VOg"/>
+                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="Nv9-Mf-Yds"/>
                                 </slider>
                                 <connections>
-                                    <action selector="touchBarSliderValueDidChange:" target="end-1e-SWK" id="cY3-nv-Jyy"/>
+                                    <action selector="touchBarSliderValueDidChange:" target="end-1e-SWK" id="141-Kj-UNt"/>
                                 </connections>
                             </sliderTouchBarItem>
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="zXm-VK-Tk5"/>
-                            <touchBarItem id="xcB-Lw-gOj">
-                                <viewController key="viewController" id="goz-jr-8hE">
-                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hHQ-yF-851">
+                            <touchBarItem id="27q-51-dAj">
+                                <viewController key="viewController" id="YQf-aU-9nZ">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JEk-39-iwf">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
-                                        <buttonCell key="cell" type="push" title="Enable Darkroom" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pmZ-HA-FuD">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="X9E-g8-unN"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Enable Darkroom" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mkf-Jt-scv">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="toggleDarkroom:" target="end-1e-SWK" id="d6b-Ew-NOV"/>
+                                            <action selector="toggleDarkroom:" target="end-1e-SWK" id="msm-dJ-SBR"/>
                                         </connections>
                                     </button>
                                 </viewController>
@@ -675,9 +681,9 @@
                             </touchBarItem>
                         </touchBarItems>
                         <connections>
-                            <outlet property="touchBarDarkroomButton" destination="hHQ-yF-851" id="MMe-KY-8Hi"/>
-                            <outlet property="touchBarResetButton" destination="SvR-q8-P67" id="8Mh-9y-DG2"/>
-                            <outlet property="touchBarTemperatureSlider" destination="DCK-Po-ekD" id="ClH-Qe-N2q"/>
+                            <outlet property="touchBarDarkroomButton" destination="JEk-39-iwf" id="dcI-JV-FAQ"/>
+                            <outlet property="touchBarResetButton" destination="ZgV-8m-Poh" id="jIb-2A-M0k"/>
+                            <outlet property="touchBarTemperatureSlider" destination="VAd-ag-FB3" id="wTT-d3-1jo"/>
                         </connections>
                     </touchBar>
                     <connections>
