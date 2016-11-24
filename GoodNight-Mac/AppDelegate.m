@@ -12,6 +12,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    
+    NSDictionary *defaultValues = @{@"orangeValue":     @1,
+                                    @"darkroomEnabled": @NO};
+    [userDefaults registerDefaults:defaultValues];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

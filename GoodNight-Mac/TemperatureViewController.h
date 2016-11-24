@@ -10,10 +10,11 @@
 
 @interface TemperatureViewController : NSViewController
 
-@property (weak, nonatomic) IBOutlet NSSlider *temperatureSlider;
+@property (strong, nonatomic) IBOutlet NSSlider *temperatureSlider;
 @property (weak, nonatomic) IBOutlet NSTextField *temperatureLabel;
 @property (weak, nonatomic) IBOutlet NSButton *darkroomButton;
 
 + (void)setGammaWithRed:(float)r green:(float)g blue:(float)b;
++ (void)setGammaWithOrangeness:(float)percentOrange;
 
 @end
