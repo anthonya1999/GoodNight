@@ -24,13 +24,14 @@
 		922B28211DDE81CF0075C274 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 922B28201DDE81CF0075C274 /* AppDelegate.m */; };
 		922B28241DDE81CF0075C274 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 922B28231DDE81CF0075C274 /* main.m */; };
 		922B28291DDE81D00075C274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 922B28281DDE81D00075C274 /* Assets.xcassets */; };
-		922B28321DDE81F40075C274 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922B28311DDE81F40075C274 /* Main.storyboard */; };
-		922B28351DDE81FB0075C274 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922B28341DDE81FB0075C274 /* ViewController.m */; };
 		924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */; };
 		925B81211BE2BCE1003A6C4B /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B81201BE2BCE1003A6C4B /* NotificationCenter.framework */; };
 		925B81251BE2BCE1003A6C4B /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B81241BE2BCE1003A6C4B /* TodayViewController.m */; };
 		925B81281BE2BCE1003A6C4B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 925B81261BE2BCE1003A6C4B /* MainInterface.storyboard */; };
 		925B812C1BE2BCE1003A6C4B /* GoodNight Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 925B811E1BE2BCE1003A6C4B /* GoodNight Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		926076941DE672FF00D6320D /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926076911DE672FF00D6320D /* ColorViewController.m */; };
+		926076951DE672FF00D6320D /* TemperatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926076931DE672FF00D6320D /* TemperatureViewController.m */; };
+		926076981DE6731000D6320D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926076961DE6731000D6320D /* Main.storyboard */; };
 		926F711F1C0CF3930039A4A2 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 926F711E1C0CF3930039A4A2 /* NSDate+Extensions.m */; };
 		926F71261C0CF39B0039A4A2 /* Brightness.c in Sources */ = {isa = PBXBuildFile; fileRef = 926F71211C0CF39B0039A4A2 /* Brightness.c */; };
 		926F71271C0CF39B0039A4A2 /* Solar.c in Sources */ = {isa = PBXBuildFile; fileRef = 926F71241C0CF39B0039A4A2 /* Solar.c */; };
@@ -105,9 +106,6 @@
 		922B28231DDE81CF0075C274 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		922B28281DDE81D00075C274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		922B282D1DDE81D00075C274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		922B28311DDE81F40075C274 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		922B28331DDE81FB0075C274 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		922B28341DDE81FB0075C274 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 		925B811E1BE2BCE1003A6C4B /* GoodNight Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "GoodNight Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +115,11 @@
 		925B81271BE2BCE1003A6C4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		925B81291BE2BCE1003A6C4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		925B81301BE2BD0A003A6C4B /* GoodNight Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GoodNight Widget.entitlements"; sourceTree = "<group>"; };
+		926076901DE672FF00D6320D /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
+		926076911DE672FF00D6320D /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
+		926076921DE672FF00D6320D /* TemperatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemperatureViewController.h; sourceTree = "<group>"; };
+		926076931DE672FF00D6320D /* TemperatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemperatureViewController.m; sourceTree = "<group>"; };
+		926076971DE6731000D6320D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		926F711D1C0CF3930039A4A2 /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Extensions.h"; path = "Extras/NSDate+Extensions/NSDate+Extensions.h"; sourceTree = SOURCE_ROOT; };
 		926F711E1C0CF3930039A4A2 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Extensions.m"; path = "Extras/NSDate+Extensions/NSDate+Extensions.m"; sourceTree = SOURCE_ROOT; };
 		926F71211C0CF39B0039A4A2 /* Brightness.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Brightness.c; sourceTree = "<group>"; };
@@ -265,9 +268,11 @@
 			children = (
 				922B281F1DDE81CF0075C274 /* AppDelegate.h */,
 				922B28201DDE81CF0075C274 /* AppDelegate.m */,
-				922B28331DDE81FB0075C274 /* ViewController.h */,
-				922B28341DDE81FB0075C274 /* ViewController.m */,
-				922B28311DDE81F40075C274 /* Main.storyboard */,
+				926076921DE672FF00D6320D /* TemperatureViewController.h */,
+				926076931DE672FF00D6320D /* TemperatureViewController.m */,
+				926076901DE672FF00D6320D /* ColorViewController.h */,
+				926076911DE672FF00D6320D /* ColorViewController.m */,
+				926076961DE6731000D6320D /* Main.storyboard */,
 				922B28221DDE81CF0075C274 /* Supporting Files */,
 			);
 			path = "GoodNight-Mac";
@@ -599,7 +604,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				922B28291DDE81D00075C274 /* Assets.xcassets in Resources */,
-				922B28321DDE81F40075C274 /* Main.storyboard in Resources */,
+				926076981DE6731000D6320D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,9 +636,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				922B28351DDE81FB0075C274 /* ViewController.m in Sources */,
 				922B28241DDE81CF0075C274 /* main.m in Sources */,
 				922B28211DDE81CF0075C274 /* AppDelegate.m in Sources */,
+				926076941DE672FF00D6320D /* ColorViewController.m in Sources */,
+				926076951DE672FF00D6320D /* TemperatureViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +715,14 @@
 				0015F1D41CDCAA94007C6539 /* fr */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		926076961DE6731000D6320D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				926076971DE6731000D6320D /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		92F23AC11BD72ADD00A097CB /* LaunchScreen.storyboard */ = {
@@ -1011,6 +1025,7 @@
 				922B28301DDE81D00075C274 /* Enterprise */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		925B812F1BE2BCE1003A6C4B /* Build configuration list for PBXNativeTarget "GoodNight Widget" */ = {
 			isa = XCConfigurationList;
