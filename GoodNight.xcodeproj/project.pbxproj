@@ -32,6 +32,7 @@
 		926076941DE672FF00D6320D /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926076911DE672FF00D6320D /* ColorViewController.m */; };
 		926076951DE672FF00D6320D /* TemperatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926076931DE672FF00D6320D /* TemperatureViewController.m */; };
 		926076981DE6731000D6320D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926076961DE6731000D6320D /* Main.storyboard */; };
+		9264E1401DE67A3200E61408 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264E13F1DE67A3200E61408 /* TabViewController.m */; };
 		926F711F1C0CF3930039A4A2 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 926F711E1C0CF3930039A4A2 /* NSDate+Extensions.m */; };
 		926F71261C0CF39B0039A4A2 /* Brightness.c in Sources */ = {isa = PBXBuildFile; fileRef = 926F71211C0CF39B0039A4A2 /* Brightness.c */; };
 		926F71271C0CF39B0039A4A2 /* Solar.c in Sources */ = {isa = PBXBuildFile; fileRef = 926F71241C0CF39B0039A4A2 /* Solar.c */; };
@@ -120,6 +121,9 @@
 		926076921DE672FF00D6320D /* TemperatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemperatureViewController.h; sourceTree = "<group>"; };
 		926076931DE672FF00D6320D /* TemperatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemperatureViewController.m; sourceTree = "<group>"; };
 		926076971DE6731000D6320D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9264E13E1DE67A3200E61408 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
+		9264E13F1DE67A3200E61408 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
+		9264E1411DE6807F00E61408 /* PrefixHeader-Mac.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrefixHeader-Mac.pch"; sourceTree = "<group>"; };
 		926F711D1C0CF3930039A4A2 /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Extensions.h"; path = "Extras/NSDate+Extensions/NSDate+Extensions.h"; sourceTree = SOURCE_ROOT; };
 		926F711E1C0CF3930039A4A2 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Extensions.m"; path = "Extras/NSDate+Extensions/NSDate+Extensions.m"; sourceTree = SOURCE_ROOT; };
 		926F71211C0CF39B0039A4A2 /* Brightness.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Brightness.c; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 			children = (
 				922B281F1DDE81CF0075C274 /* AppDelegate.h */,
 				922B28201DDE81CF0075C274 /* AppDelegate.m */,
+				9264E13E1DE67A3200E61408 /* TabViewController.h */,
+				9264E13F1DE67A3200E61408 /* TabViewController.m */,
 				926076921DE672FF00D6320D /* TemperatureViewController.h */,
 				926076931DE672FF00D6320D /* TemperatureViewController.m */,
 				926076901DE672FF00D6320D /* ColorViewController.h */,
@@ -284,6 +290,7 @@
 				922B28281DDE81D00075C274 /* Assets.xcassets */,
 				922B282D1DDE81D00075C274 /* Info.plist */,
 				922B28231DDE81CF0075C274 /* main.m */,
+				9264E1411DE6807F00E61408 /* PrefixHeader-Mac.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -640,6 +647,7 @@
 				922B28211DDE81CF0075C274 /* AppDelegate.m in Sources */,
 				926076941DE672FF00D6320D /* ColorViewController.m in Sources */,
 				926076951DE672FF00D6320D /* TemperatureViewController.m in Sources */,
+				9264E1401DE67A3200E61408 /* TabViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,6 +770,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = "GoodNight-Mac/PrefixHeader-Mac.pch";
 				INFOPLIST_FILE = "GoodNight-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
@@ -801,6 +810,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "GoodNight-Mac/PrefixHeader-Mac.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

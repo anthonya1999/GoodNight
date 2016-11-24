@@ -1,0 +1,14 @@
+//
+//  PrefixHeader-Mac.pch
+//  GoodNight-Mac
+//
+//  Created by Anthony Agatiello on 11/23/16.
+//  Copyright © 2016 ADA Tech, LLC. All rights reserved.
+//
+
+#ifndef PrefixHeader_Mac_pch
+#define PrefixHeader_Mac_pch
+
+#define userDefaults [NSUserDefaults standardUserDefaults]
+
+#endif
