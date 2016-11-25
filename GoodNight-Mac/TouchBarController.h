@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "TemperatureViewController.h"
 
 @interface TouchBarController : NSTouchBar
 

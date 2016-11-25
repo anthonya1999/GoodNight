@@ -33,6 +33,10 @@
 }
 
 - (IBAction)resetColor:(NSButton *)button {
+    [self.redField setStringValue:@""];
+    [self.greenField setStringValue:@""];
+    [self.blueField setStringValue:@""];
+    
     [userDefaults setFloat:1 forKey:@"orangeValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults synchronize];
