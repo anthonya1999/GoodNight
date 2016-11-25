@@ -29,6 +29,7 @@
 		925B81251BE2BCE1003A6C4B /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B81241BE2BCE1003A6C4B /* TodayViewController.m */; };
 		925B81281BE2BCE1003A6C4B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 925B81261BE2BCE1003A6C4B /* MainInterface.storyboard */; };
 		925B812C1BE2BCE1003A6C4B /* GoodNight Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 925B811E1BE2BCE1003A6C4B /* GoodNight Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		925FF57C1DE8EE1A007675AE /* MainTouchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FF57B1DE8EE1A007675AE /* MainTouchBarController.m */; };
 		926076941DE672FF00D6320D /* ColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926076911DE672FF00D6320D /* ColorViewController.m */; };
 		926076951DE672FF00D6320D /* TemperatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926076931DE672FF00D6320D /* TemperatureViewController.m */; };
 		926076981DE6731000D6320D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926076961DE6731000D6320D /* Main.storyboard */; };
@@ -42,7 +43,7 @@
 		929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929602A11BD1BC3000CDEC52 /* SettingsViewController.m */; };
 		92F23ABF1BD72ADD00A097CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F23AC11BD72ADD00A097CB /* LaunchScreen.storyboard */; };
 		92F23AC21BD72AE700A097CB /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F23AC41BD72AE700A097CB /* Storyboard.storyboard */; };
-		92FEA6B11DE6B324001EA06B /* TouchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FEA6B01DE6B324001EA06B /* TouchBarController.m */; };
+		92FEA6B11DE6B324001EA06B /* TemperatureTouchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FEA6B01DE6B324001EA06B /* TemperatureTouchBarController.m */; };
 		ACCE45A21C1B6D3100CD094C /* SpringBoardServicesClient.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCE45A11C1B6D3100CD094C /* SpringBoardServicesClient.m */; };
 		B96BB64F1B38D96600F1C3AE /* GammaController.m in Sources */ = {isa = PBXBuildFile; fileRef = B96BB64E1B38D96600F1C3AE /* GammaController.m */; };
 		B9E5364B1B38D90D0097BF90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E5364A1B38D90D0097BF90 /* main.m */; };
@@ -117,6 +118,8 @@
 		925B81271BE2BCE1003A6C4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		925B81291BE2BCE1003A6C4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		925B81301BE2BD0A003A6C4B /* GoodNight Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "GoodNight Widget.entitlements"; sourceTree = "<group>"; };
+		925FF57A1DE8EE1A007675AE /* MainTouchBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTouchBarController.h; sourceTree = "<group>"; };
+		925FF57B1DE8EE1A007675AE /* MainTouchBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTouchBarController.m; sourceTree = "<group>"; };
 		926076901DE672FF00D6320D /* ColorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
 		926076911DE672FF00D6320D /* ColorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
 		926076921DE672FF00D6320D /* TemperatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemperatureViewController.h; sourceTree = "<group>"; };
@@ -143,8 +146,8 @@
 		92F23AC01BD72ADD00A097CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92F23AC31BD72AE700A097CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
 		92F4101C1BD0730A003AABB8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = GoodNight/PrefixHeader.pch; sourceTree = "<group>"; };
-		92FEA6AF1DE6B324001EA06B /* TouchBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchBarController.h; sourceTree = "<group>"; };
-		92FEA6B01DE6B324001EA06B /* TouchBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchBarController.m; sourceTree = "<group>"; };
+		92FEA6AF1DE6B324001EA06B /* TemperatureTouchBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemperatureTouchBarController.h; sourceTree = "<group>"; };
+		92FEA6B01DE6B324001EA06B /* TemperatureTouchBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemperatureTouchBarController.m; sourceTree = "<group>"; };
 		ACCE45A01C1B6D3100CD094C /* SpringBoardServicesClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpringBoardServicesClient.h; sourceTree = "<group>"; };
 		ACCE45A11C1B6D3100CD094C /* SpringBoardServicesClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpringBoardServicesClient.m; sourceTree = "<group>"; };
 		B96BB64D1B38D96600F1C3AE /* GammaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GammaController.h; sourceTree = "<group>"; };
@@ -312,6 +315,24 @@
 			path = "GoodNight Widget";
 			sourceTree = "<group>";
 		};
+		925FF57D1DE8F1CE007675AE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				925FF57A1DE8EE1A007675AE /* MainTouchBarController.h */,
+				925FF57B1DE8EE1A007675AE /* MainTouchBarController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		925FF57E1DE8F1D5007675AE /* Temperature */ = {
+			isa = PBXGroup;
+			children = (
+				92FEA6AF1DE6B324001EA06B /* TemperatureTouchBarController.h */,
+				92FEA6B01DE6B324001EA06B /* TemperatureTouchBarController.m */,
+			);
+			name = Temperature;
+			sourceTree = "<group>";
+		};
 		926B68F61BC1B8E800F12297 /* Temperature */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,8 +480,8 @@
 		92ABC3CA1DE8D4170064FBAD /* Touch Bar */ = {
 			isa = PBXGroup;
 			children = (
-				92FEA6AF1DE6B324001EA06B /* TouchBarController.h */,
-				92FEA6B01DE6B324001EA06B /* TouchBarController.m */,
+				925FF57D1DE8F1CE007675AE /* Main */,
+				925FF57E1DE8F1D5007675AE /* Temperature */,
 			);
 			name = "Touch Bar";
 			sourceTree = "<group>";
@@ -699,9 +720,10 @@
 				922B28241DDE81CF0075C274 /* main.m in Sources */,
 				922B28211DDE81CF0075C274 /* AppDelegate.m in Sources */,
 				926076941DE672FF00D6320D /* ColorViewController.m in Sources */,
+				925FF57C1DE8EE1A007675AE /* MainTouchBarController.m in Sources */,
 				926076951DE672FF00D6320D /* TemperatureViewController.m in Sources */,
 				9264E1401DE67A3200E61408 /* TabViewController.m in Sources */,
-				92FEA6B11DE6B324001EA06B /* TouchBarController.m in Sources */,
+				92FEA6B11DE6B324001EA06B /* TemperatureTouchBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

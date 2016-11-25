@@ -6,10 +6,10 @@
 //  Copyright © 2016 ADA Tech, LLC. All rights reserved.
 //
 
-#import "TouchBarController.h"
+#import "TemperatureTouchBarController.h"
 #import "TemperatureViewController.h"
 
-@implementation TouchBarController
+@implementation TemperatureTouchBarController
 
 - (IBAction)touchBarSliderValueDidChange:(NSSliderTouchBarItem *)slider {
     [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];

@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface TouchBarController : NSTouchBar
+@interface TemperatureTouchBarController : NSTouchBar
 
 @property (strong, nonatomic) IBOutlet NSSliderTouchBarItem *touchBarTemperatureSlider;
 @property (strong, nonatomic) IBOutlet NSButton *touchBarResetButton;

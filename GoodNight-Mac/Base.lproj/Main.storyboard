@@ -609,7 +609,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="73" y="74"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2q-MN-j9A">
@@ -621,59 +621,109 @@
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                     </window>
-                    <touchBar key="touchBar" id="end-1e-SWK" customClass="TouchBarController">
+                    <touchBar key="touchBar" id="UMi-PB-ZzS" customClass="MainTouchBarController">
                         <touchBarItems>
-                            <touchBarItem id="aVk-pP-2yz">
-                                <viewController key="viewController" id="IJt-aq-91N">
-                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZgV-8m-Poh">
+                            <touchBarPopoverItem collapsedRepresentationLabel="Temperature" id="cv3-aa-QZe">
+                                <touchBar key="popoverTouchBar" id="Qh6-Tt-7GK" customClass="TemperatureTouchBarController">
+                                    <touchBarItems>
+                                        <touchBarItem id="zin-K7-YaG">
+                                            <viewController key="viewController" id="Apv-dX-Im2">
+                                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oCd-qc-44d">
+                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="awy-cl-3tb"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="push" title="Reset Temperature" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eGH-xX-syx">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="resetTemperature:" target="Qh6-Tt-7GK" id="eC8-Xa-hdH"/>
+                                                    </connections>
+                                                </button>
+                                            </viewController>
+                                            <size key="designTimeSize" width="135" height="30"/>
+                                        </touchBarItem>
+                                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="Hry-BZ-1jL"/>
+                                        <sliderTouchBarItem label="6500K" id="5Az-tw-Lxp">
+                                            <sliderAccessory key="minimumValueAccessory" id="hSj-s5-31o">
+                                                <sliderAccessoryBehavior key="behavior" id="ENB-pk-vLv"/>
+                                            </sliderAccessory>
+                                            <sliderAccessory key="maximumValueAccessory" id="T3F-WL-6fl">
+                                                <sliderAccessoryBehavior key="behavior" id="0AC-cM-G2k"/>
+                                            </sliderAccessory>
+                                            <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
+                                                <rect key="frame" x="58" y="0.0" width="600" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="QKQ-u8-hdQ"/>
+                                                </constraints>
+                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="du9-x1-uIm"/>
+                                            </slider>
+                                            <connections>
+                                                <action selector="touchBarSliderValueDidChange:" target="Qh6-Tt-7GK" id="ZhF-Xm-akb"/>
+                                            </connections>
+                                        </sliderTouchBarItem>
+                                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="0Az-sa-dTa"/>
+                                        <touchBarItem id="IR0-iV-QiV">
+                                            <viewController key="viewController" id="BfW-Xg-sg1">
+                                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vh8-4e-KgN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="SL5-6t-n7T"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="push" title="Enable Darkroom" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vo2-bA-aV6">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="toggleDarkroom:" target="Qh6-Tt-7GK" id="uh9-1L-a9p"/>
+                                                    </connections>
+                                                </button>
+                                            </viewController>
+                                            <size key="designTimeSize" width="135" height="30"/>
+                                        </touchBarItem>
+                                    </touchBarItems>
+                                    <connections>
+                                        <outlet property="touchBarDarkroomButton" destination="Vh8-4e-KgN" id="bhl-T0-zZN"/>
+                                        <outlet property="touchBarResetButton" destination="oCd-qc-44d" id="RgE-gV-LWt"/>
+                                        <outlet property="touchBarTemperatureSlider" destination="5Az-tw-Lxp" id="FCt-kc-gmY"/>
+                                    </connections>
+                                </touchBar>
+                            </touchBarPopoverItem>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="ClR-ue-4L6"/>
+                            <colorPickerItem showsAlpha="NO" id="bfb-ba-IjI"/>
+                            <touchBarItem id="aJs-GH-f50">
+                                <viewController key="viewController" id="3gf-H3-Gnl">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="01Q-xM-Kct">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Rnk-EB-JF3"/>
+                                            <constraint firstAttribute="height" constant="30" id="BaE-Sa-huy"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="push" title="Reset Temperature" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RdA-cB-4eJ">
+                                        <buttonCell key="cell" type="push" title="Set Color" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="doD-yC-PJU">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="resetTemperature:" target="end-1e-SWK" id="exr-HS-fR4"/>
+                                            <action selector="setColorFromColorPicker:" target="UMi-PB-ZzS" id="OT1-pI-ReS"/>
                                         </connections>
                                     </button>
                                 </viewController>
                                 <size key="designTimeSize" width="135" height="30"/>
                             </touchBarItem>
-                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="9fe-z1-X63"/>
-                            <sliderTouchBarItem label="6500K" id="VAd-ag-FB3">
-                                <sliderAccessory key="minimumValueAccessory" id="xGW-x2-Iem">
-                                    <sliderAccessoryBehavior key="behavior" id="Vgc-Gz-x81"/>
-                                </sliderAccessory>
-                                <sliderAccessory key="maximumValueAccessory" id="A5e-Ss-oEs">
-                                    <sliderAccessoryBehavior key="behavior" id="vpS-iN-5nC"/>
-                                </sliderAccessory>
-                                <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1SI-V6-PsW">
-                                    <rect key="frame" x="58" y="0.0" width="600" height="34"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="IZg-nb-684"/>
-                                    </constraints>
-                                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="Nv9-Mf-Yds"/>
-                                </slider>
-                                <connections>
-                                    <action selector="touchBarSliderValueDidChange:" target="end-1e-SWK" id="141-Kj-UNt"/>
-                                </connections>
-                            </sliderTouchBarItem>
-                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="zXm-VK-Tk5"/>
-                            <touchBarItem id="27q-51-dAj">
-                                <viewController key="viewController" id="YQf-aU-9nZ">
-                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JEk-39-iwf">
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="efa-6v-d81"/>
+                            <touchBarItem id="8JB-Ha-8RX">
+                                <viewController key="viewController" id="3h2-P6-gaR">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hst-BT-cOF">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="X9E-g8-unN"/>
+                                            <constraint firstAttribute="height" constant="30" id="LbO-LR-Aga"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="push" title="Enable Darkroom" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mkf-Jt-scv">
+                                        <buttonCell key="cell" type="push" title="Reset All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="500-a5-u1f">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="toggleDarkroom:" target="end-1e-SWK" id="msm-dJ-SBR"/>
+                                            <action selector="resetAll:" target="UMi-PB-ZzS" id="Pwk-6d-lqQ"/>
                                         </connections>
                                     </button>
                                 </viewController>
@@ -681,9 +731,7 @@
                             </touchBarItem>
                         </touchBarItems>
                         <connections>
-                            <outlet property="touchBarDarkroomButton" destination="JEk-39-iwf" id="dcI-JV-FAQ"/>
-                            <outlet property="touchBarResetButton" destination="ZgV-8m-Poh" id="jIb-2A-M0k"/>
-                            <outlet property="touchBarTemperatureSlider" destination="VAd-ag-FB3" id="wTT-d3-1jo"/>
+                            <outlet property="touchBarColorPicker" destination="bfb-ba-IjI" id="Pok-UM-6T2"/>
                         </connections>
                     </touchBar>
                     <connections>
@@ -715,7 +763,7 @@
                 </tabViewController>
                 <customObject id="jJC-OZ-XGh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="83" y="246"/>
+            <point key="canvasLocation" x="81" y="320"/>
         </scene>
         <!--Temperature-->
         <scene sceneID="B8K-7v-IRF">
@@ -785,7 +833,7 @@
                 </viewController>
                 <customObject id="A0d-si-luV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-157" y="670"/>
+            <point key="canvasLocation" x="-159" y="744"/>
         </scene>
         <!--Color-->
         <scene sceneID="YN3-JX-mHe">
@@ -876,10 +924,10 @@
                 </viewController>
                 <customObject id="Zce-ct-T3e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="387" y="670"/>
+            <point key="canvasLocation" x="385" y="744"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="NGP-OK-OGn"/>
+        <segue reference="Nv2-va-dE6"/>
     </inferredMetricsTieBreakers>
 </document>
