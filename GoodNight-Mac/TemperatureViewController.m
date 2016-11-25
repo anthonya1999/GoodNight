@@ -8,8 +8,17 @@
 
 #import "TemperatureViewController.h"
 #import <ApplicationServices/ApplicationServices.h>
+#include <dlfcn.h>
 
 @implementation TemperatureViewController
+
+- (void)viewWillAppear {
+    [super viewWillAppear];
+    
+    [self.temperatureSlider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
+    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10];
+    [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];
+}
 
 + (void)setGammaWithRed:(float)r green:(float)g blue:(float)b {
     float red[256];
@@ -50,6 +59,12 @@
     [TemperatureViewController setGammaWithRed:red green:green blue:blue];
 }
 
++ (void)setInvertedColorsEnabled:(BOOL)enabled {
+    void *(*CGDisplaySetInvertedPolarity)(BOOL invertedPolarity) = dlsym(RTLD_DEFAULT, "CGDisplaySetInvertedPolarity");
+    NSParameterAssert(CGDisplaySetInvertedPolarity);
+    CGDisplaySetInvertedPolarity(enabled);
+}
+
 - (IBAction)sliderValueDidChange:(NSSlider *)slider {
     [self.darkroomButton setState:NSOffState];
     [userDefaults setFloat:self.temperatureSlider.floatValue forKey:@"orangeValue"];
@@ -65,14 +80,16 @@
 
 - (IBAction)toggleDarkroom:(NSButton *)button {
     [self resetTemperature:nil];
-
+    
     if (self.darkroomButton.state == NSOffState) {
         [userDefaults setBool:YES forKey:@"darkroomEnabled"];
         [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
+        [TemperatureViewController setInvertedColorsEnabled:YES];
         [self.darkroomButton setState:NSOnState];
     }
     else {
         [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+        [TemperatureViewController setInvertedColorsEnabled:NO];
         [self.darkroomButton setState:NSOffState];
     }
     [userDefaults synchronize];
@@ -86,6 +103,7 @@
     [userDefaults synchronize];
     [self.darkroomButton setState:NSOffState];
     CGDisplayRestoreColorSyncSettings();
+    [TemperatureViewController setInvertedColorsEnabled:NO];
 }
 
 @end

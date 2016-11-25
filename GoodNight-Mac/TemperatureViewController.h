@@ -16,5 +16,6 @@
 
 + (void)setGammaWithRed:(float)r green:(float)g blue:(float)b;
 + (void)setGammaWithOrangeness:(float)percentOrange;
++ (void)setInvertedColorsEnabled:(BOOL)enabled;
 
 @end

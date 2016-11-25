@@ -26,10 +26,18 @@
         [alert addButtonWithTitle:@"OK"];
         [alert runModal];
     }
+    
+    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults synchronize];
 }
 
 - (IBAction)resetColor:(NSButton *)button {
+    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults synchronize];
     CGDisplayRestoreColorSyncSettings();
+    [TemperatureViewController setInvertedColorsEnabled:NO];
 }
 
 @end

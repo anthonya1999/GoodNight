@@ -7,6 +7,7 @@
 //
 
 #import "TouchBarController.h"
+#import "TemperatureViewController.h"
 
 @implementation TouchBarController
 
@@ -29,6 +30,7 @@
     self.touchBarTemperatureSlider.slider.floatValue = [userDefaults floatForKey:@"orangeValue"];
     self.touchBarTemperatureSlider.label = @"6500K";
     CGDisplayRestoreColorSyncSettings();
+    [TemperatureViewController setInvertedColorsEnabled:NO];
 }
 
 - (IBAction)toggleDarkroom:(NSButton *)button {
@@ -37,11 +39,13 @@
     if ([self.touchBarDarkroomButton.title isEqualToString:@"Enable Darkroom"]) {
         [userDefaults setBool:YES forKey:@"darkroomEnabled"];
         [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
+        [TemperatureViewController setInvertedColorsEnabled:YES];
         [self.touchBarDarkroomButton setTitle:@"Disable Darkroom"];
     }
     else {
         [userDefaults setBool:NO forKey:@"darkroomEnabled"];
         [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
+        [TemperatureViewController setInvertedColorsEnabled:NO];
     }
     [userDefaults synchronize];
 }
