@@ -38,11 +38,6 @@ Bedtime mode will only be activated if at that time the screen has active gamma.
 The **darkroom button** turns on darkroom mode and on deactivation of darkroom mode resumes to automatic mode immediately.
 
 ### macOS Version
-The macOS version of GoodNight is very basic at the moment. You can currently enter RGB values between 0 and 1 for red, green, and blue values, and have the screen adjust to the color values you entered. For a "nighttime orange" these values work best in my testing: 
-* Red: 1  
-* Green: 0.5  
-* Blue: 0.1  
-  
-Of course, in the future more features will become available. I plan to implement a slider and white point adjuster, as well as a touch bar slider for the new 2016 MacBook Pros! Please create pull requests! Thanks so much for everyone's help.
+The macOS version of GoodNight is very basic at the moment. You can currently enter RGB values between 0 and 255 for red, green, and blue values, enable a darkroom mode, and adjust the color temperature of the display. It also has Touch Bar support! More features will be coming soon.
 
 [1]: https://github.com/thomasfinch/GammaThingy
