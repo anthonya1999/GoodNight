@@ -649,7 +649,7 @@
                                 <sliderAccessory key="maximumValueAccessory" id="A5e-Ss-oEs">
                                     <sliderAccessoryBehavior key="behavior" id="vpS-iN-5nC"/>
                                 </sliderAccessory>
-                                <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1SI-V6-PsW">
+                                <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1SI-V6-PsW">
                                     <rect key="frame" x="58" y="0.0" width="600" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="IZg-nb-684"/>
@@ -754,8 +754,8 @@
                                 </connections>
                             </slider>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="2u4-Cb-5TH">
-                                <rect key="frame" x="209" y="34" width="82" height="18"/>
-                                <buttonCell key="cell" type="check" title="Darkroom" bezelStyle="regularSquare" imagePosition="left" inset="2" id="H2p-L0-J26">
+                                <rect key="frame" x="190" y="32" width="120" height="18"/>
+                                <buttonCell key="cell" type="check" title="Darkroom Mode" bezelStyle="regularSquare" imagePosition="left" inset="2" id="H2p-L0-J26">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -767,12 +767,12 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Exh-Wa-Vqs" secondAttribute="trailing" constant="20" symbolic="YES" id="1DV-sV-UTZ"/>
                             <constraint firstItem="Exh-Wa-Vqs" firstAttribute="leading" secondItem="eLv-aZ-geS" secondAttribute="leading" constant="20" symbolic="YES" id="4Uh-Du-AI0"/>
-                            <constraint firstItem="orv-8V-3Ie" firstAttribute="centerX" secondItem="2u4-Cb-5TH" secondAttribute="centerX" id="7WQ-lh-jEf"/>
                             <constraint firstItem="LwU-hw-VEa" firstAttribute="centerX" secondItem="Exh-Wa-Vqs" secondAttribute="centerX" id="CLN-Ip-CTc"/>
                             <constraint firstItem="LwU-hw-VEa" firstAttribute="top" secondItem="eLv-aZ-geS" secondAttribute="top" constant="36" id="Mw6-eW-RTD"/>
                             <constraint firstItem="orv-8V-3Ie" firstAttribute="top" secondItem="Exh-Wa-Vqs" secondAttribute="bottom" constant="41" id="UYV-AB-OaO"/>
-                            <constraint firstItem="2u4-Cb-5TH" firstAttribute="top" secondItem="orv-8V-3Ie" secondAttribute="bottom" constant="18" id="X7H-1b-muk"/>
                             <constraint firstItem="Exh-Wa-Vqs" firstAttribute="centerX" secondItem="orv-8V-3Ie" secondAttribute="centerX" id="fTc-SS-m7M"/>
+                            <constraint firstItem="2u4-Cb-5TH" firstAttribute="top" secondItem="orv-8V-3Ie" secondAttribute="bottom" constant="20" symbolic="YES" id="lzp-Kd-Jrf"/>
+                            <constraint firstItem="2u4-Cb-5TH" firstAttribute="centerX" secondItem="orv-8V-3Ie" secondAttribute="centerX" id="mGD-Xz-zIN"/>
                             <constraint firstItem="LwU-hw-VEa" firstAttribute="leading" secondItem="eLv-aZ-geS" secondAttribute="leading" constant="5" id="t9V-DZ-flW"/>
                             <constraint firstItem="Exh-Wa-Vqs" firstAttribute="top" secondItem="LwU-hw-VEa" secondAttribute="bottom" constant="46" id="tGI-ow-U60"/>
                         </constraints>

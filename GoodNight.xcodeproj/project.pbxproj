@@ -275,15 +275,8 @@
 			children = (
 				922B281F1DDE81CF0075C274 /* AppDelegate.h */,
 				922B28201DDE81CF0075C274 /* AppDelegate.m */,
-				9264E13E1DE67A3200E61408 /* TabViewController.h */,
-				9264E13F1DE67A3200E61408 /* TabViewController.m */,
-				926076921DE672FF00D6320D /* TemperatureViewController.h */,
-				926076931DE672FF00D6320D /* TemperatureViewController.m */,
-				926076901DE672FF00D6320D /* ColorViewController.h */,
-				926076911DE672FF00D6320D /* ColorViewController.m */,
-				92FEA6AF1DE6B324001EA06B /* TouchBarController.h */,
-				92FEA6B01DE6B324001EA06B /* TouchBarController.m */,
-				926076961DE6731000D6320D /* Main.storyboard */,
+				92ABC3CC1DE8D47F0064FBAD /* User Interface */,
+				92ABC3CD1DE8D4890064FBAD /* Storyboards */,
 				922B28221DDE81CF0075C274 /* Supporting Files */,
 			);
 			path = "GoodNight-Mac";
@@ -441,6 +434,61 @@
 			children = (
 				92F23AC41BD72AE700A097CB /* Storyboard.storyboard */,
 				92F23AC11BD72ADD00A097CB /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		92ABC3C81DE8D4060064FBAD /* Temperature */ = {
+			isa = PBXGroup;
+			children = (
+				926076921DE672FF00D6320D /* TemperatureViewController.h */,
+				926076931DE672FF00D6320D /* TemperatureViewController.m */,
+			);
+			name = Temperature;
+			sourceTree = "<group>";
+		};
+		92ABC3C91DE8D4100064FBAD /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				926076901DE672FF00D6320D /* ColorViewController.h */,
+				926076911DE672FF00D6320D /* ColorViewController.m */,
+			);
+			name = Color;
+			sourceTree = "<group>";
+		};
+		92ABC3CA1DE8D4170064FBAD /* Touch Bar */ = {
+			isa = PBXGroup;
+			children = (
+				92FEA6AF1DE6B324001EA06B /* TouchBarController.h */,
+				92FEA6B01DE6B324001EA06B /* TouchBarController.m */,
+			);
+			name = "Touch Bar";
+			sourceTree = "<group>";
+		};
+		92ABC3CB1DE8D4500064FBAD /* Tab View */ = {
+			isa = PBXGroup;
+			children = (
+				9264E13E1DE67A3200E61408 /* TabViewController.h */,
+				9264E13F1DE67A3200E61408 /* TabViewController.m */,
+			);
+			name = "Tab View";
+			sourceTree = "<group>";
+		};
+		92ABC3CC1DE8D47F0064FBAD /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				92ABC3CB1DE8D4500064FBAD /* Tab View */,
+				92ABC3C81DE8D4060064FBAD /* Temperature */,
+				92ABC3C91DE8D4100064FBAD /* Color */,
+				92ABC3CA1DE8D4170064FBAD /* Touch Bar */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		92ABC3CD1DE8D4890064FBAD /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				926076961DE6731000D6320D /* Main.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
