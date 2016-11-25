@@ -16,7 +16,16 @@
     float greenValue = self.greenField.floatValue;
     float blueValue = self.blueField.floatValue;
     
-    [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
+    if (redValue >= 0 && redValue <= 1 && greenValue >= 0 && greenValue <= 1 && blueValue >= 0 && redValue <= 1) {
+        [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
+    }
+    else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Error"];
+        [alert setInformativeText:@"You must enter a value between 0 and 1 (not inclusive of 0) for the red, green, and blue values!"];
+        [alert addButtonWithTitle:@"OK"];
+        [alert runModal];
+    }
 }
 
 - (IBAction)resetColor:(NSButton *)button {
