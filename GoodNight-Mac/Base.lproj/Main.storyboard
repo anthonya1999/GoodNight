@@ -649,7 +649,7 @@
                                 <sliderAccessory key="maximumValueAccessory" id="A5e-Ss-oEs">
                                     <sliderAccessoryBehavior key="behavior" id="vpS-iN-5nC"/>
                                 </sliderAccessory>
-                                <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1SI-V6-PsW">
+                                <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1SI-V6-PsW">
                                     <rect key="frame" x="58" y="0.0" width="600" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="IZg-nb-684"/>
