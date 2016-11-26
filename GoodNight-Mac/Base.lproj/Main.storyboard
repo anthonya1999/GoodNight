@@ -609,7 +609,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="73" y="74"/>
+            <point key="canvasLocation" x="383" y="5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2q-MN-j9A">
@@ -691,6 +691,53 @@
                                 </touchBar>
                             </touchBarPopoverItem>
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="ClR-ue-4L6"/>
+                            <touchBarPopoverItem collapsedRepresentationLabel="Brightness" id="MYL-VS-i8M">
+                                <touchBar key="popoverTouchBar" id="nWP-vn-uC6" customClass="ShadeTouchBarController">
+                                    <touchBarItems>
+                                        <touchBarItem id="tBs-73-qyW">
+                                            <viewController key="viewController" id="cU1-vU-y9r">
+                                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3rH-ng-ZaT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="aJE-cZ-V0e"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="push" title="Reset Brightness" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DHp-Sc-qAo">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="resetBrightness:" target="nWP-vn-uC6" id="SFj-pg-hrn"/>
+                                                    </connections>
+                                                </button>
+                                            </viewController>
+                                            <size key="designTimeSize" width="135" height="30"/>
+                                        </touchBarItem>
+                                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="B6M-14-a9h"/>
+                                        <sliderTouchBarItem id="fh0-Qc-7J5">
+                                            <sliderAccessory key="minimumValueAccessory" id="PCb-Ps-g2h">
+                                                <sliderAccessoryBehavior key="behavior" id="QH1-fr-vmc"/>
+                                            </sliderAccessory>
+                                            <sliderAccessory key="maximumValueAccessory" id="hZx-8e-z93">
+                                                <sliderAccessoryBehavior key="behavior" id="deu-0Q-FrY"/>
+                                            </sliderAccessory>
+                                            <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frp-8f-VoZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="96" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="yEX-q8-uav"/>
+                                                </constraints>
+                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="tUo-K7-Ast"/>
+                                            </slider>
+                                            <connections>
+                                                <action selector="brightnessSliderDidChange:" target="nWP-vn-uC6" id="8dH-uW-uhy"/>
+                                            </connections>
+                                        </sliderTouchBarItem>
+                                    </touchBarItems>
+                                    <connections>
+                                        <outlet property="bightnessTouchBarSlider" destination="fh0-Qc-7J5" id="bCH-Ta-SNb"/>
+                                    </connections>
+                                </touchBar>
+                            </touchBarPopoverItem>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="LvU-DL-qc0"/>
                             <colorPickerItem showsAlpha="NO" id="bfb-ba-IjI"/>
                             <touchBarItem id="aJs-GH-f50">
                                 <viewController key="viewController" id="3gf-H3-Gnl">
@@ -740,7 +787,7 @@
                 </windowController>
                 <customObject id="mM8-Ta-QNi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-708" y="253"/>
+            <point key="canvasLocation" x="-411" y="144"/>
         </scene>
         <!--GoodNight-->
         <scene sceneID="eMp-2x-zOL">
@@ -748,6 +795,7 @@
                 <tabViewController title="GoodNight" storyboardIdentifier="tabVC" selectedTabViewItemIndex="0" id="KlD-6V-U0a" customClass="TabViewController" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="7sX-Z0-SxD"/>
+                        <tabViewItem id="TYF-WB-rKE"/>
                         <tabViewItem identifier="" id="yyo-PR-QTf"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="8b1-re-hPn">
@@ -758,12 +806,13 @@
                     </tabView>
                     <connections>
                         <segue destination="wpb-NC-hX3" kind="relationship" relationship="tabItems" id="l6S-wn-OKY"/>
+                        <segue destination="pfP-R7-v7X" kind="relationship" relationship="tabItems" id="0wU-Yw-crd"/>
                         <segue destination="FWI-pN-Ufp" kind="relationship" relationship="tabItems" id="UMA-rj-rUP"/>
                     </connections>
                 </tabViewController>
                 <customObject id="jJC-OZ-XGh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="81" y="320"/>
+            <point key="canvasLocation" x="382" y="316"/>
         </scene>
         <!--Temperature-->
         <scene sceneID="B8K-7v-IRF">
@@ -833,7 +882,7 @@
                 </viewController>
                 <customObject id="A0d-si-luV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-159" y="744"/>
+            <point key="canvasLocation" x="102" y="712"/>
         </scene>
         <!--Color-->
         <scene sceneID="YN3-JX-mHe">
@@ -924,10 +973,52 @@
                 </viewController>
                 <customObject id="Zce-ct-T3e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="385" y="744"/>
+            <point key="canvasLocation" x="382" y="1004"/>
+        </scene>
+        <!--Brightness-->
+        <scene sceneID="89h-Hb-fdq">
+            <objects>
+                <viewController title="Brightness" id="pfP-R7-v7X" customClass="ShadeViewController" sceneMemberID="viewController">
+                    <view key="view" id="f5R-oh-HDF">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9wh-mH-Mbn">
+                                <rect key="frame" x="18" y="141" width="464" height="24"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.99999999999999989" tickMarkPosition="below" numberOfTickMarks="50" allowsTickMarkValuesOnly="YES" sliderType="linear" id="YsC-Z2-jNP"/>
+                                <connections>
+                                    <action selector="brightnessSliderDidChange:" target="pfP-R7-v7X" id="jfJ-OS-Khx"/>
+                                </connections>
+                            </slider>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d49-YX-1hW">
+                                <rect key="frame" x="179" y="80" width="143" height="32"/>
+                                <buttonCell key="cell" type="push" title="Reset Brightness" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="THn-XP-LRm">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="resetBrightness:" target="pfP-R7-v7X" id="Qyh-4y-uZp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="9wh-mH-Mbn" firstAttribute="top" secondItem="f5R-oh-HDF" secondAttribute="top" constant="87" id="1Pz-OS-6Bb"/>
+                            <constraint firstItem="9wh-mH-Mbn" firstAttribute="centerX" secondItem="d49-YX-1hW" secondAttribute="centerX" id="60X-X4-37V"/>
+                            <constraint firstItem="d49-YX-1hW" firstAttribute="top" secondItem="9wh-mH-Mbn" secondAttribute="bottom" constant="34" id="KY6-FX-vtO"/>
+                            <constraint firstAttribute="trailing" secondItem="9wh-mH-Mbn" secondAttribute="trailing" constant="20" symbolic="YES" id="OAG-0f-4aM"/>
+                            <constraint firstItem="9wh-mH-Mbn" firstAttribute="leading" secondItem="f5R-oh-HDF" secondAttribute="leading" constant="20" symbolic="YES" id="dpm-bJ-Hls"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="brightnessSlider" destination="9wh-mH-Mbn" id="Uvf-te-dUv"/>
+                    </connections>
+                </viewController>
+                <customObject id="vUg-5I-sKt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="662" y="712"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="NGP-OK-OGn"/>
+        <segue reference="Nv2-va-dE6"/>
     </inferredMetricsTieBreakers>
 </document>
