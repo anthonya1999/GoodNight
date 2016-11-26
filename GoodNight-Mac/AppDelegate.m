@@ -22,6 +22,7 @@
     
     NSMenuItem *titleItem = [[NSMenuItem alloc] initWithTitle:@"GoodNight" action:nil keyEquivalent:@""];
     NSMenuItem *seperatorItem = [NSMenuItem separatorItem];
+    NSMenuItem *resetItem = [[NSMenuItem alloc] initWithTitle:@"Reset All" action:@selector(resetAll) keyEquivalent:@""];
     NSMenuItem *darkroomItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Darkroom" action:@selector(toggleDarkroom) keyEquivalent:@""];
     NSMenuItem *seperatorItem2 = [NSMenuItem separatorItem];
     NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@""];
@@ -29,6 +30,7 @@
     
     [self.statusMenu addItem:titleItem];
     [self.statusMenu addItem:seperatorItem];
+    [self.statusMenu addItem:resetItem];
     [self.statusMenu addItem:darkroomItem];
     [self.statusMenu addItem:seperatorItem2];
     [self.statusMenu addItem:openItem];
@@ -47,6 +49,14 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+}
+
+- (void)resetAll {
+    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults synchronize];
+    CGDisplayRestoreColorSyncSettings();
+    [TemperatureViewController setInvertedColorsEnabled:NO];
 }
 
 - (void)toggleDarkroom {
