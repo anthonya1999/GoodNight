@@ -104,6 +104,7 @@
     self.temperatureSlider.floatValue = [userDefaults floatForKey:@"orangeValue"];
     self.temperatureLabel.stringValue = @"Temperature: 6500K";
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults synchronize];
     CGDisplayRestoreColorSyncSettings();
     [TemperatureViewController setInvertedColorsEnabled:NO];

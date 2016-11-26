@@ -36,6 +36,8 @@
 
 - (IBAction)resetBrightness:(NSButton *)button {
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
+    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     self.brightnessSlider.floatValue = [userDefaults floatForKey:@"brightnessValue"];
     [userDefaults synchronize];
     self.percentTextField.stringValue = @"100%";

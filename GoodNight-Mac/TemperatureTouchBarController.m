@@ -40,6 +40,8 @@
 
 - (IBAction)resetTemperature:(NSButton *)button {
     [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults synchronize];
     self.touchBarTemperatureSlider.slider.floatValue = [userDefaults floatForKey:@"orangeValue"];
     self.touchBarTemperatureSlider.label = @"6500K";
