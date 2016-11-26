@@ -649,7 +649,7 @@
 		B9E5363E1B38D90D0097BF90 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "ADA Tech, LLC";
 				TargetAttributes = {
 					922B281C1DDE81CF0075C274 = {
