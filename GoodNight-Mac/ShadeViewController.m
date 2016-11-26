@@ -24,6 +24,7 @@
     [userDefaults synchronize];
     sliderValue = [userDefaults floatForKey:@"brightnessValue"];
     
+    self.percentTextField.stringValue = [NSString stringWithFormat:@"%d%%", (int)round(sliderValue * 100)];
     [TemperatureViewController setGammaWithRed:sliderValue green:sliderValue blue:sliderValue];
     
     if (self.brightnessSlider.floatValue == 1) {
@@ -37,6 +38,7 @@
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
     self.brightnessSlider.floatValue = [userDefaults floatForKey:@"brightnessValue"];
     [userDefaults synchronize];
+    self.percentTextField.stringValue = @"100%";
     CGDisplayRestoreColorSyncSettings();
     [[ShadeTouchBarController sharedInstance] awakeFromNib];
 }

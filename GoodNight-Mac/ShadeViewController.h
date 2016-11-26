@@ -11,5 +11,6 @@
 @interface ShadeViewController : NSViewController
 
 @property (strong, nonatomic) IBOutlet NSSlider *brightnessSlider;
+@property (strong, nonatomic) IBOutlet NSTextField *percentTextField;
 
 @end

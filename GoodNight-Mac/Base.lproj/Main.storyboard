@@ -652,7 +652,7 @@
                                             <sliderAccessory key="maximumValueAccessory" id="T3F-WL-6fl">
                                                 <sliderAccessoryBehavior key="behavior" id="0AC-cM-G2k"/>
                                             </sliderAccessory>
-                                            <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
+                                            <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
                                                 <rect key="frame" x="58" y="0.0" width="600" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QKQ-u8-hdQ"/>
@@ -721,7 +721,7 @@
                                                 <sliderAccessoryBehavior key="behavior" id="deu-0Q-FrY"/>
                                             </sliderAccessory>
                                             <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frp-8f-VoZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="96" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="809" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="yEX-q8-uav"/>
                                                 </constraints>
@@ -983,15 +983,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9wh-mH-Mbn">
-                                <rect key="frame" x="18" y="141" width="464" height="24"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.99999999999999989" tickMarkPosition="below" numberOfTickMarks="50" allowsTickMarkValuesOnly="YES" sliderType="linear" id="YsC-Z2-jNP"/>
-                                <connections>
-                                    <action selector="brightnessSliderDidChange:" target="pfP-R7-v7X" id="jfJ-OS-Khx"/>
-                                </connections>
-                            </slider>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d49-YX-1hW">
-                                <rect key="frame" x="179" y="80" width="143" height="32"/>
+                                <rect key="frame" x="179" y="34" width="143" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reset Brightness" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="THn-XP-LRm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1000,17 +993,47 @@
                                     <action selector="resetBrightness:" target="pfP-R7-v7X" id="Qyh-4y-uZp"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NFj-Zg-ZW7">
+                                <rect key="frame" x="18" y="193" width="464" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Use the slider to set the brightness below the system value." id="cPq-ba-sK8">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9wh-mH-Mbn">
+                                <rect key="frame" x="18" y="108" width="464" height="24"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.99999999999999989" tickMarkPosition="below" numberOfTickMarks="50" allowsTickMarkValuesOnly="YES" sliderType="linear" id="YsC-Z2-jNP"/>
+                                <connections>
+                                    <action selector="brightnessSliderDidChange:" target="pfP-R7-v7X" id="jfJ-OS-Khx"/>
+                                </connections>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sJz-Zk-yya">
+                                <rect key="frame" x="18" y="138" width="464" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100%" id="RBe-Rh-lUC">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="9wh-mH-Mbn" firstAttribute="top" secondItem="f5R-oh-HDF" secondAttribute="top" constant="87" id="1Pz-OS-6Bb"/>
-                            <constraint firstItem="9wh-mH-Mbn" firstAttribute="centerX" secondItem="d49-YX-1hW" secondAttribute="centerX" id="60X-X4-37V"/>
-                            <constraint firstItem="d49-YX-1hW" firstAttribute="top" secondItem="9wh-mH-Mbn" secondAttribute="bottom" constant="34" id="KY6-FX-vtO"/>
-                            <constraint firstAttribute="trailing" secondItem="9wh-mH-Mbn" secondAttribute="trailing" constant="20" symbolic="YES" id="OAG-0f-4aM"/>
-                            <constraint firstItem="9wh-mH-Mbn" firstAttribute="leading" secondItem="f5R-oh-HDF" secondAttribute="leading" constant="20" symbolic="YES" id="dpm-bJ-Hls"/>
+                            <constraint firstItem="sJz-Zk-yya" firstAttribute="top" secondItem="NFj-Zg-ZW7" secondAttribute="bottom" constant="38" id="9rI-Ev-oJK"/>
+                            <constraint firstItem="NFj-Zg-ZW7" firstAttribute="leading" secondItem="sJz-Zk-yya" secondAttribute="leading" id="In0-Wc-L5Y"/>
+                            <constraint firstItem="d49-YX-1hW" firstAttribute="top" secondItem="9wh-mH-Mbn" secondAttribute="bottom" constant="47" id="Lzh-LL-i4e"/>
+                            <constraint firstAttribute="trailing" secondItem="NFj-Zg-ZW7" secondAttribute="trailing" constant="20" symbolic="YES" id="PjZ-cW-hpB"/>
+                            <constraint firstItem="9wh-mH-Mbn" firstAttribute="centerX" secondItem="d49-YX-1hW" secondAttribute="centerX" id="Uf7-si-bLU"/>
+                            <constraint firstItem="sJz-Zk-yya" firstAttribute="leading" secondItem="9wh-mH-Mbn" secondAttribute="leading" id="V0J-NN-dwL"/>
+                            <constraint firstItem="9wh-mH-Mbn" firstAttribute="top" secondItem="sJz-Zk-yya" secondAttribute="bottom" constant="8" symbolic="YES" id="cqx-0m-DgT"/>
+                            <constraint firstItem="NFj-Zg-ZW7" firstAttribute="top" secondItem="f5R-oh-HDF" secondAttribute="top" constant="40" id="eQW-uK-eZw"/>
+                            <constraint firstItem="NFj-Zg-ZW7" firstAttribute="trailing" secondItem="sJz-Zk-yya" secondAttribute="trailing" id="m5U-7B-Zlj"/>
+                            <constraint firstItem="sJz-Zk-yya" firstAttribute="trailing" secondItem="9wh-mH-Mbn" secondAttribute="trailing" id="pn6-ua-1f5"/>
+                            <constraint firstItem="NFj-Zg-ZW7" firstAttribute="leading" secondItem="f5R-oh-HDF" secondAttribute="leading" constant="20" symbolic="YES" id="yaA-gK-lxg"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="brightnessSlider" destination="9wh-mH-Mbn" id="Uvf-te-dUv"/>
+                        <outlet property="percentTextField" destination="sJz-Zk-yya" id="9Yo-E9-6Bx"/>
                     </connections>
                 </viewController>
                 <customObject id="vUg-5I-sKt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
