@@ -25,8 +25,8 @@
     NSMenuItem *resetItem = [[NSMenuItem alloc] initWithTitle:@"Reset All" action:@selector(resetAll) keyEquivalent:@""];
     NSMenuItem *darkroomItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Darkroom" action:@selector(toggleDarkroom) keyEquivalent:@""];
     NSMenuItem *seperatorItem2 = [NSMenuItem separatorItem];
-    NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@""];
-    NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
+    NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@"n"];
+    NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     [self.statusMenu addItem:titleItem];
     [self.statusMenu addItem:seperatorItem];
@@ -46,10 +46,24 @@
                                     @"brightnessValue": @(defaultValue)};
     
     [userDefaults registerDefaults:defaultValues];
+    
+    float orangeValue = [userDefaults floatForKey:@"orangeValue"];
+    if (orangeValue != 1) {
+        [TemperatureViewController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
+    }
+
+    float brightnessValue = [userDefaults floatForKey:@"brightnessValue"];
+    if (brightnessValue != 1) {
+        [TemperatureViewController setGammaWithRed:brightnessValue green:brightnessValue blue:brightnessValue];
+    }
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+    
+    if ([userDefaults boolForKey:@"darkroomEnabled"]) {
+        [self toggleDarkroom];
+    }
 }
 
 - (void)resetAll {
