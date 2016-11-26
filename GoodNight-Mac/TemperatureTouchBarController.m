@@ -11,6 +11,11 @@
 
 @implementation TemperatureTouchBarController
 
+- (void)awakeFromNib {
+    [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
+}
+
 - (IBAction)touchBarSliderValueDidChange:(NSSliderTouchBarItem *)slider {
     [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
     [userDefaults setFloat:self.touchBarTemperatureSlider.slider.floatValue forKey:@"orangeValue"];
