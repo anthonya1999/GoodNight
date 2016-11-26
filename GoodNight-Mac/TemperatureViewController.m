@@ -83,27 +83,28 @@
 - (IBAction)toggleDarkroom:(NSButton *)button {
     [self resetTemperature:nil];
     
-    if (self.darkroomButton.state == NSOffState) {
+    if (self.darkroomButton.state == NSOnState) {
         [userDefaults setBool:YES forKey:@"darkroomEnabled"];
         [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
         [TemperatureViewController setInvertedColorsEnabled:YES];
         [self.darkroomButton setState:NSOnState];
     }
     else {
-        [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-        [TemperatureViewController setInvertedColorsEnabled:NO];
         [self.darkroomButton setState:NSOffState];
     }
     [userDefaults synchronize];
 }
 
 - (IBAction)resetTemperature:(NSButton *)button {
+    if ([userDefaults boolForKey:@"darkroomEnabled"]) {
+        [self.darkroomButton setState:NSOffState];
+    }
+    
     [userDefaults setFloat:1 forKey:@"orangeValue"];
     self.temperatureSlider.floatValue = [userDefaults floatForKey:@"orangeValue"];
     self.temperatureLabel.stringValue = @"Temperature: 6500K";
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults synchronize];
-    [self.darkroomButton setState:NSOffState];
     CGDisplayRestoreColorSyncSettings();
     [TemperatureViewController setInvertedColorsEnabled:NO];
     [[TemperatureTouchBarController sharedInstance] awakeFromNib];
