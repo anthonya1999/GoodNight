@@ -14,4 +14,6 @@
 @property (strong, nonatomic) IBOutlet NSButton *touchBarResetButton;
 @property (strong, nonatomic) IBOutlet NSButton *touchBarDarkroomButton;
 
++ (instancetype)sharedInstance;
+
 @end

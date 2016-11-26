@@ -12,4 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet NSSliderTouchBarItem *bightnessTouchBarSlider;
 
++ (instancetype)sharedInstance;
+
 @end

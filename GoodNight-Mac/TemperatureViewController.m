@@ -7,7 +7,7 @@
 //
 
 #import "TemperatureViewController.h"
-#import <ApplicationServices/ApplicationServices.h>
+#import "TemperatureTouchBarController.h"
 #include <dlfcn.h>
 
 @implementation TemperatureViewController
@@ -76,6 +76,8 @@
     if (self.temperatureSlider.floatValue == 1) {
         [self resetTemperature:nil];
     }
+    
+    [[TemperatureTouchBarController sharedInstance] awakeFromNib];
 }
 
 - (IBAction)toggleDarkroom:(NSButton *)button {
@@ -104,6 +106,7 @@
     [self.darkroomButton setState:NSOffState];
     CGDisplayRestoreColorSyncSettings();
     [TemperatureViewController setInvertedColorsEnabled:NO];
+    [[TemperatureTouchBarController sharedInstance] awakeFromNib];
 }
 
 @end

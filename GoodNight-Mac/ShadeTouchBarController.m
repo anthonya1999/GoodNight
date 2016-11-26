@@ -11,6 +11,15 @@
 
 @implementation ShadeTouchBarController
 
++ (instancetype)sharedInstance {
+    static ShadeTouchBarController *sharedInstance = nil;
+    static dispatch_once_t onceToken = 0;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[ShadeTouchBarController alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (void)awakeFromNib {
     [self.bightnessTouchBarSlider.slider setFloatValue:[userDefaults floatForKey:@"brightnessValue"]];
 }

@@ -1,5 +1,5 @@
 //
-//  BrightnessViewController.m
+//  ShadeViewController.m
 //  GoodNight
 //
 //  Created by Anthony Agatiello on 11/25/16.
@@ -7,6 +7,7 @@
 //
 
 #import "ShadeViewController.h"
+#import "ShadeTouchBarController.h"
 #import "TemperatureViewController.h"
 
 @implementation ShadeViewController
@@ -28,6 +29,8 @@
     if (self.brightnessSlider.floatValue == 1) {
         [self resetBrightness:nil];
     }
+    
+    [[ShadeTouchBarController sharedInstance] awakeFromNib];
 }
 
 - (IBAction)resetBrightness:(NSButton *)button {
@@ -35,6 +38,7 @@
     self.brightnessSlider.floatValue = [userDefaults floatForKey:@"brightnessValue"];
     [userDefaults synchronize];
     CGDisplayRestoreColorSyncSettings();
+    [[ShadeTouchBarController sharedInstance] awakeFromNib];
 }
 
 @end

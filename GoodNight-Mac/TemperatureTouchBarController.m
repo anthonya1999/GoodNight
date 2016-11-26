@@ -11,6 +11,15 @@
 
 @implementation TemperatureTouchBarController
 
++ (instancetype)sharedInstance {
+    static TemperatureTouchBarController *sharedInstance = nil;
+    static dispatch_once_t onceToken = 0;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[TemperatureTouchBarController alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (void)awakeFromNib {
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
     self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
