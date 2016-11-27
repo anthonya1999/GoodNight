@@ -110,16 +110,17 @@
 }
 
 - (void)openAboutWindow {
-    self.tabWindowController = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"aboutWC"];
-    [self.tabWindowController showWindow:nil];
-    [self.tabWindowController.window makeKeyAndOrderFront:nil];
+    self.aboutWindowController = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"aboutWC"];
+    [self.aboutWindowController.window setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+    [self.aboutWindowController showWindow:nil];
+    [self.aboutWindowController.window makeKeyAndOrderFront:nil];
     [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (void)openNewWindow {
-    self.aboutWindowController = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"windowController"];
-    [self.aboutWindowController showWindow:nil];
-    [self.aboutWindowController.window makeKeyAndOrderFront:nil];
+    self.tabWindowController = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"windowController"];
+    [self.tabWindowController showWindow:nil];
+    [self.tabWindowController.window makeKeyAndOrderFront:nil];
     [NSApp activateIgnoringOtherApps:YES];
 }
 

@@ -15,6 +15,11 @@
 - (void)viewWillAppear {
     [super viewWillAppear];
     
+    [self.view setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+    [self.view.window setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+    [self.view.window setBackgroundColor:[NSColor blackColor]];
+    [self.view.layer setBackgroundColor:[[NSColor blackColor] CGColor]];
+    
     [self.temperatureSlider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
     self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10];
     [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];

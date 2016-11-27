@@ -11,6 +11,15 @@
 
 @implementation ColorViewController
 
+- (void)viewWillAppear {
+    [super viewWillAppear];
+    
+    [self.view setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+    [self.view.window setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+    [self.view.window setBackgroundColor:[NSColor blackColor]];
+    [self.view.layer setBackgroundColor:[[NSColor blackColor] CGColor]];
+}
+
 - (IBAction)setColor:(NSButton *)button {
     float redValue = self.redField.floatValue / 255;
     float greenValue = self.greenField.floatValue / 255;

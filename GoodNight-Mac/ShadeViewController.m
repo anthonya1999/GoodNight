@@ -15,6 +15,11 @@
 - (void)viewWillAppear {
     [super viewWillAppear];
     
+    [self.view setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+    [self.view.window setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+    [self.view.window setBackgroundColor:[NSColor blackColor]];
+    [self.view.layer setBackgroundColor:[[NSColor blackColor] CGColor]];
+    
     [self.brightnessSlider setFloatValue:[userDefaults floatForKey:@"brightnessValue"]];
     [self.percentTextField setStringValue:[NSString stringWithFormat:@"%d%%", (int)round([userDefaults floatForKey:@"brightnessValue"] * 100)]];
 }
