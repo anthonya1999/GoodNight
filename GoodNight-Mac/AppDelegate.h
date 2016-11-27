@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSStatusItem *statusItem;
 @property (strong, nonatomic) NSMenu *statusMenu;
 
-@property NSWindowController *windowController;
+@property NSWindowController *tabWindowController;
+@property NSWindowController *aboutWindowController;
 
 @end
