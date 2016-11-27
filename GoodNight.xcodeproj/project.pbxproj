@@ -23,7 +23,7 @@
 		921810371BC1B3C000D32E92 /* BrightnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921810361BC1B3C000D32E92 /* BrightnessViewController.m */; };
 		922B28211DDE81CF0075C274 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 922B28201DDE81CF0075C274 /* AppDelegate.m */; };
 		922B28241DDE81CF0075C274 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 922B28231DDE81CF0075C274 /* main.m */; };
-		922B28291DDE81D00075C274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 922B28281DDE81D00075C274 /* Assets.xcassets */; };
+		922B28291DDE81D00075C274 /* MacAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 922B28281DDE81D00075C274 /* MacAssets.xcassets */; };
 		924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */; };
 		925B81211BE2BCE1003A6C4B /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B81201BE2BCE1003A6C4B /* NotificationCenter.framework */; };
 		925B81251BE2BCE1003A6C4B /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B81241BE2BCE1003A6C4B /* TodayViewController.m */; };
@@ -43,6 +43,9 @@
 		9287A1EA1C2499BB00764AD5 /* WhitePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287A1E91C2499BB00764AD5 /* WhitePointViewController.m */; };
 		9296029F1BD1B89100CDEC52 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9296029E1BD1B89100CDEC52 /* InitialViewController.m */; };
 		929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929602A11BD1BC3000CDEC52 /* SettingsViewController.m */; };
+		92A1826E1DEA78E2001BA7C3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A1826C1DEA7775001BA7C3 /* Sparkle.framework */; };
+		92A1826F1DEA78E2001BA7C3 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92A1826C1DEA7775001BA7C3 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		92A182741DEA82C0001BA7C3 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A182731DEA82C0001BA7C3 /* AboutViewController.m */; };
 		92F23ABF1BD72ADD00A097CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F23AC11BD72ADD00A097CB /* LaunchScreen.storyboard */; };
 		92F23AC21BD72AE700A097CB /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92F23AC41BD72AE700A097CB /* Storyboard.storyboard */; };
 		92FEA6B11DE6B324001EA06B /* TemperatureTouchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FEA6B01DE6B324001EA06B /* TemperatureTouchBarController.m */; };
@@ -65,6 +68,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		92A182701DEA78E2001BA7C3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				92A1826F1DEA78E2001BA7C3 /* Sparkle.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B9B6D3161BA636DA00A8E999 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -109,7 +123,7 @@
 		922B281F1DDE81CF0075C274 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		922B28201DDE81CF0075C274 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		922B28231DDE81CF0075C274 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		922B28281DDE81D00075C274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		922B28281DDE81D00075C274 /* MacAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MacAssets.xcassets; sourceTree = "<group>"; };
 		922B282D1DDE81D00075C274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
@@ -148,6 +162,9 @@
 		9296029E1BD1B89100CDEC52 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		929602A01BD1BC3000CDEC52 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		929602A11BD1BC3000CDEC52 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		92A1826C1DEA7775001BA7C3 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		92A182721DEA82C0001BA7C3 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		92A182731DEA82C0001BA7C3 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		92BBC7911BB77C8300AA4914 /* GoodNight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GoodNight.entitlements; sourceTree = "<group>"; };
 		92F23AC01BD72ADD00A097CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92F23AC31BD72AE700A097CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
@@ -173,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92A1826E1DEA78E2001BA7C3 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +312,7 @@
 		922B28221DDE81CF0075C274 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				922B28281DDE81D00075C274 /* Assets.xcassets */,
+				922B28281DDE81D00075C274 /* MacAssets.xcassets */,
 				922B282D1DDE81D00075C274 /* Info.plist */,
 				922B28231DDE81CF0075C274 /* main.m */,
 				9264E1411DE6807F00E61408 /* PrefixHeader-Mac.pch */,
@@ -305,6 +323,7 @@
 		925B811F1BE2BCE1003A6C4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92A1826C1DEA7775001BA7C3 /* Sparkle.framework */,
 				925B81201BE2BCE1003A6C4B /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
@@ -483,6 +502,15 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		92A182711DEA8248001BA7C3 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				92A182721DEA82C0001BA7C3 /* AboutViewController.h */,
+				92A182731DEA82C0001BA7C3 /* AboutViewController.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
 		92ABC3C81DE8D4060064FBAD /* Temperature */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +551,7 @@
 		92ABC3CC1DE8D47F0064FBAD /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
+				92A182711DEA8248001BA7C3 /* About */,
 				92ABC3CB1DE8D4500064FBAD /* Tab View */,
 				92ABC3C81DE8D4060064FBAD /* Temperature */,
 				926893B01DE93D2D00BED81C /* Brightness */,
@@ -597,6 +626,7 @@
 				922B28191DDE81CF0075C274 /* Sources */,
 				922B281A1DDE81CF0075C274 /* Frameworks */,
 				922B281B1DDE81CF0075C274 /* Resources */,
+				92A182701DEA78E2001BA7C3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -710,7 +740,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				922B28291DDE81D00075C274 /* Assets.xcassets in Resources */,
+				922B28291DDE81D00075C274 /* MacAssets.xcassets in Resources */,
 				926076981DE6731000D6320D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,6 +779,7 @@
 				926076941DE672FF00D6320D /* ColorViewController.m in Sources */,
 				925FF57C1DE8EE1A007675AE /* MainTouchBarController.m in Sources */,
 				926076951DE672FF00D6320D /* TemperatureViewController.m in Sources */,
+				92A182741DEA82C0001BA7C3 /* AboutViewController.m in Sources */,
 				926893B31DE93D4E00BED81C /* ShadeViewController.m in Sources */,
 				9264E1401DE67A3200E61408 /* TabViewController.m in Sources */,
 				92FEA6B11DE6B324001EA06B /* TemperatureTouchBarController.m in Sources */,
@@ -874,9 +905,13 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "GoodNight-Mac/PrefixHeader-Mac.pch";
 				INFOPLIST_FILE = "GoodNight-Mac/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adatech.GoodNight-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -912,6 +947,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "GoodNight-Mac/PrefixHeader-Mac.pch";
@@ -922,7 +961,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "GoodNight-Mac/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adatech.GoodNight-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";

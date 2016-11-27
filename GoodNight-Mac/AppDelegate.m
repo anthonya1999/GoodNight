@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TemperatureViewController.h"
+#import <Sparkle/Sparkle.h>
 
 @implementation AppDelegate
 
@@ -22,7 +23,8 @@
     
     NSMenuItem *titleItem = [[NSMenuItem alloc] initWithTitle:@"GoodNight" action:nil keyEquivalent:@""];
     NSMenuItem *seperatorItem = [NSMenuItem separatorItem];
-    NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:@"About GoodNight..." action:@selector(orderFrontStandardAboutPanel:) keyEquivalent:@""];
+    NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:@"About GoodNight..." action:@selector(openAboutWindow) keyEquivalent:@""];
+    NSMenuItem *updateItem = [[NSMenuItem alloc] initWithTitle:@"Check for Updates..." action:@selector(checkForUpdateMenuAction) keyEquivalent:@""];
     NSMenuItem *seperatorItem2 = [NSMenuItem separatorItem];
     NSMenuItem *resetItem = [[NSMenuItem alloc] initWithTitle:@"Reset All" action:@selector(resetAll) keyEquivalent:@""];
     NSMenuItem *darkroomItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Darkroom" action:@selector(toggleDarkroom) keyEquivalent:@""];
@@ -33,6 +35,7 @@
     [self.statusMenu addItem:titleItem];
     [self.statusMenu addItem:seperatorItem];
     [self.statusMenu addItem:aboutItem];
+    [self.statusMenu addItem:updateItem];
     [self.statusMenu addItem:seperatorItem2];
     [self.statusMenu addItem:resetItem];
     [self.statusMenu addItem:darkroomItem];
@@ -60,6 +63,10 @@
     if (brightnessValue != 1) {
         [TemperatureViewController setGammaWithRed:brightnessValue green:brightnessValue blue:brightnessValue];
     }
+}
+
+- (void)checkForUpdateMenuAction {
+    [[[SUUpdater alloc] init] checkForUpdates:nil];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -91,6 +98,13 @@
         [TemperatureViewController setInvertedColorsEnabled:NO];
     }
     [userDefaults synchronize];
+}
+
+- (void)openAboutWindow {
+    self.windowController = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"aboutWC"];
+    [self.windowController showWindow:nil];
+    [self.windowController.window makeKeyAndOrderFront:nil];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (void)openNewWindow {
