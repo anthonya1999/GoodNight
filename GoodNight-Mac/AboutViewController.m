@@ -17,6 +17,9 @@
     self.view.window.titleVisibility = NSWindowTitleHidden;
     self.view.window.titlebarAppearsTransparent = YES;
     self.view.window.styleMask |= NSWindowStyleMaskFullSizeContentView;
+    
+    NSString *appVersionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    self.versionLabel.stringValue = [NSString stringWithFormat:@"Version %@", appVersionString];
 }
 
 - (IBAction)updateButtonClicked:(NSButton *)button {

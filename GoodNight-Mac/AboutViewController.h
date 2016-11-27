@@ -10,4 +10,6 @@
 
 @interface AboutViewController : NSViewController
 
+@property (strong, nonatomic) IBOutlet NSTextField *versionLabel;
+
 @end

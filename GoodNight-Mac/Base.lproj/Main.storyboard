@@ -664,8 +664,8 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="oJG-ee-Djk"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version 1.0" id="RGn-Da-pJx">
-                                    <font key="font" metaFont="system" size="11"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version" id="RGn-Da-pJx">
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -707,6 +707,9 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <constraint firstItem="gGO-LP-v9t" firstAttribute="top" secondItem="Jhz-Ck-pjB" secondAttribute="top" constant="35" id="q00-sB-A9n"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="versionLabel" destination="Z4G-JA-BTv" id="2Zr-P3-Hap"/>
+                    </connections>
                 </viewController>
                 <customObject id="AC8-XR-TeV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -753,7 +756,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                             <sliderAccessory key="maximumValueAccessory" id="T3F-WL-6fl">
                                                 <sliderAccessoryBehavior key="behavior" id="0AC-cM-G2k"/>
                                             </sliderAccessory>
-                                            <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
+                                            <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
                                                 <rect key="frame" x="58" y="0.0" width="600" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QKQ-u8-hdQ"/>
@@ -821,7 +824,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                             <sliderAccessory key="maximumValueAccessory" id="hZx-8e-z93">
                                                 <sliderAccessoryBehavior key="behavior" id="deu-0Q-FrY"/>
                                             </sliderAccessory>
-                                            <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frp-8f-VoZ">
+                                            <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frp-8f-VoZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="809" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="yEX-q8-uav"/>
