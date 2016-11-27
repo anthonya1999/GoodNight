@@ -22,6 +22,10 @@
     self.statusMenu = [[NSMenu alloc] initWithTitle:@""];
     
     NSMenuItem *titleItem = [[NSMenuItem alloc] initWithTitle:@"GoodNight" action:nil keyEquivalent:@""];
+    
+    NSString *appVersionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSMenuItem *versionItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Version %@", appVersionString] action:nil keyEquivalent:@""];
+    
     NSMenuItem *seperatorItem = [NSMenuItem separatorItem];
     NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:@"About GoodNight..." action:@selector(openAboutWindow) keyEquivalent:@""];
     NSMenuItem *updateItem = [[NSMenuItem alloc] initWithTitle:@"Check for Updates..." action:@selector(checkForUpdateMenuAction) keyEquivalent:@""];
@@ -33,6 +37,7 @@
     NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     [self.statusMenu addItem:titleItem];
+    [self.statusMenu addItem:versionItem];
     [self.statusMenu addItem:seperatorItem];
     [self.statusMenu addItem:aboutItem];
     [self.statusMenu addItem:updateItem];
