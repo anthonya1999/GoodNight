@@ -34,6 +34,7 @@
     NSMenuItem *darkroomItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Darkroom" action:@selector(toggleDarkroom) keyEquivalent:@""];
     NSMenuItem *seperatorItem3 = [NSMenuItem separatorItem];
     NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@"n"];
+    NSMenuItem *closeWindowItem = [[NSMenuItem alloc] initWithTitle:@"Close" action:@selector(performClose:) keyEquivalent:@"w"];
     NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     [self.statusMenu addItem:titleItem];
@@ -46,6 +47,7 @@
     [self.statusMenu addItem:darkroomItem];
     [self.statusMenu addItem:seperatorItem3];
     [self.statusMenu addItem:openItem];
+    [self.statusMenu addItem:closeWindowItem];
     [self.statusMenu addItem:quitItem];
 
     [self.statusItem setMenu:self.statusMenu];
