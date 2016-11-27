@@ -42,6 +42,7 @@
     [userDefaults synchronize];
     self.percentTextField.stringValue = @"100%";
     CGDisplayRestoreColorSyncSettings();
+    [TemperatureViewController setInvertedColorsEnabled:NO];
     [[ShadeTouchBarController sharedInstance] awakeFromNib];
 }
 
