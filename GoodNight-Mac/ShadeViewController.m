@@ -16,6 +16,7 @@
     [super viewWillAppear];
     
     [self.brightnessSlider setFloatValue:[userDefaults floatForKey:@"brightnessValue"]];
+    [self.percentTextField setStringValue:[NSString stringWithFormat:@"%d%%", (int)round([userDefaults floatForKey:@"brightnessValue"] * 100)]];
 }
 
 - (IBAction)brightnessSliderDidChange:(NSSlider *)slider {

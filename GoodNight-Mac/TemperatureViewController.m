@@ -66,7 +66,7 @@
 }
 
 - (IBAction)sliderValueDidChange:(NSSlider *)slider {
-    [self.darkroomButton setState:NSOffState];
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults setFloat:self.temperatureSlider.floatValue forKey:@"orangeValue"];
     [userDefaults synchronize];
     [TemperatureViewController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
@@ -101,6 +101,7 @@
     }
     
     [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
     self.temperatureSlider.floatValue = [userDefaults floatForKey:@"orangeValue"];
     self.temperatureLabel.stringValue = @"Temperature: 6500K";
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
