@@ -86,7 +86,6 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Debug"
-      customArchiveName = "GoodNight"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

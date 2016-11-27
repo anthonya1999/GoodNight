@@ -51,10 +51,11 @@
     [self.statusItem setMenu:self.statusMenu];
     
     float defaultValue = 1.0;
-    BOOL defaultDarkroomValue = NO;
+    BOOL defaultBooleanValue = NO;
     
     NSDictionary *defaultValues = @{@"orangeValue":     @(defaultValue),
-                                    @"darkroomEnabled": @(defaultDarkroomValue),
+                                    @"darkroomEnabled": @(defaultBooleanValue),
+                                    @"alertShowed":     @(defaultBooleanValue),
                                     @"brightnessValue": @(defaultValue)};
     
     [userDefaults registerDefaults:defaultValues];
