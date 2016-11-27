@@ -92,6 +92,7 @@
 
 - (void)toggleDarkroom {
     if (![userDefaults boolForKey:@"darkroomEnabled"]) {
+        [userDefaults setFloat:1 forKey:@"orangeValue"];
         [userDefaults setBool:YES forKey:@"darkroomEnabled"];
         [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
         [TemperatureViewController setInvertedColorsEnabled:YES];
