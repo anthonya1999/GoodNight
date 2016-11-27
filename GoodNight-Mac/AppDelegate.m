@@ -22,17 +22,21 @@
     
     NSMenuItem *titleItem = [[NSMenuItem alloc] initWithTitle:@"GoodNight" action:nil keyEquivalent:@""];
     NSMenuItem *seperatorItem = [NSMenuItem separatorItem];
+    NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:@"About GoodNight..." action:@selector(orderFrontStandardAboutPanel:) keyEquivalent:@""];
+    NSMenuItem *seperatorItem2 = [NSMenuItem separatorItem];
     NSMenuItem *resetItem = [[NSMenuItem alloc] initWithTitle:@"Reset All" action:@selector(resetAll) keyEquivalent:@""];
     NSMenuItem *darkroomItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Darkroom" action:@selector(toggleDarkroom) keyEquivalent:@""];
-    NSMenuItem *seperatorItem2 = [NSMenuItem separatorItem];
+    NSMenuItem *seperatorItem3 = [NSMenuItem separatorItem];
     NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@"n"];
     NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     [self.statusMenu addItem:titleItem];
     [self.statusMenu addItem:seperatorItem];
+    [self.statusMenu addItem:aboutItem];
+    [self.statusMenu addItem:seperatorItem2];
     [self.statusMenu addItem:resetItem];
     [self.statusMenu addItem:darkroomItem];
-    [self.statusMenu addItem:seperatorItem2];
+    [self.statusMenu addItem:seperatorItem3];
     [self.statusMenu addItem:openItem];
     [self.statusMenu addItem:quitItem];
 

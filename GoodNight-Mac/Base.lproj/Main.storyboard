@@ -652,7 +652,7 @@
                                             <sliderAccessory key="maximumValueAccessory" id="T3F-WL-6fl">
                                                 <sliderAccessoryBehavior key="behavior" id="0AC-cM-G2k"/>
                                             </sliderAccessory>
-                                            <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
+                                            <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
                                                 <rect key="frame" x="58" y="0.0" width="600" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QKQ-u8-hdQ"/>
@@ -720,7 +720,7 @@
                                             <sliderAccessory key="maximumValueAccessory" id="hZx-8e-z93">
                                                 <sliderAccessoryBehavior key="behavior" id="deu-0Q-FrY"/>
                                             </sliderAccessory>
-                                            <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="frp-8f-VoZ">
+                                            <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frp-8f-VoZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="809" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="yEX-q8-uav"/>
@@ -973,7 +973,7 @@
                 </viewController>
                 <customObject id="Zce-ct-T3e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="382" y="1004"/>
+            <point key="canvasLocation" x="382" y="1021"/>
         </scene>
         <!--Brightness-->
         <scene sceneID="89h-Hb-fdq">
