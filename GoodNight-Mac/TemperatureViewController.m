@@ -17,8 +17,7 @@
     
     [self.view setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
     [self.view.window setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
-    [self.view.window setBackgroundColor:[NSColor blackColor]];
-    [self.view.layer setBackgroundColor:[[NSColor blackColor] CGColor]];
+    [self.view.layer setBackgroundColor:[[NSColor colorWithRed:(float)33/255 green:(float)33/255 blue:(float)33/255 alpha:1.0] CGColor]];
     
     [self.temperatureSlider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
     self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10];
