@@ -10,8 +10,6 @@
 
 @interface ColorViewController : NSViewController
 
-@property (weak, nonatomic) IBOutlet NSTextField *redField;
-@property (weak, nonatomic) IBOutlet NSTextField *greenField;
-@property (weak, nonatomic) IBOutlet NSTextField *blueField;
+@property (strong, nonatomic) IBOutlet NSColorWell *colorWell;
 
 @end

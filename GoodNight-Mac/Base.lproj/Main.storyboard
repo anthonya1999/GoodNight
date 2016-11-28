@@ -757,7 +757,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                             <sliderAccessory key="maximumValueAccessory" id="T3F-WL-6fl">
                                                 <sliderAccessoryBehavior key="behavior" id="0AC-cM-G2k"/>
                                             </sliderAccessory>
-                                            <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
+                                            <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
                                                 <rect key="frame" x="58" y="0.0" width="600" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QKQ-u8-hdQ"/>
@@ -844,24 +844,6 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             </touchBarPopoverItem>
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="LvU-DL-qc0"/>
                             <colorPickerItem showsAlpha="NO" id="bfb-ba-IjI"/>
-                            <touchBarItem id="aJs-GH-f50">
-                                <viewController key="viewController" id="3gf-H3-Gnl">
-                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="01Q-xM-Kct">
-                                        <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="BaE-Sa-huy"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="push" title="Set Color" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="doD-yC-PJU">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="setColorFromColorPicker:" target="UMi-PB-ZzS" id="OT1-pI-ReS"/>
-                                        </connections>
-                                    </button>
-                                </viewController>
-                                <size key="designTimeSize" width="135" height="30"/>
-                            </touchBarItem>
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="efa-6v-d81"/>
                             <touchBarItem id="8JB-Ha-8RX">
                                 <viewController key="viewController" id="3h2-P6-gaR">
@@ -997,18 +979,20 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                         <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ySS-0w-PQO">
-                                <rect key="frame" x="202" y="52" width="98" height="32"/>
-                                <buttonCell key="cell" type="push" title="Set Color" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3fn-Ex-Stk">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LkZ-jm-qhl">
+                                <rect key="frame" x="18" y="182" width="464" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Choose a color from the color well." id="Gki-4J-a5I">
                                     <font key="font" metaFont="systemMedium" size="13"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="setColor:" target="FWI-pN-Ufp" id="36A-bc-Wi1"/>
-                                </connections>
-                            </button>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Kcb-FH-CNz">
+                                <rect key="frame" x="20" y="115" width="460" height="23"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </colorWell>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vAK-Ra-wxi">
-                                <rect key="frame" x="194" y="19" width="113" height="32"/>
+                                <rect key="frame" x="194" y="43" width="113" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reset Color" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6xR-LY-Ywo">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="systemMedium" size="13"/>
@@ -1017,63 +1001,21 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                     <action selector="resetColor:" target="FWI-pN-Ufp" id="5pN-zX-Bz2"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="94a-bh-UGt">
-                                <rect key="frame" x="163" y="171" width="175" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="175" id="Lgh-6S-hVw"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Red" drawsBackground="YES" id="dRc-ml-muI">
-                                    <font key="font" metaFont="systemMedium" size="13"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bAi-Ts-NDJ">
-                                <rect key="frame" x="163" y="139" width="175" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Green" drawsBackground="YES" id="c0B-Gu-GqZ">
-                                    <font key="font" metaFont="systemMedium" size="13"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vy6-ml-OSq">
-                                <rect key="frame" x="163" y="107" width="175" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Blue" drawsBackground="YES" id="xfY-Bv-EIL">
-                                    <font key="font" metaFont="systemMedium" size="13"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DeO-8X-TFp">
-                                <rect key="frame" x="123" y="213" width="255" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Please enter a value between 0 and 255." id="3B7-LU-efz">
-                                    <font key="font" metaFont="systemMedium" size="13"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="DeO-8X-TFp" firstAttribute="top" secondItem="IN3-8T-r3h" secondAttribute="top" constant="20" symbolic="YES" id="13b-KN-h9r"/>
-                            <constraint firstItem="DeO-8X-TFp" firstAttribute="centerX" secondItem="94a-bh-UGt" secondAttribute="centerX" id="6YN-Gr-QXV"/>
-                            <constraint firstItem="94a-bh-UGt" firstAttribute="trailing" secondItem="bAi-Ts-NDJ" secondAttribute="trailing" id="6aR-Oe-gJo"/>
-                            <constraint firstItem="94a-bh-UGt" firstAttribute="top" secondItem="DeO-8X-TFp" secondAttribute="bottom" constant="20" id="Ata-L4-fzv"/>
-                            <constraint firstItem="bAi-Ts-NDJ" firstAttribute="top" secondItem="94a-bh-UGt" secondAttribute="bottom" constant="10" symbolic="YES" id="E8P-mL-w4l"/>
-                            <constraint firstItem="ySS-0w-PQO" firstAttribute="top" secondItem="Vy6-ml-OSq" secondAttribute="bottom" constant="27" id="Fw1-OG-Rjr"/>
-                            <constraint firstItem="bAi-Ts-NDJ" firstAttribute="leading" secondItem="Vy6-ml-OSq" secondAttribute="leading" id="JpQ-lz-bsW"/>
-                            <constraint firstItem="DeO-8X-TFp" firstAttribute="centerX" secondItem="IN3-8T-r3h" secondAttribute="centerX" id="M8p-oK-pDK"/>
-                            <constraint firstItem="vAK-Ra-wxi" firstAttribute="top" secondItem="ySS-0w-PQO" secondAttribute="bottom" constant="12" symbolic="YES" id="Mqp-4I-UUi"/>
-                            <constraint firstItem="94a-bh-UGt" firstAttribute="leading" secondItem="bAi-Ts-NDJ" secondAttribute="leading" id="O7r-7E-2RX"/>
-                            <constraint firstItem="ySS-0w-PQO" firstAttribute="centerX" secondItem="vAK-Ra-wxi" secondAttribute="centerX" id="Plh-Cf-Tb1"/>
-                            <constraint firstItem="bAi-Ts-NDJ" firstAttribute="trailing" secondItem="Vy6-ml-OSq" secondAttribute="trailing" id="Z4u-sC-naQ"/>
-                            <constraint firstItem="Vy6-ml-OSq" firstAttribute="centerX" secondItem="ySS-0w-PQO" secondAttribute="centerX" id="cNa-K0-GzK"/>
-                            <constraint firstItem="Vy6-ml-OSq" firstAttribute="top" secondItem="bAi-Ts-NDJ" secondAttribute="bottom" constant="10" symbolic="YES" id="rie-BB-hdg"/>
+                            <constraint firstAttribute="trailing" secondItem="LkZ-jm-qhl" secondAttribute="trailing" constant="20" symbolic="YES" id="4lx-mS-de1"/>
+                            <constraint firstItem="LkZ-jm-qhl" firstAttribute="leading" secondItem="Kcb-FH-CNz" secondAttribute="leading" id="AC5-cC-w9x"/>
+                            <constraint firstItem="LkZ-jm-qhl" firstAttribute="leading" secondItem="IN3-8T-r3h" secondAttribute="leading" constant="20" symbolic="YES" id="AnF-W0-i4c"/>
+                            <constraint firstItem="vAK-Ra-wxi" firstAttribute="top" secondItem="Kcb-FH-CNz" secondAttribute="bottom" constant="44" id="N1G-P7-xpN"/>
+                            <constraint firstItem="Kcb-FH-CNz" firstAttribute="centerX" secondItem="vAK-Ra-wxi" secondAttribute="centerX" id="fMP-p1-cWe"/>
+                            <constraint firstAttribute="bottom" secondItem="vAK-Ra-wxi" secondAttribute="bottom" constant="50" id="gmh-wG-jKO"/>
+                            <constraint firstItem="Kcb-FH-CNz" firstAttribute="top" secondItem="LkZ-jm-qhl" secondAttribute="bottom" constant="44" id="mri-Fw-gpB"/>
+                            <constraint firstItem="LkZ-jm-qhl" firstAttribute="top" secondItem="IN3-8T-r3h" secondAttribute="top" constant="51" id="qmU-bH-ynd"/>
+                            <constraint firstItem="LkZ-jm-qhl" firstAttribute="trailing" secondItem="Kcb-FH-CNz" secondAttribute="trailing" id="sUY-TS-jKR"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="blueField" destination="Vy6-ml-OSq" id="yOR-r2-eX5"/>
-                        <outlet property="greenField" destination="bAi-Ts-NDJ" id="KFI-ps-1x7"/>
-                        <outlet property="redField" destination="94a-bh-UGt" id="iXB-oG-3PW"/>
+                        <outlet property="colorWell" destination="Kcb-FH-CNz" id="d7V-39-upB"/>
                     </connections>
                 </viewController>
                 <customObject id="Zce-ct-T3e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1089,7 +1031,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d49-YX-1hW">
-                                <rect key="frame" x="178" y="34" width="146" height="32"/>
+                                <rect key="frame" x="177" y="34" width="146" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reset Brightness" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="THn-XP-LRm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="systemMedium" size="13"/>

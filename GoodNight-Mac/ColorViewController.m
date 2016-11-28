@@ -11,6 +11,12 @@
 
 @implementation ColorViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.colorWell addObserver:self forKeyPath:@"color" options:0 context:nil];
+}
+
 - (void)viewWillAppear {
     [super viewWillAppear];
     
@@ -19,21 +25,14 @@
     [self.view.layer setBackgroundColor:[[NSColor colorWithRed:(float)33/255 green:(float)33/255 blue:(float)33/255 alpha:1.0] CGColor]];
 }
 
-- (IBAction)setColor:(NSButton *)button {
-    float redValue = self.redField.floatValue / 255;
-    float greenValue = self.greenField.floatValue / 255;
-    float blueValue = self.blueField.floatValue / 255;
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    NSColor *color = [self.colorWell color];
     
-    if (redValue >= 0 && redValue <= 1 && greenValue >= 0 && greenValue <= 1 && blueValue >= 0 && blueValue <= 1) {
-        [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
-    }
-    else {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:@"Error"];
-        [alert setInformativeText:@"You must enter a value between 0 and 255 for the red, green, and blue values!"];
-        [alert addButtonWithTitle:@"OK"];
-        [alert runModal];
-    }
+    float redValue = [color redComponent];
+    float greenValue = [color greenComponent];
+    float blueValue = [color blueComponent];
+    
+    [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
     
     [userDefaults setFloat:1 forKey:@"orangeValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
@@ -41,10 +40,6 @@
 }
 
 - (IBAction)resetColor:(NSButton *)button {
-    [self.redField setStringValue:@""];
-    [self.greenField setStringValue:@""];
-    [self.blueField setStringValue:@""];
-    
     [userDefaults setFloat:1 forKey:@"orangeValue"];
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
