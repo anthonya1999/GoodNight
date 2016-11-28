@@ -43,6 +43,7 @@
 		9287A1EA1C2499BB00764AD5 /* WhitePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9287A1E91C2499BB00764AD5 /* WhitePointViewController.m */; };
 		9296029F1BD1B89100CDEC52 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9296029E1BD1B89100CDEC52 /* InitialViewController.m */; };
 		929602A21BD1BC3000CDEC52 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929602A11BD1BC3000CDEC52 /* SettingsViewController.m */; };
+		9298D3781DEBAC9900640B51 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 9298D3771DEBAC9900640B51 /* dsa_pub.pem */; };
 		92A1826E1DEA78E2001BA7C3 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A1826C1DEA7775001BA7C3 /* Sparkle.framework */; };
 		92A1826F1DEA78E2001BA7C3 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92A1826C1DEA7775001BA7C3 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		92A182741DEA82C0001BA7C3 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A182731DEA82C0001BA7C3 /* AboutViewController.m */; };
@@ -162,6 +163,7 @@
 		9296029E1BD1B89100CDEC52 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		929602A01BD1BC3000CDEC52 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		929602A11BD1BC3000CDEC52 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		9298D3771DEBAC9900640B51 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		92A1826C1DEA7775001BA7C3 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		92A182721DEA82C0001BA7C3 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		92A182731DEA82C0001BA7C3 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				922B28281DDE81D00075C274 /* MacAssets.xcassets */,
+				9298D3771DEBAC9900640B51 /* dsa_pub.pem */,
 				922B282D1DDE81D00075C274 /* Info.plist */,
 				922B28231DDE81CF0075C274 /* main.m */,
 				9264E1411DE6807F00E61408 /* PrefixHeader-Mac.pch */,
@@ -742,6 +745,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				922B28291DDE81D00075C274 /* MacAssets.xcassets in Resources */,
+				9298D3781DEBAC9900640B51 /* dsa_pub.pem in Resources */,
 				926076981DE6731000D6320D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
