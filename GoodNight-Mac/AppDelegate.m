@@ -35,7 +35,7 @@
     [resetItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
     
     NSMenuItem *darkroomItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Darkroom" action:@selector(toggleDarkroom) keyEquivalent:@"x"];
-    [resetItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
+    [darkroomItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
     
     NSMenuItem *seperatorItem3 = [NSMenuItem separatorItem];
     
