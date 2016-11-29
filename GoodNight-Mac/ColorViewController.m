@@ -25,6 +25,10 @@
     [self.view.layer setBackgroundColor:[[NSColor colorWithRed:(float)33/255 green:(float)33/255 blue:(float)33/255 alpha:1.0] CGColor]];
 }
 
+- (void)dealloc {
+    [self.colorWell removeObserver:self forKeyPath:@"color"];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     NSColor *color = [self.colorWell color];
     

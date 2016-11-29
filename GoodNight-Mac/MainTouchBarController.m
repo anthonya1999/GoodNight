@@ -16,6 +16,10 @@
     [self.touchBarColorPicker addObserver:self forKeyPath:@"color" options:0 context:nil];
 }
 
+- (void)dealloc {
+    [self.touchBarColorPicker removeObserver:self forKeyPath:@"color"];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     NSColor *color = self.touchBarColorPicker.color;
     

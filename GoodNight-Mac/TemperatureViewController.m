@@ -24,19 +24,10 @@
     [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];
 }
 
-+ (void)setGammaWithRed:(float)r green:(float)g blue:(float)b {
-    float red[256];
-    float green[256];
-    float blue[256];
-    
-    red[0] = 0.0;
-    red[1] = r;
-    
-    green[0] = 0.0;
-    green[1] = g;
-    
-    blue[0] = 0.0;
-    blue[1] = b;
++ (void)setGammaWithRed:(CGFloat)r green:(CGFloat)g blue:(CGFloat)b {
+    CGGammaValue red[256] = {0.0, r};
+    CGGammaValue green[256] = {0.0, g};
+    CGGammaValue blue[256] = {0.0, b};
     
     CGSetDisplayTransferByTable(CGMainDisplayID(), 2, red, green, blue);
 }

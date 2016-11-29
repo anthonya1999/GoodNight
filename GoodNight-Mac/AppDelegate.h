@@ -7,6 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <MASShortcut/Shortcut.h>
+
+static NSString * const MASHardcodedShortcutEnabledKey = @"hardcodedShortcutEnabled";
+static NSUInteger const GoodNightModifierFlags = NSEventModifierFlagCommand | NSEventModifierFlagOption;
+static void *MASObservingContext = &MASObservingContext;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 

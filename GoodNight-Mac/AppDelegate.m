@@ -33,7 +33,10 @@
     NSMenuItem *resetItem = [[NSMenuItem alloc] initWithTitle:@"Reset All" action:@selector(resetAll) keyEquivalent:@""];
     NSMenuItem *darkroomItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Darkroom" action:@selector(toggleDarkroom) keyEquivalent:@""];
     NSMenuItem *seperatorItem3 = [NSMenuItem separatorItem];
-    NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@"n"];
+    
+    NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@"g"];
+    [openItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
+    
     NSMenuItem *closeWindowItem = [[NSMenuItem alloc] initWithTitle:@"Close" action:@selector(performClose:) keyEquivalent:@"w"];
     NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
@@ -58,7 +61,8 @@
     NSDictionary *defaultValues = @{@"orangeValue":     @(defaultValue),
                                     @"darkroomEnabled": @(defaultBooleanValue),
                                     @"alertShowed":     @(defaultBooleanValue),
-                                    @"brightnessValue": @(defaultValue)};
+                                    @"brightnessValue": @(defaultValue),
+                                    MASHardcodedShortcutEnabledKey: @YES};
     
     [userDefaults registerDefaults:defaultValues];
     
@@ -70,6 +74,32 @@
     float brightnessValue = [userDefaults floatForKey:@"brightnessValue"];
     if (brightnessValue != 1) {
         [TemperatureViewController setGammaWithRed:brightnessValue green:brightnessValue blue:brightnessValue];
+    }
+    
+    [userDefaults addObserver:self forKeyPath:MASHardcodedShortcutEnabledKey options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:MASObservingContext];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (context != MASObservingContext) {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        return;
+    }
+    
+    BOOL newValue = [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
+    if ([keyPath isEqualToString:MASHardcodedShortcutEnabledKey]) {
+        [self setHardcodedShortcutEnabled:newValue];
+    }
+}
+
+- (void)setHardcodedShortcutEnabled:(BOOL)enabled {
+    MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_ANSI_G modifierFlags:GoodNightModifierFlags];
+    if (enabled) {
+        [[MASShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
+            [self openNewWindow];
+        }];
+    }
+    else {
+        [[MASShortcutMonitor sharedMonitor] unregisterShortcut:shortcut];
     }
 }
 

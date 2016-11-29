@@ -14,7 +14,7 @@
 @property (strong, nonatomic) IBOutlet NSTextField *temperatureLabel;
 @property (strong, nonatomic) IBOutlet NSButton *darkroomButton;
 
-+ (void)setGammaWithRed:(float)r green:(float)g blue:(float)b;
++ (void)setGammaWithRed:(CGFloat)r green:(CGFloat)g blue:(CGFloat)b;
 + (void)setGammaWithOrangeness:(float)percentOrange;
 + (void)setInvertedColorsEnabled:(BOOL)enabled;
 
