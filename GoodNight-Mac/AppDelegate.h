@@ -9,8 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import <MASShortcut/Shortcut.h>
 
-static NSString * const MASHardcodedShortcutEnabledKey = @"hardcodedShortcutEnabled";
+static NSString * const MASOpenShortcutEnabledKey = @"openShortcutEnabled";
+static NSString * const MASResetShortcutEnabledKey = @"resetShortcutEnabled";
+static NSString * const MASDarkroomShortcutEnabledKey = @"darkroomShortcutEnabled";
+
 static NSUInteger const GoodNightModifierFlags = NSEventModifierFlagCommand | NSEventModifierFlagOption;
+
 static void *MASObservingContext = &MASObservingContext;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
