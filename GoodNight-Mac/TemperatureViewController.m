@@ -71,6 +71,8 @@
 }
 
 - (IBAction)sliderValueDidChange:(NSSlider *)slider {
+    [TemperatureViewController setInvertedColorsEnabled:NO];
+    
     [userDefaults setFloat:self.temperatureSlider.floatValue forKey:@"orangeValue"];
     [TemperatureViewController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
     

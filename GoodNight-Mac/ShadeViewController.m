@@ -33,6 +33,8 @@
 }
 
 - (IBAction)brightnessSliderDidChange:(NSSlider *)slider {
+    [TemperatureViewController setInvertedColorsEnabled:NO];
+    
     float sliderValue = self.brightnessSlider.floatValue;
     [userDefaults setFloat:sliderValue forKey:@"brightnessValue"];
     sliderValue = [userDefaults floatForKey:@"brightnessValue"];

@@ -30,6 +30,8 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    [TemperatureViewController setInvertedColorsEnabled:NO];
+
     NSColor *color = [self.colorWell color];
     
     float redValue = [color redComponent];
