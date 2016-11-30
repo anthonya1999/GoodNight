@@ -24,6 +24,10 @@
     [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];
 }
 
+- (void)dealloc {
+    [notificationCenter removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
+}
+
 - (void)viewWillAppear {
     [super viewWillAppear];
     

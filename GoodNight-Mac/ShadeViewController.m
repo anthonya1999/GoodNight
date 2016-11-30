@@ -23,6 +23,10 @@
     [self.percentTextField setStringValue:[NSString stringWithFormat:@"%d%%", (int)round([userDefaults floatForKey:@"brightnessValue"] * 100)]];
 }
 
+- (void)dealloc {
+    [notificationCenter removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
+}
+
 - (void)viewWillAppear {
     [super viewWillAppear];
     
