@@ -13,6 +13,8 @@
 @implementation ShadeViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
     [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
