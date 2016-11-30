@@ -10,8 +10,6 @@
 
 @interface ShadeTouchBarController : NSTouchBar
 
-@property (strong, nonatomic) IBOutlet NSSliderTouchBarItem *bightnessTouchBarSlider;
-
-+ (instancetype)sharedInstance;
+@property (strong, nonatomic) IBOutlet NSSliderTouchBarItem *brightnessTouchBarSlider;
 
 @end

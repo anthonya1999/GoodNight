@@ -12,6 +12,15 @@
 
 @implementation ShadeViewController
 
+- (void)viewDidLoad {
+    [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
+}
+
+- (void)defaultsChanged {
+    [self.brightnessSlider setFloatValue:[userDefaults floatForKey:@"brightnessValue"]];
+    [self.percentTextField setStringValue:[NSString stringWithFormat:@"%d%%", (int)round([userDefaults floatForKey:@"brightnessValue"] * 100)]];
+}
+
 - (void)viewWillAppear {
     [super viewWillAppear];
     
@@ -26,7 +35,6 @@
 - (IBAction)brightnessSliderDidChange:(NSSlider *)slider {
     float sliderValue = self.brightnessSlider.floatValue;
     [userDefaults setFloat:sliderValue forKey:@"brightnessValue"];
-    [userDefaults synchronize];
     sliderValue = [userDefaults floatForKey:@"brightnessValue"];
     
     self.percentTextField.stringValue = [NSString stringWithFormat:@"%d%%", (int)round(sliderValue * 100)];
@@ -36,7 +44,7 @@
         [self resetBrightness:nil];
     }
     
-    [[ShadeTouchBarController sharedInstance] awakeFromNib];
+    [userDefaults synchronize];
 }
 
 - (IBAction)resetBrightness:(NSButton *)button {
@@ -48,7 +56,6 @@
     self.percentTextField.stringValue = @"100%";
     CGDisplayRestoreColorSyncSettings();
     [TemperatureViewController setInvertedColorsEnabled:NO];
-    [[ShadeTouchBarController sharedInstance] awakeFromNib];
 }
 
 @end

@@ -11,18 +11,23 @@
 
 @implementation TemperatureTouchBarController
 
-+ (instancetype)sharedInstance {
-    static TemperatureTouchBarController *sharedInstance = nil;
-    static dispatch_once_t onceToken = 0;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[TemperatureTouchBarController alloc] init];
-    });
-    return sharedInstance;
-}
-
 - (void)awakeFromNib {
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
     self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
+    
+    [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
+}
+
+- (void)defaultsChanged {
+    [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
+    
+    if ([userDefaults boolForKey:@"darkroomEnabled"]) {
+        [self.touchBarDarkroomButton setTitle:@"Disable Darkroom"];
+    }
+    else {
+        [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
+    }
 }
 
 - (IBAction)touchBarSliderValueDidChange:(NSSliderTouchBarItem *)slider {
@@ -50,19 +55,27 @@
 }
 
 - (IBAction)toggleDarkroom:(NSButton *)button {
-    [self resetTemperature:nil];
+    [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
     
     if ([self.touchBarDarkroomButton.title isEqualToString:@"Enable Darkroom"]) {
         [userDefaults setBool:YES forKey:@"darkroomEnabled"];
+        [userDefaults setFloat:1 forKey:@"orangeValue"];
+        [userDefaults setFloat:1 forKey:@"brightnessValue"];
+        CGDisplayRestoreColorSyncSettings();
         [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
         [TemperatureViewController setInvertedColorsEnabled:YES];
         [self.touchBarDarkroomButton setTitle:@"Disable Darkroom"];
     }
     else {
         [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-        [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
+        [userDefaults setFloat:1 forKey:@"orangeValue"];
+        [userDefaults setFloat:1 forKey:@"brightnessValue"];
+        CGDisplayRestoreColorSyncSettings();
         [TemperatureViewController setInvertedColorsEnabled:NO];
+        [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
     }
+    
     [userDefaults synchronize];
 }
 
