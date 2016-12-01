@@ -14,7 +14,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.colorWell addObserver:self forKeyPath:@"color" options:0 context:nil];
+    [self.colorWell addObserver:self forKeyPath:@"color" options:kNilOptions context:nil];
 }
 
 - (void)viewWillAppear {

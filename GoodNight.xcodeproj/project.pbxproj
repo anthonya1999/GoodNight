@@ -695,7 +695,8 @@
 					};
 					925B811D1BE2BCE1003A6C4B = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = BYK5B23A5C;
+						DevelopmentTeam = 9QKLXG4845;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -707,6 +708,7 @@
 					};
 					B9E536451B38D90D0097BF90 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 9QKLXG4845;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1030,7 +1032,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = GoodNight/GoodNight.entitlements;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ADA Tech, LLC";
+				DEVELOPMENT_TEAM = 9QKLXG4845;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1040,9 +1043,10 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/GoodNight/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.agatiello.adhoc.GoodNight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agatiello.GoodNight;
 				PRODUCT_NAME = GoodNight;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d859dcdf-12a2-465a-8ed2-3cb6ab6bf02b";
+				PROVISIONING_PROFILE_SPECIFIER = GoodNight;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Enterprise;
@@ -1053,12 +1057,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "GoodNight Widget/GoodNight Widget.entitlements";
+				DEVELOPMENT_TEAM = 9QKLXG4845;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = GoodNight/PrefixHeader.pch;
 				INFOPLIST_FILE = "GoodNight Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.agatiello.adhoc.GoodNight.GoodNight-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.agatiello.GoodNight.GoodNight-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0294b426-e9c0-493a-bf93-262f3f9d5307";
+				PROVISIONING_PROFILE_SPECIFIER = "GoodNight Widget (Development)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1085,6 +1092,7 @@
 				CODE_SIGN_ENTITLEMENTS = "GoodNight Widget/GoodNight Widget.entitlements";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9QKLXG4845;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1100,8 +1108,10 @@
 				INFOPLIST_FILE = "GoodNight Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.agatiello.adhoc.GoodNight.GoodNight-Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.agatiello.GoodNight.GoodNight-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "877dad75-3f5b-4e87-83cc-3f39379469bf";
+				PROVISIONING_PROFILE_SPECIFIER = "GoodNight Widget";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
@@ -1150,6 +1160,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1160,7 +1171,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = GoodNight/GoodNight.entitlements;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Anthony Agatiello (J9M2GPP36A)";
+				DEVELOPMENT_TEAM = 9QKLXG4845;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1170,9 +1182,10 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/GoodNight/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.agatiello.adhoc.GoodNight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agatiello.GoodNight;
 				PRODUCT_NAME = GoodNight;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "588851c4-c84d-4ac4-a98d-e468ce1eca1e";
+				PROVISIONING_PROFILE_SPECIFIER = "GoodNight (Development)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

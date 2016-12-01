@@ -13,7 +13,7 @@
 
 - (void)awakeFromNib {
     [self.touchBarColorPicker setEnabled:YES];
-    [self.touchBarColorPicker addObserver:self forKeyPath:@"color" options:0 context:nil];
+    [self.touchBarColorPicker addObserver:self forKeyPath:@"color" options:kNilOptions context:nil];
 }
 
 - (void)dealloc {
