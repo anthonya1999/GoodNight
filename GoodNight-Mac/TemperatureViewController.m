@@ -96,25 +96,14 @@
     self.temperatureSlider.floatValue = [userDefaults floatForKey:@"orangeValue"];
     self.temperatureLabel.stringValue = @"Temperature: 6500K";
     
+    [TemperatureViewController toggleDarkroom];
+    
     if (self.darkroomButton.state == NSOnState) {
-        [userDefaults setBool:YES forKey:@"darkroomEnabled"];
-        [userDefaults setFloat:1 forKey:@"orangeValue"];
-        [userDefaults setFloat:1 forKey:@"brightnessValue"];
-        CGDisplayRestoreColorSyncSettings();
-        [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
-        [TemperatureViewController setInvertedColorsEnabled:YES];
         [self.darkroomButton setState:NSOnState];
     }
     else {
-        [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-        [userDefaults setFloat:1 forKey:@"orangeValue"];
-        [userDefaults setFloat:1 forKey:@"brightnessValue"];
-        CGDisplayRestoreColorSyncSettings();
-        [TemperatureViewController setInvertedColorsEnabled:NO];
         [self.darkroomButton setState:NSOffState];
     }
-    
-    [userDefaults synchronize];
 }
 
 - (IBAction)resetTemperature:(NSButton *)button {
@@ -122,10 +111,34 @@
         [self.darkroomButton setState:NSOffState];
     }
     
-    [userDefaults setFloat:1 forKey:@"orangeValue"];
-    [userDefaults setFloat:1 forKey:@"brightnessValue"];
     self.temperatureSlider.floatValue = [userDefaults floatForKey:@"orangeValue"];
     self.temperatureLabel.stringValue = @"Temperature: 6500K";
+    
+    [TemperatureViewController resetAllAdjustments];
+}
+
++ (void)toggleDarkroom {
+    if (![userDefaults boolForKey:@"darkroomEnabled"]) {
+        [userDefaults setBool:YES forKey:@"darkroomEnabled"];
+        [userDefaults setFloat:1 forKey:@"orangeValue"];
+        [userDefaults setFloat:1 forKey:@"brightnessValue"];
+        CGDisplayRestoreColorSyncSettings();
+        [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
+        [TemperatureViewController setInvertedColorsEnabled:YES];
+    }
+    else {
+        [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+        [userDefaults setFloat:1 forKey:@"orangeValue"];
+        [userDefaults setFloat:1 forKey:@"brightnessValue"];
+        CGDisplayRestoreColorSyncSettings();
+        [TemperatureViewController setInvertedColorsEnabled:NO];
+    }
+    [userDefaults synchronize];
+}
+
++ (void)resetAllAdjustments {
+    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults synchronize];
     CGDisplayRestoreColorSyncSettings();

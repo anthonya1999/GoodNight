@@ -44,39 +44,21 @@
 }
 
 - (IBAction)resetTemperature:(NSButton *)button {
-    [userDefaults setFloat:1 forKey:@"orangeValue"];
-    [userDefaults setFloat:1 forKey:@"brightnessValue"];
-    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-    [userDefaults synchronize];
-    self.touchBarTemperatureSlider.slider.floatValue = [userDefaults floatForKey:@"orangeValue"];
-    self.touchBarTemperatureSlider.label = @"6500K";
-    CGDisplayRestoreColorSyncSettings();
-    [TemperatureViewController setInvertedColorsEnabled:NO];
+    [TemperatureViewController resetAllAdjustments];
 }
 
 - (IBAction)toggleDarkroom:(NSButton *)button {
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
     self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
     
+    [TemperatureViewController toggleDarkroom];
+
     if ([self.touchBarDarkroomButton.title isEqualToString:@"Enable Darkroom"]) {
-        [userDefaults setBool:YES forKey:@"darkroomEnabled"];
-        [userDefaults setFloat:1 forKey:@"orangeValue"];
-        [userDefaults setFloat:1 forKey:@"brightnessValue"];
-        CGDisplayRestoreColorSyncSettings();
-        [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
-        [TemperatureViewController setInvertedColorsEnabled:YES];
         [self.touchBarDarkroomButton setTitle:@"Disable Darkroom"];
     }
     else {
-        [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-        [userDefaults setFloat:1 forKey:@"orangeValue"];
-        [userDefaults setFloat:1 forKey:@"brightnessValue"];
-        CGDisplayRestoreColorSyncSettings();
-        [TemperatureViewController setInvertedColorsEnabled:NO];
         [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
     }
-    
-    [userDefaults synchronize];
 }
 
 @end

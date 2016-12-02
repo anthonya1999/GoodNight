@@ -17,5 +17,7 @@
 + (void)setGammaWithRed:(CGFloat)r green:(CGFloat)g blue:(CGFloat)b;
 + (void)setGammaWithOrangeness:(float)percentOrange;
 + (void)setInvertedColorsEnabled:(BOOL)enabled;
++ (void)resetAllAdjustments;
++ (void)toggleDarkroom;
 
 @end

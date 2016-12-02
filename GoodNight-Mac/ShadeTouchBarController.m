@@ -38,13 +38,9 @@
 }
 
 - (IBAction)resetBrightness:(NSButton *)button {
-    [userDefaults setFloat:1 forKey:@"orangeValue"];
-    [userDefaults setFloat:1 forKey:@"brightnessValue"];
-    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [TemperatureViewController resetAllAdjustments];
     self.brightnessTouchBarSlider.label = @"100%";
     self.brightnessTouchBarSlider.slider.floatValue = [userDefaults floatForKey:@"brightnessValue"];
-    [userDefaults synchronize];
-    CGDisplayRestoreColorSyncSettings();
 }
 
 @end

@@ -31,12 +31,7 @@
 }
 
 - (IBAction)resetAll:(NSButton *)button {
-    [userDefaults setFloat:1 forKey:@"orangeValue"];
-    [userDefaults setFloat:1 forKey:@"brightnessValue"];
-    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-    [userDefaults synchronize];
-    CGDisplayRestoreColorSyncSettings();
-    [TemperatureViewController setInvertedColorsEnabled:NO];
+    [TemperatureViewController resetAllAdjustments];
 }
 
 @end

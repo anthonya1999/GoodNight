@@ -156,27 +156,11 @@
 }
 
 - (void)resetAll {
-    [userDefaults setFloat:1 forKey:@"orangeValue"];
-    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-    [userDefaults synchronize];
-    CGDisplayRestoreColorSyncSettings();
-    [TemperatureViewController setInvertedColorsEnabled:NO];
+    [TemperatureViewController resetAllAdjustments];
 }
 
 - (void)toggleDarkroom {
-    if (![userDefaults boolForKey:@"darkroomEnabled"]) {
-        [userDefaults setFloat:1 forKey:@"orangeValue"];
-        [userDefaults setBool:YES forKey:@"darkroomEnabled"];
-        [TemperatureViewController setGammaWithRed:1 green:0 blue:0];
-        [TemperatureViewController setInvertedColorsEnabled:YES];
-    }
-    else {
-        [userDefaults setFloat:1 forKey:@"orangeValue"];
-        [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-        CGDisplayRestoreColorSyncSettings();
-        [TemperatureViewController setInvertedColorsEnabled:NO];
-    }
-    [userDefaults synchronize];
+    [TemperatureViewController toggleDarkroom];
 }
 
 - (void)openAboutWindow {
