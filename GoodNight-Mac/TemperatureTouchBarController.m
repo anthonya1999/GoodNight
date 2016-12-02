@@ -51,14 +51,14 @@
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
     self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
     
-    [TemperatureViewController toggleDarkroom];
-
     if ([self.touchBarDarkroomButton.title isEqualToString:@"Enable Darkroom"]) {
         [self.touchBarDarkroomButton setTitle:@"Disable Darkroom"];
     }
     else {
         [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
     }
+    
+    [TemperatureViewController toggleDarkroom];
 }
 
 @end
