@@ -8,6 +8,7 @@
 
 #import "TemperatureViewController.h"
 #import "TemperatureTouchBarController.h"
+#import "AppDelegate.h"
 #include <dlfcn.h>
 
 @implementation TemperatureViewController
@@ -20,7 +21,7 @@
 
 - (void)defaultsChanged {
     [self.temperatureSlider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10];
+    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round(((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10)];
     [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];
 }
 
@@ -33,10 +34,10 @@
     
     [self.view setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
     [self.view.window setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
-    [self.view.layer setBackgroundColor:[[NSColor colorWithRed:(float)33/255 green:(float)33/255 blue:(float)33/255 alpha:1.0] CGColor]];
+    [self.view.layer setBackgroundColor:[[NSColor colorWithRed:_darkThemeFloatValue green:_darkThemeFloatValue blue:_darkThemeFloatValue alpha:1.0] CGColor]];
     
     [self.temperatureSlider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10];
+    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round(((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10)];
     [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];
 }
 
@@ -82,7 +83,7 @@
     [userDefaults setFloat:self.temperatureSlider.floatValue forKey:@"orangeValue"];
     [TemperatureViewController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
     
-    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10];
+    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round(((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10)];
     
     if (self.temperatureSlider.floatValue == 1) {
         [self resetTemperature:nil];

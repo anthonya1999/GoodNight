@@ -15,6 +15,8 @@ static NSString * const MASDarkroomShortcutEnabledKey = @"darkroomShortcutEnable
 
 static NSUInteger const GoodNightModifierFlags = NSEventModifierFlagCommand | NSEventModifierFlagOption;
 
+static float _darkThemeFloatValue = 33/255.0f;
+
 static void *MASObservingContext = &MASObservingContext;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>

@@ -9,6 +9,7 @@
 #import "ShadeViewController.h"
 #import "ShadeTouchBarController.h"
 #import "TemperatureViewController.h"
+#import "AppDelegate.h"
 
 @implementation ShadeViewController
 
@@ -32,7 +33,7 @@
     
     [self.view setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
     [self.view.window setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
-    [self.view.layer setBackgroundColor:[[NSColor colorWithRed:(float)33/255 green:(float)33/255 blue:(float)33/255 alpha:1.0] CGColor]];
+    [self.view.layer setBackgroundColor:[[NSColor colorWithRed:_darkThemeFloatValue green:_darkThemeFloatValue blue:_darkThemeFloatValue alpha:1.0] CGColor]];
     
     [self.brightnessSlider setFloatValue:[userDefaults floatForKey:@"brightnessValue"]];
     [self.percentTextField setStringValue:[NSString stringWithFormat:@"%d%%", (int)round([userDefaults floatForKey:@"brightnessValue"] * 100)]];

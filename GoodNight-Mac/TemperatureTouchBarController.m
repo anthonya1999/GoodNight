@@ -13,14 +13,14 @@
 
 - (void)awakeFromNib {
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
     
     [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
 - (void)defaultsChanged {
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
     
     if ([userDefaults boolForKey:@"darkroomEnabled"]) {
         [self.touchBarDarkroomButton setTitle:@"Disable Darkroom"];
@@ -40,7 +40,7 @@
         [self resetTemperature:nil];
     }
     
-    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
 }
 
 - (IBAction)resetTemperature:(NSButton *)button {
@@ -49,7 +49,7 @@
 
 - (IBAction)toggleDarkroom:(NSButton *)button {
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
     
     if ([self.touchBarDarkroomButton.title isEqualToString:@"Enable Darkroom"]) {
         [self.touchBarDarkroomButton setTitle:@"Disable Darkroom"];
