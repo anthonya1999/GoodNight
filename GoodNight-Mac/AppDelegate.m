@@ -67,8 +67,8 @@
                                     @"darkroomEnabled": @(defaultBooleanValue),
                                     @"alertShowed":     @(defaultBooleanValue),
                                     @"brightnessValue": @(defaultValue),
-                                    MASOpenShortcutEnabledKey: @YES,
-                                    MASResetShortcutEnabledKey: @YES,
+                                    MASOpenShortcutEnabledKey:     @YES,
+                                    MASResetShortcutEnabledKey:    @YES,
                                     MASDarkroomShortcutEnabledKey: @YES};
     
     [userDefaults registerDefaults:defaultValues];
