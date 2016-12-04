@@ -24,6 +24,7 @@ static void *MASObservingContext = &MASObservingContext;
 
 @property (strong, nonatomic) NSStatusItem *statusItem;
 @property (strong, nonatomic) NSMenu *statusMenu;
+@property (strong, nonatomic) NSMenuItem *loginItem;
 
 @property NSWindowController *tabWindowController;
 @property NSWindowController *aboutWindowController;

@@ -38,6 +38,10 @@
     NSMenuItem *updateItem = [[NSMenuItem alloc] initWithTitle:@"Check for Updates..." action:@selector(checkForUpdateMenuAction) keyEquivalent:@""];
     NSMenuItem *seperatorItem2 = [NSMenuItem separatorItem];
     
+    self.loginItem = [[NSMenuItem alloc] initWithTitle:@"Start at Login" action:@selector(setStartAtLoginEnabled) keyEquivalent:@""];
+    [self.loginItem setState:self.willStartAtLogin];
+    NSMenuItem *seperatorItem3 = [NSMenuItem separatorItem];
+    
     NSMenuItem *resetItem = [[NSMenuItem alloc] initWithTitle:@"Reset All" action:@selector(resetAll) keyEquivalent:@"r"];
     [resetItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
     
@@ -47,7 +51,7 @@
     NSMenuItem *darkThemeItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Dark Theme" action:@selector(menuToggleSystemTheme) keyEquivalent:@"t"];
     [darkThemeItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
     
-    NSMenuItem *seperatorItem3 = [NSMenuItem separatorItem];
+    NSMenuItem *seperatorItem4 = [NSMenuItem separatorItem];
     
     NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@"g"];
     [openItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
@@ -61,15 +65,85 @@
     [self.statusMenu addItem:aboutItem];
     [self.statusMenu addItem:updateItem];
     [self.statusMenu addItem:seperatorItem2];
+    [self.statusMenu addItem:self.loginItem];
+    [self.statusMenu addItem:seperatorItem3];
     [self.statusMenu addItem:resetItem];
     [self.statusMenu addItem:darkroomItem];
     [self.statusMenu addItem:darkThemeItem];
-    [self.statusMenu addItem:seperatorItem3];
+    [self.statusMenu addItem:seperatorItem4];
     [self.statusMenu addItem:openItem];
     [self.statusMenu addItem:closeWindowItem];
     [self.statusMenu addItem:quitItem];
     
     [self.statusItem setMenu:self.statusMenu];
+}
+
+- (BOOL)willStartAtLogin {
+    BOOL foundIt = NO;
+    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    
+    if (loginItems) {
+        UInt32 seed = 0;
+        NSArray *currentLoginItems = (__bridge NSArray *)(LSSharedFileListCopySnapshot(loginItems, &seed));
+        
+        for (id itemObject in currentLoginItems) {
+            LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
+            UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
+            CFURLRef URL = NULL;
+            OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &URL, NULL);
+            
+            if (err == noErr) {
+                foundIt = CFEqual(URL, (__bridge CFTypeRef)([[NSBundle mainBundle] bundleURL]));
+                CFRelease(URL);
+                
+                if (foundIt) {
+                    break;
+                }
+            }
+        }
+        CFRelease(loginItems);
+    }
+    return foundIt;
+}
+
+- (void)setStartAtLoginEnabled {
+    LSSharedFileListItemRef existingItem = NULL;
+    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    
+    if (loginItems) {
+        UInt32 seed = 0;
+        NSArray *currentLoginItems = (__bridge NSArray *)(LSSharedFileListCopySnapshot(loginItems, &seed));
+        
+        for (id itemObject in currentLoginItems) {
+            LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
+            UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
+            CFURLRef URL = NULL;
+            OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &URL, NULL);
+            
+            if (err == noErr) {
+                Boolean foundIt = CFEqual(URL, (__bridge CFURLRef)([[NSBundle mainBundle] bundleURL]));
+                CFRelease(URL);
+                
+                if (foundIt) {
+                    existingItem = item;
+                    break;
+                }
+            }
+        }
+        
+        if (!self.willStartAtLogin && (existingItem == NULL)) {
+            LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst,
+                                          NULL, NULL, (__bridge CFURLRef)[[NSBundle mainBundle] bundleURL], NULL, NULL);
+            
+        }
+        else if (self.willStartAtLogin && (existingItem != NULL)) {
+            LSSharedFileListItemRemove(loginItems, existingItem);
+        }
+        
+        CFRelease(loginItems);
+    }
+    
+    [self.loginItem setState:self.willStartAtLogin];
 }
 
 - (void)registerDefaultValues {
