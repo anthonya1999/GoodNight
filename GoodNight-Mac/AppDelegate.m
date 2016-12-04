@@ -15,11 +15,18 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     
+    [self createMenuItems];
+    [self registerDefaultValues];
+    [self restoreGammaValues];
+    [self setShortcutObservers];
+}
+
+- (void)createMenuItems {
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     self.statusItem.image = [NSImage imageNamed:@"menu"];
     [self.statusItem setHighlightMode:YES];
     
-    self.statusMenu = [[NSMenu alloc] initWithTitle:@""];
+    self.statusMenu = [[NSMenu alloc] init];
     
     NSMenuItem *titleItem = [[NSMenuItem alloc] initWithTitle:@"GoodNight" action:nil keyEquivalent:@""];
     
@@ -61,9 +68,11 @@
     [self.statusMenu addItem:openItem];
     [self.statusMenu addItem:closeWindowItem];
     [self.statusMenu addItem:quitItem];
-
-    [self.statusItem setMenu:self.statusMenu];
     
+    [self.statusItem setMenu:self.statusMenu];
+}
+
+- (void)registerDefaultValues {
     float defaultValue = 1.0;
     BOOL defaultBooleanValue = NO;
     
@@ -78,17 +87,21 @@
                                     MASDarkThemeShortcutEnabledKey: @YES};
     
     [userDefaults registerDefaults:defaultValues];
-    
+}
+
+- (void)restoreGammaValues {
     float orangeValue = [userDefaults floatForKey:@"orangeValue"];
     if (orangeValue != 1) {
         [TemperatureViewController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
     }
-
+    
     float brightnessValue = [userDefaults floatForKey:@"brightnessValue"];
     if (brightnessValue != 1) {
         [TemperatureViewController setGammaWithRed:brightnessValue green:brightnessValue blue:brightnessValue];
     }
-    
+}
+
+- (void)setShortcutObservers {
     [userDefaults addObserver:self forKeyPath:MASOpenShortcutEnabledKey options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:MASObservingContext];
     [userDefaults addObserver:self forKeyPath:MASResetShortcutEnabledKey options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:MASObservingContext];
     [userDefaults addObserver:self forKeyPath:MASDarkroomShortcutEnabledKey options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:MASObservingContext];
