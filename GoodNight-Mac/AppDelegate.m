@@ -37,6 +37,9 @@
     NSMenuItem *darkroomItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Darkroom" action:@selector(toggleDarkroom) keyEquivalent:@"x"];
     [darkroomItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
     
+    NSMenuItem *darkThemeItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Dark Theme" action:@selector(toggleSystemTheme) keyEquivalent:@"t"];
+    [darkThemeItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
+    
     NSMenuItem *seperatorItem3 = [NSMenuItem separatorItem];
     
     NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@"g"];
@@ -53,6 +56,7 @@
     [self.statusMenu addItem:seperatorItem2];
     [self.statusMenu addItem:resetItem];
     [self.statusMenu addItem:darkroomItem];
+    [self.statusMenu addItem:darkThemeItem];
     [self.statusMenu addItem:seperatorItem3];
     [self.statusMenu addItem:openItem];
     [self.statusMenu addItem:closeWindowItem];
@@ -67,9 +71,10 @@
                                     @"darkroomEnabled": @(defaultBooleanValue),
                                     @"alertShowed":     @(defaultBooleanValue),
                                     @"brightnessValue": @(defaultValue),
-                                    MASOpenShortcutEnabledKey:     @YES,
-                                    MASResetShortcutEnabledKey:    @YES,
-                                    MASDarkroomShortcutEnabledKey: @YES};
+                                    MASOpenShortcutEnabledKey:      @YES,
+                                    MASResetShortcutEnabledKey:     @YES,
+                                    MASDarkroomShortcutEnabledKey:  @YES,
+                                    MASDarkThemeShortcutEnabledKey: @YES};
     
     [userDefaults registerDefaults:defaultValues];
     
@@ -86,6 +91,18 @@
     [userDefaults addObserver:self forKeyPath:MASOpenShortcutEnabledKey options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:MASObservingContext];
     [userDefaults addObserver:self forKeyPath:MASResetShortcutEnabledKey options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:MASObservingContext];
     [userDefaults addObserver:self forKeyPath:MASDarkroomShortcutEnabledKey options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:MASObservingContext];
+    [userDefaults addObserver:self forKeyPath:MASDarkThemeShortcutEnabledKey options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:MASObservingContext];
+}
+
+- (void)toggleSystemTheme {
+    NSAppleScript *themeScript = [[NSAppleScript alloc] initWithSource:
+                                  @"\
+                                  tell application \"System Events\"\n\
+                                  tell appearance preferences to set dark mode to not dark mode\n\
+                                  end tell"];
+    
+    NSDictionary *errorDict = [NSDictionary dictionary];
+    [themeScript executeAndReturnError:&errorDict];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -104,6 +121,9 @@
     }
     if ([keyPath isEqualToString:MASDarkroomShortcutEnabledKey]) {
         [self setDarkroomShortcutEnabled:newValue];
+    }
+    if ([keyPath isEqualToString:MASDarkThemeShortcutEnabledKey]) {
+        [self setSystemThemeShortcutEnabled:newValue];
     }
 }
 
@@ -136,6 +156,18 @@
     if (enabled) {
         [[MASShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
             [self toggleDarkroom];
+        }];
+    }
+    else {
+        [[MASShortcutMonitor sharedMonitor] unregisterShortcut:shortcut];
+    }
+}
+
+- (void)setSystemThemeShortcutEnabled:(BOOL)enabled {
+    MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_ANSI_T modifierFlags:GoodNightModifierFlags];
+    if (enabled) {
+        [[MASShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
+            [self toggleSystemTheme];
         }];
     }
     else {

@@ -12,6 +12,7 @@
 static NSString * const MASOpenShortcutEnabledKey = @"openShortcutEnabled";
 static NSString * const MASResetShortcutEnabledKey = @"resetShortcutEnabled";
 static NSString * const MASDarkroomShortcutEnabledKey = @"darkroomShortcutEnabled";
+static NSString * const MASDarkThemeShortcutEnabledKey = @"darkThemeShortcutEnabled";
 
 static NSUInteger const GoodNightModifierFlags = NSEventModifierFlagCommand | NSEventModifierFlagOption;
 
