@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C53a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="PiQ-EZ-YuB">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="7104"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
         <capability name="the Touch Bar" message="Use a version of macOS with Touch Bar support." minToolsVersion="8.1" minSystemVersion="10.12.1" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <scenes>
@@ -667,16 +665,16 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                     <constraint firstAttribute="height" constant="17" id="oJG-ee-Djk"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version" id="RGn-Da-pJx">
-                                    <font key="font" metaFont="systemMedium" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lt6-TQ-CaH">
-                                <rect key="frame" x="66" y="99" width="169" height="32"/>
+                                <rect key="frame" x="68" y="99" width="165" height="32"/>
                                 <buttonCell key="cell" type="push" title="Check for Updates..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BES-8J-pFj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="updateButtonClicked:" target="p3D-ZI-Kcm" id="JfI-9p-Swp"/>
@@ -735,7 +733,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         <touchBarItem id="zin-K7-YaG">
                                             <viewController key="viewController" id="Apv-dX-Im2">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oCd-qc-44d">
-                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                                    <rect key="frame" x="-6" y="-7" width="156" height="41"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="Pl2-1S-css"/>
                                                     </constraints>
@@ -759,7 +757,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                 <sliderAccessoryBehavior key="behavior" id="0AC-cM-G2k"/>
                                             </sliderAccessory>
                                             <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
-                                                <rect key="frame" x="57.5" y="0.0" width="582.5" height="30"/>
+                                                <rect key="frame" x="-2" y="-2" width="583" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QKQ-u8-hdQ"/>
                                                 </constraints>
@@ -773,7 +771,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         <touchBarItem id="IR0-iV-QiV">
                                             <viewController key="viewController" id="BfW-Xg-sg1">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vh8-4e-KgN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                                    <rect key="frame" x="-6" y="-7" width="144" height="41"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="SL5-6t-n7T"/>
                                                     </constraints>
@@ -803,7 +801,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         <touchBarItem id="tBs-73-qyW">
                                             <viewController key="viewController" id="cU1-vU-y9r">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3rH-ng-ZaT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
+                                                    <rect key="frame" x="-6" y="-7" width="138" height="41"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="aJE-cZ-V0e"/>
                                                     </constraints>
@@ -827,7 +825,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                 <sliderAccessoryBehavior key="behavior" id="deu-0Q-FrY"/>
                                             </sliderAccessory>
                                             <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frp-8f-VoZ">
-                                                <rect key="frame" x="49" y="0.0" width="760" height="30"/>
+                                                <rect key="frame" x="-2" y="-2" width="760" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="yEX-q8-uav"/>
                                                 </constraints>
@@ -849,7 +847,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <touchBarItem id="3wI-ue-jM1">
                                 <viewController key="viewController" id="cUs-IQ-ZLr">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Frw-7P-CNJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                        <rect key="frame" x="-6" y="-7" width="156" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="LQ8-q3-0Qb"/>
                                         </constraints>
@@ -868,7 +866,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <touchBarItem id="8JB-Ha-8RX">
                                 <viewController key="viewController" id="3h2-P6-gaR">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hst-BT-cOF">
-                                        <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
+                                        <rect key="frame" x="-6" y="-7" width="135" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="LbO-LR-Aga"/>
                                         </constraints>
@@ -909,7 +907,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                     <tabView key="tabView" type="noTabsNoBorder" id="8b1-re-hPn">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="message"/>
+                        <font key="font" metaFont="system"/>
                         <tabViewItems/>
                     </tabView>
                     <connections>
@@ -937,7 +935,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Reset Temperature" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YUP-g1-yhE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="resetTemperature:" target="wpb-NC-hX3" id="xAj-ny-LfI"/>
@@ -946,7 +944,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LwU-hw-VEa">
                                 <rect key="frame" x="3" y="207" width="494" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Temperature: 6500K" id="Xg5-7F-wXl">
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -959,23 +957,23 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 </connections>
                             </slider>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="2u4-Cb-5TH">
-                                <rect key="frame" x="189" y="52" width="122" height="18"/>
+                                <rect key="frame" x="190" y="52" width="120" height="18"/>
                                 <buttonCell key="cell" type="check" title="Darkroom Mode" bezelStyle="regularSquare" imagePosition="left" inset="2" id="H2p-L0-J26">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="toggleDarkroom:" target="wpb-NC-hX3" id="y8v-65-7CA"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tmg-ll-YNT">
-                                <rect key="frame" x="189" y="18" width="122" height="32"/>
+                                <rect key="frame" x="190" y="18" width="120" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="oSF-oa-FKJ"/>
                                 </constraints>
                                 <buttonCell key="cell" type="check" title="Dark Theme" bezelStyle="regularSquare" imagePosition="left" inset="2" id="bba-Kb-ZU8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="toggleDarkTheme:" target="wpb-NC-hX3" id="vBG-wm-iwj"/>
@@ -1020,7 +1018,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LkZ-jm-qhl">
                                 <rect key="frame" x="18" y="182" width="464" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Choose a color from the color well." id="Gki-4J-a5I">
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1030,10 +1028,10 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </colorWell>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vAK-Ra-wxi">
-                                <rect key="frame" x="194" y="43" width="113" height="32"/>
+                                <rect key="frame" x="195" y="43" width="111" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reset Color" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6xR-LY-Ywo">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="resetColor:" target="FWI-pN-Ufp" id="5pN-zX-Bz2"/>
@@ -1069,10 +1067,10 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d49-YX-1hW">
-                                <rect key="frame" x="177" y="34" width="146" height="32"/>
+                                <rect key="frame" x="179" y="34" width="143" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reset Brightness" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="THn-XP-LRm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="resetBrightness:" target="pfP-R7-v7X" id="Qyh-4y-uZp"/>
@@ -1081,7 +1079,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NFj-Zg-ZW7">
                                 <rect key="frame" x="18" y="193" width="464" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Use the slider to set the brightness below the system value." id="cPq-ba-sK8">
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1096,7 +1094,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sJz-Zk-yya">
                                 <rect key="frame" x="18" y="138" width="464" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100%" id="RBe-Rh-lUC">
-                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
