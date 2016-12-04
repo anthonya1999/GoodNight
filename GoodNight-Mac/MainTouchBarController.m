@@ -14,10 +14,21 @@
 - (void)awakeFromNib {
     [self.touchBarColorPicker setEnabled:YES];
     [self.touchBarColorPicker addObserver:self forKeyPath:@"color" options:kNilOptions context:nil];
+    
+    [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
 - (void)dealloc {
     [self.touchBarColorPicker removeObserver:self forKeyPath:@"color"];
+}
+
+- (void)defaultsChanged {
+    if ([userDefaults boolForKey:@"darkThemeEnabled"]) {
+        [self.touchBarDarkThemeButton setTitle:@"Disable Dark Theme"];
+    }
+    else {
+        [self.touchBarDarkThemeButton setTitle:@"Enable Dark Theme"];
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -32,6 +43,17 @@
 
 - (IBAction)resetAll:(NSButton *)button {
     [TemperatureViewController resetAllAdjustments];
+}
+
+- (IBAction)toggleDarkTheme:(NSButton *)button {
+    if ([self.touchBarDarkThemeButton.title isEqualToString:@"Enable Dark Theme"]) {
+        [self.touchBarDarkThemeButton setTitle:@"Disable Dark Theme"];
+    }
+    else {
+        [self.touchBarDarkThemeButton setTitle:@"Enable Dark Theme"];
+    }
+    
+    [TemperatureViewController toggleSystemTheme];
 }
 
 @end

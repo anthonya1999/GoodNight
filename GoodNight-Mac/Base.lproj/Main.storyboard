@@ -734,10 +734,10 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                     <touchBarItems>
                                         <touchBarItem id="zin-K7-YaG">
                                             <viewController key="viewController" id="Apv-dX-Im2">
-                                                <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oCd-qc-44d">
-                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
+                                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oCd-qc-44d">
+                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="awy-cl-3tb"/>
+                                                        <constraint firstAttribute="height" constant="30" id="Pl2-1S-css"/>
                                                     </constraints>
                                                     <buttonCell key="cell" type="push" title="Reset Temperature" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eGH-xX-syx">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -748,7 +748,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                     </connections>
                                                 </button>
                                             </viewController>
-                                            <size key="designTimeSize" width="135" height="30"/>
+                                            <size key="designTimeSize" width="144" height="30"/>
                                         </touchBarItem>
                                         <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="Hry-BZ-1jL"/>
                                         <sliderTouchBarItem label="6500K" id="5Az-tw-Lxp">
@@ -759,7 +759,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                 <sliderAccessoryBehavior key="behavior" id="0AC-cM-G2k"/>
                                             </sliderAccessory>
                                             <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
-                                                <rect key="frame" x="57.5" y="0.0" width="600.5" height="30"/>
+                                                <rect key="frame" x="57.5" y="0.0" width="582.5" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QKQ-u8-hdQ"/>
                                                 </constraints>
@@ -773,7 +773,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         <touchBarItem id="IR0-iV-QiV">
                                             <viewController key="viewController" id="BfW-Xg-sg1">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vh8-4e-KgN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="SL5-6t-n7T"/>
                                                     </constraints>
@@ -786,7 +786,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                     </connections>
                                                 </button>
                                             </viewController>
-                                            <size key="designTimeSize" width="135" height="30"/>
+                                            <size key="designTimeSize" width="144" height="30"/>
                                         </touchBarItem>
                                     </touchBarItems>
                                     <connections>
@@ -816,7 +816,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                     </connections>
                                                 </button>
                                             </viewController>
-                                            <size key="designTimeSize" width="135" height="30"/>
+                                            <size key="designTimeSize" width="123" height="19"/>
                                         </touchBarItem>
                                         <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="B6M-14-a9h"/>
                                         <sliderTouchBarItem label="100%" id="fh0-Qc-7J5">
@@ -846,6 +846,25 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="LvU-DL-qc0"/>
                             <colorPickerItem showsAlpha="NO" id="bfb-ba-IjI"/>
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="efa-6v-d81"/>
+                            <touchBarItem id="3wI-ue-jM1">
+                                <viewController key="viewController" id="cUs-IQ-ZLr">
+                                    <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Frw-7P-CNJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="LQ8-q3-0Qb"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Enable Dark Theme" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TCF-ui-Uk8">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="toggleDarkTheme:" target="UMi-PB-ZzS" id="za0-2a-lm5"/>
+                                        </connections>
+                                    </button>
+                                </viewController>
+                                <size key="designTimeSize" width="144" height="30"/>
+                            </touchBarItem>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="7Hy-Rs-H4B"/>
                             <touchBarItem id="8JB-Ha-8RX">
                                 <viewController key="viewController" id="3h2-P6-gaR">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hst-BT-cOF">
@@ -867,6 +886,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                         </touchBarItems>
                         <connections>
                             <outlet property="touchBarColorPicker" destination="bfb-ba-IjI" id="Pok-UM-6T2"/>
+                            <outlet property="touchBarDarkThemeButton" destination="Frw-7P-CNJ" id="Rc5-uD-HRo"/>
                         </connections>
                     </touchBar>
                     <connections>
@@ -911,9 +931,9 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="orv-8V-3Ie">
-                                <rect key="frame" x="170" y="61" width="161" height="32"/>
+                                <rect key="frame" x="170" y="81" width="161" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="149" id="fU2-H2-fMT"/>
+                                    <constraint firstAttribute="width" constant="149" id="ipy-84-GLE"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Reset Temperature" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YUP-g1-yhE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -924,7 +944,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LwU-hw-VEa">
-                                <rect key="frame" x="3" y="197" width="494" height="17"/>
+                                <rect key="frame" x="3" y="207" width="494" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Temperature: 6500K" id="Xg5-7F-wXl">
                                     <font key="font" metaFont="systemMedium" size="13"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -932,14 +952,14 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Exh-Wa-Vqs">
-                                <rect key="frame" x="18" y="129" width="464" height="24"/>
+                                <rect key="frame" x="18" y="139" width="464" height="24"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.99999999999999989" tickMarkPosition="below" numberOfTickMarks="50" allowsTickMarkValuesOnly="YES" sliderType="linear" id="I8y-Vn-hLE"/>
                                 <connections>
                                     <action selector="sliderValueDidChange:" target="wpb-NC-hX3" id="Y6U-wE-NFP"/>
                                 </connections>
                             </slider>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="2u4-Cb-5TH">
-                                <rect key="frame" x="189" y="32" width="122" height="18"/>
+                                <rect key="frame" x="189" y="52" width="122" height="18"/>
                                 <buttonCell key="cell" type="check" title="Darkroom Mode" bezelStyle="regularSquare" imagePosition="left" inset="2" id="H2p-L0-J26">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="systemMedium" size="13"/>
@@ -948,21 +968,38 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                     <action selector="toggleDarkroom:" target="wpb-NC-hX3" id="y8v-65-7CA"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tmg-ll-YNT">
+                                <rect key="frame" x="189" y="18" width="122" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="oSF-oa-FKJ"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Dark Theme" bezelStyle="regularSquare" imagePosition="left" inset="2" id="bba-Kb-ZU8">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleDarkTheme:" target="wpb-NC-hX3" id="vBG-wm-iwj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Exh-Wa-Vqs" secondAttribute="trailing" constant="20" symbolic="YES" id="1DV-sV-UTZ"/>
-                            <constraint firstItem="Exh-Wa-Vqs" firstAttribute="leading" secondItem="eLv-aZ-geS" secondAttribute="leading" constant="20" symbolic="YES" id="4Uh-Du-AI0"/>
-                            <constraint firstItem="LwU-hw-VEa" firstAttribute="centerX" secondItem="Exh-Wa-Vqs" secondAttribute="centerX" id="CLN-Ip-CTc"/>
-                            <constraint firstItem="LwU-hw-VEa" firstAttribute="top" secondItem="eLv-aZ-geS" secondAttribute="top" constant="36" id="Mw6-eW-RTD"/>
-                            <constraint firstItem="orv-8V-3Ie" firstAttribute="top" secondItem="Exh-Wa-Vqs" secondAttribute="bottom" constant="41" id="UYV-AB-OaO"/>
-                            <constraint firstItem="Exh-Wa-Vqs" firstAttribute="centerX" secondItem="orv-8V-3Ie" secondAttribute="centerX" id="fTc-SS-m7M"/>
-                            <constraint firstItem="2u4-Cb-5TH" firstAttribute="top" secondItem="orv-8V-3Ie" secondAttribute="bottom" constant="20" symbolic="YES" id="lzp-Kd-Jrf"/>
-                            <constraint firstItem="2u4-Cb-5TH" firstAttribute="centerX" secondItem="orv-8V-3Ie" secondAttribute="centerX" id="mGD-Xz-zIN"/>
-                            <constraint firstItem="LwU-hw-VEa" firstAttribute="leading" secondItem="eLv-aZ-geS" secondAttribute="leading" constant="5" id="t9V-DZ-flW"/>
-                            <constraint firstItem="Exh-Wa-Vqs" firstAttribute="top" secondItem="LwU-hw-VEa" secondAttribute="bottom" constant="46" id="tGI-ow-U60"/>
+                            <constraint firstItem="Exh-Wa-Vqs" firstAttribute="leading" secondItem="eLv-aZ-geS" secondAttribute="leading" constant="20" symbolic="YES" id="GjC-ik-ZYz"/>
+                            <constraint firstAttribute="trailing" secondItem="Exh-Wa-Vqs" secondAttribute="trailing" constant="20" symbolic="YES" id="Oup-LK-PvS"/>
+                            <constraint firstItem="2u4-Cb-5TH" firstAttribute="leading" secondItem="tmg-ll-YNT" secondAttribute="leading" id="PZ3-2R-UOs"/>
+                            <constraint firstItem="LwU-hw-VEa" firstAttribute="leading" secondItem="eLv-aZ-geS" secondAttribute="leading" constant="5" id="Pto-jN-ro7"/>
+                            <constraint firstItem="orv-8V-3Ie" firstAttribute="top" secondItem="Exh-Wa-Vqs" secondAttribute="bottom" constant="31" id="RWi-Y6-qYk"/>
+                            <constraint firstItem="Exh-Wa-Vqs" firstAttribute="top" secondItem="LwU-hw-VEa" secondAttribute="bottom" constant="46" id="ScW-b7-47W"/>
+                            <constraint firstItem="2u4-Cb-5TH" firstAttribute="trailing" secondItem="tmg-ll-YNT" secondAttribute="trailing" id="ag9-Ts-VY9"/>
+                            <constraint firstItem="orv-8V-3Ie" firstAttribute="centerX" secondItem="2u4-Cb-5TH" secondAttribute="centerX" id="cTz-1g-WaN"/>
+                            <constraint firstAttribute="bottom" secondItem="tmg-ll-YNT" secondAttribute="bottom" constant="20" symbolic="YES" id="iJU-Cz-UxU"/>
+                            <constraint firstItem="LwU-hw-VEa" firstAttribute="centerX" secondItem="Exh-Wa-Vqs" secondAttribute="centerX" id="lMR-Tg-CYT"/>
+                            <constraint firstItem="tmg-ll-YNT" firstAttribute="top" secondItem="2u4-Cb-5TH" secondAttribute="bottom" constant="6" symbolic="YES" id="nfp-kn-owW"/>
+                            <constraint firstItem="2u4-Cb-5TH" firstAttribute="top" secondItem="orv-8V-3Ie" secondAttribute="bottom" constant="20" symbolic="YES" id="oOT-ve-s6h"/>
+                            <constraint firstItem="Exh-Wa-Vqs" firstAttribute="centerX" secondItem="orv-8V-3Ie" secondAttribute="centerX" id="tO8-ee-vEv"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="darkThemeButton" destination="tmg-ll-YNT" id="zO5-Ba-0Q2"/>
                         <outlet property="darkroomButton" destination="2u4-Cb-5TH" id="stv-9h-liQ"/>
                         <outlet property="temperatureLabel" destination="LwU-hw-VEa" id="u5t-v8-vTv"/>
                         <outlet property="temperatureSlider" destination="Exh-Wa-Vqs" id="05L-7S-EHN"/>

@@ -23,6 +23,7 @@
     [self.temperatureSlider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
     self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round(((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10)];
     [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];
+    [self.darkThemeButton setState:[userDefaults boolForKey:@"darkThemeEnabled"]];
 }
 
 - (void)dealloc {
@@ -39,6 +40,7 @@
     [self.temperatureSlider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
     self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round(((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10)];
     [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];
+    [self.darkThemeButton setState:[userDefaults boolForKey:@"darkThemeEnabled"]];
 }
 
 + (void)setGammaWithRed:(CGFloat)r green:(CGFloat)g blue:(CGFloat)b {
@@ -116,6 +118,35 @@
     self.temperatureLabel.stringValue = @"Temperature: 6500K";
     
     [TemperatureViewController resetAllAdjustments];
+}
+
+- (IBAction)toggleDarkTheme:(NSButton *)button {
+    [TemperatureViewController toggleSystemTheme];
+    
+    if (self.darkThemeButton.state == NSOnState) {
+        [self.darkThemeButton setState:NSOnState];
+    }
+    else {
+        [self.darkThemeButton setState:NSOffState];
+    }
+}
+
++ (void)toggleSystemTheme {
+    if (![userDefaults boolForKey:@"darkThemeEnabled"]) {
+        [userDefaults setBool:YES forKey:@"darkThemeEnabled"];
+    }
+    else {
+        [userDefaults setBool:NO forKey:@"darkThemeEnabled"];
+    }
+    
+    NSAppleScript *themeScript = [[NSAppleScript alloc] initWithSource:
+                                  @"\
+                                  tell application \"System Events\"\n\
+                                  tell appearance preferences to set dark mode to not dark mode\n\
+                                  end tell"];
+    
+    NSDictionary *errorDict = [NSDictionary dictionary];
+    [themeScript executeAndReturnError:&errorDict];
 }
 
 + (void)toggleDarkroom {

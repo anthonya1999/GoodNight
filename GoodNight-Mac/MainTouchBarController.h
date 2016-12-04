@@ -11,5 +11,6 @@
 @interface MainTouchBarController : NSTouchBar
 
 @property (strong, nonatomic) IBOutlet NSColorPickerTouchBarItem *touchBarColorPicker;
+@property (strong, nonatomic) IBOutlet NSButton *touchBarDarkThemeButton;
 
 @end

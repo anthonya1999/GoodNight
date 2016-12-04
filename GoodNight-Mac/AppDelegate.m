@@ -37,7 +37,7 @@
     NSMenuItem *darkroomItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Darkroom" action:@selector(toggleDarkroom) keyEquivalent:@"x"];
     [darkroomItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
     
-    NSMenuItem *darkThemeItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Dark Theme" action:@selector(toggleSystemTheme) keyEquivalent:@"t"];
+    NSMenuItem *darkThemeItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Dark Theme" action:@selector(menuToggleSystemTheme) keyEquivalent:@"t"];
     [darkThemeItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
     
     NSMenuItem *seperatorItem3 = [NSMenuItem separatorItem];
@@ -71,6 +71,7 @@
                                     @"darkroomEnabled": @(defaultBooleanValue),
                                     @"alertShowed":     @(defaultBooleanValue),
                                     @"brightnessValue": @(defaultValue),
+                                    @"darkThemeEnabled":@(defaultBooleanValue),
                                     MASOpenShortcutEnabledKey:      @YES,
                                     MASResetShortcutEnabledKey:     @YES,
                                     MASDarkroomShortcutEnabledKey:  @YES,
@@ -94,15 +95,8 @@
     [userDefaults addObserver:self forKeyPath:MASDarkThemeShortcutEnabledKey options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:MASObservingContext];
 }
 
-- (void)toggleSystemTheme {
-    NSAppleScript *themeScript = [[NSAppleScript alloc] initWithSource:
-                                  @"\
-                                  tell application \"System Events\"\n\
-                                  tell appearance preferences to set dark mode to not dark mode\n\
-                                  end tell"];
-    
-    NSDictionary *errorDict = [NSDictionary dictionary];
-    [themeScript executeAndReturnError:&errorDict];
+- (void)menuToggleSystemTheme {
+    [TemperatureViewController toggleSystemTheme];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -167,7 +161,7 @@
     MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_ANSI_T modifierFlags:GoodNightModifierFlags];
     if (enabled) {
         [[MASShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
-            [self toggleSystemTheme];
+            [TemperatureViewController toggleSystemTheme];
         }];
     }
     else {
