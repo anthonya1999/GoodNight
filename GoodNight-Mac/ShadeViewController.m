@@ -7,7 +7,6 @@
 //
 
 #import "ShadeViewController.h"
-#import "ShadeTouchBarController.h"
 #import "TemperatureViewController.h"
 #import "AppDelegate.h"
 
@@ -53,7 +52,26 @@
         [self resetBrightness:nil];
     }
     
+    if (self.brightnessSlider.floatValue < 0.3) {
+        float sliderValue = self.brightnessSlider.floatValue = 0.3;
+        [userDefaults setFloat:sliderValue forKey:@"brightnessValue"];
+        sliderValue = [userDefaults floatForKey:@"brightnessValue"];
+        
+        self.percentTextField.stringValue = [NSString stringWithFormat:@"%d%%", (int)round(sliderValue * 100)];
+        [TemperatureViewController setGammaWithRed:sliderValue green:sliderValue blue:sliderValue];
+        
+        [ShadeViewController showBrightnessAlert];
+    }
+    
     [userDefaults synchronize];
+}
+
++ (void)showBrightnessAlert {
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:@"Warning!"];
+    [alert setInformativeText:@"If you set the brightness lower than the current level, you will not be able to see your screen!"];
+    [alert addButtonWithTitle:@"OK"];
+    [alert runModal];
 }
 
 - (IBAction)resetBrightness:(NSButton *)button {

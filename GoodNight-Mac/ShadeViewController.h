@@ -13,4 +13,6 @@
 @property (strong, nonatomic) IBOutlet NSSlider *brightnessSlider;
 @property (strong, nonatomic) IBOutlet NSTextField *percentTextField;
 
++ (void)showBrightnessAlert;
+
 @end

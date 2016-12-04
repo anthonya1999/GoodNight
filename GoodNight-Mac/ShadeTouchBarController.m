@@ -8,6 +8,7 @@
 
 #import "ShadeTouchBarController.h"
 #import "TemperatureViewController.h"
+#import "ShadeViewController.h"
 
 @implementation ShadeTouchBarController
 
@@ -26,7 +27,6 @@
 - (IBAction)brightnessSliderDidChange:(NSSliderTouchBarItem *)slider {
     float sliderValue = self.brightnessTouchBarSlider.slider.floatValue;
     [userDefaults setFloat:sliderValue forKey:@"brightnessValue"];
-    [userDefaults synchronize];
     sliderValue = [userDefaults floatForKey:@"brightnessValue"];
     
     [TemperatureViewController setGammaWithRed:sliderValue green:sliderValue blue:sliderValue];
@@ -35,6 +35,19 @@
     if (self.brightnessTouchBarSlider.slider.floatValue == 1) {
         [self resetBrightness:nil];
     }
+    
+    if (self.brightnessTouchBarSlider.slider.floatValue < 0.3) {
+        float sliderValue = self.brightnessTouchBarSlider.slider.floatValue = 0.3;
+        [userDefaults setFloat:sliderValue forKey:@"brightnessValue"];
+        sliderValue = [userDefaults floatForKey:@"brightnessValue"];
+        
+        self.brightnessTouchBarSlider.label = [NSString stringWithFormat:@"%d%%", (int)round(sliderValue * 100)];
+        [TemperatureViewController setGammaWithRed:sliderValue green:sliderValue blue:sliderValue];
+        
+        [ShadeViewController showBrightnessAlert];
+    }
+    
+    [userDefaults synchronize];
 }
 
 - (IBAction)resetBrightness:(NSButton *)button {
