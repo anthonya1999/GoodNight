@@ -39,11 +39,12 @@
     float greenValue = [color greenComponent];
     float blueValue = [color blueComponent];
     
-    [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
-    
     [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults synchronize];
+    
+    [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
 }
 
 - (IBAction)resetColor:(NSButton *)button {

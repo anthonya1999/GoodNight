@@ -89,7 +89,7 @@
         for (id itemObject in currentLoginItems) {
             LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
             UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
-            CFErrorRef err = NULL;
+            CFErrorRef err = noErr;
             CFURLRef URL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, &err);
             
             if (err == noErr) {
@@ -117,7 +117,7 @@
         for (id itemObject in currentLoginItems) {
             LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
             UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
-            CFErrorRef err = NULL;
+            CFErrorRef err = noErr;
             CFURLRef URL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, &err);
             
             if (err == noErr) {

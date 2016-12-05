@@ -16,6 +16,7 @@
     [self.touchBarColorPicker addObserver:self forKeyPath:@"color" options:kNilOptions context:nil];
     
     [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
+    [self setDarkThemeButtonText];
 }
 
 - (void)dealloc {
@@ -23,6 +24,10 @@
 }
 
 - (void)defaultsChanged {
+    [self setDarkThemeButtonText];
+}
+
+- (void)setDarkThemeButtonText {
     if ([userDefaults boolForKey:@"darkThemeEnabled"]) {
         [self.touchBarDarkThemeButton setTitle:@"Disable Dark Theme"];
     }
@@ -37,6 +42,11 @@
     float redValue = [color redComponent];
     float greenValue = [color greenComponent];
     float blueValue = [color blueComponent];
+    
+    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults synchronize];
     
     [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
 }
