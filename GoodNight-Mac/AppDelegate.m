@@ -89,8 +89,8 @@
         for (id itemObject in currentLoginItems) {
             LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
             UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
-            CFURLRef URL = NULL;
-            OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &URL, NULL);
+            CFErrorRef err = NULL;
+            CFURLRef URL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, &err);
             
             if (err == noErr) {
                 foundIt = CFEqual(URL, (__bridge CFTypeRef)([[NSBundle mainBundle] bundleURL]));
@@ -117,8 +117,8 @@
         for (id itemObject in currentLoginItems) {
             LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)itemObject;
             UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
-            CFURLRef URL = NULL;
-            OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &URL, NULL);
+            CFErrorRef err = NULL;
+            CFURLRef URL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, &err);
             
             if (err == noErr) {
                 Boolean foundIt = CFEqual(URL, (__bridge CFURLRef)([[NSBundle mainBundle] bundleURL]));
