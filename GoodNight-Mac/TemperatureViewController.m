@@ -91,6 +91,7 @@
         [self resetTemperature:nil];
     }
     
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults synchronize];
 }

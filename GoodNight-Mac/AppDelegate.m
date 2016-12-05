@@ -121,7 +121,7 @@
             CFURLRef URL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, &err);
             
             if (err == noErr) {
-                Boolean foundIt = CFEqual(URL, (__bridge CFURLRef)([[NSBundle mainBundle] bundleURL]));
+                BOOL foundIt = CFEqual(URL, (__bridge CFURLRef)([[NSBundle mainBundle] bundleURL]));
                 CFRelease(URL);
                 
                 if (foundIt) {
