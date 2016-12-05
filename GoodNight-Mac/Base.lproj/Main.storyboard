@@ -733,7 +733,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         <touchBarItem id="zin-K7-YaG">
                                             <viewController key="viewController" id="Apv-dX-Im2">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oCd-qc-44d">
-                                                    <rect key="frame" x="-6" y="-7" width="156" height="41"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="Pl2-1S-css"/>
                                                     </constraints>
@@ -757,7 +757,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                 <sliderAccessoryBehavior key="behavior" id="0AC-cM-G2k"/>
                                             </sliderAccessory>
                                             <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bL5-EK-RSR">
-                                                <rect key="frame" x="-2" y="-2" width="583" height="34"/>
+                                                <rect key="frame" x="57.5" y="0.0" width="582.5" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QKQ-u8-hdQ"/>
                                                 </constraints>
@@ -771,7 +771,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         <touchBarItem id="IR0-iV-QiV">
                                             <viewController key="viewController" id="BfW-Xg-sg1">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vh8-4e-KgN">
-                                                    <rect key="frame" x="-6" y="-7" width="144" height="41"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="SL5-6t-n7T"/>
                                                     </constraints>
@@ -801,7 +801,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         <touchBarItem id="tBs-73-qyW">
                                             <viewController key="viewController" id="cU1-vU-y9r">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3rH-ng-ZaT">
-                                                    <rect key="frame" x="-6" y="-7" width="138" height="41"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="aJE-cZ-V0e"/>
                                                     </constraints>
@@ -814,7 +814,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                     </connections>
                                                 </button>
                                             </viewController>
-                                            <size key="designTimeSize" width="123" height="19"/>
+                                            <size key="designTimeSize" width="144" height="30"/>
                                         </touchBarItem>
                                         <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="B6M-14-a9h"/>
                                         <sliderTouchBarItem label="100%" id="fh0-Qc-7J5">
@@ -825,7 +825,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                 <sliderAccessoryBehavior key="behavior" id="deu-0Q-FrY"/>
                                             </sliderAccessory>
                                             <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frp-8f-VoZ">
-                                                <rect key="frame" x="-2" y="-2" width="760" height="34"/>
+                                                <rect key="frame" x="49" y="0.0" width="751" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="yEX-q8-uav"/>
                                                 </constraints>
@@ -847,7 +847,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <touchBarItem id="3wI-ue-jM1">
                                 <viewController key="viewController" id="cUs-IQ-ZLr">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Frw-7P-CNJ">
-                                        <rect key="frame" x="-6" y="-7" width="156" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="LQ8-q3-0Qb"/>
                                         </constraints>
@@ -866,7 +866,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <touchBarItem id="8JB-Ha-8RX">
                                 <viewController key="viewController" id="3h2-P6-gaR">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hst-BT-cOF">
-                                        <rect key="frame" x="-6" y="-7" width="135" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="LbO-LR-Aga"/>
                                         </constraints>
@@ -879,7 +879,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         </connections>
                                     </button>
                                 </viewController>
-                                <size key="designTimeSize" width="135" height="30"/>
+                                <size key="designTimeSize" width="144" height="30"/>
                             </touchBarItem>
                         </touchBarItems>
                         <connections>
@@ -1128,6 +1128,6 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
         <image name="icon_raw_rounded" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Nv2-va-dE6"/>
+        <segue reference="NGP-OK-OGn"/>
     </inferredMetricsTieBreakers>
 </document>
