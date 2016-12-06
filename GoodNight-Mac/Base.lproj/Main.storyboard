@@ -649,7 +649,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lt6-TQ-CaH">
-                                <rect key="frame" x="68" y="99" width="165" height="32"/>
+                                <rect key="frame" x="68" y="94" width="165" height="32"/>
                                 <buttonCell key="cell" type="push" title="Check for Updates..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BES-8J-pFj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -667,7 +667,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon_raw_rounded" id="cLZ-9p-atC"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WLv-Fe-irz">
-                                <rect key="frame" x="18" y="165" width="264" height="20"/>
+                                <rect key="frame" x="18" y="166" width="264" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="F2w-xb-jLM"/>
                                 </constraints>
@@ -678,7 +678,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z4G-JA-BTv">
-                                <rect key="frame" x="18" y="145" width="264" height="17"/>
+                                <rect key="frame" x="18" y="146" width="264" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="oJG-ee-Djk"/>
                                 </constraints>
@@ -693,17 +693,17 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <constraint firstItem="WLv-Fe-irz" firstAttribute="leading" secondItem="Z4G-JA-BTv" secondAttribute="leading" id="6J2-1Z-NTp"/>
                             <constraint firstItem="WLv-Fe-irz" firstAttribute="leading" secondItem="Jhz-Ck-pjB" secondAttribute="leading" constant="20" symbolic="YES" id="CPW-Ne-VdT"/>
                             <constraint firstItem="Z4G-JA-BTv" firstAttribute="trailing" secondItem="Zti-NR-CX2" secondAttribute="trailing" id="Gse-Pn-3Wj"/>
-                            <constraint firstItem="WLv-Fe-irz" firstAttribute="top" secondItem="gGO-LP-v9t" secondAttribute="bottom" constant="19" id="KQP-5r-6oy"/>
+                            <constraint firstItem="WLv-Fe-irz" firstAttribute="top" secondItem="gGO-LP-v9t" secondAttribute="bottom" constant="18" id="KQP-5r-6oy"/>
                             <constraint firstItem="Z4G-JA-BTv" firstAttribute="top" secondItem="WLv-Fe-irz" secondAttribute="bottom" constant="3" id="KgJ-sh-gWr"/>
-                            <constraint firstItem="Lt6-TQ-CaH" firstAttribute="top" secondItem="Z4G-JA-BTv" secondAttribute="bottom" constant="18" id="My8-Wt-56M"/>
+                            <constraint firstItem="Lt6-TQ-CaH" firstAttribute="top" secondItem="Z4G-JA-BTv" secondAttribute="bottom" constant="24" id="My8-Wt-56M"/>
                             <constraint firstItem="gGO-LP-v9t" firstAttribute="centerX" secondItem="WLv-Fe-irz" secondAttribute="centerX" constant="0.5" id="NP3-Cu-yRo"/>
                             <constraint firstAttribute="bottom" secondItem="Zti-NR-CX2" secondAttribute="bottom" constant="26" id="Ogt-4m-X4T"/>
                             <constraint firstItem="Z4G-JA-BTv" firstAttribute="leading" secondItem="Zti-NR-CX2" secondAttribute="leading" id="ZtX-O9-v79"/>
                             <constraint firstItem="WLv-Fe-irz" firstAttribute="trailing" secondItem="Z4G-JA-BTv" secondAttribute="trailing" id="cu0-Mg-oE8"/>
                             <constraint firstAttribute="trailing" secondItem="WLv-Fe-irz" secondAttribute="trailing" constant="20" symbolic="YES" id="eyo-18-O7a"/>
-                            <constraint firstItem="Z4G-JA-BTv" firstAttribute="centerY" secondItem="Jhz-Ck-pjB" secondAttribute="centerY" constant="21.5" id="hA3-69-6e5"/>
+                            <constraint firstItem="Z4G-JA-BTv" firstAttribute="centerY" secondItem="Jhz-Ck-pjB" secondAttribute="centerY" constant="20.5" id="hA3-69-6e5"/>
                             <constraint firstItem="Z4G-JA-BTv" firstAttribute="centerX" secondItem="Lt6-TQ-CaH" secondAttribute="centerX" id="lpT-WH-pdd"/>
-                            <constraint firstItem="Zti-NR-CX2" firstAttribute="top" secondItem="Lt6-TQ-CaH" secondAttribute="bottom" constant="29" id="mdx-Bb-xg5"/>
+                            <constraint firstItem="Zti-NR-CX2" firstAttribute="top" secondItem="Lt6-TQ-CaH" secondAttribute="bottom" constant="24" id="mdx-Bb-xg5"/>
                             <constraint firstItem="gGO-LP-v9t" firstAttribute="top" secondItem="Jhz-Ck-pjB" secondAttribute="top" constant="31" id="q00-sB-A9n"/>
                         </constraints>
                     </view>
