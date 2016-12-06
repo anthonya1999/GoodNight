@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C53a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="PiQ-EZ-YuB">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C60b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="PiQ-EZ-YuB">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="7104"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
@@ -637,17 +637,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="350"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WLv-Fe-irz">
-                                <rect key="frame" x="18" y="176" width="264" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="F2w-xb-jLM"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="GoodNight" id="c6F-8D-8TW">
-                                    <font key="font" metaFont="systemBold" size="16"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zti-NR-CX2">
                                 <rect key="frame" x="18" y="26" width="264" height="51"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="tch-oM-mi1">
@@ -655,17 +644,6 @@
                                     <string key="title" base64-UTF8="YES">
 TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
 </string>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z4G-JA-BTv">
-                                <rect key="frame" x="18" y="156" width="264" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="oJG-ee-Djk"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version" id="RGn-Da-pJx">
-                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -681,13 +659,35 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gGO-LP-v9t">
-                                <rect key="frame" x="100" y="215" width="100" height="100"/>
+                                <rect key="frame" x="93" y="204" width="115" height="115"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="ULM-oM-nOg"/>
-                                    <constraint firstAttribute="height" constant="100" id="ovv-lo-EuA"/>
+                                    <constraint firstAttribute="width" constant="115" id="ULM-oM-nOg"/>
+                                    <constraint firstAttribute="height" constant="115" id="ovv-lo-EuA"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon_raw_rounded" id="cLZ-9p-atC"/>
                             </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WLv-Fe-irz">
+                                <rect key="frame" x="18" y="165" width="264" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="F2w-xb-jLM"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="GoodNight" id="c6F-8D-8TW">
+                                    <font key="font" metaFont="systemBold" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z4G-JA-BTv">
+                                <rect key="frame" x="18" y="145" width="264" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="oJG-ee-Djk"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version" id="RGn-Da-pJx">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="WLv-Fe-irz" firstAttribute="leading" secondItem="Z4G-JA-BTv" secondAttribute="leading" id="6J2-1Z-NTp"/>
@@ -695,16 +695,16 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                             <constraint firstItem="Z4G-JA-BTv" firstAttribute="trailing" secondItem="Zti-NR-CX2" secondAttribute="trailing" id="Gse-Pn-3Wj"/>
                             <constraint firstItem="WLv-Fe-irz" firstAttribute="top" secondItem="gGO-LP-v9t" secondAttribute="bottom" constant="19" id="KQP-5r-6oy"/>
                             <constraint firstItem="Z4G-JA-BTv" firstAttribute="top" secondItem="WLv-Fe-irz" secondAttribute="bottom" constant="3" id="KgJ-sh-gWr"/>
-                            <constraint firstItem="Lt6-TQ-CaH" firstAttribute="top" secondItem="Z4G-JA-BTv" secondAttribute="bottom" constant="29" id="My8-Wt-56M"/>
-                            <constraint firstItem="gGO-LP-v9t" firstAttribute="centerX" secondItem="WLv-Fe-irz" secondAttribute="centerX" id="NP3-Cu-yRo"/>
+                            <constraint firstItem="Lt6-TQ-CaH" firstAttribute="top" secondItem="Z4G-JA-BTv" secondAttribute="bottom" constant="18" id="My8-Wt-56M"/>
+                            <constraint firstItem="gGO-LP-v9t" firstAttribute="centerX" secondItem="WLv-Fe-irz" secondAttribute="centerX" constant="0.5" id="NP3-Cu-yRo"/>
                             <constraint firstAttribute="bottom" secondItem="Zti-NR-CX2" secondAttribute="bottom" constant="26" id="Ogt-4m-X4T"/>
                             <constraint firstItem="Z4G-JA-BTv" firstAttribute="leading" secondItem="Zti-NR-CX2" secondAttribute="leading" id="ZtX-O9-v79"/>
                             <constraint firstItem="WLv-Fe-irz" firstAttribute="trailing" secondItem="Z4G-JA-BTv" secondAttribute="trailing" id="cu0-Mg-oE8"/>
                             <constraint firstAttribute="trailing" secondItem="WLv-Fe-irz" secondAttribute="trailing" constant="20" symbolic="YES" id="eyo-18-O7a"/>
-                            <constraint firstItem="Z4G-JA-BTv" firstAttribute="centerY" secondItem="Jhz-Ck-pjB" secondAttribute="centerY" constant="10.5" id="hA3-69-6e5"/>
+                            <constraint firstItem="Z4G-JA-BTv" firstAttribute="centerY" secondItem="Jhz-Ck-pjB" secondAttribute="centerY" constant="21.5" id="hA3-69-6e5"/>
                             <constraint firstItem="Z4G-JA-BTv" firstAttribute="centerX" secondItem="Lt6-TQ-CaH" secondAttribute="centerX" id="lpT-WH-pdd"/>
                             <constraint firstItem="Zti-NR-CX2" firstAttribute="top" secondItem="Lt6-TQ-CaH" secondAttribute="bottom" constant="29" id="mdx-Bb-xg5"/>
-                            <constraint firstItem="gGO-LP-v9t" firstAttribute="top" secondItem="Jhz-Ck-pjB" secondAttribute="top" constant="35" id="q00-sB-A9n"/>
+                            <constraint firstItem="gGO-LP-v9t" firstAttribute="top" secondItem="Jhz-Ck-pjB" secondAttribute="top" constant="31" id="q00-sB-A9n"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1125,7 +1125,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
         </scene>
     </scenes>
     <resources>
-        <image name="icon_raw_rounded" width="1024" height="1024"/>
+        <image name="icon_raw_rounded" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NGP-OK-OGn"/>
