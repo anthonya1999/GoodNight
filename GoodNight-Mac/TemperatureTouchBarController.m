@@ -15,7 +15,7 @@
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
     self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
     
-    [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
+    [defNotifCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
 - (void)defaultsChanged {

@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
+    [defNotifCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
 - (void)defaultsChanged {
@@ -24,7 +24,7 @@
 }
 
 - (void)dealloc {
-    [notificationCenter removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
+    [defNotifCenter removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
 - (void)viewWillAppear {

@@ -16,7 +16,7 @@
     [self.brightnessTouchBarSlider.slider setFloatValue:[userDefaults floatForKey:@"brightnessValue"]];
     self.brightnessTouchBarSlider.label = @"100%";
 
-    [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
+    [defNotifCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
 - (void)defaultsChanged {

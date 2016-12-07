@@ -15,7 +15,7 @@
     [self.touchBarColorPicker setEnabled:YES];
     [self.touchBarColorPicker addObserver:self forKeyPath:@"color" options:kNilOptions context:nil];
     
-    [notificationCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
+    [defNotifCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
     [self setDarkThemeButtonText];
 }
 

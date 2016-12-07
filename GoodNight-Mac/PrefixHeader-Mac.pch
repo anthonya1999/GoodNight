@@ -10,6 +10,6 @@
 #define PrefixHeader_Mac_pch
 
 #define userDefaults [NSUserDefaults standardUserDefaults]
-#define notificationCenter [NSNotificationCenter defaultCenter]
+#define defNotifCenter [NSNotificationCenter defaultCenter]
 
 #endif

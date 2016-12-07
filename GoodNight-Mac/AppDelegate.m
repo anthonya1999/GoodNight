@@ -19,6 +19,8 @@
     [self registerDefaultValues];
     [self restoreGammaValues];
     [self setShortcutObservers];
+    
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(restoreGammaValues) name:NSWorkspaceDidWakeNotification object:nil];
 }
 
 - (void)createMenuItems {
