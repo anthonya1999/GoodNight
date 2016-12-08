@@ -7,6 +7,7 @@
 //
 
 #import "ShadeViewController.h"
+#import "MacGammaController.h"
 #import "TemperatureViewController.h"
 #import "AppDelegate.h"
 
@@ -39,14 +40,14 @@
 }
 
 - (IBAction)brightnessSliderDidChange:(NSSlider *)slider {
-    [TemperatureViewController setInvertedColorsEnabled:NO];
+    [MacGammaController setInvertedColorsEnabled:NO];
     
     float sliderValue = self.brightnessSlider.floatValue;
     [userDefaults setFloat:sliderValue forKey:@"brightnessValue"];
     sliderValue = [userDefaults floatForKey:@"brightnessValue"];
     
     self.percentTextField.stringValue = [NSString stringWithFormat:@"%d%%", (int)round(sliderValue * 100)];
-    [TemperatureViewController setGammaWithRed:sliderValue green:sliderValue blue:sliderValue];
+    [MacGammaController setGammaWithRed:sliderValue green:sliderValue blue:sliderValue];
     
     if (self.brightnessSlider.floatValue == 1) {
         [self resetBrightness:nil];
@@ -58,7 +59,7 @@
         sliderValue = [userDefaults floatForKey:@"brightnessValue"];
         
         self.percentTextField.stringValue = [NSString stringWithFormat:@"%d%%", (int)round(sliderValue * 100)];
-        [TemperatureViewController setGammaWithRed:sliderValue green:sliderValue blue:sliderValue];
+        [MacGammaController setGammaWithRed:sliderValue green:sliderValue blue:sliderValue];
         
         [ShadeViewController showBrightnessAlert];
     }
@@ -75,7 +76,7 @@
 }
 
 - (IBAction)resetBrightness:(NSButton *)button {
-    [TemperatureViewController resetAllAdjustments];
+    [MacGammaController resetAllAdjustments];
     self.brightnessSlider.floatValue = [userDefaults floatForKey:@"brightnessValue"];
     self.percentTextField.stringValue = @"100%";
 }

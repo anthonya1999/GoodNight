@@ -15,11 +15,4 @@
 @property (strong, nonatomic) IBOutlet NSButton *darkroomButton;
 @property (strong, nonatomic) IBOutlet NSButton *darkThemeButton;
 
-+ (void)setGammaWithRed:(CGFloat)r green:(CGFloat)g blue:(CGFloat)b;
-+ (void)setGammaWithOrangeness:(float)percentOrange;
-+ (void)setInvertedColorsEnabled:(BOOL)enabled;
-+ (void)resetAllAdjustments;
-+ (void)toggleDarkroom;
-+ (void)toggleSystemTheme;
-
 @end

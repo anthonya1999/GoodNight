@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MASShortcut/Shortcut.h>
+#import <Sparkle/Sparkle.h>
 
 static NSString * const MASOpenShortcutEnabledKey = @"openShortcutEnabled";
 static NSString * const MASResetShortcutEnabledKey = @"resetShortcutEnabled";

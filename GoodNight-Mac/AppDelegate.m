@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "MacGammaController.h"
 #import "TemperatureViewController.h"
-#import <Sparkle/Sparkle.h>
 
 @implementation AppDelegate
 
@@ -167,12 +167,12 @@
 - (void)restoreGammaValues {
     float orangeValue = [userDefaults floatForKey:@"orangeValue"];
     if (orangeValue != 1) {
-        [TemperatureViewController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
+        [MacGammaController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
     }
     
     float brightnessValue = [userDefaults floatForKey:@"brightnessValue"];
     if (brightnessValue != 1) {
-        [TemperatureViewController setGammaWithRed:brightnessValue green:brightnessValue blue:brightnessValue];
+        [MacGammaController setGammaWithRed:brightnessValue green:brightnessValue blue:brightnessValue];
     }
 }
 
@@ -184,7 +184,7 @@
 }
 
 - (void)menuToggleSystemTheme {
-    [TemperatureViewController toggleSystemTheme];
+    [MacGammaController toggleSystemTheme];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -249,7 +249,7 @@
     MASShortcut *shortcut = [MASShortcut shortcutWithKeyCode:kVK_ANSI_T modifierFlags:GoodNightModifierFlags];
     if (enabled) {
         [[MASShortcutMonitor sharedMonitor] registerShortcut:shortcut withAction:^{
-            [TemperatureViewController toggleSystemTheme];
+            [MacGammaController toggleSystemTheme];
         }];
     }
     else {
@@ -270,11 +270,11 @@
 }
 
 - (void)resetAll {
-    [TemperatureViewController resetAllAdjustments];
+    [MacGammaController resetAllAdjustments];
 }
 
 - (void)toggleDarkroom {
-    [TemperatureViewController toggleDarkroom];
+    [MacGammaController toggleDarkroom];
 }
 
 - (void)openAboutWindow {

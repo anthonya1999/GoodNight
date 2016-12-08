@@ -7,6 +7,7 @@
 //
 
 #import "TemperatureTouchBarController.h"
+#import "MacGammaController.h"
 #import "TemperatureViewController.h"
 
 @implementation TemperatureTouchBarController
@@ -34,7 +35,7 @@
     [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
     [userDefaults setFloat:self.touchBarTemperatureSlider.slider.floatValue forKey:@"orangeValue"];
     [userDefaults synchronize];
-    [TemperatureViewController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
+    [MacGammaController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
     
     if (self.touchBarTemperatureSlider.slider.floatValue == 1) {
         [self resetTemperature:nil];
@@ -44,7 +45,7 @@
 }
 
 - (IBAction)resetTemperature:(NSButton *)button {
-    [TemperatureViewController resetAllAdjustments];
+    [MacGammaController resetAllAdjustments];
 }
 
 - (IBAction)toggleDarkroom:(NSButton *)button {
@@ -58,7 +59,7 @@
         [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
     }
     
-    [TemperatureViewController toggleDarkroom];
+    [MacGammaController toggleDarkroom];
 }
 
 @end

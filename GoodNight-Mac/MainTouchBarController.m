@@ -7,6 +7,7 @@
 //
 
 #import "MainTouchBarController.h"
+#import "MacGammaController.h"
 #import "TemperatureViewController.h"
 
 @implementation MainTouchBarController
@@ -48,11 +49,11 @@
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults synchronize];
     
-    [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
+    [MacGammaController setGammaWithRed:redValue green:greenValue blue:blueValue];
 }
 
 - (IBAction)resetAll:(NSButton *)button {
-    [TemperatureViewController resetAllAdjustments];
+    [MacGammaController resetAllAdjustments];
 }
 
 - (IBAction)toggleDarkTheme:(NSButton *)button {
@@ -63,7 +64,7 @@
         [self.touchBarDarkThemeButton setTitle:@"Enable Dark Theme"];
     }
     
-    [TemperatureViewController toggleSystemTheme];
+    [MacGammaController toggleSystemTheme];
 }
 
 @end

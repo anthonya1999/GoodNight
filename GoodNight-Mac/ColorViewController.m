@@ -7,6 +7,7 @@
 //
 
 #import "ColorViewController.h"
+#import "MacGammaController.h"
 #import "TemperatureViewController.h"
 #import "AppDelegate.h"
 
@@ -31,7 +32,7 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    [TemperatureViewController setInvertedColorsEnabled:NO];
+    [MacGammaController setInvertedColorsEnabled:NO];
 
     NSColor *color = [self.colorWell color];
     
@@ -44,11 +45,11 @@
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults synchronize];
     
-    [TemperatureViewController setGammaWithRed:redValue green:greenValue blue:blueValue];
+    [MacGammaController setGammaWithRed:redValue green:greenValue blue:blueValue];
 }
 
 - (IBAction)resetColor:(NSButton *)button {
-    [TemperatureViewController resetAllAdjustments];
+    [MacGammaController resetAllAdjustments];
 }
 
 @end
