@@ -25,6 +25,7 @@
 		922B28241DDE81CF0075C274 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 922B28231DDE81CF0075C274 /* main.m */; };
 		922B28291DDE81D00075C274 /* MacAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 922B28281DDE81D00075C274 /* MacAssets.xcassets */; };
 		924EFA9B1BC16F1F00BF8CA6 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */; };
+		9255195A1DF8F7D50077CAC1 /* MacGammaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925519591DF8F7D50077CAC1 /* MacGammaController.m */; };
 		925B81211BE2BCE1003A6C4B /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 925B81201BE2BCE1003A6C4B /* NotificationCenter.framework */; };
 		925B81251BE2BCE1003A6C4B /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B81241BE2BCE1003A6C4B /* TodayViewController.m */; };
 		925B81281BE2BCE1003A6C4B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 925B81261BE2BCE1003A6C4B /* MainInterface.storyboard */; };
@@ -130,6 +131,8 @@
 		922B282D1DDE81D00075C274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		924EFA991BC16F1F00BF8CA6 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
 		924EFA9A1BC16F1F00BF8CA6 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
+		925519581DF8F7D50077CAC1 /* MacGammaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacGammaController.h; sourceTree = "<group>"; };
+		925519591DF8F7D50077CAC1 /* MacGammaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacGammaController.m; sourceTree = "<group>"; };
 		925B811E1BE2BCE1003A6C4B /* GoodNight Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "GoodNight Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		925B81201BE2BCE1003A6C4B /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		925B81231BE2BCE1003A6C4B /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
@@ -307,6 +310,7 @@
 			children = (
 				922B281F1DDE81CF0075C274 /* AppDelegate.h */,
 				922B28201DDE81CF0075C274 /* AppDelegate.m */,
+				9255195B1DF8F9010077CAC1 /* Gamma Controller */,
 				92ABC3CC1DE8D47F0064FBAD /* User Interface */,
 				92ABC3CD1DE8D4890064FBAD /* Storyboards */,
 				922B28221DDE81CF0075C274 /* Supporting Files */,
@@ -323,6 +327,15 @@
 				9264E1411DE6807F00E61408 /* PrefixHeader-Mac.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9255195B1DF8F9010077CAC1 /* Gamma Controller */ = {
+			isa = PBXGroup;
+			children = (
+				925519581DF8F7D50077CAC1 /* MacGammaController.h */,
+				925519591DF8F7D50077CAC1 /* MacGammaController.m */,
+			);
+			name = "Gamma Controller";
 			sourceTree = "<group>";
 		};
 		925B811F1BE2BCE1003A6C4B /* Frameworks */ = {
@@ -784,6 +797,7 @@
 			files = (
 				922B28241DDE81CF0075C274 /* main.m in Sources */,
 				922B28211DDE81CF0075C274 /* AppDelegate.m in Sources */,
+				9255195A1DF8F7D50077CAC1 /* MacGammaController.m in Sources */,
 				926893B71DE940F500BED81C /* ShadeTouchBarController.m in Sources */,
 				926076941DE672FF00D6320D /* ColorViewController.m in Sources */,
 				925FF57C1DE8EE1A007675AE /* MainTouchBarController.m in Sources */,
