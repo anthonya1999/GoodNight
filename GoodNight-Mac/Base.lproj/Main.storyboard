@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C60b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="PiQ-EZ-YuB">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C63a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="PiQ-EZ-YuB">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="7104"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
@@ -898,10 +898,11 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
         <!--GoodNight-->
         <scene sceneID="eMp-2x-zOL">
             <objects>
-                <tabViewController title="GoodNight" storyboardIdentifier="tabVC" selectedTabViewItemIndex="0" id="KlD-6V-U0a" customClass="TabViewController" sceneMemberID="viewController">
+                <tabViewController title="GoodNight" storyboardIdentifier="tabVC" selectedTabViewItemIndex="2" id="KlD-6V-U0a" customClass="TabViewController" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="7sX-Z0-SxD"/>
                         <tabViewItem id="TYF-WB-rKE"/>
+                        <tabViewItem id="2Cx-Dj-V5h"/>
                         <tabViewItem identifier="" id="yyo-PR-QTf"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="8b1-re-hPn">
@@ -913,6 +914,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                     <connections>
                         <segue destination="wpb-NC-hX3" kind="relationship" relationship="tabItems" id="l6S-wn-OKY"/>
                         <segue destination="pfP-R7-v7X" kind="relationship" relationship="tabItems" id="0wU-Yw-crd"/>
+                        <segue destination="cUj-Cn-R3l" kind="relationship" relationship="tabItems" id="dOS-Lz-a7q"/>
                         <segue destination="FWI-pN-Ufp" kind="relationship" relationship="tabItems" id="UMA-rj-rUP"/>
                     </connections>
                 </tabViewController>
@@ -1056,7 +1058,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                 </viewController>
                 <customObject id="Zce-ct-T3e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="382" y="1021"/>
+            <point key="canvasLocation" x="102" y="1035"/>
         </scene>
         <!--Brightness-->
         <scene sceneID="89h-Hb-fdq">
@@ -1122,6 +1124,74 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                 <customObject id="vUg-5I-sKt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="662" y="712"/>
+        </scene>
+        <!--White Point-->
+        <scene sceneID="cub-oI-T74">
+            <objects>
+                <viewController title="White Point" id="cUj-Cn-R3l" customClass="WhitePointMacViewController" sceneMemberID="viewController">
+                    <view key="view" id="gVC-zV-10t">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="250"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ubc-tI-yYq">
+                                <rect key="frame" x="18" y="98" width="464" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="pdw-6O-tGu"/>
+                                </constraints>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="0.5" doubleValue="0.49999999999999994" tickMarkPosition="below" numberOfTickMarks="50" allowsTickMarkValuesOnly="YES" sliderType="linear" id="hjs-Q5-tR2"/>
+                                <connections>
+                                    <action selector="whitePointSliderDidChange:" target="cUj-Cn-R3l" id="8HP-vU-1Eo"/>
+                                </connections>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LZu-GN-m7t">
+                                <rect key="frame" x="18" y="133" width="464" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="100%" id="1He-gK-Np8">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iFy-Zq-O3k">
+                                <rect key="frame" x="18" y="193" width="464" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Adjust the system white point value to make colors less intense." id="2oT-To-zOZ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="whC-fn-IKg">
+                                <rect key="frame" x="176" y="28" width="148" height="32"/>
+                                <buttonCell key="cell" type="push" title="Reset White Point" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rmq-oX-alY">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="resetWhitePoint:" target="cUj-Cn-R3l" id="D3S-4X-3Wi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="LZu-GN-m7t" firstAttribute="top" secondItem="iFy-Zq-O3k" secondAttribute="bottom" constant="43" id="8RA-uC-BMa"/>
+                            <constraint firstItem="LZu-GN-m7t" firstAttribute="leading" secondItem="ubc-tI-yYq" secondAttribute="leading" id="H5d-Mm-b4Z"/>
+                            <constraint firstItem="whC-fn-IKg" firstAttribute="top" secondItem="ubc-tI-yYq" secondAttribute="bottom" constant="43" id="Jw0-oe-9hi"/>
+                            <constraint firstItem="iFy-Zq-O3k" firstAttribute="top" secondItem="gVC-zV-10t" secondAttribute="top" constant="40" id="Q5h-lx-x2w"/>
+                            <constraint firstItem="ubc-tI-yYq" firstAttribute="centerX" secondItem="whC-fn-IKg" secondAttribute="centerX" id="SuC-IU-FdG"/>
+                            <constraint firstItem="iFy-Zq-O3k" firstAttribute="trailing" secondItem="LZu-GN-m7t" secondAttribute="trailing" id="TEs-Up-hCf"/>
+                            <constraint firstAttribute="trailing" secondItem="iFy-Zq-O3k" secondAttribute="trailing" constant="20" symbolic="YES" id="VNF-an-t6n"/>
+                            <constraint firstItem="iFy-Zq-O3k" firstAttribute="leading" secondItem="LZu-GN-m7t" secondAttribute="leading" id="YyE-5h-sRa"/>
+                            <constraint firstItem="ubc-tI-yYq" firstAttribute="top" secondItem="LZu-GN-m7t" secondAttribute="bottom" constant="12" id="die-H0-b9o"/>
+                            <constraint firstItem="iFy-Zq-O3k" firstAttribute="leading" secondItem="gVC-zV-10t" secondAttribute="leading" constant="20" symbolic="YES" id="nu0-0V-o1C"/>
+                            <constraint firstItem="LZu-GN-m7t" firstAttribute="trailing" secondItem="ubc-tI-yYq" secondAttribute="trailing" id="vy6-rY-2rI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="whitePointLabel" destination="LZu-GN-m7t" id="Tff-Bo-Dk2"/>
+                        <outlet property="whitePointSlider" destination="ubc-tI-yYq" id="bAC-Mm-fb3"/>
+                    </connections>
+                </viewController>
+                <customObject id="Elc-bf-7H8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="662" y="1035"/>
         </scene>
     </scenes>
     <resources>

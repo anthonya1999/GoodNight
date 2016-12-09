@@ -37,6 +37,7 @@
 		9264E1401DE67A3200E61408 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9264E13F1DE67A3200E61408 /* TabViewController.m */; };
 		926893B31DE93D4E00BED81C /* ShadeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926893B21DE93D4E00BED81C /* ShadeViewController.m */; };
 		926893B71DE940F500BED81C /* ShadeTouchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926893B61DE940F500BED81C /* ShadeTouchBarController.m */; };
+		926AB63C1DFB390C00A20483 /* WhitePointMacViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926AB63B1DFB390C00A20483 /* WhitePointMacViewController.m */; };
 		926B25461DEBC35B00F19980 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 926B25451DEBC35B00F19980 /* Sparkle.framework */; };
 		926B25471DEBC35B00F19980 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 926B25451DEBC35B00F19980 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		926F711F1C0CF3930039A4A2 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 926F711E1C0CF3930039A4A2 /* NSDate+Extensions.m */; };
@@ -154,6 +155,8 @@
 		926893B21DE93D4E00BED81C /* ShadeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadeViewController.m; sourceTree = "<group>"; };
 		926893B51DE940F500BED81C /* ShadeTouchBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadeTouchBarController.h; sourceTree = "<group>"; };
 		926893B61DE940F500BED81C /* ShadeTouchBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadeTouchBarController.m; sourceTree = "<group>"; };
+		926AB63A1DFB390C00A20483 /* WhitePointMacViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhitePointMacViewController.h; sourceTree = "<group>"; };
+		926AB63B1DFB390C00A20483 /* WhitePointMacViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhitePointMacViewController.m; sourceTree = "<group>"; };
 		926B25451DEBC35B00F19980 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		926F711D1C0CF3930039A4A2 /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Extensions.h"; path = "Extras/NSDate+Extensions/NSDate+Extensions.h"; sourceTree = SOURCE_ROOT; };
 		926F711E1C0CF3930039A4A2 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Extensions.m"; path = "Extras/NSDate+Extensions/NSDate+Extensions.m"; sourceTree = SOURCE_ROOT; };
@@ -395,6 +398,15 @@
 			name = Brightness;
 			sourceTree = "<group>";
 		};
+		926AB6391DFB38EC00A20483 /* White Point */ = {
+			isa = PBXGroup;
+			children = (
+				926AB63A1DFB390C00A20483 /* WhitePointMacViewController.h */,
+				926AB63B1DFB390C00A20483 /* WhitePointMacViewController.m */,
+			);
+			name = "White Point";
+			sourceTree = "<group>";
+		};
 		926B68F61BC1B8E800F12297 /* Temperature */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +586,7 @@
 				92ABC3CB1DE8D4500064FBAD /* Tab View */,
 				92ABC3C81DE8D4060064FBAD /* Temperature */,
 				926893B01DE93D2D00BED81C /* Brightness */,
+				926AB6391DFB38EC00A20483 /* White Point */,
 				92ABC3C91DE8D4100064FBAD /* Color */,
 				92ABC3CA1DE8D4170064FBAD /* Touch Bar */,
 			);
@@ -806,6 +819,7 @@
 				926893B31DE93D4E00BED81C /* ShadeViewController.m in Sources */,
 				9264E1401DE67A3200E61408 /* TabViewController.m in Sources */,
 				92FEA6B11DE6B324001EA06B /* TemperatureTouchBarController.m in Sources */,
+				926AB63C1DFB390C00A20483 /* WhitePointMacViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

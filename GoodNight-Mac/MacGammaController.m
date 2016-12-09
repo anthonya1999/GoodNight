@@ -11,12 +11,45 @@
 
 @implementation MacGammaController
 
+float quadraticBezier (float x, float a, float b) {
+    float epsilon = 0.00001;
+    a = MAX(0.0, MIN(1, a));
+    b = MAX(0.0, MIN(1, b));
+    
+    if (a == 0.5) {
+        a += epsilon;
+    }
+    
+    float om2a = 1.0f - 2.0f * a;
+    float t = (sqrt(a * a + om2a * x) - a) / om2a;
+    float y = (1.0f - 2.0f * b) * (t * t) + (2.0f * b) * t;
+    return y;
+}
+
+float symmetricQuadraticBezier(float x, float bulge) {
+    bulge = (bulge / 2.0f) + 0.5f;
+    float a = bulge;
+    float b = 1.0f - bulge;
+    float r = quadraticBezier(x, a, b);
+    return r;
+}
+
 + (void)setGammaWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
     const CGGammaValue redTable[256] = {0.0, red};
     const CGGammaValue greenTable[256] = {0.0, green};
     const CGGammaValue blueTable[256] = {0.0, blue};
     
     CGSetDisplayTransferByTable(CGMainDisplayID(), 2, redTable, greenTable, blueTable);
+}
+
++ (void)setWhitePoint:(float)whitePoint {
+    CGGammaValue table[256] = {0, 0};
+    
+    for (int i = 0; i < 256; i++) {
+        table[i] = symmetricQuadraticBezier(i / 255.0f, (whitePoint * 2) - 1);
+    }
+    
+    CGSetDisplayTransferByTable(CGMainDisplayID(), sizeof(table) / sizeof(table[0]), table, table, table);
 }
 
 + (void)setGammaWithOrangeness:(float)percentOrange {
@@ -70,6 +103,7 @@
         [userDefaults setBool:YES forKey:@"darkroomEnabled"];
         [userDefaults setFloat:1 forKey:@"orangeValue"];
         [userDefaults setFloat:1 forKey:@"brightnessValue"];
+        [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
         CGDisplayRestoreColorSyncSettings();
         [MacGammaController setGammaWithRed:1 green:0 blue:0];
         [MacGammaController setInvertedColorsEnabled:YES];
@@ -78,6 +112,7 @@
         [userDefaults setBool:NO forKey:@"darkroomEnabled"];
         [userDefaults setFloat:1 forKey:@"orangeValue"];
         [userDefaults setFloat:1 forKey:@"brightnessValue"];
+        [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
         CGDisplayRestoreColorSyncSettings();
         [MacGammaController setInvertedColorsEnabled:NO];
     }
@@ -88,6 +123,7 @@
     [userDefaults setFloat:1 forKey:@"orangeValue"];
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
     [userDefaults synchronize];
     CGDisplayRestoreColorSyncSettings();
     [MacGammaController setInvertedColorsEnabled:NO];

@@ -16,5 +16,6 @@
 + (void)resetAllAdjustments;
 + (void)toggleDarkroom;
 + (void)toggleSystemTheme;
++ (void)setWhitePoint:(float)whitePoint;
 
 @end

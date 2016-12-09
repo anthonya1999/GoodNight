@@ -157,6 +157,7 @@
                                     @"alertShowed":     @(defaultBooleanValue),
                                     @"brightnessValue": @(defaultValue),
                                     @"darkThemeEnabled":@(defaultBooleanValue),
+                                    @"whitePointValue": @(defaultValue),
                                     MASOpenShortcutEnabledKey:      @YES,
                                     MASResetShortcutEnabledKey:     @YES,
                                     MASDarkroomShortcutEnabledKey:  @YES,
@@ -174,6 +175,11 @@
     float brightnessValue = [userDefaults floatForKey:@"brightnessValue"];
     if (brightnessValue != 1) {
         [MacGammaController setGammaWithRed:brightnessValue green:brightnessValue blue:brightnessValue];
+    }
+    
+    float whitePointValue = [userDefaults floatForKey:@"whitePointValue"];
+    if (whitePointValue != 0.5) {
+        [MacGammaController setWhitePoint:whitePointValue];
     }
 }
 
