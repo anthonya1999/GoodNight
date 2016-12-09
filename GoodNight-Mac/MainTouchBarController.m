@@ -44,12 +44,13 @@
     float greenValue = [color greenComponent];
     float blueValue = [color blueComponent];
     
+    [MacGammaController setGammaWithRed:redValue green:greenValue blue:blueValue];
+    
     [userDefaults setFloat:1 forKey:@"orangeValue"];
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
+    [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults synchronize];
-    
-    [MacGammaController setGammaWithRed:redValue green:greenValue blue:blueValue];
 }
 
 - (IBAction)resetAll:(NSButton *)button {

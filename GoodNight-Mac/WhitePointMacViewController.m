@@ -43,6 +43,11 @@
     self.whitePointLabel.stringValue = [NSString stringWithFormat:@"%d%%", (int)round([userDefaults floatForKey:@"whitePointValue"] * 100) * 2];
 
     [MacGammaController setWhitePoint:[userDefaults floatForKey:@"whitePointValue"]];
+    
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
+    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults synchronize];
 }
 
 - (IBAction)resetWhitePoint:(NSButton *)button {

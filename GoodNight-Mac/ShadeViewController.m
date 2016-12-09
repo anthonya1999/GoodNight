@@ -64,6 +64,9 @@
         [ShadeViewController showBrightnessAlert];
     }
     
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
     [userDefaults synchronize];
 }
 

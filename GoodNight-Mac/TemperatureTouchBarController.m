@@ -42,6 +42,11 @@
     }
     
     self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
+    
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
+    [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults synchronize];
 }
 
 - (IBAction)resetTemperature:(NSButton *)button {

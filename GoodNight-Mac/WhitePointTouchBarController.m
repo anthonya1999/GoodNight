@@ -28,6 +28,11 @@
     self.whitePointTouchBarSlider.label = [NSString stringWithFormat:@"%d%%", (int)round([userDefaults floatForKey:@"whitePointValue"] * 100) * 2];
     
     [MacGammaController setWhitePoint:[userDefaults floatForKey:@"whitePointValue"]];
+    
+    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:1 forKey:@"brightnessValue"];
+    [userDefaults setBool:NO forKey:@"darkroomEnabled"];
+    [userDefaults synchronize];
 }
 
 - (IBAction)resetWhitePoint:(NSButton *)button {
