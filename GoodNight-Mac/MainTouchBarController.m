@@ -30,10 +30,10 @@
 
 - (void)setDarkThemeButtonText {
     if ([userDefaults boolForKey:@"darkThemeEnabled"]) {
-        [self.touchBarDarkThemeButton setTitle:@"Disable Dark Theme"];
+        [self.touchBarDarkThemeButton setTitle:@"Dark Theme Off"];
     }
     else {
-        [self.touchBarDarkThemeButton setTitle:@"Enable Dark Theme"];
+        [self.touchBarDarkThemeButton setTitle:@"Dark Theme On"];
     }
 }
 
@@ -57,11 +57,11 @@
 }
 
 - (IBAction)toggleDarkTheme:(NSButton *)button {
-    if ([self.touchBarDarkThemeButton.title isEqualToString:@"Enable Dark Theme"]) {
-        [self.touchBarDarkThemeButton setTitle:@"Disable Dark Theme"];
+    if ([self.touchBarDarkThemeButton.title isEqualToString:@"Dark Theme On"]) {
+        [self.touchBarDarkThemeButton setTitle:@"Dark Theme Off"];
     }
     else {
-        [self.touchBarDarkThemeButton setTitle:@"Enable Dark Theme"];
+        [self.touchBarDarkThemeButton setTitle:@"Dark Theme On"];
     }
     
     [MacGammaController toggleSystemTheme];

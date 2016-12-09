@@ -15,7 +15,7 @@
 
 - (void)awakeFromNib {
     [self.brightnessTouchBarSlider.slider setFloatValue:[userDefaults floatForKey:@"brightnessValue"]];
-    self.brightnessTouchBarSlider.label = @"100%";
+    self.brightnessTouchBarSlider.label = [NSString stringWithFormat:@"%d%%", (int)round([userDefaults floatForKey:@"brightnessValue"] * 100)];
 
     [defNotifCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
 }

@@ -801,7 +801,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         <touchBarItem id="tBs-73-qyW">
                                             <viewController key="viewController" id="cU1-vU-y9r">
                                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3rH-ng-ZaT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                                    <rect key="frame" x="-6" y="-7" width="144" height="41"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="aJE-cZ-V0e"/>
                                                     </constraints>
@@ -825,7 +825,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                                 <sliderAccessoryBehavior key="behavior" id="deu-0Q-FrY"/>
                                             </sliderAccessory>
                                             <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frp-8f-VoZ">
-                                                <rect key="frame" x="49" y="0.0" width="751" height="30"/>
+                                                <rect key="frame" x="-2" y="-2" width="751" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="yEX-q8-uav"/>
                                                 </constraints>
@@ -841,17 +841,64 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                     </connections>
                                 </touchBar>
                             </touchBarPopoverItem>
+                            <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="xF2-na-1DY"/>
+                            <touchBarPopoverItem collapsedRepresentationLabel="White Point" id="LmT-r2-C3Y">
+                                <touchBar key="popoverTouchBar" id="7TK-yc-UZV" customClass="WhitePointTouchBarController">
+                                    <touchBarItems>
+                                        <touchBarItem id="D2f-cX-Q0c">
+                                            <viewController key="viewController" id="4ER-tq-j8Y">
+                                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-TT-cgA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="M70-la-UFA"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="push" title="Reset White Point" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dgP-YJ-7wD">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="resetWhitePoint:" target="7TK-yc-UZV" id="Gfc-Q6-Zgu"/>
+                                                    </connections>
+                                                </button>
+                                            </viewController>
+                                            <size key="designTimeSize" width="144" height="30"/>
+                                        </touchBarItem>
+                                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="E3e-Ul-bhE"/>
+                                        <sliderTouchBarItem label="100%" id="8CZ-gf-OYc">
+                                            <sliderAccessory key="minimumValueAccessory" id="dVc-Xt-E3R">
+                                                <sliderAccessoryBehavior key="behavior" id="NXQ-jx-kAG"/>
+                                            </sliderAccessory>
+                                            <sliderAccessory key="maximumValueAccessory" id="vDo-Pz-GMt">
+                                                <sliderAccessoryBehavior key="behavior" id="mx7-Uh-zcJ"/>
+                                            </sliderAccessory>
+                                            <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jfj-4M-lv2">
+                                                <rect key="frame" x="49" y="0.0" width="751" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="cIH-ge-yzZ"/>
+                                                </constraints>
+                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="0.5" doubleValue="0.49999999999999994" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Aa1-Py-Vow"/>
+                                            </slider>
+                                            <connections>
+                                                <action selector="whitePointTouchBarChanged:" target="7TK-yc-UZV" id="Q9Q-40-JiX"/>
+                                            </connections>
+                                        </sliderTouchBarItem>
+                                    </touchBarItems>
+                                    <connections>
+                                        <outlet property="whitePointTouchBarSlider" destination="8CZ-gf-OYc" id="5Nd-k9-PSb"/>
+                                    </connections>
+                                </touchBar>
+                            </touchBarPopoverItem>
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="LvU-DL-qc0"/>
                             <colorPickerItem showsAlpha="NO" id="bfb-ba-IjI"/>
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="efa-6v-d81"/>
                             <touchBarItem id="3wI-ue-jM1">
                                 <viewController key="viewController" id="cUs-IQ-ZLr">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Frw-7P-CNJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="LQ8-q3-0Qb"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="push" title="Enable Dark Theme" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TCF-ui-Uk8">
+                                        <buttonCell key="cell" type="push" title="Dark Theme On" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TCF-ui-Uk8">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -860,13 +907,13 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         </connections>
                                     </button>
                                 </viewController>
-                                <size key="designTimeSize" width="144" height="30"/>
+                                <size key="designTimeSize" width="126" height="30"/>
                             </touchBarItem>
                             <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="7Hy-Rs-H4B"/>
                             <touchBarItem id="8JB-Ha-8RX">
                                 <viewController key="viewController" id="3h2-P6-gaR">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hst-BT-cOF">
-                                        <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="LbO-LR-Aga"/>
                                         </constraints>
@@ -879,7 +926,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                                         </connections>
                                     </button>
                                 </viewController>
-                                <size key="designTimeSize" width="144" height="30"/>
+                                <size key="designTimeSize" width="100" height="30"/>
                             </touchBarItem>
                         </touchBarItems>
                         <connections>
@@ -898,7 +945,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
         <!--GoodNight-->
         <scene sceneID="eMp-2x-zOL">
             <objects>
-                <tabViewController title="GoodNight" storyboardIdentifier="tabVC" selectedTabViewItemIndex="2" id="KlD-6V-U0a" customClass="TabViewController" sceneMemberID="viewController">
+                <tabViewController title="GoodNight" storyboardIdentifier="tabVC" selectedTabViewItemIndex="0" id="KlD-6V-U0a" customClass="TabViewController" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="7sX-Z0-SxD"/>
                         <tabViewItem id="TYF-WB-rKE"/>
@@ -1007,7 +1054,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                 </viewController>
                 <customObject id="A0d-si-luV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="102" y="712"/>
+            <point key="canvasLocation" x="99" y="819"/>
         </scene>
         <!--Color-->
         <scene sceneID="YN3-JX-mHe">
@@ -1058,7 +1105,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                 </viewController>
                 <customObject id="Zce-ct-T3e" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="102" y="1035"/>
+            <point key="canvasLocation" x="99" y="1142"/>
         </scene>
         <!--Brightness-->
         <scene sceneID="89h-Hb-fdq">
@@ -1123,7 +1170,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                 </viewController>
                 <customObject id="vUg-5I-sKt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="662" y="712"/>
+            <point key="canvasLocation" x="659" y="819"/>
         </scene>
         <!--White Point-->
         <scene sceneID="cub-oI-T74">
@@ -1191,7 +1238,7 @@ TWFkZSBieSBBbnRob255IEFnYXRpZWxsbwoKQ29weXJpZ2h0IAPCqSAyMDE2IEFEQSBUZWNoLCBMTEM
                 </viewController>
                 <customObject id="Elc-bf-7H8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="662" y="1035"/>
+            <point key="canvasLocation" x="659" y="1142"/>
         </scene>
     </scenes>
     <resources>

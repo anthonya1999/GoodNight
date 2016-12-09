@@ -38,6 +38,7 @@
 		926893B31DE93D4E00BED81C /* ShadeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926893B21DE93D4E00BED81C /* ShadeViewController.m */; };
 		926893B71DE940F500BED81C /* ShadeTouchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926893B61DE940F500BED81C /* ShadeTouchBarController.m */; };
 		926AB63C1DFB390C00A20483 /* WhitePointMacViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926AB63B1DFB390C00A20483 /* WhitePointMacViewController.m */; };
+		926AB6401DFB43C500A20483 /* WhitePointTouchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926AB63F1DFB43C500A20483 /* WhitePointTouchBarController.m */; };
 		926B25461DEBC35B00F19980 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 926B25451DEBC35B00F19980 /* Sparkle.framework */; };
 		926B25471DEBC35B00F19980 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 926B25451DEBC35B00F19980 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		926F711F1C0CF3930039A4A2 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 926F711E1C0CF3930039A4A2 /* NSDate+Extensions.m */; };
@@ -157,6 +158,8 @@
 		926893B61DE940F500BED81C /* ShadeTouchBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadeTouchBarController.m; sourceTree = "<group>"; };
 		926AB63A1DFB390C00A20483 /* WhitePointMacViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhitePointMacViewController.h; sourceTree = "<group>"; };
 		926AB63B1DFB390C00A20483 /* WhitePointMacViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhitePointMacViewController.m; sourceTree = "<group>"; };
+		926AB63E1DFB43C500A20483 /* WhitePointTouchBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhitePointTouchBarController.h; sourceTree = "<group>"; };
+		926AB63F1DFB43C500A20483 /* WhitePointTouchBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhitePointTouchBarController.m; sourceTree = "<group>"; };
 		926B25451DEBC35B00F19980 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		926F711D1C0CF3930039A4A2 /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+Extensions.h"; path = "Extras/NSDate+Extensions/NSDate+Extensions.h"; sourceTree = SOURCE_ROOT; };
 		926F711E1C0CF3930039A4A2 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+Extensions.m"; path = "Extras/NSDate+Extensions/NSDate+Extensions.m"; sourceTree = SOURCE_ROOT; };
@@ -407,6 +410,15 @@
 			name = "White Point";
 			sourceTree = "<group>";
 		};
+		926AB63D1DFB43AB00A20483 /* White Point */ = {
+			isa = PBXGroup;
+			children = (
+				926AB63E1DFB43C500A20483 /* WhitePointTouchBarController.h */,
+				926AB63F1DFB43C500A20483 /* WhitePointTouchBarController.m */,
+			);
+			name = "White Point";
+			sourceTree = "<group>";
+		};
 		926B68F61BC1B8E800F12297 /* Temperature */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +578,7 @@
 				925FF57D1DE8F1CE007675AE /* Main */,
 				925FF57E1DE8F1D5007675AE /* Temperature */,
 				926893B41DE940CF00BED81C /* Brightness */,
+				926AB63D1DFB43AB00A20483 /* White Point */,
 			);
 			name = "Touch Bar";
 			sourceTree = "<group>";
@@ -812,6 +825,7 @@
 				922B28211DDE81CF0075C274 /* AppDelegate.m in Sources */,
 				9255195A1DF8F7D50077CAC1 /* MacGammaController.m in Sources */,
 				926893B71DE940F500BED81C /* ShadeTouchBarController.m in Sources */,
+				926AB6401DFB43C500A20483 /* WhitePointTouchBarController.m in Sources */,
 				926076941DE672FF00D6320D /* ColorViewController.m in Sources */,
 				925FF57C1DE8EE1A007675AE /* MainTouchBarController.m in Sources */,
 				926076951DE672FF00D6320D /* TemperatureViewController.m in Sources */,
