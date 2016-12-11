@@ -82,7 +82,7 @@
 }
 
 - (BOOL)willStartAtLogin {
-    BOOL foundIt = NO;
+    BOOL willStartAtLogin = NO;
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
     
     if (loginItems) {
@@ -96,17 +96,17 @@
             CFURLRef URL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, &err);
             
             if (err == noErr) {
-                foundIt = CFEqual(URL, (__bridge CFTypeRef)([[NSBundle mainBundle] bundleURL]));
+                willStartAtLogin = CFEqual(URL, (__bridge CFTypeRef)([[NSBundle mainBundle] bundleURL]));
                 CFRelease(URL);
                 
-                if (foundIt) {
+                if (willStartAtLogin) {
                     break;
                 }
             }
         }
         CFRelease(loginItems);
     }
-    return foundIt;
+    return willStartAtLogin;
 }
 
 - (void)setStartAtLoginEnabled {
@@ -124,10 +124,10 @@
             CFURLRef URL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, &err);
             
             if (err == noErr) {
-                BOOL foundIt = CFEqual(URL, (__bridge CFURLRef)([[NSBundle mainBundle] bundleURL]));
+                BOOL willStartAtLogin = CFEqual(URL, (__bridge CFURLRef)([[NSBundle mainBundle] bundleURL]));
                 CFRelease(URL);
                 
-                if (foundIt) {
+                if (willStartAtLogin) {
                     existingItem = item;
                     break;
                 }

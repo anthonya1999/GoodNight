@@ -20,9 +20,9 @@ float quadraticBezier (float x, float a, float b) {
         a += epsilon;
     }
     
-    float om2a = 1.0f - 2.0f * a;
-    float t = (sqrt(a * a + om2a * x) - a) / om2a;
-    float y = (1.0f - 2.0f * b) * (t * t) + (2.0f * b) * t;
+    float om2a = 1.0f - (2.0f * a);
+    float t = (sqrt((a * a) + (om2a * x)) - a) / om2a;
+    float y = ((1.0f - 2.0f * b) * (t * t)) + ((2.0f * b) * t);
     return y;
 }
 
@@ -42,17 +42,18 @@ float symmetricQuadraticBezier(float x, float bulge) {
     CGSetDisplayTransferByTable(CGMainDisplayID(), 2, redTable, greenTable, blueTable);
 }
 
-+ (void)setWhitePoint:(float)whitePoint {
-    CGGammaValue table[256] = {0, 0};
++ (void)setWhitePoint:(CGFloat)whitePoint {
+    CGGammaValue table[256] = {0.0, 0.0};
     
     for (int i = 0; i < 256; i++) {
         table[i] = symmetricQuadraticBezier(i / 255.0f, (whitePoint * 2) - 1);
     }
     
-    CGSetDisplayTransferByTable(CGMainDisplayID(), sizeof(table) / sizeof(table[0]), table, table, table);
+    NSAssert(whitePoint <= 0.5, @"White point value should not be greater than 0.5!");
+    CGSetDisplayTransferByTable(CGMainDisplayID(), 256, table, table, table);
 }
 
-+ (void)setGammaWithOrangeness:(float)percentOrange {
++ (void)setGammaWithOrangeness:(CGFloat)percentOrange {
     if (percentOrange > 1 || percentOrange < 0) {
         return;
     }

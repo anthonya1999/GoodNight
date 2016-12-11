@@ -11,11 +11,11 @@
 @interface MacGammaController : NSObject
 
 + (void)setGammaWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
-+ (void)setGammaWithOrangeness:(float)percentOrange;
++ (void)setGammaWithOrangeness:(CGFloat)percentOrange;
 + (void)setInvertedColorsEnabled:(BOOL)enabled;
 + (void)resetAllAdjustments;
 + (void)toggleDarkroom;
 + (void)toggleSystemTheme;
-+ (void)setWhitePoint:(float)whitePoint;
++ (void)setWhitePoint:(CGFloat)whitePoint;
 
 @end
