@@ -16,3 +16,10 @@
 @property (strong, nonatomic) IBOutlet NSButton *darkThemeButton;
 
 @end
+
+@interface TemperatureSlider : NSSlider
+
+- (float)floatValue;
+- (void)setFloatValue:(float)floatValue;
+
+@end

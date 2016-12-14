@@ -150,9 +150,10 @@
 
 - (void)registerDefaultValues {
     float defaultValue = 1.0;
+    float defaultOrangeValue = 0.0;
     BOOL defaultBooleanValue = NO;
     
-    NSDictionary *defaultValues = @{@"orangeValue":     @(defaultValue),
+    NSDictionary *defaultValues = @{@"orangeValue":     @(defaultOrangeValue),
                                     @"darkroomEnabled": @(defaultBooleanValue),
                                     @"alertShowed":     @(defaultBooleanValue),
                                     @"brightnessValue": @(defaultValue),
@@ -168,7 +169,7 @@
 
 - (void)restoreGammaValues {
     float orangeValue = [userDefaults floatForKey:@"orangeValue"];
-    if (orangeValue != 1) {
+    if (orangeValue != 0) {
         [MacGammaController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
     }
     

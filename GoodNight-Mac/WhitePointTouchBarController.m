@@ -29,7 +29,7 @@
     
     [MacGammaController setWhitePoint:[userDefaults floatForKey:@"whitePointValue"]];
     
-    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:0 forKey:@"orangeValue"];
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults synchronize];

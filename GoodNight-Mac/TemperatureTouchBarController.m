@@ -14,14 +14,14 @@
 
 - (void)awakeFromNib {
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round((((self.touchBarTemperatureSlider.slider.maxValue - self.touchBarTemperatureSlider.slider.floatValue) * 45 + 20) * 10) * 10)];
     
     [defNotifCenter addObserver:self selector:@selector(defaultsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
 - (void)defaultsChanged {
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round((((self.touchBarTemperatureSlider.slider.maxValue - self.touchBarTemperatureSlider.slider.floatValue) * 45 + 20) * 10) * 10)];
     
     if ([userDefaults boolForKey:@"darkroomEnabled"]) {
         [self.touchBarDarkroomButton setTitle:@"Disable Darkroom"];
@@ -37,11 +37,11 @@
     [userDefaults synchronize];
     [MacGammaController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
     
-    if (self.touchBarTemperatureSlider.slider.floatValue == 1) {
+    if (self.touchBarTemperatureSlider.slider.floatValue == 0) {
         [self resetTemperature:nil];
     }
     
-    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round((((self.touchBarTemperatureSlider.slider.maxValue - self.touchBarTemperatureSlider.slider.floatValue) * 45 + 20) * 10) * 10)];
     
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
@@ -55,7 +55,7 @@
 
 - (IBAction)toggleDarkroom:(NSButton *)button {
     [self.touchBarTemperatureSlider.slider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round(((self.touchBarTemperatureSlider.slider.floatValue * 45 + 20) * 10) * 10)];
+    self.touchBarTemperatureSlider.label = [NSString stringWithFormat:@"%dK", (int)round((((self.touchBarTemperatureSlider.slider.maxValue - self.touchBarTemperatureSlider.slider.floatValue) * 45 + 20) * 10) * 10)];
     
     if ([self.touchBarDarkroomButton.title isEqualToString:@"Enable Darkroom"]) {
         [self.touchBarDarkroomButton setTitle:@"Disable Darkroom"];
@@ -68,3 +68,4 @@
 }
 
 @end
+

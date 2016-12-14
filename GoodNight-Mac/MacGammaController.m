@@ -54,25 +54,22 @@ float symmetricQuadraticBezier(float x, float bulge) {
 }
 
 + (void)setGammaWithOrangeness:(CGFloat)percentOrange {
-    if (percentOrange > 1 || percentOrange < 0) {
-        return;
+    if (percentOrange > 1) {
+        percentOrange = 1;
+    }
+    else if (percentOrange < 0) {
+        percentOrange = 0;
     }
     
-    float hectoKelvin = percentOrange * 45 + 20;
-    float red = 255.0;
-    float green = -155.25485562709179 + -0.44596950469579133 * (hectoKelvin - 2) + 104.49216199393888 * log(hectoKelvin - 2);
-    float blue = -254.76935184120902 + 0.8274096064007395 * (hectoKelvin - 10) + 115.67994401066147 * log(hectoKelvin - 10);
+    float red = 1.0;
+    float blue = 1 - percentOrange;
+    float green = (red + blue) / 2.0;
     
-    if (percentOrange == 1) {
-        green = 255.0;
-        blue = 255.0;
+    if (percentOrange == 0) {
+        red = blue = green = 1;
     }
     
-    red /= 255.0;
-    green /= 255.0;
-    blue /= 255.0;
-    
-    [MacGammaController setGammaWithRed:red green:green blue:blue];
+    [self setGammaWithRed:red green:green blue:blue];
 }
 
 + (void)setInvertedColorsEnabled:(BOOL)enabled {
@@ -102,32 +99,32 @@ float symmetricQuadraticBezier(float x, float bulge) {
 + (void)toggleDarkroom {
     if (![userDefaults boolForKey:@"darkroomEnabled"]) {
         [userDefaults setBool:YES forKey:@"darkroomEnabled"];
-        [userDefaults setFloat:1 forKey:@"orangeValue"];
+        [userDefaults setFloat:0 forKey:@"orangeValue"];
         [userDefaults setFloat:1 forKey:@"brightnessValue"];
         [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
         CGDisplayRestoreColorSyncSettings();
-        [MacGammaController setGammaWithRed:1 green:0 blue:0];
-        [MacGammaController setInvertedColorsEnabled:YES];
+        [self setGammaWithRed:1 green:0 blue:0];
+        [self setInvertedColorsEnabled:YES];
     }
     else {
         [userDefaults setBool:NO forKey:@"darkroomEnabled"];
-        [userDefaults setFloat:1 forKey:@"orangeValue"];
+        [userDefaults setFloat:0 forKey:@"orangeValue"];
         [userDefaults setFloat:1 forKey:@"brightnessValue"];
         [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
         CGDisplayRestoreColorSyncSettings();
-        [MacGammaController setInvertedColorsEnabled:NO];
+        [self setInvertedColorsEnabled:NO];
     }
     [userDefaults synchronize];
 }
 
 + (void)resetAllAdjustments {
-    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:0 forKey:@"orangeValue"];
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
     [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
     [userDefaults synchronize];
     CGDisplayRestoreColorSyncSettings();
-    [MacGammaController setInvertedColorsEnabled:NO];
+    [self setInvertedColorsEnabled:NO];
 }
 
 @end

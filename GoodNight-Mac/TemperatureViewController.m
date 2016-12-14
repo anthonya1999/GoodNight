@@ -20,7 +20,7 @@
 
 - (void)defaultsChanged {
     [self.temperatureSlider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round(((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10)];
+    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round((((self.temperatureSlider.maxValue - self.temperatureSlider.floatValue) * 45 + 20) * 10) * 10)];
     [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];
     [self.darkThemeButton setState:[userDefaults boolForKey:@"darkThemeEnabled"]];
 }
@@ -37,7 +37,7 @@
     [self.view.layer setBackgroundColor:[[NSColor colorWithRed:_darkThemeFloatValue green:_darkThemeFloatValue blue:_darkThemeFloatValue alpha:1.0] CGColor]];
     
     [self.temperatureSlider setFloatValue:[userDefaults floatForKey:@"orangeValue"]];
-    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round(((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10)];
+    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round((((self.temperatureSlider.maxValue - self.temperatureSlider.floatValue) * 45 + 20) * 10) * 10)];
     [self.darkroomButton setState:[userDefaults boolForKey:@"darkroomEnabled"]];
     [self.darkThemeButton setState:[userDefaults boolForKey:@"darkThemeEnabled"]];
 }
@@ -48,9 +48,9 @@
     [userDefaults setFloat:self.temperatureSlider.floatValue forKey:@"orangeValue"];
     [MacGammaController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
     
-    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round(((self.temperatureSlider.floatValue * 45 + 20) * 10) * 10)];
+    self.temperatureLabel.stringValue = [NSString stringWithFormat:@"Temperature: %dK", (int)round((((self.temperatureSlider.maxValue - self.temperatureSlider.floatValue) * 45 + 20) * 10) * 10)];
     
-    if (self.temperatureSlider.floatValue == 1) {
+    if (self.temperatureSlider.floatValue == 0) {
         [self resetTemperature:nil];
     }
     
@@ -94,6 +94,28 @@
     else {
         [self.darkThemeButton setState:NSOffState];
     }
+}
+
+@end
+
+@implementation TemperatureSlider
+
+- (float)floatValue {
+    double minVal = [self minValue];
+    double maxVal = [self maxValue];
+    
+    double curValue = [super floatValue];
+    double reverseVal = maxVal - curValue + minVal;
+    return reverseVal;
+}
+
+- (void)setFloatValue:(float)floatValue {
+    double minVal = [self minValue];
+    double maxVal = [self maxValue];
+    
+    double reverseVal = maxVal - floatValue + minVal;
+    
+    [super setFloatValue:reverseVal];
 }
 
 @end

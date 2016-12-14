@@ -40,7 +40,7 @@
     float greenValue = [color greenComponent];
     float blueValue = [color blueComponent];
     
-    [userDefaults setFloat:1 forKey:@"orangeValue"];
+    [userDefaults setFloat:0 forKey:@"orangeValue"];
     [userDefaults setFloat:1 forKey:@"brightnessValue"];
     [userDefaults setFloat:0.5 forKey:@"whitePointValue"];
     [userDefaults setBool:NO forKey:@"darkroomEnabled"];
