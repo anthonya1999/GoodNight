@@ -34,7 +34,6 @@
 - (IBAction)touchBarSliderValueDidChange:(NSSliderTouchBarItem *)slider {
     [self.touchBarDarkroomButton setTitle:@"Enable Darkroom"];
     [userDefaults setFloat:self.touchBarTemperatureSlider.slider.floatValue forKey:@"orangeValue"];
-    [userDefaults synchronize];
     [MacGammaController setGammaWithOrangeness:[userDefaults floatForKey:@"orangeValue"]];
     
     if (self.touchBarTemperatureSlider.slider.floatValue == 0) {
