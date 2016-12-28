@@ -36,14 +36,11 @@
     NSString *appVersionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSMenuItem *versionItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Version %@", appVersionString] action:nil keyEquivalent:@""];
     
-    NSMenuItem *seperatorItem = [NSMenuItem separatorItem];
     NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:@"About GoodNight..." action:@selector(openAboutWindow) keyEquivalent:@""];
     NSMenuItem *updateItem = [[NSMenuItem alloc] initWithTitle:@"Check for Updates..." action:@selector(checkForUpdateMenuAction) keyEquivalent:@""];
-    NSMenuItem *seperatorItem2 = [NSMenuItem separatorItem];
-    
+
     self.loginItem = [[NSMenuItem alloc] initWithTitle:@"Start at Login" action:@selector(setStartAtLoginEnabled) keyEquivalent:@""];
     [self.loginItem setState:self.willStartAtLogin];
-    NSMenuItem *seperatorItem3 = [NSMenuItem separatorItem];
     
     NSMenuItem *resetItem = [[NSMenuItem alloc] initWithTitle:@"Reset All" action:@selector(resetAll) keyEquivalent:@"r"];
     [resetItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
@@ -54,7 +51,6 @@
     NSMenuItem *darkThemeItem = [[NSMenuItem alloc] initWithTitle:@"Toggle Dark Theme" action:@selector(menuToggleSystemTheme) keyEquivalent:@"t"];
     [darkThemeItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
     
-    NSMenuItem *seperatorItem4 = [NSMenuItem separatorItem];
     
     NSMenuItem *openItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(openNewWindow) keyEquivalent:@"g"];
     [openItem setKeyEquivalentModifierMask:GoodNightModifierFlags];
@@ -64,21 +60,38 @@
     
     [self.statusMenu addItem:titleItem];
     [self.statusMenu addItem:versionItem];
-    [self.statusMenu addItem:seperatorItem];
+    
+    [self initSeperatorItem];
+    [self.statusMenu addItem:self.seperatorItem];
+    
     [self.statusMenu addItem:aboutItem];
     [self.statusMenu addItem:updateItem];
-    [self.statusMenu addItem:seperatorItem2];
+    
+    [self initSeperatorItem];
+    [self.statusMenu addItem:self.seperatorItem];
+    
     [self.statusMenu addItem:self.loginItem];
-    [self.statusMenu addItem:seperatorItem3];
+    
+    [self initSeperatorItem];
+    [self.statusMenu addItem:self.seperatorItem];
+    
     [self.statusMenu addItem:resetItem];
     [self.statusMenu addItem:darkroomItem];
     [self.statusMenu addItem:darkThemeItem];
-    [self.statusMenu addItem:seperatorItem4];
+    
+    [self initSeperatorItem];
+    [self.statusMenu addItem:self.seperatorItem];
+    
     [self.statusMenu addItem:openItem];
     [self.statusMenu addItem:closeWindowItem];
     [self.statusMenu addItem:quitItem];
     
     [self.statusItem setMenu:self.statusMenu];
+}
+
+- (void)initSeperatorItem {
+    self.seperatorItem = nil;
+    self.seperatorItem = [NSMenuItem separatorItem];
 }
 
 - (BOOL)willStartAtLogin {
