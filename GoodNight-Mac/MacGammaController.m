@@ -35,7 +35,7 @@ float symmetricQuadraticBezier(float x, float bulge) {
 }
 
 + (void)setGammaWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
-    CGDirectDisplayID displays[12];
+    CGDirectDisplayID displays[12] = {0};
     uint32_t numDisplays = 0;
     
     CGGetActiveDisplayList(12, displays, &numDisplays);
@@ -50,7 +50,7 @@ float symmetricQuadraticBezier(float x, float bulge) {
 }
 
 + (void)setWhitePoint:(CGFloat)whitePoint {
-    CGDirectDisplayID displays[12];
+    CGDirectDisplayID displays[12] = {0};
     uint32_t numDisplays = 0;
     
     CGGetActiveDisplayList(12, displays, &numDisplays);
