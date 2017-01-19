@@ -35,14 +35,26 @@ float symmetricQuadraticBezier(float x, float bulge) {
 }
 
 + (void)setGammaWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
+    CGDirectDisplayID displays[12];
+    uint32_t numDisplays = 0;
+    
+    CGGetActiveDisplayList(12, displays, &numDisplays);
+    
     const CGGammaValue redTable[256] = {0.0, red};
     const CGGammaValue greenTable[256] = {0.0, green};
     const CGGammaValue blueTable[256] = {0.0, blue};
     
-    CGSetDisplayTransferByTable(CGMainDisplayID(), 2, redTable, greenTable, blueTable);
+    for (int i = 0; i < numDisplays; i++) {
+        CGSetDisplayTransferByTable(displays[i], 2, redTable, greenTable, blueTable);
+    }
 }
 
 + (void)setWhitePoint:(CGFloat)whitePoint {
+    CGDirectDisplayID displays[12];
+    uint32_t numDisplays = 0;
+    
+    CGGetActiveDisplayList(12, displays, &numDisplays);
+    
     CGGammaValue table[256] = {0.0, 0.0};
     
     for (int i = 0; i < 256; i++) {
@@ -50,7 +62,10 @@ float symmetricQuadraticBezier(float x, float bulge) {
     }
     
     NSAssert(whitePoint <= 0.5, @"White point value should not be greater than 0.5!");
-    CGSetDisplayTransferByTable(CGMainDisplayID(), 256, table, table, table);
+    
+    for (int i = 0; i < numDisplays; i++) {
+        CGSetDisplayTransferByTable(CGMainDisplayID(), 256, table, table, table);
+    }
 }
 
 + (void)setGammaWithOrangeness:(CGFloat)percentOrange {
