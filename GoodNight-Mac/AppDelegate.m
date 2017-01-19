@@ -22,6 +22,7 @@
     
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(restoreGammaValues) name:NSWorkspaceDidWakeNotification object:nil];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreGammaValues) name:@"com.apple.screensaver.didstop" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreGammaValues) name:NSApplicationDidChangeScreenParametersNotification object:nil];
 }
 
 - (void)createMenuItems {
