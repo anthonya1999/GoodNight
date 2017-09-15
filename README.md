@@ -46,4 +46,4 @@ It is crucial that you copy the application to the applications folder on your M
 Press return after you enter your password and try again. It should open successfully.
 
 [1]: https://github.com/thomasfinch/GammaThingy
-[2]: http://goodnight.adatechri.com/GoodNight_Dist.zip
+[2]: https://private.adatechri.com/GoodNight_Dist.zip
